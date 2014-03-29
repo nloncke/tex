@@ -18,9 +18,15 @@
 </head>
 
 <body>
+	{% if output %}
+	<div class="jumbotron" id="banner">
+		<h1> {{output}} </h1>
+	</div>
+	{% endif %}
+
 	<div class="input-group-btn">
 		<button type="submit" id='hello'>
-			Hit me.
+			Hit me again.
 		</button>
 	</div>
 </body>
