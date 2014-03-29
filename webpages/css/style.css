@@ -1,0 +1,49 @@
+.dropdown-menu >li >a {
+   cursor:pointer;
+}
+
+/*formatting the entire welcome header*/
+#banner {
+	position: absolute;
+	background-color: inherit;
+	top: 10%;
+	width: 100%;
+
+}
+
+/*specifically the welcome text*/
+#welcome {
+	font-family: cursive;
+	font-size: 125%;
+   font-weight: bold;
+   color: #FFFFFF;
+}
+
+/*positions the entire search bar*/
+#search {
+	position: absolute;
+	top:  48%;
+	left: 10%;
+	width: 80%;
+}
+
+/*Prevent the width of the button from changing on click*/
+#search_by{
+    width: 100px;
+    display: inline-block;
+}
+
+/*Two diffrerent shades of translucence*/
+.translucent1{
+   color: #552255;
+   background-color: rgba(255,255,255,0.5);
+}
+.translucent2{
+   background-color: rgba(255,255,255,0.75);
+}
+
+/* For the background of the pages */
+body {
+    /*background-color:#c1cdd5;*/
+    background: url('../img/background2.jpg');
+}

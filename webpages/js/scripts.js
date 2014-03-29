@@ -1,0 +1,35 @@
+// should we accept spaces at the beginning of a query?
+
+$(document).ready(function()
+{
+  $("#search_by_title").click(function(){
+    $("#search_bar_text").attr(
+    	{placeholder:"Search by title"});
+    $('#search_by').button("title");
+    $("#search_bar_text").focus();
+  });
+
+  $("#search_by_isbn").click(function(){
+    $("#search_bar_text").attr(
+    	{placeholder:"Search by isbn",
+    	pattern:"([0-9]{10})|([0-9]{13})"});
+    $('#search_by').button("isbn");
+    $("#search_bar_text").focus();
+  });
+
+  $("#search_by_author").click(function(){
+    $("#search_bar_text").attr(
+    	{placeholder:"Search by author",
+    	pattern:"[A-Za-z\\s]+"});
+    $('#search_by').button("author");
+    $("#search_bar_text").focus();
+  });
+
+  $("#search_by_course").click(function(){
+    $("#search_bar_text").attr(
+    	{placeholder:"Search by course (e.g. cos 333)",
+    	pattern:"[A-Za-z]{3}(\\s)*[0-9]{3}(\\s)*"});
+	$('#search_by').button("course");
+    $("#search_bar_text").focus();
+  });
+});
