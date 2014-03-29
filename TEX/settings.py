@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     "buy",
     "search",
     "sell",
+    "helloDjango",
 )
 
 MIDDLEWARE_CLASSES = (
