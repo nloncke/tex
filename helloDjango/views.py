@@ -7,5 +7,6 @@ def index(request):
     return render_to_response('hello.html')
 
 def result(request):
-    return render(request, 'hellodisplay.html', hello())
+#     request.POST.get("read_in", "")
+    return render(request, 'hellodisplay.html', {"output": request.POST.get("read_in", "NONE FOUND")}) 
     

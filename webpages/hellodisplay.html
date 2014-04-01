@@ -25,7 +25,8 @@
 	{% endif %}
 
 	<div class="input-group-btn">
-		<form action="result" method="get" >
+		<form action="result" method="post" > {% csrf_token %}
+			<input type="text" name="read_in">
 			<button type="submit" id='hello'>
 				Hit me Again
 			</button>
