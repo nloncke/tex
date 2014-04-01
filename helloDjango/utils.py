@@ -1,2 +1,6 @@
+from models import *
+
+
 def hello():
-    return {"output": "Yeah!!! We are done!!!"}
+    putTest("The database is ALLLLIVEEEEEE")
+    return {"output": getFirst()}
