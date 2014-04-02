@@ -24,9 +24,6 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 ADMINS = (("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
           ("Laura Xu", "lauraxu@princeton.edu"),
           ("Jeffrey Asala", "jasala@princeton.edu"),
@@ -62,7 +59,6 @@ ROOT_URLCONF = 'TEX.urls'
 
 WSGI_APPLICATION = 'TEX.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
@@ -95,6 +91,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'     #For Heroku
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
     , os.path.join(BASE_DIR, 'media/frontcover')
     , os.path.join(BASE_DIR, 'media/thumbnail') 
@@ -112,3 +109,16 @@ EMAIL_SUBJECT_PREFIX = "[tex NOTIFICATION: ]"
 
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'webpages')]
+
+
+
+# Setting for HEROKU
+# Parse database configuration from $DATABASE_URL
+import dj_database_url
+DATABASES['default'] =  dj_database_url.config()
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
