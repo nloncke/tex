@@ -95,10 +95,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/css') 
-    , os.path.join(BASE_DIR, 'webpages/img')
-    , os.path.join(BASE_DIR, 'webpages/js') 
-    , os.path.join(BASE_DIR, 'webpages/less')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
+    , os.path.join(BASE_DIR, 'media/frontcover')
+    , os.path.join(BASE_DIR, 'media/thumbnail') 
     )
 
 
