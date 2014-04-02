@@ -5,9 +5,10 @@ import json
 
 URL_STUB="https://www.googleapis.com/books/v1/volumes?q=isbn:"
 USER_AGENT=[("User-agent", "Mozilla/5.0")]
-FNTCVR_STUB="../media/frontcover/%s.jpg"
-THUMB_STUB="../media/thumbnail/%s.jpg"
-
+FNTCVR_STUB="../media/frontcover/frontcover_%s.jpg"
+THUMB_STUB="../media/thumbnail/thumbnail_%s.jpg"
+FNTCVR_URL="/static/frontcover_%s.jpg"
+THUMB_URL="/static/thumbnail_%s.jpg"
 
 # placeholders
 def get_book_info(isbn = None, title = None, author = None, thumbnail = True): 
@@ -17,6 +18,7 @@ def get_course_list(course):
 def update_book_cache(*toolazy):
     pass
 #############################################
+
 
 def search_by_title(query):
     return get_book_info(title = query)
@@ -67,7 +69,6 @@ def fetch_isbn(isbn):
     info["title"] = book["title"]
     info["authors"] = book["authors"]
 #     authors = "/".join(book["authors"])
-
     
     try:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
@@ -82,9 +83,12 @@ def fetch_isbn(isbn):
         thumbnail = THUMB_STUB % isbn
         with open(thumbnail, "wb") as f:
             f.write(img.read())
+        # Set to the right url
+        frontcover = FNTCVR_URL % isbn
+        thumbnail = THUMB_URL % isbn    
     except:
-        frontcover = FNTCVR_STUB % "default"
-        thumbnail = THUMB_STUB % "default"
+        frontcover = FNTCVR_URL % "default"
+        thumbnail = THUMB_URL % "default"
     
     info["frontcover"] = frontcover
     info["thumbnail"] = thumbnail
