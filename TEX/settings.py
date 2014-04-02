@@ -59,20 +59,6 @@ ROOT_URLCONF = 'TEX.urls'
 
 WSGI_APPLICATION = 'TEX.wsgi.application'
 
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydatabase',
-        'USER': 'tex',
-        'PASSWORD': 'axal@tex',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
 
@@ -115,7 +101,22 @@ TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'webpages')]
 # Setting for HEROKU
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES = {'default': dj_database_url.config()}
+
+# Works for local testing
+# Comment this out before deploying to Heroku!!!!!!!!!!!!!!!!!!!!!!!!!
+# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydatabase',
+        'USER': 'tex',
+        'PASSWORD': 'axal@tex',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
