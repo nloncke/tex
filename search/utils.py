@@ -39,14 +39,8 @@ def search_by_isbn(query):
     
     return [result]
 
+###############################################
 
-def convert_to_13(isbn):
-    if len(isbn) == 13:
-        return isbn
-    if len(isbn) != 10:
-        print "LAURA XUUUUU!!!!"
-    
-    
 
 def fetch_isbn(isbn):
     URL = URL_STUB + isbn
