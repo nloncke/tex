@@ -43,40 +43,23 @@
       <input type="text" id="search_bar_text" name="search_input" autocomplete="on"
       autofocus required placeholder="Search by title" class="form-control translucent1">
       <div class="input-group-btn">
-        <button type="submit" id="search_btn" class="btn btn-default
-        translucent2">
+        <button type="submit" id="search_btn" class="btn btn-default translucent2">
           <span class="glyphicon glyphicon-search"> </span>
         </button>
       </div>
     </div>
- </form>
+   </form>
 <!-- Search bar ends here -->
 </div>
 
-<div class="row">
-  {% if books %}
-  {% for book in books %}
-  <div class="col-xs-4">
-    <a href="book/{{book.isbn}}" class="thumbnail">
-      <img src="{{book.frontcover}}" alt="{{book.title}}">
-    </a>
-    <div class="caption">
-      <h3>{{book.title}}</h3>
-      <p>{{book.author}}</p>
-    </div>
-  </div>
-  {% endfor %}
-  {% endif %}
+<div class="jumbotron" id="message">
+  <h1>We're sorry</h1>
+<!--   {% if isbn %} -->
+  <h2> There are no current offers for <strong>{{ query }}</strong>. </h2>
+<!-- {% endif %} -->
+  <h3> Are you sure you spelled everything correctly?  Try searching again by ISBN.</h3>
+  <h3> Have a copy of this book you'd like to <a href="sell/" alt="sell here!">sell</a>? </h3>
 </div>
-<!-- 
-      <ul class="list-group">
 
-  <li class="list-group-item"> </li>
-</ul>
-</div>
- -->  <!-- {% for book in books %}
-      <li class="list-group-item">{{ book.title }}
-        {{ book.author }}</li>
-  {% endfor %} -->
 </body>
 </html>
