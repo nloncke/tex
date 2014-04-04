@@ -6,5 +6,5 @@ from search import views
 #url(nicole and laura, laura, laura)
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'^isbn$', views.results, name='search/isbn')
+    url(r'^isbn$', views.isbn, name='search/isbn')
 )
