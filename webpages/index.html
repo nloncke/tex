@@ -23,9 +23,9 @@
 	</h1>
 </div>
 
-<div class="container", id="search">
+<div class="container", id="homesearch">
 <!-- Search bar starts here -->
-	<form id="search_bar">
+	<form id="search_form" method="post"> {% csrf_token %}
 		<div class="input-group input-group-lg">
 			<div class="input-group-btn">
 				<button id ="search_by" type="button" class="btn btn-default dropdown-toggle translucent2"
@@ -45,9 +45,8 @@
 					<li id="search_by_course"><a>Course</a></li>
 				</ul>
 			</div>
-			<input type="text" id="search_bar_text" autocomplete="on"
-			autofocus required placeholder="Search by title"
-			class="form-control translucent1">
+			<input type="text" id="search_bar_text" name="search_input" autocomplete="on"
+			autofocus required placeholder="Search by title" class="form-control translucent1">
 			<div class="input-group-btn">
 				<button type="submit" id="search_btn" class="btn btn-default
 				translucent2">

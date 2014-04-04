@@ -16,18 +16,27 @@
 	font-family: cursive;
 	font-size: 125%;
    font-weight: bold;
-   color: #FFFFFF;
+   color: #000000;
+/*   color: #FFFFFF;*/
 }
 
-/*positions the entire search bar*/
-#search {
+/*positions the entire search bar on the homepage*/
+#homesearch {
 	position: absolute;
 	top:  48%;
 	left: 10%;
 	width: 80%;
 }
 
-/*Prevent the width of the button from changing on click*/
+/*positions the search bar on subsequent pages */
+#topsearch {
+/*	position: absolute;
+	top:  48%;
+	left: 10%;
+	width: 80%;
+*/}
+
+/*Prevent the width of the dropdown button from changing on click*/
 #search_by{
     width: 100px;
     display: inline-block;
@@ -45,5 +54,5 @@
 /* For the background of the pages */
 body {
     /*background-color:#c1cdd5;*/
-    background: url('background2.jpg');
+/*    background: url('background2.jpg');*/
 }
