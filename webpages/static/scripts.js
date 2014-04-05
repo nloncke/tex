@@ -6,7 +6,7 @@ $(document).ready(function()
     $("#search_bar_text").attr(
     	{placeholder:"Search by title"});
     $('#search_by').button("title");
-    $("#search_form").attr({action:"search/title/"});
+    $("#search_form").attr({action:"/search/title/"});
     $("#search_bar_text").focus();
   });
 
@@ -15,7 +15,7 @@ $(document).ready(function()
     	{placeholder:"Search by isbn",
     	pattern:"([0-9]{10})|([0-9]{13})"});
     $('#search_by').button("isbn");
-    $("#search_form").attr({action:"search/isbn/"});
+    $("#search_form").attr({action:"/search/isbn/"});
     $("#search_bar_text").focus();
   });
 
@@ -24,7 +24,7 @@ $(document).ready(function()
     	{placeholder:"Search by author",
     	pattern:"[A-Za-z\\s]+"});
     $('#search_by').button("author");
-    $("#search_form").attr({action:"search/author/"});
+    $("#search_form").attr({action:"/search/author/"});
     $("#search_bar_text").focus();
   });
 
@@ -33,7 +33,7 @@ $(document).ready(function()
     	{placeholder:"Search by course (e.g. cos 333)",
     	pattern:"[A-Za-z]{3}(\\s)*[0-9]{3}(\\s)*"});
     $('#search_by').button("course");
-    $("#search_form").attr({action:"search/course/"});  
+    $("#search_form").attr({action:"/search/course/"});  
     $("#search_bar_text").focus();
   });
 });
