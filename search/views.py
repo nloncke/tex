@@ -14,6 +14,7 @@ def isbn(request):
     if validate_isbn(isbn):
         books = search_by_isbn(isbn)
         if books:
+            books["query"] = isbn
             return render(request, 'search_results.html', books)
         else:
             return render(request, 'search_empty_prompt.html', {"query": isbn})
@@ -25,6 +26,7 @@ def title(request):
     if validate_title(title):
         books = search_by_title(title)
         if books:
+            books["query"] = title
             return render(request, 'search_results.html', books)
         else:
             return render(request, 'search_empty_prompt.html', {"query": title})
@@ -36,6 +38,7 @@ def author(request):
     if validate_author(author):
         books = search_by_author(author)
         if books:
+            books["query"] = author
             return render(request, 'search_results.html', books)
         else:
             return render(request, 'search_empty_prompt.html', {"query": author})
@@ -47,6 +50,7 @@ def course(request):
     if validate_course(course):
         books = search_by_course(course)
         if books:
+            books["query"] = course
             return render(request, 'search_results.html', books)
         else:
             return render(request, 'search_empty_prompt.html', {"query": course})
