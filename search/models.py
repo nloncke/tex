@@ -33,10 +33,10 @@ def get_book_info(isbn = None, title = None, author = None, thumb = True):
     
     if (thumb == True):
         for object in qset:
-            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumb':object.thumb})
+            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb})
     else:
         for object in qset:
-            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'cover':object.cover})
+            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.cover})
 
     return books
 
@@ -57,7 +57,7 @@ def get_offers(isbn):
     offers = []
     qset = Offer.objects.filter(isbn=isbn)
     for object in qset:
-        offers.append({'id':object.id, 'price':object.price, 'seller':object.seller})
+        offers.append({'offer_id':object.id, 'buy_price':object.price, 'seller_id':object.seller})
 
     return offers
 
