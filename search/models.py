@@ -24,18 +24,18 @@ def get_book_info(isbn = None, title = None, author = None, thumb = True):
         qset = qset.filter(isbn=isbn)
     if (title != None):
         regex = '.*' + title + '.*' 
-        qset = qset.filter(title__regex=regex)
+        qset = qset.filter(title__iregex=regex)
     if (author != None):
         tokens = author.split()
         for token in tokens:
             regex = '.*' + token + '.*'
-            qset = qset.filter(author__regex=regex)
+            qset = qset.filter(author__iregex=regex)
     if (thumb == True):
         for object in qset:
-            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumb':object.thumb})
+            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb})
     else:
         for object in qset:
-            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'cover':object.cover})
+            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.cover})
 
     return books
 
@@ -43,7 +43,7 @@ def get_book_info(isbn = None, title = None, author = None, thumb = True):
 def get_course_list(course):
     isbns = []
     re = '.*' + course + '.*'
-    qset = Offer.objects.filter(course__regex=re)
+    qset = Offer.objects.filter(course__iregex=re)
     for object in qset:
         isbns.append(object.course)
 
@@ -56,7 +56,7 @@ def get_offers(isbn):
     offers = []
     qset = Offer.objects.filter(isbn=isbn)
     for object in qset:
-        offers.append({'id':object.id, 'price':object.price, 'seller':object.seller})
+        offers.append({'offer_id':object.id, 'buy_price':object.price, 'seller_id':object.seller})
 
     return offers
 
