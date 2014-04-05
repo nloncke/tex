@@ -10,6 +10,7 @@ def index(request):
     return render(request,'index.html')
 
 def isbn(request):
+    # change to isbn13
     isbn = request.POST.get("search_input","0")
     if validate_isbn(isbn):
         books = search_by_isbn(isbn)

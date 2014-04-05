@@ -13,7 +13,7 @@ $(document).ready(function()
   $("#search_by_isbn").click(function(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by isbn",
-    	pattern:"([0-9]{10})|([0-9]{13})",
+    	pattern:"^((([0-9]-?){9}[0-9Xx])|((97[89]([0-9]-?){9}[0-9])))$",
     	oninvalid:"setCustomValidity('Enter a 10 or 13 digit valid ISBN')"});
     $('#search_by').button("isbn");
     $("#search_form").attr({action:"/search/isbn/"});
