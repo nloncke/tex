@@ -29,8 +29,7 @@ def get_book_info(isbn = None, title = None, author = None, thumb = True):
         tokens = author.split()
         for token in tokens:
             regex = '.*' + token + '.*'
-            qset = qst.filter(author__regex=regex)
-    
+            qset = qset.filter(author__regex=regex)
     if (thumb == True):
         for object in qset:
             books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumb':object.thumb})
