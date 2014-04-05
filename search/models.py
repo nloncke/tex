@@ -16,25 +16,25 @@ class Book(models.Model):
 
 # we assume that isbn will be an exact match, and that 
 # title and author need not be
-def get_book_info(qisbn = None, qtitle = None, qauthor = None, thumb = True):
+def get_book_info(isbn = None, title = None, author = None, thumb = True):
     books = []
     qset = Book.objects.all()
 
-    if (qisbn != None):
-        qset = qset.filter(isbn=qisbn)
-    if (qtitle != None):
-        regex = '.*' + qtitle + '.*' 
+    if (isbn != None):
+        qset = qset.filter(isbn=isbn)
+    if (title != None):
+        regex = '.*' + title + '.*' 
         qset = qset.filter(title__regex=regex)
-    if (qauthor != None):
-        regex = '.*' + qauthor + '.*'
+    if (author != None):
+        regex = '.*' + author + '.*'
         qset = qst.filter(author__regex=regex)
     
     if (thumb == True):
         for object in qset:
-            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb})
+            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumb':object.thumb})
     else:
         for object in qset:
-            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.cover})
+            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'cover':object.cover})
 
     return books
 
@@ -55,7 +55,7 @@ def get_offers(isbn):
     offers = []
     qset = Offer.objects.filter(isbn=isbn)
     for object in qset:
-        offers.append({'offer_id':object.id, 'buy_price':object.price, 'seller_id':object.seller})
+        offers.append({'id':object.id, 'price':object.price, 'seller':object.seller})
 
     return offers
 
