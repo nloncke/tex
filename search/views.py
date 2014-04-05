@@ -10,16 +10,15 @@ def index(request):
     return render(request,'index.html')
 
 def isbn(request):
-    #isbn = request.POST.get("search_input", 0)
+    isbn = request.POST.get("search_input","0")
     #isbn = 123456789
-    '''if validate_isbn(isbn):
-        pass
+    if validate_isbn(isbn):
         #return render(request, 'search_results.html', search_by_isbn(isbn))
+        return render(request, 'search_results.html', {"query": isbn})
     else:
-        pass
-        #return render(request, 'search_empty_prompt.html', hello())
-    '''
-    return render(request,'search_empty_prompt.html',{"query": request.POST.get("search_input", "0")})
+        return render(request, 'search_empty_prompt.html', {"query": isbn})
+   
+    #return render(request,'search_empty_prompt.html',{"query": request.POST.get("search_input", "0")})
         
 def validate_isbn(isbn):
     regex = re.compile("^(((\d-?){9}[0-9Xx])|((97[89](\d-?){9}[0-9])))$")
