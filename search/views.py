@@ -13,12 +13,31 @@ def isbn(request):
     isbn = request.POST.get("search_input","0")
     #isbn = 123456789
     if validate_isbn(isbn):
-        #return render(request, 'search_results.html', search_by_isbn(isbn))
-        return render(request, 'search_results.html', {"query": isbn})
+        return render(request, 'search_results.html', search_by_isbn(isbn))
+        #return render(request, 'search_results.html', {"query": isbn})
     else:
         return render(request, 'search_empty_prompt.html', {"query": isbn})
-   
-    #return render(request,'search_empty_prompt.html',{"query": request.POST.get("search_input", "0")})
+    
+def title(request):
+    title = request.POST.get("search_input","0")
+    if validate_title(title):
+        return render(request, 'search_results.html', search_by_title(title))
+    else:
+        return render(request, 'search_empty_prompt.html', {"query": title})
+
+def author(request):
+    author = request.POST.get("search_input","0")
+    if validate_author(author):
+        return render(request, 'search_results.html', search_by_author(author))
+    else:
+        return render(request, 'search_empty_prompt.html', {"query": author})
+    
+def course(request):
+    course = request.POST.get("search_input","0")
+    if validate_course(course):
+        return render(request, 'search_results.html', search_by_course(course))
+    else:
+        return render(request, 'search_empty_prompt.html', {"query": course})
         
 def validate_isbn(isbn):
     regex = re.compile("^(((\d-?){9}[0-9Xx])|((97[89](\d-?){9}[0-9])))$")
@@ -54,23 +73,23 @@ def validate_isbn(isbn):
 def validate_title(title):
     regex = re.compile("^[\w\s]{1,200}$")
     if re.search(regex, title):
-        print title
+        return True
     else:
-        print "Invalid Title"
+        return False
         
 def validate_author(author):
     regex = re.compile("^[a-zA-Z\s]{1,100}$")
     if re.search(regex, author):
-        print author
+        return True
     else:
-        print "Invalid Author"
+        return False
 
 def validate_course(course):
     regex = re.compile("[a-zA-Z]{3}( )*[0-9]{3}$")
     if re.search(regex, course):
-        print course
+        return True
     else:
-        print "Invalid Course"
+        return False
         
 def convert_to_13(isbn):
     if len(isbn) == 13:
