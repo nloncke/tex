@@ -30,7 +30,6 @@ def get_book_info(isbn = None, title = None, author = None, thumb = True):
         for token in tokens:
             regex = '.*' + token + '.*'
             qset = qset.filter(author__regex=regex)
-    
     if (thumb == True):
         for object in qset:
             books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb})

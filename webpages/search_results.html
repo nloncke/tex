@@ -7,20 +7,20 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <link href="static/bootstrap.min.css" rel="stylesheet">
-  <link href="static/style.css" rel="stylesheet">
-  <link rel="shortcut icon" href="static/favicon.ico">
+  <link href="/static/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/style.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/static/favicon.ico">
 
-    <script type="text/javascript" src="static/jquery.min.js"></script>
-  <script type="text/javascript"  src="static/bootstrap.min.js"></script>
-  <script type="text/javascript"  src="static/scripts.js"></script>
+  <script type="text/javascript" src="/static/jquery.min.js"></script>
+  <script type="text/javascript"  src="/static/bootstrap.min.js"></script>
+  <script type="text/javascript"  src="/static/scripts.js"></script>
 
 </head>
 
 <body>
 <div class="container", id="topsearch">
 <!-- Search bar starts here -->
-  <form id="search_form" method="post"> {% csrf_token %}
+  <form id="search_form" action="/search/title" method="post"> {% csrf_token %}
     <div class="input-group">
       <div class="input-group-btn">
         <button id ="search_by" type="button" class="btn btn-default dropdown-toggle translucent2"
@@ -54,9 +54,7 @@
 </div>
 
 <div class="jumbotron" id="message">
-<!--   {% if isbn %} -->
   <h2> You searched for <strong>"{{ query }}"</strong>. Here's what we got.</h2>
-<!-- {% endif %} -->
 </div>
 
 <div class="row">
@@ -64,7 +62,7 @@
   {% for book in books %}
   <div class="col-xs-4">
     <a href="book/{{book.isbn}}" class="thumbnail">
-      <img src="{{book.frontcover}}" alt="{{book.title}}">
+      <img src="{{book.thumbnail}}" alt="{{book.title}}">
     </a>
     <div class="caption">
       <h3>{{book.title}}</h3>
