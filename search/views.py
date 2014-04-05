@@ -14,12 +14,12 @@ def isbn(request):
     if validate_isbn(isbn):
         books = search_by_isbn(isbn)
         if books["books"]:
-            books["query"] = isbn
+            books["isbn"] = isbn
             return render(request, 'search_results.html', books)
         else:
-            return render(request, 'search_empty_prompt.html', {"query": isbn})
+            return render(request, 'search_empty.html', {"isbn": isbn})
     else:
-        return render(request, 'search_empty_prompt.html', {"query": isbn})
+        return render(request, 'search_empty.html', {"isbn": isbn})
     
 def title(request):
     title = request.POST.get("search_input","0")
