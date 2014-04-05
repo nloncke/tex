@@ -12,20 +12,20 @@ THUMB_URL="/static/thumbnail_%s.jpg"
 
 
 def search_by_title(query):
-    print get_book_info(title = query)
+#     print get_book_info(title = query)
     return get_book_info(title = query)
     
 def search_by_author(query):
-    print get_book_info(author = query)
+#     print get_book_info(author = query)
     return get_book_info(author = query)
 
 def search_by_course(query):
-    print get_course_list(course = query)
+#     print get_course_list(course = query)
     return get_course_list(course = query)
 
 def search_by_isbn(query):
     result = get_book_info(isbn = query)
-    print result
+#     print result
     if result == []:
         result = fetch_isbn(query)
         update_book_cache(result["isbn"], result["title"], result["authors"],
@@ -83,4 +83,4 @@ def fetch_isbn(isbn):
     return info
 
 if __name__ == '__main__':
-    search_by_author (sys.argv[1])
+    search_by_title (sys.argv[1])

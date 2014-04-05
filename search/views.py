@@ -2,20 +2,24 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from utils import *
 from django.shortcuts import render_to_response
+import re
 
 # render(request, html template, function that returns dictionary)
 # render(-, nicole, jeffrey)
 def index(request):
-    return render_to_response('index.html')
+    return render(request,'index.html')
 
 def isbn(request):
-    isbn = request.POST.get("search_input", 0)
-    if validate_isbn(isbn):
+    #isbn = request.POST.get("search_input", 0)
+    #isbn = 123456789
+    '''if validate_isbn(isbn):
         pass
         #return render(request, 'search_results.html', search_by_isbn(isbn))
     else:
         pass
         #return render(request, 'search_empty_prompt.html', hello())
+    '''
+    return render(request,'search_empty_prompt.html',{"query": request.POST.get("search_input", "0")})
         
 def validate_isbn(isbn):
     regex = re.compile("^(((\d-?){9}[0-9Xx])|((97[89](\d-?){9}[0-9])))$")
