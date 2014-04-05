@@ -13,7 +13,8 @@
 
 /*specifically the welcome text*/
 #welcome {
-	font-family: cursive;
+	/*font-family: cursive;*/
+	font-family: 'ABeeZee', sans-serif;
 	font-size: 125%;
    font-weight: bold;
    color: #000000;
@@ -40,6 +41,9 @@
 #search_by{
     width: 100px;
     display: inline-block;
+}
+#search_form{
+	font-family: 'ABeeZee', sans-serif;
 }
 
 /*Two diffrerent shades of translucence*/
