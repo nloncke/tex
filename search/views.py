@@ -13,7 +13,7 @@ def isbn(request):
     isbn = request.POST.get("search_input","0")
     if validate_isbn(isbn):
         books = search_by_isbn(isbn)
-        if books:
+        if books["books"]:
             books["query"] = isbn
             return render(request, 'search_results.html', books)
         else:
@@ -25,7 +25,7 @@ def title(request):
     title = request.POST.get("search_input","0")
     if validate_title(title):
         books = search_by_title(title)
-        if books:
+        if books["books"]:
             books["query"] = title
             return render(request, 'search_results.html', books)
         else:
@@ -37,7 +37,7 @@ def author(request):
     author = request.POST.get("search_input","0")
     if validate_author(author):
         books = search_by_author(author)
-        if books:
+        if books["books"]:
             books["query"] = author
             return render(request, 'search_results.html', books)
         else:
@@ -49,7 +49,7 @@ def course(request):
     course = request.POST.get("search_input","0")
     if validate_course(course):
         books = search_by_course(course)
-        if books:
+        if books["books"]:
             books["query"] = course
             return render(request, 'search_results.html', books)
         else:
