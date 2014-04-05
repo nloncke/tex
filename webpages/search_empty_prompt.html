@@ -11,7 +11,6 @@
   <link href="/static/style.css" rel="stylesheet">
   <link rel="shortcut icon" href="/static/favicon.ico">
 
-
   <script type="text/javascript" src="/static/jquery.min.js"></script>
   <script type="text/javascript"  src="/static/bootstrap.min.js"></script>
   <script type="text/javascript"  src="/static/scripts.js"></script>
@@ -22,7 +21,7 @@
 <body>
 <div class="container", id="topsearch">
 <!-- Search bar starts here -->
-  <form id="search_form" method="post"> {% csrf_token %}
+  <form id="search_form" action="/search/isbn" method="post"> {% csrf_token %}
     <div class="input-group">
       <div class="input-group-btn">
         <button id ="search_by" type="button" class="btn btn-default dropdown-toggle translucent2"
@@ -30,7 +29,7 @@
           data-isbn-text="ISBN <span class='caret'></span>"
           data-author-text="Author <span class='caret'></span>"
           data-course-text="Course <span class='caret'></span>"
-          data-toggle="dropdown"> Title <span class='caret'></span>
+          data-toggle="dropdown"> ISBN <span class='caret'></span>
         </button>
         <ul class="dropdown-menu translucent1" >
           <li id="search_by_title"><a>Title</a></li>
