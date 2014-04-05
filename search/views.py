@@ -11,31 +11,45 @@ def index(request):
 
 def isbn(request):
     isbn = request.POST.get("search_input","0")
-    #isbn = 123456789
     if validate_isbn(isbn):
-        return render(request, 'search_results.html', search_by_isbn(isbn))
-        #return render(request, 'search_results.html', {"query": isbn})
+        books = search_by_isbn(isbn)
+        if books:
+            return render(request, 'search_results.html', books)
+        else:
+            return render(request, 'search_empty_prompt.html', {"query": isbn})
     else:
         return render(request, 'search_empty_prompt.html', {"query": isbn})
     
 def title(request):
     title = request.POST.get("search_input","0")
     if validate_title(title):
-        return render(request, 'search_results.html', search_by_title(title))
+        books = search_by_title(title)
+        if books:
+            return render(request, 'search_results.html', books)
+        else:
+            return render(request, 'search_empty_prompt.html', {"query": title})
     else:
         return render(request, 'search_empty_prompt.html', {"query": title})
 
 def author(request):
     author = request.POST.get("search_input","0")
     if validate_author(author):
-        return render(request, 'search_results.html', search_by_author(author))
+        books = search_by_author(author)
+        if books:
+            return render(request, 'search_results.html', books)
+        else:
+            return render(request, 'search_empty_prompt.html', {"query": author})
     else:
         return render(request, 'search_empty_prompt.html', {"query": author})
     
 def course(request):
     course = request.POST.get("search_input","0")
     if validate_course(course):
-        return render(request, 'search_results.html', search_by_course(course))
+        books = search_by_course(course)
+        if books:
+            return render(request, 'search_results.html', books)
+        else:
+            return render(request, 'search_empty_prompt.html', {"query": course})
     else:
         return render(request, 'search_empty_prompt.html', {"query": course})
         
