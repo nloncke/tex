@@ -7,20 +7,20 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <link href="static/bootstrap.min.css" rel="stylesheet">
-  <link href="static/style.css" rel="stylesheet">
-  <link rel="shortcut icon" href="static/favicon.ico">
+  <link href="/static/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/style.css" rel="stylesheet">
+  <link rel="shortcut icon" href="/static/favicon.ico">
 
-    <script type="text/javascript" src="static/jquery.min.js"></script>
-  <script type="text/javascript"  src="static/bootstrap.min.js"></script>
-  <script type="text/javascript"  src="static/scripts.js"></script>
+    <script type="text/javascript" src="/static/jquery.min.js"></script>
+  <script type="text/javascript"  src="/static/bootstrap.min.js"></script>
+  <script type="text/javascript"  src="/static/scripts.js"></script>
 
 </head>
 
 <body>
 <div class="container", id="topsearch">
 <!-- Search bar starts here -->
-  <form id="search_form" action="/search/title" method="post"> {% csrf_token %}
+  <form id="search_form" action="/search/title/" method="post"> {% csrf_token %}
     <div class="input-group">
       <div class="input-group-btn">
         <button id ="search_by" type="button" class="btn btn-default dropdown-toggle translucent2"
@@ -55,11 +55,7 @@
 
 <div class="jumbotron" id="message">
   <h1>We're sorry</h1>
-<!--   {% if isbn %} -->
-  <h2> There are no current offers for ISBN <strong>{{ isbn }}</strong>. </h2>
-<!--   {% else %}
-  <h2> User should only be on this page if they searched by ISBN...</h2>
-  {% endif %} -->
+  <h2> There are no current offers for ISBN <strong>{{ query }}</strong>. </h2>
   <h3> Have a copy of this book you'd like to <a href="sell/" alt="sell here!">sell</a>? </h3>
   <h3> Here are some sellers that may offer what you seek:</h3>
   <ul>
