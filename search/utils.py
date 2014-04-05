@@ -83,4 +83,4 @@ def fetch_isbn(isbn):
     return info
 
 if __name__ == '__main__':
-    search_by_title (sys.argv[1])
+    search_by_isbn (sys.argv[1])
