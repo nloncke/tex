@@ -56,8 +56,7 @@ def fetch_isbn(isbn):
     
     info["isbn"] = isbn
     info["title"] = book["title"]
-    info["authors"] = book["authors"]
-#     authors = "/".join(book["authors"])
+    info["authors"] = "/".join(book["authors"])
     
     try:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
