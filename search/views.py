@@ -7,7 +7,7 @@ import re
 # render(request, html template, function that returns dictionary)
 # render(-, nicole, jeffrey)
 def index(request):
-    return render_to_response('index.html')
+    return render(request,'index.html')
 
 def isbn(request):
     #isbn = request.POST.get("search_input", 0)
