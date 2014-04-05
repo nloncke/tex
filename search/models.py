@@ -27,7 +27,7 @@ def get_book_info(isbn = None, title = None, author = None, thumb = True):
         qset = qset.filter(title__regex=regex)
     if (author != None):
         regex = '.*' + author + '.*'
-        qset = qst.filter(author__regex=regex)
+        qset = qset.filter(author__regex=regex)
     
     if (thumb == True):
         for object in qset:

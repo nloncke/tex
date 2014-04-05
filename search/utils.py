@@ -1,4 +1,4 @@
-# from search import models
+from search.models import *
 import sys
 import urllib2
 import json
@@ -10,28 +10,22 @@ THUMB_STUB="../media/thumbnail/thumbnail_%s.jpg"
 FNTCVR_URL="/static/frontcover_%s.jpg"
 THUMB_URL="/static/thumbnail_%s.jpg"
 
-# placeholders
-def get_book_info(isbn = None, title = None, author = None, thumbnail = True): 
-    return []
-def get_course_list(course):
-    pass
-def update_book_cache(*toolazy):
-    pass
-#############################################
-
 
 def search_by_title(query):
+    print get_book_info(title = query)
     return get_book_info(title = query)
     
 def search_by_author(query):
+    print get_book_info(author = query)
     return get_book_info(author = query)
 
 def search_by_course(query):
+    print get_course_list(course = query)
     return get_course_list(course = query)
 
 def search_by_isbn(query):
-    # query = convert_to_13(query)
     result = get_book_info(isbn = query)
+    print result
     if result == []:
         result = fetch_isbn(query)
         update_book_cache(result["isbn"], result["title"], result["authors"],
@@ -89,4 +83,4 @@ def fetch_isbn(isbn):
     return info
 
 if __name__ == '__main__':
-    search_by_isbn (sys.argv[1])
+    search_by_author (sys.argv[1])
