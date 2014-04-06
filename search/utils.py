@@ -59,8 +59,7 @@ def fetch_isbn(isbn):
     info["title"] = book["title"]
     info["author"] = "/".join(book["authors"])
     
-#     try:
-    if True:
+    try:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
         url_thm = book["imageLinks"]["smallThumbnail"].split("&edge")[0]
         opener = urllib2.build_opener()
@@ -76,10 +75,9 @@ def fetch_isbn(isbn):
         # Set to the right url
         frontcover = FNTCVR_URL % isbn
         thumbnail = THUMB_URL % isbn    
-#     except Exception as e:
-#         print e
-#         frontcover = FNTCVR_URL % "default"
-#         thumbnail = THUMB_URL % "default"
+    except:
+        frontcover = FNTCVR_URL % "default"
+        thumbnail = THUMB_URL % "default"
     
     info["frontcover"] = frontcover
     info["thumbnail"] = thumbnail
