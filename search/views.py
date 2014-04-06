@@ -117,6 +117,7 @@ def convert_to_13(isbn):
     if len(isbn) == 10:
         chars = ['9', '7', '8']
         chars = chars + isbn
+        chars.pop()
         val = sum((x % 2 * 2 + 1) * int(y) for x,y in enumerate(chars))
         check = 10 - (val % 10)
         if check == 10:
