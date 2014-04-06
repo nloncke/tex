@@ -4,7 +4,8 @@ $(document).ready(function()
 {
   $("#search_by_title").click(function(){
     $("#search_bar_text").attr(
-    	{placeholder:"Search by title"});
+    	{placeholder:"Search by title",
+      pattern:"[\'\":0-9A-Za-z\\s]+"});
     $('#search_by').button("title");
     $("#search_form").attr({action:"/search/title/"});
     $("#search_bar_text").focus();
@@ -23,7 +24,7 @@ $(document).ready(function()
   $("#search_by_author").click(function(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by author",
-    	pattern:"[A-Za-z\\s]+",
+      pattern:"[A-Za-z\\s]+",
     	oninvalid:"setCustomValidity('Enter only letters and spaces')"});
     $('#search_by').button("author");
     $("#search_form").attr({action:"/search/author/"});
