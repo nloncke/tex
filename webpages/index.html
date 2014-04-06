@@ -1,63 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<link href='http://fonts.googleapis.com/css?family=Roboto|ABeeZee' rel='stylesheet' type='text/css'>
-  <meta charset="utf-8">
+{% include "pre_header.html" %}
   <title>tex</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <link href="/static/bootstrap.min.css" rel="stylesheet">
-  <link href="/static/style.css" rel="stylesheet">
-  <link rel="shortcut icon" href="/static/favicon.ico">
-
-  <script type="text/javascript" src="/static/jquery.min.js"></script>
-  <script type="text/javascript"  src="/static/bootstrap.min.js"></script>
-  <script type="text/javascript"  src="/static/scripts.js"></script>
-
-<!--   <base href="http://www.w3schools.com/images/" target="_blank"> -->
-</head>
+{% include "post_header.html" %}
 
 <body>
-<div class="jumbotron" id="banner">
-	<h1> <p class="text-center" id="welcome">tex</p>
-	</h1>
-</div>
-
-<div class="container", id="homesearch">
-<!-- Search bar starts here -->
-	<form id="search_form" action="/search/title/" method="post"> {% csrf_token %} 
-		<div class="input-group input-group-lg">
-			<div class="input-group-btn">
-				<button id ="search_by" type="button" class="btn btn-default dropdown-toggle translucent2"
-					data-title-text="Title <span class='caret'></span>"
-					data-isbn-text="ISBN <span class='caret'></span>"
-					data-author-text="Author <span class='caret'></span>"
-					data-course-text="Course <span class='caret'></span>"
-					data-toggle="dropdown"> Title <span class='caret'></span>
-				</button>
-				<ul class="dropdown-menu translucent1" >
-					<li id="search_by_title"><a>Title</a></li>
-					<li class="divider">
-					<li id="search_by_isbn"><a>ISBN</a></li>
-					<li class="divider">
-					<li id="search_by_author"><a>Author</a></li>
-					<li class="divider">
-					<li id="search_by_course"><a>Course</a></li>
-				</ul>
-			</div>
-			<input type="text" id="search_bar_text" name="search_input" autocomplete="on"
-			autofocus required placeholder="Search by title" class="form-control translucent1">			
-			<div class="input-group-btn">
-				<button type="submit" id="search_btn" class="btn btn-default
-				translucent2">
-					<span class="glyphicon glyphicon-search"> </span>
-				</button>
-			</div>
-		</div>
-	</form>
-<!-- Search bar ends here -->
-</div>
+	<div class="jumbotron" id="banner">
+		<h1> <p class="text-center" id="welcome">tex</p>
+		</h1>
+	</div>
+	<div class="container", id="homesearch">
+		{% include "search_bar.html" %}
+	</div>
 </body>
 </html>
