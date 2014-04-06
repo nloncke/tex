@@ -5,7 +5,8 @@ $(document).ready(function()
   $("#search_by_title").click(function(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by title",
-      pattern:"[\'\":0-9A-Za-z\\s]+"});
+      pattern:"[\'\":0-9A-Za-z\\s]+",
+    	oninvalid:"setCustomValidity('Enter a valid title')"});
     $('#search_by').button("title");
     $("#search_form").attr({action:"/search/title/"});
     $("#search_bar_text").focus();
