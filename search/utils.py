@@ -29,9 +29,10 @@ def search_by_isbn(query):
 #     print result
     if result == []:
         info = fetch_isbn(query)
-        update_book_cache(info["isbn"], info["title"], info["author"],
-                info["frontcover"], info["thumbnail"])
-        result = [info]
+        if info:
+            update_book_cache(info["isbn"], info["title"], info["author"],
+                    info["frontcover"], info["thumbnail"])
+            result = [info]
     
     return {"books":result}
 
@@ -45,12 +46,10 @@ def fetch_isbn(isbn):
     
     # Check if search returned a match
     if result["totalItems"] == 0:
-        print "No ISBN found"
-        return
+        return []
     
     elif result["totalItems"] > 1:
-        print "ISBN is not unique"
-        return
+        return []
     
     info = {}
     book= result["items"][0]["volumeInfo"]
