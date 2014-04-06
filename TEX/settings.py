@@ -79,8 +79,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'     #For Heroku
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
-    , os.path.join(BASE_DIR, 'media/frontcover')
-    , os.path.join(BASE_DIR, 'media/thumbnail') 
+    , os.path.join(BASE_DIR, 'media')
     )
 
 
@@ -95,7 +94,6 @@ EMAIL_SUBJECT_PREFIX = "[tex NOTIFICATION: ]"
 
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'webpages')]
-
 
 
 # Setting for HEROKU
@@ -123,3 +121,7 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
+
+
+MEDIA_ROOT="media"
+MEDIA_URL="/media/"
