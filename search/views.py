@@ -10,8 +10,10 @@ def index(request):
     return render(request,'index.html')
 
 def isbn(request):
+    # change to isbn13
     isbn = request.POST.get("search_input","0")
     if validate_isbn(isbn):
+        isbn = convert_to_13(isbn)
         books = search_by_isbn(isbn)
         if books["books"]:
             books["query"] = isbn
@@ -122,6 +124,6 @@ def convert_to_13(isbn):
         chars.append(str(check))
         return ''.join(chars)
     else:
-        print "Conversion requires ISBN-10"
+        return 0
         
 ##########################################################    
