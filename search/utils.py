@@ -1,3 +1,4 @@
+from django.core.files import File
 from search.models import *
 import sys
 import urllib2
@@ -5,8 +6,8 @@ import json
 
 URL_STUB="https://www.googleapis.com/books/v1/volumes?q=isbn:"
 USER_AGENT=[("User-agent", "Mozilla/5.0")]
-FNTCVR_STUB="../media/frontcover/frontcover_%s.jpg"
-THUMB_STUB="../media/thumbnail/thumbnail_%s.jpg"
+FNTCVR_STUB="media/frontcover_%s.jpg"
+THUMB_STUB="media/thumbnail_%s.jpg"
 FNTCVR_URL="/static/frontcover_%s.jpg"
 THUMB_URL="/static/thumbnail_%s.jpg"
 
@@ -28,7 +29,7 @@ def search_by_isbn(query):
 #     print result
     if result == []:
         info = fetch_isbn(query)
-        update_book_cache(info["isbn"], info["title"], info["authors"],
+        update_book_cache(info["isbn"], info["title"], info["author"],
                 info["frontcover"], info["thumbnail"])
         result = [info]
     
@@ -56,9 +57,10 @@ def fetch_isbn(isbn):
     
     info["isbn"] = isbn
     info["title"] = book["title"]
-    info["authors"] = "/".join(book["authors"])
+    info["author"] = "/".join(book["authors"])
     
-    try:
+#     try:
+    if True:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
         url_thm = book["imageLinks"]["smallThumbnail"].split("&edge")[0]
         opener = urllib2.build_opener()
@@ -74,13 +76,14 @@ def fetch_isbn(isbn):
         # Set to the right url
         frontcover = FNTCVR_URL % isbn
         thumbnail = THUMB_URL % isbn    
-    except:
-        frontcover = FNTCVR_URL % "default"
-        thumbnail = THUMB_URL % "default"
+#     except Exception as e:
+#         print e
+#         frontcover = FNTCVR_URL % "default"
+#         thumbnail = THUMB_URL % "default"
     
     info["frontcover"] = frontcover
     info["thumbnail"] = thumbnail
     return info
 
 if __name__ == '__main__':
-    search_by_isbn (sys.argv[1])
+    print search_by_isbn (sys.argv[1])
