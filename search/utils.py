@@ -29,9 +29,10 @@ def search_by_isbn(query):
 #     print result
     if result == []:
         info = fetch_isbn(query)
-        update_book_cache(info["isbn"], info["title"], info["author"],
-                info["frontcover"], info["thumbnail"])
-        result = [info]
+        if info:
+            update_book_cache(info["isbn"], info["title"], info["author"],
+                    info["frontcover"], info["thumbnail"])
+            result = [info]
     
     return {"books":result}
 
@@ -45,12 +46,10 @@ def fetch_isbn(isbn):
     
     # Check if search returned a match
     if result["totalItems"] == 0:
-        print "No ISBN found"
-        return
+        return []
     
     elif result["totalItems"] > 1:
-        print "ISBN is not unique"
-        return
+        return []
     
     info = {}
     book= result["items"][0]["volumeInfo"]
@@ -59,8 +58,7 @@ def fetch_isbn(isbn):
     info["title"] = book["title"]
     info["author"] = "/".join(book["authors"])
     
-#     try:
-    if True:
+    try:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
         url_thm = book["imageLinks"]["smallThumbnail"].split("&edge")[0]
         opener = urllib2.build_opener()
@@ -76,10 +74,9 @@ def fetch_isbn(isbn):
         # Set to the right url
         frontcover = FNTCVR_URL % isbn
         thumbnail = THUMB_URL % isbn    
-#     except Exception as e:
-#         print e
-#         frontcover = FNTCVR_URL % "default"
-#         thumbnail = THUMB_URL % "default"
+    except:
+        frontcover = FNTCVR_URL % "default"
+        thumbnail = THUMB_URL % "default"
     
     info["frontcover"] = frontcover
     info["thumbnail"] = thumbnail
