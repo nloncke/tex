@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from utils import *
-from django.shortcuts import render_to_response
 import re
 
 # render(request, html template, function that returns dictionary)
