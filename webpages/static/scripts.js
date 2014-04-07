@@ -1,8 +1,5 @@
-// should we accept spaces at the beginning of a query?
-
-$(document).ready(function()
-{
-  $("#search_by_title").click(function(){
+// Functions for changing the search bar
+function set_to_title(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by title",
       	pattern:"[\'\":0-9A-Za-z\\s]+",
@@ -10,9 +7,9 @@ $(document).ready(function()
     $('#search_by').button("title");
     $("#search_form").attr({action:"/search/title/"});
     $("#search_bar_text").focus();
-  });
+  }
 
-  $("#search_by_isbn").click(function(){
+function set_to_isbn(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by ISBN (no dashes)"
     	, pattern:"^((([0-9]-?){9}[0-9Xx])|((97[89]([0-9]-?){9}[0-9])))$"
@@ -21,7 +18,19 @@ $(document).ready(function()
     $('#search_by').button("isbn");
     $("#search_form").attr({action:"/search/isbn/"});
     $("#search_bar_text").focus();
-  });
+  }
+
+
+$(document).ready(function()
+{
+  // the space after the title is essential (#hack)
+  if($("title").text() == "tex search results ")
+    set_to_isbn();
+  else
+    set_to_title();
+
+  $("#search_by_title").click(set_to_title);
+  $("#search_by_isbn").click(set_to_isbn);
 
   $("#search_by_author").click(function(){
     $("#search_bar_text").attr(

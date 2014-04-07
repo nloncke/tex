@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, url
-
 from book import views
 
 #url(regex and form action and website url, views.py name, nothing)
@@ -7,3 +6,4 @@ from book import views
 urlpatterns = patterns('',
     url(r'^$', views.book_index, name='book_index'),
 )
+
