@@ -81,3 +81,6 @@ body {
 p, h1, h2, h3{
   font-family: 'ABeeZee', sans-serif;
 }
+th{
+	font-size:24px;
+}

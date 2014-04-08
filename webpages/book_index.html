@@ -1,20 +1,44 @@
 {% extends "base_results.html" %}
- {% block content %}
- <div class="media">
+{% block content %}
+<div class="media">
       <img class="media-object pull-left" src="/static/pop.jpg" alt="NOOO" height="316px" width="256px">
       <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px">Thomas' Calculus, Early Transcendentals, Single Variable with Second-Order Differential Equations</h3>
+         <h3 class="media-heading" style="font-size:28px"><strong>Thomas' Calculus, Early Transcendentals, Single Variable with Second-Order Differential Equations</strong></h3>
          <h2 style="font-size:20px">
          	<p>Author(s): David A. Patterson/John L. Hennessy</p>
          	<p>ISBN-13: 9781234567890</p>
          	<p>Published Date: 2010</p>
      		<button type="submit" id="buy" class="btn btn-default translucent2">
-              <span>SELL</span>
+              <span><strong>SELL</strong></span>
     		</button> 
     		<button type="submit" id="follow" class="btn btn-default translucent2">
-              <span>FOLLOW</span>
+              <span><strong>FOLLOW</strong></span>
     		</button> 
          </h2>
       </div>
-   </div>
- {% endblock content %}
+</div>
+<div class="media">
+      <div class="media-body">
+         <h3 class="media-heading" style="font-size:28px">Offers</h3>
+         <h1 style="font-size:18px">
+         	<p>Also available from Amazon, Labyrinth, Chegg</p>
+         </h1>
+         <h2 style="font-size:20px"> 
+	         <table class="table" width="80%">
+	     		<th></th>
+	     		<th>Price</th>
+	     		<th>Condition</th>
+	     		<th>Description</th>
+	         	<tr>
+	         		<td><button type="submit" id="buy" class="btn btn-default translucent2">
+	              			<span><strong>BUY</strong></span>
+	    				</button> </td>
+	         		<td>$35</td>
+	         		<td>New</td>
+	         		<td>Wondeful!</td>
+	         	</tr>
+	         </table>
+         </h2>
+      </div>
+</div>
+{% endblock content %}
