@@ -56,8 +56,8 @@ def get_course_list(course):
     for object in qset:
         isbns.append(object.course)
 
-def update_book_cache(isbn, title, author, cover, thumb):
-    book = Book(isbn=isbn, title=title, author=author, cover=cover, thumb=thumb)
+def update_book_cache(isbn, title, author, frontcover, thumbnail, published_date):
+    book = Book(isbn=isbn, title=title, author=author, cover=frontcover, thumb=thumbnail)
     book.save()
 
 # not dealing with auction stuff yet 

@@ -25,8 +25,7 @@ def search_by_isbn(query):
     if result == []:
         info = fetch_isbn(query)
         if info:
-            update_book_cache(info["isbn"], info["title"], info["author"],
-                    info["frontcover"], info["thumbnail"])
+            update_book_cache(**info)
             result = [info]
     
     return {"books":result}
@@ -50,9 +49,13 @@ def fetch_isbn(isbn):
     book= result["items"][0]["volumeInfo"]
     
     info["isbn"] = isbn
-    info["title"] = book["title"]
-    info["author"] = "/".join(book["authors"])
+    try:
+        info["title"] = ": ".join((book["title"], book["subtitle"]))
+    except:
+        info["title"] = book["title"]
     
+    info["author"] = "/".join(book["authors"])
+    info["published_date"] = book["publishedDate"]
     try:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
         url_thm = book["imageLinks"]["smallThumbnail"].split("&edge")[0]
