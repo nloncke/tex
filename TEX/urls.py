@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^helloDjango/', include('helloDjango.urls')),
     url(r'^search/', include('search.urls')),
     url(r'^book/', include('book.urls')),
+    # url(r'^sell/', include('sell.urls')),
 )
 #test

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block body %}
 
-<form id="sell_forms_collection" action="/sell/review" method="post"> {% csrf_token %}
+<form id="sell_forms_collection" action="/sell/thanks/" method="post"> {% csrf_token %}
 	<div class="input-group">
 		<span class="input-group-addon">Title</span>
 		<input type="text" id="sell_title" name="sell_title" autofocus placeholder="Title"
