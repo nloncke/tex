@@ -20,7 +20,6 @@ function set_to_isbn(){
     $("#search_bar_text").focus();
   }
 
-
 $(document).ready(function()
 {
   // the space after the title is essential (#hack)
@@ -51,8 +50,6 @@ $(document).ready(function()
     $("#search_form").attr({action:"/search/course/"});
     $("#search_bar_text").focus();
   });
-
-
 
 
   // Unneccesary functions JUST IN CASE
