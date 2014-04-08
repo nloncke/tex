@@ -13,20 +13,18 @@
 
 /*specifically the welcome text*/
 #welcome {
-	/*font-family: cursive;*/
 	font-family: 'ABeeZee', sans-serif;
-	font-size: 125%;
-   font-weight: bold;
-   color: #000000;
-/*   color: #FFFFFF;*/
+	font-size: 200%;
+   	font-weight: bold;
+   	color: #E0FFFF; /* alternate colors: water, aliceblue, azure */
 }
 
 /*positions the entire search bar on the homepage*/
 #homesearch {
-	position: absolute;
+	position: absolute;	
 	top:  48%;
-	left: 10%;
-	width: 80%;
+	left: 15%;
+	width: 70%;
 }
 
 /*positions the search bar on subsequent pages */
@@ -48,7 +46,7 @@
 
 /*Two diffrerent shades of translucence*/
 .translucent1{
-   color: #552255;
+   color: #E0FFFF;
    background-color: rgba(255,255,255,0.5);
 }
 .translucent2{
@@ -58,5 +56,12 @@
 /* For the background of the pages */
 body {
     /*background-color:#c1cdd5;*/
-/*    background: url('background2.jpg');*/
+    background: url('background-blue.png');
+}
+
+.jumbotron{
+  font-family: 'ABeeZee', sans-serif;
+}
+p, h1, h2, h3{
+  font-family: 'ABeeZee', sans-serif;
 }
