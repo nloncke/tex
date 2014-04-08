@@ -61,17 +61,25 @@
 .media-body > a:visited {color: #110055;}
 .media-body > a:hover {color: #eeeeee;}
 
-/*Two diffrerent shades of translucence*/
+/* Three different shades of translucence*/
 .translucent{
 	opacity:0.8;
 }
 
-.translucent1{
+/* light translucence */
+.translucent1 {
    color: #E0FFFF;
-   background-color: rgba(255,255,255,0.5);
+   opacity: 0.5;
 }
-.translucent2{
+/* more opaque */
+.translucent2 {
    background-color: rgba(255,255,255,0.75);
+}
+
+/* style all the input forms on the sell page */
+.sell_form {
+  autocomplete: "on";
+  required;
 }
 
 /* For the background of the pages */
@@ -81,9 +89,13 @@ body {
    background: url('background-blue.png');
 }
 
+/* change fonts */
 .jumbotron{
   font-family: 'ABeeZee', sans-serif;
 }
 p, h1, h2, h3{
   font-family: 'ABeeZee', sans-serif;
+}
+th{
+	font-size:24px;
 }
