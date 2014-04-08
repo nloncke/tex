@@ -61,10 +61,15 @@
 .media-body > a:visited {color: #110055;}
 .media-body > a:hover {color: #eeeeee;}
 
+/* Three different shades of translucence*/
+.translucent{
+	opacity:0.8;
+}
+
 /* light translucence */
 .translucent1 {
    color: #E0FFFF;
-   background-color: rgba(255,255,255,0.5);
+   opacity: 0.5;
 }
 /* more opaque */
 .translucent2 {
@@ -80,6 +85,7 @@
 /* For the background of the pages */
 body {
     /*background-color:#c1cdd5;*/
+   padding-top: 70px;
    background: url('background-blue.png');
 }
 
