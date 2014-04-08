@@ -1,13 +1,6 @@
-{% include "pre_header.html" %}
-  <title>tex search results</title>
-{% include "post_header.html" %}
+{% extends "base_results.html" %}
 
-
-<body>
-<div class="container", id="topsearch">
-	{% include "search_bar.html" %}
-</div>
-
+{% block content %}
 <div class="jumbotron" id="message">
   <h1>We're sorry</h1>
   <h2> There are no current offers for ISBN <strong>{{ query }}</strong>. </h2>
@@ -18,6 +11,4 @@
     <li><a href="http://www.labyrinthbooks.com/all_search.aspx?sisbn={{ query }}" target="_blank"> Labyrinth </a> </li>
   </ul>
 </div>
-
-</body>
-</html>
+{% endblock content %}

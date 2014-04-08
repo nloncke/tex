@@ -1,4 +1,10 @@
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Roboto|ABeeZee' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+  <title>{% block title %}tex{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -10,5 +16,15 @@
   <script type="text/javascript"  src="/static/bootstrap.min.js"></script>
   <script type="text/javascript"  src="/static/scripts.js"></script>
 
-<!--   <base href="http://www.w3schools.com/images/" target="_blank"> -->
 </head>
+<body>
+	{% block navbar %}
+	{% endblock navbar %}
+
+	{% block body %}
+	{% endblock body %}
+
+	{% block footer %}
+	{% endblock footer %}
+</body>
+</html>

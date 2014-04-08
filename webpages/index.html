@@ -1,8 +1,6 @@
-{% include "pre_header.html" %}
-  <title>tex</title>
-{% include "post_header.html" %}
+{% extends "base.html" %}
 
-<body>
+{% block body %}
 	<div class="jumbotron" id="banner">
 		<h1> <p class="text-center" id="welcome">tex</p>
 		</h1>
@@ -10,5 +8,5 @@
 	<div class="container", id="homesearch">
 		{% include "search_bar.html" %}
 	</div>
-</body>
-</html>
+
+{% endblock body %}
