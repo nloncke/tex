@@ -1,1 +1,36 @@
 {% extends "base.html" %}
+{% block body %}
+
+<form id="sell_forms_collection" action="/sell/review" method="post"> {% csrf_token %}
+	<div class="input-group">
+		<span class="input-group-addon">Title</span>
+		<input type="text" id="sell_title" name="sell_title" autofocus placeholder="Title"
+		class="form-control translucent1">
+	</div>
+
+	<div class="input-group sell_form">
+		<input type="text" id="sell_author" name="sell_author" placeholder="Author"
+		class="form-control sell_form translucent1">
+	</div>
+
+	<div class="input-group sell_form">
+		<input type="text" id="sell_isbn" name="sell_isbn" placeholder="ISBN, digits only"
+		class="form-control sell_form translucent1">
+	</div>
+
+	<div class="input-group sell_form">
+		Condition of your book? <br>
+		<input type="radio" id="sell_cond" name="sell_cond"> New <br>
+		<input type="radio" id="sell_cond" name="sell_cond"> Used, Like new <br>
+		<input type="radio" id="sell_cond" name="sell_cond"> Used, Very good <br>
+		<input type="radio" id="sell_cond" name="sell_cond"> Used, Acceptable <br>
+	</div>
+
+	<div class="input-group-btn">
+		<button type="submit" id="sell_btn" class="btn btn-default translucent2">
+			Offer this book	<span class="glyphicon glyphicon-ok-circle"></span>
+	</button>
+	</div>
+</form>
+
+{% endblock body %}
