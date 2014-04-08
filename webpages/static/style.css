@@ -21,19 +21,18 @@
 
 /*positions the entire search bar on the homepage*/
 #homesearch {
-	position: absolute;	
+	position: absolute;
 	top:  48%;
 	left: 15%;
 	width: 70%;
 }
 
 /*positions the search bar on subsequent pages */
-#topsearch {
-/*	position: absolute;
-	top:  48%;
-	left: 10%;
+.topsearch {
+	margin-left: 10%;
+    margin-right: 10%;
 	width: 80%;
-*/}
+}
 
 /*Prevent the width of the dropdown button from changing on click*/
 #search_by{
@@ -45,9 +44,12 @@
 }
 
 .outerframe {
-   margin: 2%;
+   margin-bottom: 5%;
+   margin-top: 5%;
+   margin-left: 10%;
+   margin-right: 10%;
    padding: 2%;
-   width: 96%;
+   width: 80%;
    background-color: rgba(255,255,255,0.2);
 }
 
