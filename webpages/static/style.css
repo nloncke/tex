@@ -29,15 +29,17 @@
 
 /*positions the search bar on subsequent pages */
 .topsearch {
-	margin-left: 10%;
-    margin-right: 10%;
-	width: 80%;
+	width: 70%;
 }
 
 /*Prevent the width of the dropdown button from changing on click*/
 #search_by{
     width: 100px;
     display: inline-block;
+}
+
+#search_bar_text{
+	color: #000000;
 }
 #search_form{
 	font-family: 'ABeeZee', sans-serif;
@@ -63,17 +65,13 @@
 
 /* Three different shades of translucence*/
 .translucent{
-	opacity:0.8;
+	opacity:0.75;
 }
-
-/* light translucence */
 .translucent1 {
-   color: #E0FFFF;
    opacity: 0.5;
 }
-/* more opaque */
 .translucent2 {
-   background-color: rgba(255,255,255,0.75);
+   opacity: 0.25;
 }
 
 /* style all the input forms on the sell page */

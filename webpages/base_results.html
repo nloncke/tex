@@ -1,11 +1,13 @@
 {% extends "base.html" %}
 {% block title %}tex search results{% endblock title %}
 
-{% block body %}
 
-	<div class="topsearch">
-	  {% include "search_bar.html" %}
-	</div>
+{% block topsearch %}
+  {% include "search_topbar.html" %}
+{% endblock topsearch %}
+
+
+{% block body %}
 
 	<div class="container outerframe">
 	  {% block content %}
