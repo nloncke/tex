@@ -14,7 +14,7 @@ def book_index(request):
         return render(request, 'book_index.html', book)      
     else:
         # need an error html page
-        return render(request, 'book_index.html', {"query": isbn})
+        return render(request, 'search_empty_prompt.html', {"query": isbn})
           
 def validate_isbn(isbn):
     regex = re.compile("^(((\d-?){9}[0-9Xx])|((97[89](\d-?){9}[0-9])))$")

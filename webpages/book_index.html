@@ -1,12 +1,13 @@
 {% extends "base_results.html" %}
 {% block content %}
+{% if book %}
 <div class="media">
       <img class="media-object pull-left" src="/static/pop.jpg" alt="NOOO" height="316px" width="256px">
       <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px"><strong>Thomas' Calculus, Early Transcendentals, Single Variable with Second-Order Differential Equations</strong></h3>
+         <h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
          <h2 style="font-size:20px">
-         	<p>Author(s): David A. Patterson/John L. Hennessy</p>
-         	<p>ISBN-13: 9781234567890</p>
+         	<p>Author(s): {{book.author}}</p>
+         	<p>ISBN-13: {{book.isbn}}</p>
          	<p>Published Date: 2010</p>
      		<button type="submit" id="buy" class="btn btn-default translucent2">
               <span><strong>SELL</strong></span>
@@ -41,4 +42,5 @@
          </h2>
       </div>
 </div>
+{% endif %}
 {% endblock content %}
