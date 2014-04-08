@@ -4,17 +4,20 @@
 {% block content %}
   {% if books %}
   {% for book in books %}
-  <div class="media thumbnail">
-    <a class="pull-left thumbnail" href="book/{{book.isbn}}">
-      <img class="media-object" src="{{book.thumbnail}}" alt="{{book.title}}">
-    </a>
-    <div class="media-body">
-       <a href="book/{{book.isbn}}">
-       <h3 class="media-heading">{{book.title}}</h3>
-       </a>
-       Author(s): {{book.author}}
-    </div>
-  </div>
+  <form id="book_result" action="/book/" method="post"> {%csrf_token %}
+	  <div class="media thumbnail">
+	  	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
+	    <a class="pull-left thumbnail" href="/book/">
+	      <img class="media-object" src="{{book.thumbnail}}" alt="{{book.title}}">
+	    </a>
+	    <div class="media-body">
+	       <a href="/book/" onclick="document.getElementById('book_result').submit();">
+	       <h3 class="media-heading">{{book.title}}</h3>
+	       </a>
+	       Author(s): {{book.author}}
+	    </div>
+	  </div>
+  </form>
   {% endfor %}
   {% endif %}
 {% endblock content %}
