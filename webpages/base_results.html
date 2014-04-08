@@ -2,11 +2,14 @@
 {% block title %}tex search results{% endblock title %}
 
 {% block body %}
-<div class="container outerframe">
-  {% include "search_bar.html" %}
 
-  {% block content %}
-  {% endblock content %}
-</div>
+	<div class="topsearch">
+	  {% include "search_bar.html" %}
+	</div>
+
+	<div class="container outerframe">
+	  {% block content %}
+	  {% endblock content %}
+	</div>
 
 {% endblock body %}
