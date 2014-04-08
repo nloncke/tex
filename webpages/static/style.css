@@ -1,4 +1,4 @@
-.dropdown-menu >li >a {
+.dropdown-menu >li >a, a > h3 {
    cursor:pointer;
 }
 
@@ -46,6 +46,16 @@
 	font-family: 'ABeeZee', sans-serif;
 }
 
+.outerframe {
+   margin: 2%;
+   padding: 2%;
+   width: 96%;
+   background-color: rgba(0, 0, 0 ,0.1);
+}
+
+.media.thumbnail{
+   background-color: rgba(0, 0, 0 ,0.05);
+}
 /*Two diffrerent shades of translucence*/
 .translucent1{
    color: #552255;
@@ -58,5 +68,5 @@
 /* For the background of the pages */
 body {
     /*background-color:#c1cdd5;*/
-/*    background: url('background2.jpg');*/
+   /* background: url('background2.jpg'); */ 
 }
