@@ -7,5 +7,3 @@ urlpatterns = patterns('',
     url(r'^$', views.book_index, name='book_index'),
 )
 
-
-
