@@ -10,7 +10,7 @@ def sell_form(request):
             return HttpResponseRedirect('/sell/thanks/')
     else:
         form = SellForm()
-    return render(request, 'sell_form.html', {'form': form})
+    return render(request, 'sell_index.html', {'form': form})
     
 def thanks(request):
     return render(request, 'sell_thanks.html')
