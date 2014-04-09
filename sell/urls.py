@@ -6,5 +6,6 @@ from sell import views
 #url(nicole and laura, laura, laura)
 urlpatterns = patterns('',
     url(r'^$', views.sell_form, name='sell_form'),
+    url(r'^submit/$', views.sell_confirm, name='sell_form'),
     url(r'^thanks/$', views.thanks, name='sell_thanks')
 )
