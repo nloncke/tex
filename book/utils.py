@@ -8,7 +8,7 @@ LABYRINTH_STUB = "http://www.labyrinthbooks.com/all_search.aspx?sisbn=%s"
 
 
 def get_book(isbn):
-    book_info = get_book_info(isbn=isbn)
+    book_info = get_book_info(isbn=isbn, thumb=False)
     if book_info == []:
         return None
     # Get the first result

@@ -9,12 +9,12 @@
 <form action="/sell/submit/" method="post"> {% csrf_token %}
 	<h1 style="font-size:16px">
 	<table>
-		<tr><th><img class="media-object pull-left" src="/static/pop.jpg" alt="NOOO" height="158px" width="128px"></th>
+		<tr><th><img class="media-object pull-left" src="{{book.frontcover}}"alt="{{book.title}}" height="158px" width="128px"></th>
 			<td><div class="media-body">
-	         <h3 class="media-heading" style="font-size:28px"><strong>{{book.book.title}}</strong></h3>
+	         <h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
 	         <h2 style="font-size:20px">
-	         	<p>Author(s): {{book.book.author}}</p>
-	         	<p>ISBN-13: {{book.book.isbn}}</p>
+	         	<p>Author(s): {{book.author}}</p>
+	         	<p>ISBN-13: {{book.isbn}}</p>
 	         	<p>Published Date: 2010</p></h2></div></td></tr>
 
         {{ form.as_table }}

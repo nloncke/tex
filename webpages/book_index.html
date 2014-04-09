@@ -2,7 +2,7 @@
 {% block content %}
 {% if book %}
 <div class="media">
-      <img class="media-object pull-left" src="/static/pop.jpg" alt="NOOO" height="316px" width="256px">
+      <img class="media-object pull-left" src="{{book.frontcover}}" alt="{{book.title}}" height="316px" width="256px">
       <div class="media-body">
          <h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
          <h2 style="font-size:20px">

@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from sell.forms import SellForm
 from search.views import validate_isbn
-from book.utils import *
-book = []
+from search.models import *
+result = {}
 def sell_form(request):   
-    global book
+    global result
     if request.method == 'POST':
         isbn = request.POST.get("target_isbn","0")
         if validate_isbn(isbn):
-            book = get_book(isbn)       
+            result = get_book_info(isbn, thumb=False)       
             form = SellForm(request.POST)
             if form.is_valid():
                sell_data = form.cleaned_data
@@ -20,7 +20,8 @@ def sell_form(request):
         pass      
     form = SellForm()
         
-    return render(request, 'sell_form.html', {'form': form,'book':book})
+    result["form"] = form
+    return render(request, 'sell_form.html', result)
 
 def sell_confirm(request):
     if request.method == 'POST':   
@@ -32,7 +33,8 @@ def sell_confirm(request):
     else:       
         form = SellForm()
         
-    return render(request, 'sell_form.html', {'form': form,'book':book})
+    result["form"] = form   
+    return render(request, 'sell_form.html', result)
     
     
 def thanks(request):
