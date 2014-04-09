@@ -3,7 +3,7 @@ from sell.forms import SellForm
 
 def sell_form(request):
     if request.method == 'POST':
-        form = SellForm(request.POST)
+        form = SellForm(request.POST,initial={'title':'test'})
         if form.is_valid():
             sell_data = form.cleaned_data
             # process the data ??
