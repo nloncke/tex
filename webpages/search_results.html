@@ -1,5 +1,5 @@
 {% extends "base_results.html" %}
-  {% block title %}tex search results{% endblock title %}
+{% block title %}tex search results{% endblock title %}
 
 {% block content %}
   {% if books %}
@@ -10,7 +10,7 @@
 	    <a class="pull-left thumbnail" href="/book/">
 	      <img class="media-object" src="{{book.thumbnail}}" alt="{{book.title}}">
 	    </a>
-      
+
 	    <div class="media-body">
 	       <a href="/book/" onclick="document.getElementById('book_result').submit();">
 	       <h3 class="media-heading">{{book.title}}</h3>

@@ -1,9 +1,10 @@
 {% extends "base.html" %}
+{% block title %}tex sell{% endblock title %}
 {% block body %}
 
+<div class="container outerframe">
 <form id="sell_forms_collection" method="post"> {% csrf_token %}
-	{{form.non_field_errors}}
-
+	{{ form.non_field_errors }}
 	<!-- title -->
 	<div class="input-group">
 		<span class="input-group-addon">Title</span>
@@ -29,9 +30,9 @@
 		<label>Book condition?</label>
 		{{ form.picked_condition }}
 
-		{{form.description.errors}}
+		{{ form.description.errors }}
 		<label>Briefly describe the state of the book</label>
-		{{form.description.errors}}
+		{{ form.description.errors }}
 	<!-- 		<input type="radio" id="sell_cond" name="sell_cond"> New <br>
 		<input type="radio" id="sell_cond" name="sell_cond"> Used, Like new <br>
 		<input type="radio" id="sell_cond" name="sell_cond"> Used, Very good <br>
@@ -53,5 +54,6 @@
 		</button>
 	</div>
 </form>
+</div>
 
 {% endblock body %}
