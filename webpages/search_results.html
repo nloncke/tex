@@ -1,4 +1,4 @@
-{% extends "base_results.html" %}
+{% extends "base_topsearch.html" %}
 {% block title %}tex search results{% endblock title %}
 
 {% block content %}
@@ -6,19 +6,19 @@
   {% for book in books %}
   <form id="book_result" action="/book/" method="post"> {% csrf_token %}
 	  <div class="media thumbnail">
-	  	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">	  	  	
+	  	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
 	  	<div>
 	    <a href="javascript:{}" onclick="document.getElementById('book_result').submit(); return false;" class="pull-left thumbnail">
 	      <img class="media-object" src="{{book.thumbnail}}" alt="{{book.title}}">
 	    </a>
-	    </div>  
+	    </div>
 	    <div class="media-body">
 	       <a href="javascript:{}" onclick="document.getElementById('book_result').submit(); return false;">
 	      	 <h3 class="media-heading">{{book.title}}</h3>
 	       </a>
 	       Author(s): {{book.author}}
 	    </div>
-	   
+
 	  </div>
   </form>
   {% endfor %}

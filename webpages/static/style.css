@@ -4,10 +4,11 @@
 
 /*formatting the entire welcome header*/
 #banner {
-	position: absolute;
 	background-color: inherit;
 	top: 10%;
-	width: 100%;
+	margin-left: 15%;
+   	margin-right: 15%;
+	width: 70%;
 
 }
 
@@ -21,7 +22,6 @@
 
 /*positions the entire search bar on the homepage*/
 #homesearch {
-	position: absolute;
 	top:  48%;
 	left: 15%;
 	width: 70%;

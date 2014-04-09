@@ -1,4 +1,4 @@
-{% extends "base_results.html" %}
+{% extends "base_topsearch.html" %}
 {% block content %}
 {% if form.is_bound %}
 {% if form.errors %}
@@ -19,7 +19,7 @@
 
         {{ form.as_table }}
  	</table>
-    
+
     <button type="submit" id="submit" class="btn btn-default">
     	<span><strong>SELL</strong></span>
 	</button>
