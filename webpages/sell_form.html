@@ -1,12 +1,7 @@
 {% extends "base_topsearch.html" %}
 {% block content %}
-{% if form.is_bound %}
-{% if form.errors %}
-	<p style="color: red;">Please correct the error{{ form.errors|pluralize }} below.</p>
-{% endif %}
-{% endif %}
 {% if book %}
-<form action="/sell/submit/" method="post"> {% csrf_token %}
+<form id="sell_form" action="/sell/submit/" method="post"> {% csrf_token %}
 	<h1 style="font-size:16px">
 	<table>
 		<tr><th><img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="158px" width="128px"></th>
@@ -17,9 +12,19 @@
 	         	<p>ISBN-13: {{ book.isbn }}</p>
 	         	<p>Published Date: 2010</p></h2></div></td></tr>
 
-        {{ form.as_table }}
+        <tr><th><label for="id_auction_0">Auction:</label></th>
+        	<td><p id="auction"><label><input id="auction_yes" name="auction" type="checkbox" value="Yes" />Yes</label></p></td></tr>
+		<tr><th><label>Condition:</label></th><td><p id="picked_condition">
+			<p><label><input required id="new" name="picked_condition" type="radio" value="New" />New</label></p>
+			<p><label><input required id="like_new" name="picked_condition" type="radio" value="Like New" />Like New</label></p>
+			<p><label><input required id="very_good" name="picked_condition" type="radio" value="Very Good" />Very Good</label></p>
+			<p><label><input required id="good" name="picked_condition" type="radio" value="Good" /> Good</label></p>
+			<p><label><input required id="acceptable" name="picked_condition" type="radio" value="Acceptable" />Acceptable</label></p>
+		</p></td></tr>
+		<tr><th><label>Description:</label></th><td><textarea required maxlength="500" cols="40" id="description" 
+			name="description" rows="5"></textarea></td></tr>
+		<tr><th><label>Price:</label></th><td><input id="price" name="price" type="text" required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)"></td></tr>
  	</table>
-
     <button type="submit" id="submit" class="btn btn-default">
     	<span><strong>SELL</strong></span>
 	</button>
