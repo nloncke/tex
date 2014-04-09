@@ -18,12 +18,14 @@
 
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top translucent"
+	<nav class="navbar navbar-inverse navbar-fixed-top translucent_b1"
 		 role="navigation">
 	  <div class="container">
 		<p class="navbar-text navbar-right"><a href="/logout" >Logout</a></p>
 		<p class="navbar-text navbar-right"><a href="/account">My account</a></p>
 		<p class="navbar-text navbar-right"><a href="/">Home</a></p>
+		{% block topsearch %}
+		{% endblock topsearch %}
 	  </div>
 	</nav>
 	{% block body %}

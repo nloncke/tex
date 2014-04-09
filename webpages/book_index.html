@@ -1,20 +1,23 @@
-{% extends "base_results.html" %}
+{% extends "base_topsearch.html" %}
 {% block content %}
 {% if book %}
 <div class="media">
-      <img class="media-object pull-left" src="/static/pop.jpg" alt="NOOO" height="316px" width="256px">
+      <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="316px" width="256px">
       <div class="media-body">
          <h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
          <h2 style="font-size:20px">
          	<p>Author(s): {{book.author}}</p>
          	<p>ISBN-13: {{book.isbn}}</p>
          	<p>Published Date: 2010</p>
-     		<button type="submit" id="buy" class="btn btn-default translucent2">
-              <span><strong>SELL</strong></span>
-    		</button> 
-    		<button type="submit" id="follow" class="btn btn-default translucent2">
+			<form id="sell" action="/sell/" method="post"> {% csrf_token %}
+	     		<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
+	 			<a href="javascript:{}" onclick="document.getElementById('sell').submit(); return false;">
+	 				<button type="submit" id="sell" class="btn btn-default translucent_w3"><span><strong>SELL</strong></span></button>
+	 			</a>
+ 			</form>
+    		<button type="submit" id="follow" class="btn btn-default translucent_w3">
               <span><strong>FOLLOW</strong></span>
-    		</button> 
+    		</button>
          </h2>
       </div>
 </div>
@@ -24,14 +27,14 @@
          <h1 style="font-size:18px">
          	<p>Also available from Amazon, Labyrinth, Chegg</p>
          </h1>
-         <h2 style="font-size:20px"> 
+         <h2 style="font-size:20px">
 	         <table class="table" width="80%">
 	     		<th></th>
 	     		<th>Price</th>
 	     		<th>Condition</th>
 	     		<th>Description</th>
 	         	<tr>
-	         		<td><button type="submit" id="buy" class="btn btn-default translucent2">
+	         		<td><button type="submit" id="buy" class="btn btn-default translucent_w3">
 	              			<span><strong>BUY</strong></span>
 	    				</button> </td>
 	         		<td>$35</td>

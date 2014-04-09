@@ -1,17 +1,19 @@
 from django.shortcuts import render
-from sell.forms import SellForm
-
-def sell_form(request):
+from search.views import validate_isbn
+from utils import *
+def sell_form(request):   
     if request.method == 'POST':
-        form = SellForm(request.POST)
-        if form.is_valid():
-            sell_data = form.cleaned_data
-            # process the data ??
-            return HttpResponseRedirect('/sell/thanks/')
-    else:
-        form = SellForm()
-    return render(request, 'sell_form.html', {'form': form})
+        isbn = request.POST.get("target_isbn","0")
+        if validate_isbn(isbn):
+            result = get_book_info(isbn)       
+        else:
+            # need an error html page
+            return render(request, 'search_empty_prompt.html', {"query": isbn})
+    else: 
+        pass      
     
-def thanks(request):
-    return render(request, 'sell_thanks.html')
+    return render(request, 'sell_form.html', result)
+       
+def sell_submit(request):
+    return render(request, 'sell_submit.html')
 
