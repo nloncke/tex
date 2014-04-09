@@ -88,8 +88,6 @@ th{
 	font-size:24px;
 }
 
-
-
 /* Three different shades of translucence for white*/
 .translucent_w1{
 	background-color: rgba(255,255,255,.75);
@@ -111,3 +109,5 @@ th{
 .translucent_b3 {
    background-color: rgba(0,0,0,.25)
 }
+
+ul {list-style-type:none}

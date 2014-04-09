@@ -9,9 +9,12 @@
          	<p>Author(s): {{book.author}}</p>
          	<p>ISBN-13: {{book.isbn}}</p>
          	<p>Published Date: 2010</p>
-     		<button type="submit" id="buy" class="btn btn-default translucent_w3">
-              <span><strong>SELL</strong></span>
-    		</button>
+			<form id="sell" action="/sell/" method="post"> {% csrf_token %}
+	     		<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
+	 			<a href="javascript:{}" onclick="document.getElementById('sell').submit(); return false;">
+	 				<button type="submit" id="sell" class="btn btn-default translucent_w3"><span><strong>SELL</strong></span></button>
+	 			</a>
+ 			</form>
     		<button type="submit" id="follow" class="btn btn-default translucent_w3">
               <span><strong>FOLLOW</strong></span>
     		</button>
