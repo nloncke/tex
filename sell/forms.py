@@ -2,10 +2,6 @@ from django import forms
 import re
 
 class SellForm(forms.Form):
-    title = forms.CharField()
-    author = forms.CharField()
-    isbn = forms.CharField()
-    published_date = forms.CharField()
     auction = forms.BooleanField(initial=False, required=False)
     CONDITIONS = (('New', 'New'),
                   ('Like New', 'Like New'),
