@@ -63,16 +63,6 @@
 .media-body > a:visited {color: #110055;}
 .media-body > a:hover {color: #eeeeee;}
 
-/* Three different shades of translucence*/
-.translucent{
-	opacity:0.75;
-}
-.translucent1 {
-   opacity: 0.5;
-}
-.translucent2 {
-   opacity: 0.25;
-}
 
 /* style all the input forms on the sell page */
 .sell_form {
@@ -96,4 +86,28 @@ p, h1, h2, h3{
 }
 th{
 	font-size:24px;
+}
+
+
+
+/* Three different shades of translucence for white*/
+.translucent_w1{
+	background-color: rgba(255,255,255,.75);
+}
+.translucent_w2 {
+   background-color: rgba(255,255,255,.5);
+}
+.translucent_w3 {
+   background-color: rgba(255,255,255,.25)
+}
+
+/* Three different shades of translucence for black*/
+.translucent_b1{
+	background-color: rgba(0,0,0,.75)
+}
+.translucent_b2 {
+   background-color: rgba(0,0,0,.5)
+}
+.translucent_b3 {
+   background-color: rgba(0,0,0,.25)
 }

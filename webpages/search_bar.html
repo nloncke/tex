@@ -1,14 +1,14 @@
 <form id="search_form" action="/search/title/" method="post"> {% csrf_token %}
 	<div class="input-group input-group-lg">
 		<div class="input-group-btn">
-			<button id ="search_by" type="button" class="btn btn-default dropdown-toggle translucent"
+			<button id ="search_by" type="button" class="btn btn-default dropdown-toggle translucent_w1"
 				data-title-text="Title <span class='caret'></span>"
 				data-isbn-text="ISBN <span class='caret'></span>"
 				data-author-text="Author <span class='caret'></span>"
 				data-course-text="Course <span class='caret'></span>"
 				data-toggle="dropdown"> Title <span class='caret'></span>
 			</button>
-			<ul class="dropdown-menu translucent" >
+			<ul class="dropdown-menu translucent_w1" >
 				<li id="search_by_title"><a>Title</a></li>
 				<li class="divider">
 				<li id="search_by_isbn"><a>ISBN</a></li>
@@ -19,10 +19,10 @@
 			</ul>
 		</div>
 		<input type="text" id="search_bar_text" name="search_input" autocomplete="on"
-			autofocus required placeholder="Search by title" class="form-control translucent1">
+			autofocus required placeholder="Search by title" class="form-control translucent_w2">
 			<div class="input-group-btn">
 				<button type="submit" id="search_btn" class="btn btn-default
-				translucent">
+				translucent_w1">
 					<span class="glyphicon glyphicon-search"> </span>
 				</button>
 			</div>
