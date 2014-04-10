@@ -1,4 +1,5 @@
 from search import models
+import sell
 
 
 def get_book_info(isbn):
@@ -6,4 +7,4 @@ def get_book_info(isbn):
 
 
 def put_offer(isbn, offer):
-    return sell.models.put_offer(isbn=isbn, offer=offer)
+    return sell.models.put_offer(isbn=isbn, offer=offer, course=offer["course"])
