@@ -15,7 +15,7 @@
          <h2 style="font-size:20px">
          	<p>Author(s): {{book.author}}</p>
          	<p>ISBN-13: {{book.isbn}}</p>
-         	<p>Published Date: 2010</p>
+         	<p>Published Date: {{book.pub_date}}</p>
 			<form id="sell" action="/sell/" method="post"> {% csrf_token %}
 	     		<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
 	 			<a href="javascript:{}" onclick="document.getElementById('sell').submit(); return false;">
@@ -42,8 +42,8 @@
 	     		<th>Price</th>
 	     		<th>Condition</th>
 	     		<th>Description</th>
-	     		   {#       {% if offers %} #}
-         {#  {% for offer in offers %} #}
+	  {% if offers %}
+         {% for offer in offers %}
 	         	<tr>
               <!-- button should trigger modal -->
            		<td><button type="submit" id="buy" name="seller" value="{{ seller_id }}"
@@ -51,9 +51,9 @@
 	              			<span><strong>BUY</strong></span>
                    </button> </td>
               <!-- end button -->
-               		<td>$35</td>
-	         		<td>Brand spanking new</td>
-	         		<td>Excellent!</td>
+               		<td>${{offer.buy_price}}</td>
+	         		<td>{{offer.condition}}</td>
+	         		<td>{{offer.description}}</td>
 <!--	         		<td>${{ offer.price }}</td>
 	         		<td>{{ offer.condition }}</td>
 	         		<td>{{ offer.description }}</td>
@@ -69,20 +69,20 @@
                     <h4 class="modal-title" id="myModalLabel">Buy this book!</h4>
                   </div>
                   <div class="modal-body">
-                    Are you sure you want to purchase "{{ book.title }}" for $15{{ offer.price }}?
+                    Are you sure you want to purchase "{{ book.title }}" for ${{ offer.buy_price }}?
                     If you confirm we will follow up with you and the seller with
                     relevant contact information.
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Nah</button>
-                    <button type="submit" class="btn btn-primary">I'm sure!</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-primary">Yes</button>
                   </div>
                 </div>
               </div>
             </div>
             <!-- end of modal -->
-          {# % endfor % #}
-          {# % endif % #}
+          {% endfor %}
+          {% endif %}
 	         </table>
          </h2>
       </div>

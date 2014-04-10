@@ -1,5 +1,6 @@
 from django.db import models
 from search.models import *
+from account.models import *
 
 # put offer in table of offers, and update table of users
 def put_offer(offer, isbn, course):
