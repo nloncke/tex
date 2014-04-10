@@ -42,8 +42,8 @@
 	     		<th>Price</th>
 	     		<th>Condition</th>
 	     		<th>Description</th>
-          {% if offers %}
-          {% for offer in offers %}
+	     		   {#       {% if offers %} #}
+         {#  {% for offer in offers %} #}
 	         	<tr>
               <!-- button should trigger modal -->
            		<td><button type="submit" id="buy" name="seller" value="{{ seller_id }}"
@@ -51,9 +51,13 @@
 	              			<span><strong>BUY</strong></span>
                    </button> </td>
               <!-- end button -->
-	         		<td>${{ offer.price }}</td>
+               		<td>$35</td>
+	         		<td>Brand spanking new</td>
+	         		<td>Excellent!</td>
+<!--	         		<td>${{ offer.price }}</td>
 	         		<td>{{ offer.condition }}</td>
 	         		<td>{{ offer.description }}</td>
+	         	-->
 	         	</tr>
 
             <!-- here is the modal to prompt the buyer -->
@@ -65,8 +69,8 @@
                     <h4 class="modal-title" id="myModalLabel">Buy this book!</h4>
                   </div>
                   <div class="modal-body">
-                    Are you sure you want to buy {{ book.title }} for {{ offer.price }}?
-                    When you confirm we will follow up with you and the seller with 
+                    Are you sure you want to purchase "{{ book.title }}" for $15{{ offer.price }}?
+                    If you confirm we will follow up with you and the seller with
                     relevant contact information.
                   </div>
                   <div class="modal-footer">
@@ -77,8 +81,8 @@
               </div>
             </div>
             <!-- end of modal -->
-          {% endfor %}
-          {% endif %}
+          {# % endfor % #}
+          {# % endif % #}
 	         </table>
          </h2>
       </div>
