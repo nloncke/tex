@@ -24,7 +24,7 @@ def sell_submit(request):
         offer["price"] = request.POST.get("price", "0")
         offer["condition"] = request.POST.get("picked_condition", "0")
         offer["description"] = request.POST.get("description", "0")
-        offer["seller_id"] = "TEMP"
+        offer["seller_id"] = 10
         offer["auction_id"] = "0"
         put_offer(offer["isbn"], offer)
         '''if validate_offer(offer) and validate_isbn(isbn):

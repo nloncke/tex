@@ -11,7 +11,7 @@
 	         <h2 style="font-size:20px">
 	         	<p>Author(s): {{ book.author }}</p>
 	         	<p>ISBN-13: {{ book.isbn }}</p>
-	         	<p>Published Date: 2010</p></h2></div></td></tr>
+	         	<p>Published Date: {{book.pub_date}}</p></h2></div></td></tr>
 		<tr><th><label>Course:</label></th><td><input id="course" name="course" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)"></td></tr>
         <tr><th><label for="id_auction_0">Auction:</label></th>
         	<td><p id="auction"><label><input id="auction_yes" name="auction" type="checkbox" value="0" />Yes</label></p></td></tr>

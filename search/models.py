@@ -42,21 +42,19 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
             regex = '.*' + token + '.*'
             qset = qset.filter(author__iregex=regex)
     if (course != None):
-        result = []
         isbns = get_course_list(course)
         for object in isbns:
             newqset = qset.filter(isbn=object)
             for newob in newqqset:
                 if thumb == True:
-                    books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb})
+                    books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'pub_date':object.pub_date, 'thumbnail':object.thumb})
                 else:
-                    books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.cover})
-                
+                    books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'pub_date':object.pub_date, 'frontcover':object.cover})
 
-    if thumb == True:
-        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb} for object in qset]
+    if (thumb == True):
+        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb,'pub_date':object.pub_date} for object in qset]
     else:
-        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.cover} for object in qset]
+        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.cover, 'pub_date':object.pub_date} for object in qset]
 
     return books
 
@@ -79,7 +77,7 @@ def get_offers(isbn):
     offers = []
     qset = Offer.objects.filter(isbn=isbn)
     for object in qset:
-        offers.append({'offer_id':object.id, 'buy_price':object.price, 'seller_id':object.seller})
+        offers.append({'offer_id':object.id, 'buy_price':object.price, 'seller_id':object.seller, 'condition':object.condition, 'description':object.description})
 
     return offers
 
