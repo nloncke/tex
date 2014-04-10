@@ -18,7 +18,7 @@ def search_by_author(query):
     return {"books":get_book_info(author = query)}
 
 def search_by_course(query):
-    return {"books":get_course_list(course = query)}
+    return {"books":get_book_info(course = query)}
 
 def search_by_isbn(query):
     result = get_book_info(isbn = query)

@@ -27,7 +27,7 @@ class Book(models.Model):
 
 # we assume that isbn will be an exact match, and that 
 # title and author need not be
-def get_book_info(isbn = None, title = None, author = None, thumb = True):
+def get_book_info(isbn = None, title = None, author = None, course = None, thumb = True):
     books = []
     qset = Book.objects.all()
 
@@ -41,12 +41,20 @@ def get_book_info(isbn = None, title = None, author = None, thumb = True):
         for token in tokens:
             regex = '.*' + token + '.*'
             qset = qset.filter(author__iregex=regex)
+    if (course != None):
+        isbns = get_course_list(course)
+        for object in isbns:
+            newqset = qset.filter(isbn=object)
+            for newob in newqset:
+                if thumb == True:
+                    books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'pub_date':object.pub_date, 'thumbnail':object.thumb})
+                else:
+                    books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'pub_date':object.pub_date, 'frontcover':object.cover})
+
     if (thumb == True):
-        for object in qset:
-            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb,'pub_date':object.pub_date})
+        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb,'pub_date':object.pub_date} for object in qset]
     else:
-        for object in qset:
-            books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.cover, 'pub_date':object.pub_date})
+        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.cover, 'pub_date':object.pub_date} for object in qset]
 
     return books
 
@@ -57,6 +65,8 @@ def get_course_list(course):
     qset = Offer.objects.filter(course__iregex=re)
     for object in qset:
         isbns.append(object.course)
+
+    return set(isbns)
 
 def update_book_cache(isbn, title, author, frontcover, thumbnail, published_date):
     book = Book(isbn=isbn, title=title, author=author, cover=frontcover, pub_date=published_date, thumb=thumbnail)
