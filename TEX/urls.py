@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^search/', include('search.urls')),
     url(r'^book/', include('book.urls')),
     url(r'^sell/', include('sell.urls')),
+    url(r'^account/', include('account.urls')),
 )
 #test
