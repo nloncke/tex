@@ -45,7 +45,7 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
         isbns = get_course_list(course)
         for object in isbns:
             newqset = qset.filter(isbn=object)
-            for newob in newqqset:
+            for newob in newqset:
                 if thumb == True:
                     books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'pub_date':object.pub_date, 'thumbnail':object.thumb})
                 else:
