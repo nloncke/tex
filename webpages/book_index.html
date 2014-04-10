@@ -1,6 +1,13 @@
 {% extends "base_topsearch.html" %}
 {% block content %}
 {% if book %}
+
+<!-- GAME PLAN FOR NICOLE BY TONIGHT -->
+<!-- hidden form for each sell button to submit seller ID -->
+<!-- when buyer clicks on buy button within offer, create pop up window for verification -->
+<!-- confirming purchase submits hidden form with seller ID -->
+
+<!-- DISPLAY THE BOOK -->
 <div class="media">
       <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="316px" width="256px">
       <div class="media-body">
@@ -21,6 +28,8 @@
          </h2>
       </div>
 </div>
+
+<!-- BEGINNING OF OFFERS TABLE -->
 <div class="media">
       <div class="media-body">
          <h3 class="media-heading" style="font-size:28px">Offers</h3>
@@ -33,17 +42,47 @@
 	     		<th>Price</th>
 	     		<th>Condition</th>
 	     		<th>Description</th>
+          {% if offers %}
+          {% for offer in offers %}
 	         	<tr>
-	         		<td><button type="submit" id="buy" class="btn btn-default translucent_w3">
+              <!-- button should trigger modal -->
+           		<td><button type="submit" id="buy" name="seller" value="{{ seller_id }}"
+                data-toggle="modal" data-target="#buy_modal" class="btn btn-default translucent_w3">
 	              			<span><strong>BUY</strong></span>
-	    				</button> </td>
-	         		<td>$35</td>
-	         		<td>New</td>
-	         		<td>Wondeful!</td>
+                   </button> </td>
+              <!-- end button -->
+	         		<td>${{ offer.price }}</td>
+	         		<td>{{ offer.condition }}</td>
+	         		<td>{{ offer.description }}</td>
 	         	</tr>
+
+            <!-- here is the modal to prompt the buyer -->
+            <div class="modal fade" id="buy_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Buy this book!</h4>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to buy {{ book.title }} for {{ offer.price }}?
+                    When you confirm we will follow up with you and the seller with 
+                    relevant contact information.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Nah</button>
+                    <button type="submit" class="btn btn-primary">I'm sure!</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end of modal -->
+          {% endfor %}
+          {% endif %}
 	         </table>
          </h2>
       </div>
 </div>
 {% endif %}
 {% endblock content %}
+
