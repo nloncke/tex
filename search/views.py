@@ -126,4 +126,8 @@ def convert_to_13(isbn):
     else:
         return 0
         
-##########################################################    
+##########################################################  
+
+# For error page
+def error_page(request):
+    return render(request, "error_page.html")  

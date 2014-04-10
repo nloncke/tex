@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-
 from django.contrib import admin
 admin.autodiscover()
 
@@ -15,5 +14,6 @@ urlpatterns = patterns('',
     url(r'^book/', include('book.urls')),
     url(r'^sell/', include('sell.urls')),
     url(r'^account/', include('account.urls')),
+    url(r'.*', "search.views.error_page"),
 )
 #test

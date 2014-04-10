@@ -1,18 +1,20 @@
 from django.shortcuts import render
 from search.views import validate_isbn
 from utils import *
+
 def sell_form(request):   
     if request.method == 'POST':
         isbn = request.POST.get("target_isbn","0")
         if validate_isbn(isbn):
-            result = get_book_info(isbn)       
+            result = get_book_info(isbn)
+            return render(request, 'sell_form.html', result)    
         else:
             # need an error html page
             return render(request, 'search_empty_prompt.html', {"query": isbn})
     else: 
-        pass      
+        # Show error page
+        return render(request, "error_page.html")      
     
-    return render(request, 'sell_form.html', result)
        
 def sell_submit(request):
     offer = {}
@@ -30,6 +32,9 @@ def sell_submit(request):
             # need an error html page
             return render(request, 'search_empty_prompt.html', {"query": "temporary"})'''
         return render(request, 'sell_submit.html')
+    else:
+        return render(request, "error_page.html")
+    
 
 def validate_offer(offer):
     if offer.price == "0"|offer.condition == "0"|offer.description == "0"|offer.seller_id == "0":
