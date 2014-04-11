@@ -11,7 +11,10 @@ def index(request):
 def isbn(request):
     # change to isbn13
     isbn = request.POST.get("search_input","0")
+    isbn = isbn.lstrip()
+    isbn = isbn.rstrip()
     if validate_isbn(isbn):
+        isbn = re.sub("[^0-9Xx]", "", isbn)
         isbn = convert_to_13(isbn)
         books = search_by_isbn(isbn)
         if books["books"]:
@@ -24,6 +27,8 @@ def isbn(request):
     
 def title(request):
     title = request.POST.get("search_input","0")
+    title = title.lstrip()
+    title = title.rstrip()
     if validate_title(title):
         books = search_by_title(title)
         if books["books"]:
@@ -36,6 +41,8 @@ def title(request):
 
 def author(request):
     author = request.POST.get("search_input","0")
+    author = author.lstrip()
+    author = author.rstrip()
     if validate_author(author):
         books = search_by_author(author)
         if books["books"]:
@@ -48,6 +55,8 @@ def author(request):
     
 def course(request):
     course = request.POST.get("search_input","0")
+    course = course.lstrip()
+    course = course.rstrip()
     if validate_course(course):
         books = search_by_course(course)
         if books["books"]:
@@ -59,7 +68,7 @@ def course(request):
         return render(request, 'search_empty_prompt.html', {"query": course})
         
 def validate_isbn(isbn):
-    regex = re.compile("^(((\d-?){9}[0-9Xx])|((97[89](\d-?){9}[0-9])))$")
+    regex = re.compile("(^((\s)*([0-9]-?){9}[0-9Xx](\s)*)$)|(^((\s)*(97[89]([0-9]-?){9}[0-9])(\s)*)$)")
     if regex.search(isbn):
         # Remove non ISBN digits, then split into an array
         chars = list(str(re.sub("[^0-9Xx]", "", isbn)))
@@ -104,7 +113,7 @@ def validate_author(author):
         return False
 
 def validate_course(course):
-    regex = re.compile("[a-zA-Z]{3}( )*[0-9]{3}$")
+    regex = re.compile("(\s)*[a-zA-Z]{3}( )*[0-9]{3}(\s)*$")
     if re.search(regex, course):
         return True
     else:

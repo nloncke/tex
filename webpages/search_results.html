@@ -4,16 +4,16 @@
 {% block content %}
   {% if books %}
   {% for book in books %}
-  <form id="book_result" action="/book/" method="post"> {% csrf_token %}
+  <form id="book_result_{{book.isbn}}" action="/book/" method="post"> {% csrf_token %}
 	  <div class="media thumbnail">
 	  	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
 	  	<div>
-	    <a href="javascript:{}" onclick="document.getElementById('book_result').submit(); return false;" class="pull-left thumbnail">
+	    <a href="javascript:{}" onclick="document.getElementById('book_result_{{book.isbn}}').submit(); return false;" class="pull-left thumbnail">
 	      <img class="media-object" src="{{book.thumbnail}}" alt="{{book.title}}">
 	    </a>
 	    </div>
 	    <div class="media-body">
-	       <a href="javascript:{}" onclick="document.getElementById('book_result').submit(); return false;">
+	       <a href="javascript:{}" onclick="document.getElementById('book_result_{{book.isbn}}').submit(); return false;">
 	      	 <h3 class="media-heading">{{book.title}}</h3>
 	       </a>
 	       Author(s): {{book.author}}

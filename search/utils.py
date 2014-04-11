@@ -42,8 +42,10 @@ def fetch_isbn(isbn):
     if result["totalItems"] == 0:
         return []
     
-    elif result["totalItems"] > 1:
-        return []
+#     Some times, google books returns 2 items 
+#     See https://www.googleapis.com/books/v1/volumes?q=isbn:9780393979503
+#     elif result["totalItems"] > 1:
+#         return []
     
     info = {}
     book= result["items"][0]["volumeInfo"]

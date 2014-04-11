@@ -1,0 +1,52 @@
+{% extends "base_topsearch.html" %}
+{% block title %}tex account{% endblock title %}
+
+{% block content %}
+<div class="media">
+      <div class="media-body">
+         <h3 class="media-heading" style="font-size:28px"><strong>My Account</strong></h3>
+      </div>
+</div>
+<div class="media">
+      <div class="media-body">
+         <h3 class="media-heading" style="font-size:28px">Offering</h3>
+         <h2 style="font-size:20px">
+	         <table class="table" width="80%">
+	     		<th></th>
+	     		<th>Book</th>
+	     		<th>Current Price</th>
+	         	<tr>
+	         		<td><button type="submit" id="edit" class="btn btn-default translucent_w3">
+	              			<span><strong>EDIT</strong></span>
+	    				</button> </td>
+	         		<td>This is a test title</td>
+	         		<td>$500</td>
+	         	</tr>
+	         </table>
+	         
+         </h2>
+      </div>
+       <div class="media-body">
+         <h3 class="media-heading" style="font-size:28px">Following</h3>
+         <h2 style="font-size:20px">
+	         <table class="table" width="80%">
+	     		<th></th>
+	     		<th>Book</th>
+	     		<th>Current Price</th>
+	     		<th></th>
+	         	<tr>
+	         		<td><button type="submit" id="buy" class="btn btn-default translucent_w3">
+	              			<span><strong>BUY</strong></span>
+	    				</button> </td>
+	         		<td>This is a test title</td>
+	         		<td>$500</td>
+	         		<td><button type="submit" id="remove" class="btn btn-default translucent_w3">
+	              			<span><strong>X</strong></span>
+	    				</button> </td>
+	         	</tr>
+	         </table>
+	         
+         </h2>
+      </div>
+</div> 
+{% endblock content %}
