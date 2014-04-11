@@ -14,6 +14,7 @@ def isbn(request):
     isbn = isbn.lstrip()
     isbn = isbn.rstrip()
     if validate_isbn(isbn):
+        isbn = re.sub("[^0-9Xx]", "", isbn)
         isbn = convert_to_13(isbn)
         books = search_by_isbn(isbn)
         if books["books"]:
