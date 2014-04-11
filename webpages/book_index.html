@@ -29,7 +29,7 @@
       </div>
 </div>
 
-<!-- BEGINNING OF OFFERS TABLE -->
+<!-- OFFERS TABLE -->
 <div class="media">
       <div class="media-body">
          <h3 class="media-heading" style="font-size:28px">Offers</h3>
@@ -51,14 +51,14 @@
                     <span><strong>BUY</strong></span>
                    </button>
               </td>
-              <!-- end button -->
+              <!-- end trigger button -->
 
               <td>${{offer.buy_price}}</td>
 	         		<td>{{offer.condition}}</td>
 	         		<td>{{offer.description}}</td>
 	         	</tr>
 
-            <!-- modal to prompt buyer. if they buy, confirmation is displayed within modal. -->
+            <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
             <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
@@ -73,8 +73,8 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" name="seller" value="{{ seller_id }}" class="btn btn-primary"
-                            onclick="confirm_purchase()">Yes
+                    <button type="submit" name="seller" value="{{ seller_id }}" data-dismiss="modal"
+                            class="btn btn-primary" onclick="confirm_purchase()">Yes
                     </button>
                   </div>
                 </div>
