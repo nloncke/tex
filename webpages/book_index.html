@@ -45,37 +45,41 @@
 	  {% if offers %}
          {% for offer in offers %}
 	         	<tr>
-              <!-- button should trigger modal -->
-           		<td><button type="submit" id="buy" name="seller" value="{{ seller_id }}"
-                data-toggle="modal" data-target="#buy_modal" class="btn btn-default translucent_w3">
-	              			<span><strong>BUY</strong></span>
-                   </button> </td>
+              <!-- button should only trigger modal -->
+           		<td><button id="buy" data-toggle="modal" data-target="#buy_modal"
+                class="btn btn-default translucent_w3">
+                    <span><strong>BUY</strong></span>
+                   </button>
+              </td>
               <!-- end button -->
-               		<td>${{offer.buy_price}}</td>
+
+              <td>${{offer.buy_price}}</td>
 	         		<td>{{offer.condition}}</td>
 	         		<td>{{offer.description}}</td>
-<!--	         		<td>${{ offer.price }}</td>
+<!--	            <td>${{ offer.price }}</td>
 	         		<td>{{ offer.condition }}</td>
 	         		<td>{{ offer.description }}</td>
 	         	-->
 	         	</tr>
 
-            <!-- here is the modal to prompt the buyer -->
-            <div class="modal fade" id="buy_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <!-- modal to prompt buyer. if they buy, confirmation is displayed within modal. -->
+            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Buy this book!</h4>
                   </div>
-                  <div class="modal-body">
-                    Are you sure you want to purchase "{{ book.title }}" for ${{ offer.buy_price }}?
-                    If you confirm we will follow up with you and the seller with
-                    relevant contact information.
+                  <div id="buy_modal" class="modal-body">
+                    Are you sure you want to purchase "{{ book.title }}" for
+                    ${{ offer.buy_price }}? If you confirm we will follow up
+                    with you and the seller with relevant contact information.
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" class="btn btn-primary">Yes</button>
+                    <button type="submit" name="seller" value="{{ seller_id }}" class="btn btn-primary"
+                            onclick="confirm_purchase()">Yes
+                    </button>
                   </div>
                 </div>
               </div>

@@ -51,6 +51,13 @@ $(document).ready(function()
     $("#search_bar_text").focus();
   });
 
+// non-elegant way of displaying confirmation to buyer
+function confirm_purchase() {
+  document.getElementById("buy_modal").innerHTML='Sweet! You just bought \
+  "{{ book.title }}" from {{ seller_id }} for ${{ offer.buy_price }}. \
+  We\'ve sent you both emails with the next steps. Enjoy!';
+}
+
 
   // Unneccesary functions JUST IN CASE
 
