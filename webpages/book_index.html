@@ -76,7 +76,7 @@
                     onclick="document.getElementById('buy_form').submit(); return false;"
                     class="btn btn-primary">Yes</button>
                     <!-- hidden form to check if offer still there -->
-                    <form id="buy_form" name="buy_form" action="/confirm/" method="post"> {% csrf_token %}
+                    <form id="buy_form" name="buy_form" action="/buy/confirm/" method="post"> {% csrf_token %}
                       <input type="hidden" id="buyer_id" name="buyer_id" value="{{ buyer_id }}">
                       <input type="hidden" id="offer_id" name="offer_id" value="{{ offer.offer_id }}">
                     </form>

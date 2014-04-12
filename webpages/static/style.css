@@ -17,7 +17,7 @@
 	font-family: 'ABeeZee', sans-serif;
 	font-size: 200%;
    	font-weight: bold;
-   	color: #FFFFFF; /* alternate colors: water, aliceblue, azure */
+   	color: #A0F9F8; /* alternate colors: water, aliceblue, azure */
 }
 
 /*positions the entire search bar on the homepage*/
@@ -86,7 +86,7 @@
 body {
     /*background-color:#c1cdd5;*/
    padding-top: 30px;
-   background: url('background-blue.png');
+   background: url('background-pattern2.png');
 }
 
 /* change fonts */
@@ -102,7 +102,7 @@ th{
 
 /* Three different shades of translucence for white*/
 .translucent_w1{
-	background-color: rgba(255,255,255,.75);
+	background-color: rgba(255,255,255,.99);
 }
 .translucent_w2 {
    background-color: rgba(255,255,255,.5);
@@ -114,7 +114,7 @@ th{
 
 /* Three different shades of translucence for black*/
 .translucent_b1{
-	background-color: rgba(0,0,0,.75)
+	background-color: rgba(6,61,60,.75)
 }
 .translucent_b2 {
    background-color: rgba(0,0,0,.5)
