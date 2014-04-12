@@ -53,6 +53,13 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_cas.middleware.CASMiddleware',
+    'django.middleware.doc.XViewMiddleware',
+)
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'django_cas.backends.CASBackend',
 )
 
 ROOT_URLCONF = 'TEX.urls'
@@ -72,6 +79,7 @@ USE_L10N = True
 
 USE_TZ = True
 
+CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
