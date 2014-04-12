@@ -11,7 +11,7 @@ def put_offer(offer, isbn, course):
     new_offer.save()
 
     # add offer_id to sell_list of seller
-    qset = User.objects.filter(id=offer['seller_id'])
-    for seller in qset:
-        seller.sell_list = seller.sell_list + ' ' + str(new_offer.id)
+#    qset = User.objects.filter(id=offer['seller_id'])
+#   for seller in qset:
+#        seller.sell_list = seller.sell_list + ' ' + str(new_offer.id)
     
