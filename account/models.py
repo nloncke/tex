@@ -14,6 +14,8 @@ class BookUser(models.Model):
         return self.user.username
 
 
+
+
 class PopulatedCASBackend(CASBackend):
     """CAS authentication backend with user data populated from AD"""
 
