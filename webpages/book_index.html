@@ -16,8 +16,8 @@
          	<p>Published Date: {{book.pub_date}}</p>
         <!-- button should submit book's isbn and change URL -->
 	 			<a href="/sell/">
-	 				<button type="submit" id="sell" name="target_isbn" value="{{book.isbn}}" {% csrf_token %}
-                  class="btn btn-default translucent_w3">
+	 				<button type="submit" id="sell" name="target_isbn" value="{{book.isbn}}"
+          class="btn btn-default translucent_w3"> {% csrf_token %}
                   <span><strong>SELL</strong></span>
           </button>
 	 			</a>
@@ -115,7 +115,6 @@
             </div>
             <!-- end of buy confirmation modal -->
 
-            
             <!-- follow modal -->
             <div class="modal fade" id="follow_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
