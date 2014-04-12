@@ -15,12 +15,10 @@
          	<p>ISBN-13: {{book.isbn}}</p>
          	<p>Published Date: {{book.pub_date}}</p>
         <!-- button should submit book's isbn and change URL -->
-	 			<a href="/sell/">
-	 				<button type="submit" id="sell" name="target_isbn" value="{{book.isbn}}"
-          class="btn btn-default translucent_w3"> {% csrf_token %}
+	 				<button type="submit" id="target_isbn" name="target_isbn" value="{{book.isbn}}" method="get" formaction="/sell/"
+          class="btn btn-default translucent_w3"> 
                   <span><strong>SELL</strong></span>
           </button>
-	 			</a>
 			<button type="submit" id="follow" data-toggle="modal" data-target="#follow_modal" class="btn btn-default translucent_w3">
 				<span><strong>FOLLOW</strong></span></button>
          </h2>

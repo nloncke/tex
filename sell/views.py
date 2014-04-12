@@ -3,8 +3,8 @@ from search.views import validate_isbn
 from utils import *
 
 def sell_form(request):   
-    if request.method == 'POST':
-        isbn = request.POST.get("target_isbn","0")
+    if request.method == 'GET':
+        isbn = request.GET.get("target_isbn","0")
         if validate_isbn(isbn):
             result = get_book_info(isbn)
             return render(request, 'sell_form.html', result)    
@@ -13,7 +13,8 @@ def sell_form(request):
             return render(request, 'search_empty_prompt.html', {"query": isbn})
     else: 
         # Show error page
-        return render(request, "error_page.html")      
+        #return render(request, "error_page.html")      
+        pass
     
        
 def sell_submit(request):
