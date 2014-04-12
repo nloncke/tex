@@ -7,3 +7,6 @@ def get_offer(offer_id):
     qset = Offer.objects.filter(id=offer_id)
     if len(qset) > 0:
         return { 'isbn': qset[0].isbn, 'seller_id':qset[0].seller }
+
+    else:
+        return None
