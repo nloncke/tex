@@ -1,9 +1,9 @@
-{% extends "base_topsearch.html" %}
-{% block content %}
+{% extends "book_index.html" %}
+{% block confirmation %}
 
 {% if book %}
   <!-- confirmation modal -->
-  <div class="modal fade" id="confirm_modal" tabindex="-1" role="dialog"
+  <div class="modal fade in" id="confirm_modal" tabindex="-1" role="dialog"
   aria-labelledby="confirmModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -32,10 +32,10 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Okay
         </button>
       </div>
-      </div>
     </div>
   </div>
   <!-- end of confirmation modal -->
+
 
 
 <!-- DISPLAY THE BOOK -->
@@ -126,8 +126,5 @@
       </div>
 </div>
 
-
-
 {% endif %}
-{% endblock content %}
-
+{% endblock confirmation %}

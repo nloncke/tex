@@ -2,6 +2,9 @@
 {% block content %}
 {% if book %}
 
+{% block confirmation %}
+{% endblock confirmation %}
+
 <!-- DISPLAY THE BOOK -->
 <div class="media">
       <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="316px" width="256px">
@@ -11,12 +14,13 @@
          	<p>Author(s): {{book.author}}</p>
          	<p>ISBN-13: {{book.isbn}}</p>
          	<p>Published Date: {{book.pub_date}}</p>
-			<form id="sell" action="/sell/" method="post"> {% csrf_token %}
-	     		<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
-	 			<a href="javascript:{}" onclick="document.getElementById('sell').submit(); return false;">
-	 				<button type="submit" id="sell" class="btn btn-default translucent_w3"><span><strong>SELL</strong></span></button>
+        <!-- button should submit book's isbn and change URL -->
+	 			<a href="/sell/">
+	 				<button type="submit" id="sell" name="target_isbn" value="{{book.isbn}}" {% csrf_token %}
+                  class="btn btn-default translucent_w3">
+                  <span><strong>SELL</strong></span>
+          </button>
 	 			</a>
- 			</form>
 			<button type="submit" id="follow" data-toggle="modal" data-target="#follow_modal" class="btn btn-default translucent_w3">
 				<span><strong>FOLLOW</strong></span></button>
          </h2>
