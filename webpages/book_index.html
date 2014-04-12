@@ -45,7 +45,7 @@
          {% for offer in offers %}
 	         	<tr>
               <!-- button should only trigger modal -->
-           		<td><button id="buy" data-toggle="modal" data-target="#buy_modal"
+           		<td><button id="buy_{{seller_id}}" data-toggle="modal" data-target="#buy_modal"
                 class="btn btn-default translucent_w3">
                     <span><strong>BUY</strong></span>
                    </button>
@@ -73,10 +73,10 @@
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                     <button type="submit" data-dismiss="modal" data-target="#confirm_modal"
-                    onclick="document.getElementById('buy_form').submit(); return false;"
+                    onclick="document.getElementById('buy_form_{{seller_id}}').submit(); return false;"
                     class="btn btn-primary">Yes</button>
                     <!-- hidden form to check if offer still there -->
-                    <form id="buy_form" name="buy_form" action="/buy/confirm/" method="post"> {% csrf_token %}
+                    <form id="buy_form_{{seller_id}}" name="buy_form" action="/buy/confirm/" method="post"> {% csrf_token %}
                       <input type="hidden" id="buyer_id" name="buyer_id" value="{{ buyer_id }}">
                       <input type="hidden" id="offer_id" name="offer_id" value="{{ offer.offer_id }}">
                     </form>
