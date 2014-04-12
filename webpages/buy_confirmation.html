@@ -1,5 +1,5 @@
-{% extends "base_topsearch.html" %}
-{% block content %}
+{% extends "book_index.html" %}
+{% block confirmation %}
 
 {% if book %}
   <!-- confirmation modal -->
@@ -31,102 +31,8 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Okay
         </button>
       </div>
-      </div>
     </div>
   </div>
   <!-- end of confirmation modal -->
-
-
-<!-- DISPLAY THE BOOK -->
-<div class="media">
-      <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="316px" width="256px">
-      <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
-         <h2 style="font-size:20px">
-         	<p>Author(s): {{book.author}}</p>
-         	<p>ISBN-13: {{book.isbn}}</p>
-         	<p>Published Date: {{book.pub_date}}</p>
-			<form id="sell" action="/sell/" method="post"> {% csrf_token %}
-	     		<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
-	 			<a href="javascript:{}" onclick="document.getElementById('sell').submit(); return false;">
-	 				<button type="submit" id="sell" class="btn btn-default translucent_w3"><span><strong>SELL</strong></span></button>
-	 			</a>
- 			</form>
-    		<button type="submit" id="follow" class="btn btn-default translucent_w3">
-              <span><strong>FOLLOW</strong></span>
-    		</button>
-         </h2>
-      </div>
-</div>
-
-<!-- OFFERS TABLE -->
-<div class="media">
-      <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px">Offers</h3>
-         <h1 style="font-size:18px">
-         	<p>Also available from Amazon, Labyrinth, Chegg</p>
-         </h1>
-         <h2 style="font-size:20px">
-	         <table class="table" width="80%">
-	     		<th></th>
-	     		<th>Price</th>
-	     		<th>Condition</th>
-	     		<th>Description</th>
-	  {% if offers %}
-         {% for offer in offers %}
-	         	<tr>
-              <!-- button should only trigger modal -->
-           		<td><button id="buy" data-toggle="modal" data-target="#buy_modal"
-                class="btn btn-default translucent_w3">
-                    <span><strong>BUY</strong></span>
-                   </button>
-              </td>
-              <!-- end trigger button -->
-
-              <td>${{ offer.buy_price }}</td>
-	         		<td>{{ offer.condition }}</td>
-	         		<td>{{ offer.description }}</td>
-	         	</tr>
-
-            <!-- modal to prompt buyer. if they buy, confirmation is displayed in new page. -->
-            <div class="modal fade" id="buy_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Buy this book!</h4>
-                  </div>
-                  <div id="buy_modal_body" class="modal-body">
-                    Are you sure you want to purchase "{{ book.title }}" for
-                    ${{ offer.buy_price }}? If you confirm we will follow up
-                    with you and the seller with relevant contact information.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <!-- hidden form to check if offer still there -->
-                    <form id="buy_form" name="buy_form" action="/confirm/" method="post"> {% csrf_token %}
-                      <input type="hidden" id="buyer_id" name="buyer_id" value="{{ buyer_id }}">
-                      <input type="hidden" id="offer_id" name="offer_id" value="{{ offer.offer_id }}">
-                    </form>
-                    <!-- end of hidden form -->
-                    <button type="submit" data-dismiss="modal" data-target="#confirm_modal"
-                    onclick="document.getElementById('buy_form').submit(); return false;"
-                    class="btn btn-primary">Yes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end of buyer's prompt modal -->
-
-          {% endfor %}
-          {% endif %}
-	         </table>
-         </h2>
-      </div>
-</div>
-
-
-
 {% endif %}
-{% endblock content %}
-
+{% endblock confirmation %}
