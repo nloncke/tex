@@ -5,5 +5,6 @@ from book import views
 #url(nicole and laura, laura, laura)
 urlpatterns = patterns('',
     url(r'^$', views.book_index, name='book_index'),
+    url(r'^follow/$', views.book_follow, name='book_follow'),
 )
 
