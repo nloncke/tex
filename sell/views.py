@@ -13,7 +13,8 @@ def sell_form(request):
             return render(request, 'search_empty_prompt.html', {"query": isbn})
     else: 
         # Show error page
-        return render(request, "error_page.html")      
+        #return render(request, "error_page.html")      
+        pass
     
        
 def sell_submit(request):
