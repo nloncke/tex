@@ -22,9 +22,8 @@
 	 				<button type="submit" id="sell" class="btn btn-default translucent_w3"><span><strong>SELL</strong></span></button>
 	 			</a>
  			</form>
-    		<button type="submit" id="follow" class="btn btn-default translucent_w3">
-              <span><strong>FOLLOW</strong></span>
-    		</button>
+			<button type="submit" id="follow" data-toggle="modal" data-target="#follow_modal" class="btn btn-default translucent_w3">
+				<span><strong>FOLLOW</strong></span></button>
          </h2>
       </div>
 </div>
@@ -80,7 +79,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                     <button type="submit" name="seller" value="{{ seller_id }}"
                     	data-dismiss="modal" data-toggle="modal" data-target="#confirm_modal"
-                    	class="btn btn-primary"">Yes
+                    	class="btn btn-primary">Yes
                     </button>
                   </div>
                 </div>
@@ -102,6 +101,52 @@
                   	{{ seller_id }} for ${{ offer.buy_price }}. We've
                   	sent both you and the seller an email detailing
                   	the next steps.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Okay
+                    	</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end of confirmation modal -->
+            
+            
+            
+            <!-- follow modal -->
+            <div class="modal fade" id="follow_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Follow this book</h4>
+                  </div>
+                  <div id="buy_modal_body" class="modal-body">
+                    Are you sure you want to follow "{{ book.title }}"? We'll email you when there are new offers.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="submit" name="book_isbn" value="{{ book.isbn}}"
+                    	data-dismiss="modal" data-toggle="modal" data-target="#confirm_follow_modal"
+                    	class="btn btn-primary">Yes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end of follow prompt modal -->
+            
+             <!-- confirmation modal -->
+            <div class="modal fade" id="confirm_follow_modal" tabindex="-1" role="dialog"
+            	aria-labelledby="confirmModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="confirmModalLabel">You are now following this book!</h4>
+                  </div>
+                  <div id="confirm_modal_body" class="modal-body">
+                  	Thanks for following "{{ book.title }}"! You can edit your follow list on your account page.
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Okay
