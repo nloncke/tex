@@ -2,6 +2,9 @@
 {% block content %}
 {% if book %}
 
+{% block confirmation %}
+{% endblock confirmation %}
+
 <!-- DISPLAY THE BOOK -->
 <div class="media">
       <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="316px" width="256px">
@@ -11,12 +14,13 @@
          	<p>Author(s): {{book.author}}</p>
          	<p>ISBN-13: {{book.isbn}}</p>
          	<p>Published Date: {{book.pub_date}}</p>
-			<form id="sell" action="/sell/" method="post"> {% csrf_token %}
-	     		<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
-	 			<a href="javascript:{}" onclick="document.getElementById('sell').submit(); return false;">
-	 				<button type="submit" id="sell" class="btn btn-default translucent_w3"><span><strong>SELL</strong></span></button>
+        <!-- button should submit book's isbn and change URL -->
+	 			<a href="/sell/">
+	 				<button type="submit" id="sell" name="target_isbn" value="{{book.isbn}}" {% csrf_token %}
+                  class="btn btn-default translucent_w3">
+                  <span><strong>SELL</strong></span>
+          </button>
 	 			</a>
- 			</form>
 			<button type="submit" id="follow" data-toggle="modal" data-target="#follow_modal" class="btn btn-default translucent_w3">
 				<span><strong>FOLLOW</strong></span></button>
          </h2>
@@ -45,7 +49,7 @@
          {% for offer in offers %}
 	         	<tr>
               <!-- button should only trigger modal -->
-           		<td><button id="buy" data-toggle="modal" data-target="#buy_modal"
+           		<td><button id="buy_{{seller_id}}" data-toggle="modal" data-target="#buy_modal"
                 class="btn btn-default translucent_w3">
                     <span><strong>BUY</strong></span>
                    </button>
@@ -73,10 +77,10 @@
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
                     <button type="submit" data-dismiss="modal" data-target="#confirm_modal"
-                    onclick="document.getElementById('buy_form').submit(); return false;"
+                    onclick="document.getElementById('buy_form_{{seller_id}}').submit(); return false;"
                     class="btn btn-primary">Yes</button>
                     <!-- hidden form to check if offer still there -->
-                    <form id="buy_form" name="buy_form" action="/confirm/" method="post"> {% csrf_token %}
+                    <form id="buy_form_{{seller_id}}" name="buy_form" action="/buy/confirm/" method="post"> {% csrf_token %}
                       <input type="hidden" id="buyer_id" name="buyer_id" value="{{ buyer_id }}">
                       <input type="hidden" id="offer_id" name="offer_id" value="{{ offer.offer_id }}">
                     </form>

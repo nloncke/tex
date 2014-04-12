@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     url(r'^search/', include('search.urls')),
     url(r'^book/', include('book.urls')),
     url(r'^sell/', include('sell.urls')),
+    url(r'^buy/', include('buy.urls')),
     url(r'^account/', include('account.urls')),
     url(r'.*', "search.views.error_page"),
 )

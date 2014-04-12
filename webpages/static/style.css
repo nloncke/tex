@@ -17,7 +17,7 @@
 	font-family: 'ABeeZee', sans-serif;
 	font-size: 200%;
    	font-weight: bold;
-   	color: #E0FFFF; /* alternate colors: water, aliceblue, azure */
+   	color: #A0F9F8; /* alternate colors: water, aliceblue, azure */
 }
 
 /*positions the entire search bar on the homepage*/
@@ -54,7 +54,19 @@
    width: 80%;
    background-color: rgba(255,255,255,0.2);
 }
-
+.navbar-header {
+	margin-left: 15%;
+   	margin-right: 15%;
+   	width: 70%;
+   	font-size: 24px;
+   	font-family: 'ABeeZee', sans-serif;   	
+}
+.input-group .input-group-lg {
+	height: 100px;!important
+   font-size: 48px;
+   line-height: 100px;!important
+   width: 250px;
+}
 .media.thumbnail{
    background-color: rgba(255,255,255,0.1);
 }
@@ -74,7 +86,7 @@
 body {
     /*background-color:#c1cdd5;*/
    padding-top: 30px;
-   background: url('background-blue.png');
+   background: url('background-pattern2.png');
 }
 
 /* change fonts */
@@ -90,18 +102,19 @@ th{
 
 /* Three different shades of translucence for white*/
 .translucent_w1{
-	background-color: rgba(255,255,255,.75);
+	background-color: rgba(255,255,255,.99);
 }
 .translucent_w2 {
    background-color: rgba(255,255,255,.5);
 }
 .translucent_w3 {
    background-color: rgba(255,255,255,.25)
+  	
 }
 
 /* Three different shades of translucence for black*/
 .translucent_b1{
-	background-color: rgba(0,0,0,.75)
+	background-color: rgba(6,61,60,.75)
 }
 .translucent_b2 {
    background-color: rgba(0,0,0,.5)
