@@ -126,10 +126,14 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" name="book_isbn" value="{{ book.isbn}}"
-                    	data-dismiss="modal" data-toggle="modal" data-target="#confirm_follow_modal"
-                    	class="btn btn-primary">Yes
-                    </button>
+                    <form id="follow" action="/follow/" method="post"> {% csrf_token %}
+                    	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
+                    	<input type="hidden" id="follow_user_id" name="follow_user_id" value="temp">
+	                    <button type="submit" name="book_isbn" value="{{ book.isbn}}"
+	                    	data-dismiss="modal" data-toggle="modal" data-target="#confirm_follow_modal"
+	                    	class="btn btn-primary">Yes
+	                    </button>
+                    </form>
                   </div>
                 </div>
               </div>
