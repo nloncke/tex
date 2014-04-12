@@ -34,7 +34,12 @@
       <div class="media-body">
          <h3 class="media-heading" style="font-size:28px">Offers</h3>
          <h1 style="font-size:18px">
-         	<p>Also available from Amazon, Labyrinth, Chegg</p>
+         	<p>Also available from 
+         		{% if book.labyrinth %}<a href={{book.labyrinth}}>Labyrinth </a>{% endif %}
+         		{% if book.amazon %}<a href={{book.amazon}}>Amazon </a>{% endif %}
+         		{% if book.chegg %}<a href={{book.chegg}}>Chegg </a>{% endif %}
+         		{% if book.campus %}<a href={{book.campus}}>Campus </a>{% endif %}
+         	</p>
          </h1>
          <h2 style="font-size:20px">
 	         <table class="table" width="80%">
