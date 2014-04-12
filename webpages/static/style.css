@@ -17,7 +17,7 @@
 	font-family: 'ABeeZee', sans-serif;
 	font-size: 200%;
    	font-weight: bold;
-   	color: #E0FFFF; /* alternate colors: water, aliceblue, azure */
+   	color: #FFFFFF; /* alternate colors: water, aliceblue, azure */
 }
 
 /*positions the entire search bar on the homepage*/
@@ -54,7 +54,19 @@
    width: 80%;
    background-color: rgba(255,255,255,0.2);
 }
-
+.navbar-header {
+	margin-left: 15%;
+   	margin-right: 15%;
+   	width: 70%;
+   	font-size: 24px;
+   	font-family: 'ABeeZee', sans-serif;   	
+}
+.input-group .input-group-lg {
+	height: 100px;!important
+   font-size: 48px;
+   line-height: 100px;!important
+   width: 250px;
+}
 .media.thumbnail{
    background-color: rgba(255,255,255,0.1);
 }
@@ -97,6 +109,7 @@ th{
 }
 .translucent_w3 {
    background-color: rgba(255,255,255,.25)
+  	
 }
 
 /* Three different shades of translucence for black*/
