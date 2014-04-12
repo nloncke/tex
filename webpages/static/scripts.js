@@ -52,15 +52,15 @@ $(document).ready(function()
   });
 
 // fades out prompt and fades in confirmation for buyer
-function confirm_purchase() {
-  $("#buy_modal").animate( {opacity: 0}, "slow", function(){
-    $("#buy_modal").html('Sweet! You just bought \
-    "{{ book.title }}" from {{ seller_id }} for ${{ offer.buy_price }}. \
-    We\'ve sent you both emails with the next steps. Enjoy!');
-  });
-  $("#buy_modal").animate( {opacity: 1} );
-}
-  
+// function confirm_purchase() {
+  // $("#modal_body").animate( {opacity: 0}, "slow", function(){
+    // $("#modal_body").html('Sweet! You just bought \
+    // "{{ book.title }}" from {{ seller_id }} for ${{ offer.buy_price }}. \
+    // We\'ve sent you both emails with the next steps. Enjoy!');
+  // });
+  // $("#modal_body").animate( {opacity: 1} );
+// }
+
 
   // Unneccesary functions JUST IN CASE
 

@@ -59,28 +59,54 @@
 	         	</tr>
 
             <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
-            <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="buy_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Buy this book!</h4>
                   </div>
-                  <div id="buy_modal" class="modal-body">
+                  <div id="buy_modal_body" class="modal-body">
                     Are you sure you want to purchase "{{ book.title }}" for
                     ${{ offer.buy_price }}? If you confirm we will follow up
                     with you and the seller with relevant contact information.
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" name="seller" value="{{ seller_id }}" data-dismiss="modal"
-                            class="btn btn-primary" onclick="confirm_purchase()">Yes
+                    <button type="submit" name="seller" value="{{ seller_id }}"
+                    	data-dismiss="modal" data-toggle="modal" data-target="#confirm_modal"
+                    	class="btn btn-primary"">Yes
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-            <!-- end of modal -->
+            <!-- end of buyer's prompt modal -->
+
+            <!-- confirmation modal -->
+            <div class="modal fade" id="confirm_modal" tabindex="-1" role="dialog"
+            	aria-labelledby="confirmModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="confirmModalLabel">You bought this book!</h4>
+                  </div>
+                  <div id="confirm_modal_body" class="modal-body">
+                  	Sweet! You just bought "{{ book.title }}" from
+                  	{{ seller_id }} for ${{ offer.buy_price }}. We've
+                  	sent both you and the seller an email detailing
+                  	the next steps.
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Okay
+                    	</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end of confirmation modal -->
+
           {% endfor %}
           {% endif %}
 	         </table>
