@@ -16,8 +16,8 @@
          	<p>Published Date: {{book.pub_date}}</p>
         <!-- button should submit book's isbn and change URL -->
 	 			<a href="/sell/">
-	 				<button type="submit" id="sell" name="target_isbn" value="{{book.isbn}}" {% csrf_token %}
-                  class="btn btn-default translucent_w3">
+	 				<button type="submit" id="sell" name="target_isbn" value="{{book.isbn}}"
+          class="btn btn-default translucent_w3"> {% csrf_token %}
                   <span><strong>SELL</strong></span>
           </button>
 	 			</a>
@@ -91,31 +91,7 @@
             </div>
             <!-- end of buyer's prompt modal -->
 
-            <!-- buy confirmation modal -->
-            <div class="modal fade" id="confirm_modal" tabindex="-1" role="dialog"
-            	aria-labelledby="confirmModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="confirmModalLabel">You bought this book!</h4>
-                  </div>
-                  <div id="confirm_modal_body" class="modal-body">
-                  	Sweet! You just bought "{{ book.title }}" from
-                  	{{ seller_id }} for ${{ offer.buy_price }}. We've
-                  	sent both you and the seller an email detailing
-                  	the next steps.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Okay
-                    	</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end of buy confirmation modal -->
 
-            
             <!-- follow modal -->
             <div class="modal fade" id="follow_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
