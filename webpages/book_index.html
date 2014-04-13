@@ -49,7 +49,7 @@
          {% for offer in offers %}
 	         	<tr>
               <!-- button should only trigger modal -->
-           		<td><button id="buy_{{offer.offer_id}}" data-toggle="modal" data-target="#buy_modal"
+           		<td><button id="buy_{{offer.offer_id}}" data-toggle="modal" data-target="#buy_modal_{{offer.offer_id}}"
                 class="btn btn-default translucent_w3">
                     <span><strong>BUY</strong></span>
                    </button>
@@ -60,15 +60,15 @@
 	         		<td>{{ offer.condition }}</td>
 	         		<td>{{ offer.description }}</td>
 	         	</tr>
-
-            <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
-            <div class="modal fade" id="buy_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	         		         	
+	         	  <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
+            <div class="modal fade" id="buy_modal_{{offer.offer_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Buy this book!</h4>
-                  </div>
+              	<div class="modal-content">
+              		<div class="modal-header">
+              			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    		<h4 class="modal-title" id="myModalLabel">Buy this book!</h4>
+                 	 </div>
                   <div id="buy_modal_body" class="modal-body">
                     Are you sure you want to purchase "{{ book.title }}" for
                     ${{ offer.buy_price }}? If you confirm we will follow up
@@ -76,7 +76,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" data-dismiss="modal" data-target="#confirm_modal"
+                    <button type="submit" data-dismiss="modal" data-target="#confirm_modal" 
                     onclick="document.getElementById('buy_form_{{offer.offer_id}}').submit(); return false;"
                     class="btn btn-primary">Yes</button>
                     <!-- hidden form to check if offer still there -->
@@ -90,30 +90,6 @@
               </div>
             </div>
             <!-- end of buyer's prompt modal -->
-
-            <!-- buy confirmation modal -->
-            <div class="modal fade" id="confirm_modal" tabindex="-1" role="dialog"
-            	aria-labelledby="confirmModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="confirmModalLabel">You bought this book!</h4>
-                  </div>
-                  <div id="confirm_modal_body" class="modal-body">
-                  	Sweet! You just bought "{{ book.title }}" from
-                  	{{ offer.seller_id }} for ${{ offer.buy_price }}. We've
-                  	sent both you and the seller an email detailing
-                  	the next steps.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Okay
-                    	</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end of buy confirmation modal -->
 
             <!-- follow modal -->
             <div class="modal fade" id="follow_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -162,6 +138,7 @@
               </div>
             </div>
             <!-- end of follow confirmation modal -->
+
           {% endfor %}
           {% endif %}
 	         </table>

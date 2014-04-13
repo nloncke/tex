@@ -11,7 +11,7 @@ def get_offer(offer_id):
             tokens = seller[0].sell_list.split()
             tokens.remove(qset[0].isbn)
             ' '.join(tokens)
-        d =  { 'isbn': qset[0].isbn, 'seller_id':qset[0].seller }
+        d =  { 'isbn': qset[0].isbn, 'seller_id':qset[0].seller, 'price':qset[0].price }
         qset[0].delete()
         return d
 
