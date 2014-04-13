@@ -12,7 +12,7 @@ function set_to_title(){
 function set_to_isbn(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by ISBN (no dashes)"
-    	, pattern:"(^((\\s)*([0-9]-?){9}[0-9Xx](\\s)*)$)|(^((\\s)*(97[89]([0-9]-?){9}[0-9])(\\s)*)$)"
+    	, pattern:"(^((\\s)*([0-9]-?){9}[0-9Xx](\\s)*)$)|(^((\\s)*(97[89]-?([0-9]-?){9}[0-9])(\\s)*)$)"
     	, title:"10 or 13 digit valid ISBN (no dashes)"
     	});
     $('#search_by').button("isbn");
