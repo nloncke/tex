@@ -14,4 +14,5 @@ def put_offer(offer, isbn, course):
     qset = BookUser.objects.filter(id=offer['seller_id'])
     for seller in qset:
          seller.sell_list = seller.sell_list + ' ' + str(new_offer.id)
-    
+
+    return new_offer.id
