@@ -27,6 +27,7 @@
       </div>
 </div>
 
+{% if offers %}
 <!-- OFFERS TABLE -->
 <div class="media">
       <div class="media-body">
@@ -45,9 +46,8 @@
 	     		<th>Price</th>
 	     		<th>Condition</th>
 	     		<th>Description</th>
-	  {% if offers %}
-         {% for offer in offers %}
 	         	<tr>
+ 	         {% for offer in offers %}
               <!-- button should only trigger modal -->
            		<td><button id="buy_{{offer.offer_id}}" data-toggle="modal" data-target="#buy_modal_{{offer.offer_id}}"
                 class="btn btn-default translucent_w3">
@@ -140,11 +140,19 @@
             <!-- end of follow confirmation modal -->
 
           {% endfor %}
-          {% endif %}
 	         </table>
+	     {% else %}
+	     <h3 style="font-size:28px">Sorry, there are currently no offers.</h3>
+	     <h3 style="font-size:20px">Check out these sites instead:
+         		{% if book.labyrinth %}<a href={{book.labyrinth}} target="_blank">Labyrinth </a>{% endif %}
+         		{% if book.amazon %}<a href={{book.amazon}} target="_blank">Amazon </a>{% endif %}
+         		{% if book.chegg %}<a href={{book.chegg}} target="_blank">Chegg </a>{% endif %}
+         		{% if book.campus %}<a href={{book.campus}} target="_blank">Campus </a>{% endif %}
+         	</h3>
          </h2>
       </div>
 </div>
+{% endif %}
 {% endif %}
 {% endblock content %}
 
