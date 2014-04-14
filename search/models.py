@@ -47,9 +47,9 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
             newqset = qset.filter(isbn=object)
             for newob in newqset:
                 if thumb == True:
-                    books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'pub_date':object.pub_date, 'thumbnail':object.thumb})
+                    books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'thumbnail':newob.thumb})
                 else:
-                    books.append({'isbn':object.isbn, 'title':object.title, 'author':object.author, 'pub_date':object.pub_date, 'frontcover':object.cover})
+                    books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'frontcover':newob.cover})
 
     elif (thumb == True):
         books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumb,'pub_date':object.pub_date} for object in qset]
