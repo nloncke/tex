@@ -1,4 +1,4 @@
-TEXT_STUB = '%s has just purchased %s from %s for $%s . Please follow up with each other to seal the deal.'
+TEXT_STUB = '%s has just purchased %s from %s for $%s. Please follow up with each other to seal the deal.'
 
 HTML_STUB = '<html>\
 <head>\

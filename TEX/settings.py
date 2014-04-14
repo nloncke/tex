@@ -103,7 +103,7 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = "princeton.tex@gmail.com"
 EMAIL_HOST_PASSWORD = "axal@tex"
-EMAIL_SUBJECT_PREFIX = "[tex NOTIFICATION: ]"
+EMAIL_SUBJECT_PREFIX = "[tex notification]: "
 
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'webpages')]

@@ -2,17 +2,20 @@ from django.core.mail import EmailMultiAlternatives
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+
 from TEX import settings
 from search.models import *
 from buy.messages import *
 import sys
 
 from_email =  settings.EMAIL_HOST_USER
-subject = settings.EMAIL_SUBJECT_PREFIX
-
 
 def email_users(addrs, html_msg, text_msg, 
-                frontcover="/static/frontcover_default.jpg"):
+                frontcover="/static/frontcover_default.jpg",
+                subject="", mass=False):
+    
+    subject = settings.EMAIL_SUBJECT_PREFIX + subject
+    
     # Load the image you want to send as bytes
     img_data = open(frontcover, 'rb').read()
     
@@ -48,11 +51,12 @@ def notify_users(buyer, offer):
      
     text_msg = TEXT_STUB % (buyer, book["title"], offer["seller_id"], offer["price"])
     html_msg = HTML_STUB % text_msg
-    
+
     # For debugging
     book["frontcover"] = "frontcover2.jpg"
 
-    email_users([seller_email, buyer_email], html_msg, text_msg, book["frontcover"])  
+    email_users([seller_email, buyer_email], html_msg, text_msg, book["frontcover"], 
+                 "Transaction Complete")  
     return book
     
 
