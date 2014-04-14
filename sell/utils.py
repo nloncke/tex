@@ -35,9 +35,9 @@ def notify_followers(isbn, offer):
     
 def put_offer(isbn, offer):
     from sell.models import put_offer
-    put_offer(isbn, offer)
+    new_offer_id = put_offer(isbn=isbn, offer=offer)
     notify_followers(isbn, offer)
-    return
+    return new_offer_id
     
 if __name__ == "__main__":
     notify_followers(argv[1], {})
