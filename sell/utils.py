@@ -27,7 +27,7 @@ def notify_followers(isbn, offer):
     frontcover =  dict["book"]["frontcover"]
     
     # For debugging
-    frontcover = "~/buy/frontcover2.jpg"
+    frontcover = "/app/buy/frontcover2.jpg"
     
     email_users(followers, html_msg, text_msg,frontcover, "New Offer Available")
     return
