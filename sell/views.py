@@ -5,10 +5,11 @@ from book.utils import *
 from buy.models import *
 
 def sell_form(request):   
+    result = {}
     if request.method == 'POST':
         isbn = request.POST.get("target_isbn","0")
         if validate_isbn(isbn):
-            result = get_book_info(isbn)
+            result["book"] = get_book_info(isbn)[0]
             return render(request, 'sell_form.html', result)    
         else:
             # need an error html page

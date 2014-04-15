@@ -20,4 +20,5 @@ def get_offer(offer_id):
         return None
 
 def edit_offer(offer_id, price = None, course = None, condition = None, description = None, auction_id = None):
+    pass
   
