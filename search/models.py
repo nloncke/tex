@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Offer(models.Model):
-    seller = models.IntegerField()
+    seller_id = models.IntegerField()
     price = models.DecimalField(max_digits=7, decimal_places=2)
     isbn = models.CharField(max_length=20)
     course = models.CharField(max_length=100)
@@ -10,7 +10,7 @@ class Offer(models.Model):
     description = models.CharField(max_length=800)
     auction_id = models.IntegerField()
     def __str__(self):
-        s = str(self.seller) + ' ' + str(self.price) + ' ' + self.isbn + ' ' + self.course + ' ' + self.condition
+        s = str(self.seller_id) + ' ' + str(self.price) + ' ' + self.isbn + ' ' + self.course + ' ' + self.condition
         return s
 
 
@@ -77,7 +77,7 @@ def get_offers(isbn):
     offers = []
     qset = Offer.objects.filter(isbn=isbn)
     for object in qset:
-        offers.append({'offer_id':object.id, 'buy_price':object.price, 'seller_id':object.seller, 'condition':object.condition, 'description':object.description})
+        offers.append({'offer_id':object.id, 'buy_price':object.price, 'seller_id':object.seller_id, 'condition':object.condition, 'description':object.description})
 
     return offers
 
