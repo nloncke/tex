@@ -15,7 +15,9 @@
 		<tr><th><label>Course:</label></th><td><input id="course" name="course" type="text" required
 			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title = "Enter a valid course name e.g COS 333"></td></tr>
         <tr><th><label for="id_auction_0">Auction:</label></th>
-        	<td><p id="auction"><label><input id="auction_yes" name="auction" type="checkbox" value="0" />Yes</label></p></td></tr>
+        	<td><p id="auction"><label><input id="auction_yes" name="auction" type="checkbox" value="0"/>Yes</label></p></td></tr>
+<!-- include dropdown datepicker if the auction is checked -->
+
 		<tr><th><label>Condition:</label></th><td><p id="picked_condition">
 			<p><label><input required id="new" name="picked_condition" type="radio" value="New" />New</label></p>
 			<p><label><input required id="like_new" name="picked_condition" type="radio" value="Like New" />Like New</label></p>
