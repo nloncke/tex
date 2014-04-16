@@ -1,15 +1,15 @@
 from django.shortcuts import render
 from search.views import validate_isbn
-from utils import *
-from book.utils import *
-from buy.models import *
+from utils import get_book_info
+from book.utils import get_book
+from buy.models import get_offer, edit_offer
 
 def sell_form(request):   
     result = {}
     if request.method == 'POST':
         isbn = request.POST.get("target_isbn","0")
         if validate_isbn(isbn):
-            result["book"] = get_book_info(isbn)[0]
+            result = get_book_info(isbn)
             return render(request, 'sell_form.html', result)    
         else:
             # need an error html page
