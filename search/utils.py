@@ -29,11 +29,15 @@ def search_by_isbn(query):
             result = [info]
     
     return {"books":result}
-
 ###############################################
 
 
 def fetch_isbn(isbn):
+    ''' Scrape googleapis for the data about the book
+    Return the first match if it exists.
+    Some times, google books returns more than one item 
+    See https://www.googleapis.com/books/v1/volumes?q=isbn:9780393979503
+    '''
     URL = URL_STUB + isbn
     response = urllib2.urlopen(URL)
     result = json.load(response)
@@ -41,11 +45,6 @@ def fetch_isbn(isbn):
     # Check if search returned a match
     if result["totalItems"] == 0:
         return []
-    
-#     Some times, google books returns 2 items 
-#     See https://www.googleapis.com/books/v1/volumes?q=isbn:9780393979503
-#     elif result["totalItems"] > 1:
-#         return []
     
     info = {}
     book= result["items"][0]["volumeInfo"]
@@ -57,7 +56,7 @@ def fetch_isbn(isbn):
         info["title"] = book["title"]
     
     info["author"] = "/".join(book["authors"])
-    info["published_date"] = book["publishedDate"]
+    info["pub_date"] = book["publishedDate"]
     try:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
         url_thm = book["imageLinks"]["smallThumbnail"].split("&edge")[0]
@@ -81,6 +80,8 @@ def fetch_isbn(isbn):
     info["frontcover"] = frontcover
     info["thumbnail"] = thumbnail
     return info
+###############################################
+
 
 if __name__ == '__main__':
     print search_by_isbn (sys.argv[1])
