@@ -1,0 +1,37 @@
+{% extends "base_topsearch.html" %}
+{% block content %}
+{% if book %}
+<form id="sell_form" action="/sell/submit/" method="post"> {% csrf_token %}
+	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
+	<h1 style="font-size:16px">
+	<table>
+		<tr><th><img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="158px" width="128px"></th>
+			<td><div class="media-body">
+	         <h3 class="media-heading" style="font-size:28px"><strong>{{ book.title }}</strong></h3>
+	         <h2 style="font-size:20px">
+	         	<p>Author(s): {{ book.author }}</p>
+	         	<p>ISBN-13: {{ book.isbn }}</p>
+	         	<p>Published Date: {{book.pub_date}}</p></h2></div></td></tr>
+		<tr><th><label>Course:</label></th><td><input id="course" name="course" type="text" required
+			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333">{{offer.course}}</td></tr>
+        <tr><th><label for="id_auction_0">Auction:</label></th>
+        	<td><p id="auction"><label><input id="auction_yes" name="auction" type="checkbox" value="0" />Yes</label></p></td></tr>
+		<tr><th><label>Condition:</label></th><td><p id="picked_condition">
+			<p><label><input required id="new" name="picked_condition" type="radio" value="New" {% if offer.condition = 'New' %} checked {% endif %}/>New</label></p>
+			<p><label><input required id="like_new" name="picked_condition" type="radio" value="Like New" {% if offer.condition = 'Like New' %} checked {% endif %}/>Like New</label></p>
+			<p><label><input required id="very_good" name="picked_condition" type="radio" value="Very Good" {% if offer.condition = 'Very Good' %} checked {% endif %}/>Very Good</label></p>
+			<p><label><input required id="good" name="picked_condition" type="radio" value="Good" {% if offer.condition = 'Good' %} checked {% endif %}/> Good</label></p>
+			<p><label><input required id="acceptable" name="picked_condition" type="radio" value="Acceptable" {% if offer.condition = 'Acceptable' %} checked {% endif %}/>Acceptable</label></p>
+		</p></td></tr>
+		<tr><th><label>Description:</label></th><td><textarea required maxlength="100" cols="40" id="description"
+			name="description" rows="5" title="Enter a short description about your book.">{{offer.description}}</textarea></td></tr>
+		<tr><th><label>Price:</label></th><td><input id="price" name="price" type="text"
+			 required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25">{{offer.price}}</td></tr>
+ 	</table>
+    <button type="submit" id="submit" class="btn btn-default">
+    	<span><strong>SELL</strong></span>
+	</button>
+    </h1>
+</form>
+{% endif %}
+{% endblock content %}
