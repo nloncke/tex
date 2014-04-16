@@ -68,7 +68,7 @@ def course(request):
         return render(request, 'search_empty_prompt.html', {"query": course})
         
 def validate_isbn(isbn):
-    regex = re.compile("(^((\s)*([0-9]-?){9}[0-9Xx](\s)*)$)|(^((\s)*(97[89]([0-9]-?){9}[0-9])(\s)*)$)")
+    regex = re.compile("(^((\s)*([0-9]-?){9}[0-9Xx](\s)*)$)|(^((\s)*(97[89]-?([0-9]-?){9}[0-9])(\s)*)$)")
     if regex.search(isbn):
         # Remove non ISBN digits, then split into an array
         chars = list(str(re.sub("[^0-9Xx]", "", isbn)))

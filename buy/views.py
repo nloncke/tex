@@ -18,3 +18,4 @@ def buy_confirmation(request):
             result["sold_offer"] = sold_offer
             result["seller_id"] = seller_id
         return render(request, "buy_confirmation.html", result)
+    return render(request, 'error_page.html')

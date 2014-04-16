@@ -1,0 +1,26 @@
+<html>
+<head>
+</head>
+<body>
+   <div style= "display: inline-block; display: block; height: auto; width:600px; padding: 4px; font-family: sans-serif;
+  margin-bottom: 20px; line-height: 1.428571429; background-color: #ffffff; border: 1px solid #dddddd; border-radius: 4px">
+     <div style="overflow: hidden; zoom: 1">
+         <img src="cid:frontcover" style="margin-top: 0; margin-right: 10px; float: left !important"
+         alt='' />
+           <h3 style="margin: 0 0 5px;">
+             New offer for {{book.title}}
+           </h3>
+             <b>Price:<b> {{offer.price}} <br>
+             <b>Condition:<b> {{offer.condition}} <br>
+             {% if offer.auction_id != "0" %}
+             {{ offer.auction_id }}
+				ADD Auctions details<br>
+             {% endif %}
+			For more info: check it out on <a href="princetontex.herokuapp.com">tex</a>
+     </div>
+   </div>
+   You are receiving this email because you are following {{book.title}} on <a href="princetontex.herokuapp.com">tex</a>.
+  <br>To stop receiving such notifications, edit your notification settings on the <a href="princetontex.herokuapp.com/account/">My Accounts</a> tab.
+
+</body>
+</html>

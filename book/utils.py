@@ -23,8 +23,7 @@ def get_book(isbn):
     book_info["labyrinth"] = LABYRINTH_STUB % isbn
     
     result = {"book":book_info}
-    
-    result["offers"] = get_offers(isbn) 
+    result["offers"] = sorted(get_offers(isbn), key=(lambda x:x["buy_price"]))
     return result
 
 
