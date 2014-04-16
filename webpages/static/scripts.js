@@ -51,12 +51,12 @@ $(document).ready(function()
     $("#search_bar_text").focus();
   });
 
-  function() {
-    $('#datetimepicker1').datetimepicker({
-      language: 'en',
-      pick12HourFormat: true
-    });
-  }
+  // function() {
+  //   $('#datetimepicker1').datetimepicker({
+  //     language: 'en',
+  //     pick12HourFormat: true
+  //   });
+  // }
 
 
 // fades out prompt and fades in confirmation for buyer
