@@ -55,6 +55,14 @@ $(document).ready(function()
 	$('#clock').countdown({until: 500});
 
 
+  function() {
+    $('#datetimepicker1').datetimepicker({
+      language: 'en',
+      pick12HourFormat: true
+    });
+  }
+
+
 // fades out prompt and fades in confirmation for buyer
 // function confirm_purchase() {
   // $("#modal_body").animate( {opacity: 0}, "slow", function(){
