@@ -43,12 +43,14 @@ def sell_submit(request):
         return render(request, "error_page.html")
     
 def sell_edit(request):
+    from sell.models import get_offer_info
     result = {}
     if request.method == 'POST':  
-        '''offerid = request.POST.get("offer_id", "0")
-        edit_offer = get_offer(offerid)
-        book_isbn = edit_offer["isbn"]
-        result["offer"] = get_book(book_isbn)'''       
+        offerid = request.POST.get("offer_id", "0")
+        offer = get_offer_info(offerid)
+        isbn = offer["isbn"]
+        result = get_book_info(isbn)
+        result["offer"] = offer 
     return render(request, "sell_form_edit.html", result)
 
 def validate_offer(offer):
