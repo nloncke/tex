@@ -30,9 +30,17 @@ def remove_auction(auction_id, buy_now=False):
     '''
     return {}
 
-
 def edit_offer(offer_id, price = None, course = None, condition = None, description = None):
     ''' Edit the offer with the new parameters if set
     '''
-    pass
-  
+    qset = Offer.objects.filter(id=offer_id)
+    for object in qset:
+        if price != None:
+            object.price = price
+        if course != None:
+            object.course = course 
+        if condition != None:
+            object.condition = condition
+        if description != None:
+            object.description = description
+        object.save()  

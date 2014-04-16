@@ -17,6 +17,21 @@
         <tr><th><label for="id_auction_0">Auction:</label></th>
         	<td><p id="auction"><label><input id="auction_yes" name="auction" type="checkbox" value="0"/>Yes</label></p></td></tr>
 <!-- include dropdown datepicker if the auction is checked -->
+	<tr><th><label>End Date:</label></th><td>
+		<div id="dtpsub" class="input-append">
+			<input type="text"></input>
+			<span class="glyphicon glyphicon-calendar"> </span>
+		</td>
+	</tr>
+<!-- 		<div id="datetimepicker1" class="input-append">
+			<input data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
+			<span class="add-on">
+				<i data-time-icon="icon-time" data-date-icon="icon-calendar">
+				</i>
+			</span>
+		</div> -->
+	</div>
+<!-- end dropdown datepicker -->
 
 		<tr><th><label>Condition:</label></th><td><p id="picked_condition">
 			<p><label><input required id="new" name="picked_condition" type="radio" value="New" />New</label></p>
