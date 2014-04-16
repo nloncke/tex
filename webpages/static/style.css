@@ -88,11 +88,14 @@ body {
 .jumbotron{
   font-family: 'ABeeZee', sans-serif;
 }
-p, h1, h2, h3{
+p, h1, h2, h3, h4{
   font-family: 'ABeeZee', sans-serif;
 }
 th{
 	font-size:24px;
+}
+.modal-dialog, .modal-header{
+	font-family: 'ABeeZee', sans-serif;
 }
 
 /* Three different shades of translucence for white*/

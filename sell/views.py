@@ -2,7 +2,7 @@ from django.shortcuts import render
 from search.views import validate_isbn
 from utils import get_book_info, put_offer
 from book.utils import get_book
-from buy.models import get_offer, edit_offer
+#from buy.models import remove_offer, edit_offer
 
 def sell_form(request):   
     result = {}
@@ -45,10 +45,10 @@ def sell_submit(request):
 def sell_edit(request):
     result = {}
     if request.method == 'POST':  
-        offerid = request.POST.get("offer_id", "0")
+        '''offerid = request.POST.get("offer_id", "0")
         edit_offer = get_offer(offerid)
         book_isbn = edit_offer["isbn"]
-        result["offer"] = get_book(book_isbn)       
+        result["offer"] = get_book(book_isbn)'''       
     return render(request, "sell_form_edit.html", result)
 
 def validate_offer(offer):

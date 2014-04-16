@@ -50,18 +50,6 @@ $(document).ready(function()
     $("#search_form").attr({action:"/search/course/"});
     $("#search_bar_text").focus();
   });
-  
-
-	$('#clock').countdown({until: 500});
-
-
-  function() {
-    $('#datetimepicker1').datetimepicker({
-      language: 'en',
-      pick12HourFormat: true
-    });
-  }
-
 
 // fades out prompt and fades in confirmation for buyer
 // function confirm_purchase() {
