@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from utils import *
 from models import *
-from book import utils
+from book.utils import *
 import re
 
 def buy_confirmation(request):
@@ -14,7 +14,7 @@ def buy_confirmation(request):
         if sold_offer:
             isbn = sold_offer["isbn"]
             seller_id = sold_offer["seller_id"]
-            result = utils.get_book(isbn)
+            result = get_book(isbn)
             result["sold_offer"] = sold_offer
             result["seller_id"] = seller_id
         return render(request, "buy_confirmation.html", result)

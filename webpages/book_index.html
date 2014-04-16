@@ -16,7 +16,7 @@
          	<p>Published Date: {{book.pub_date}}</p>
         <!-- button should submit book's isbn and change URL -->
         <form method="post"> {% csrf_token %}
-	 				<button type="submit" id="sell" name="target_isbn" value="{{book.isbn}}" formaction="/sell/"
+	 				<button type="submit" id="target_isbn" name="target_isbn" value="{{book.isbn}}" formaction="/sell/"
           class="btn btn-default translucent_w3"> 
                   <span><strong>SELL</strong></span>
           </button>
