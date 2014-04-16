@@ -17,8 +17,7 @@ def sell_form(request):
     else: 
         # Show error page
         #return render(request, "error_page.html")      
-        pass
-    
+        pass   
        
 def sell_submit(request):
     offer = {}
@@ -30,7 +29,6 @@ def sell_submit(request):
         offer["condition"] = request.POST.get("picked_condition", "0")
         offer["description"] = request.POST.get("description", "0")
         offer["seller_id"] = 10
-        offer["auction_id"] = "0"
         result["offer_id"] = put_offer(offer["isbn"], offer)
         '''if validate_offer(offer) and validate_isbn(isbn):
             put_offer(offer)
@@ -53,6 +51,19 @@ def sell_edit(request):
         result["offer"] = offer 
     return render(request, "sell_form_edit.html", result)
 
+def sell_edit_submit(request):
+    from buy.models import edit_offer
+    result = {}
+    if request.method == 'POST':
+        offer_id = request.POST.get("offer_id", "0")
+        price = request.POST.get("price" , "0")
+        course = request.POST.get("course", "0")
+        condition = request.POST.get("picked_condition", "0")
+        description = request.POST.get("description", "0")
+        edit_offer(offer_id, price, course, condition, description)
+        result["offer_id"] = offer_id
+        return render(request, 'sell_submit.html', result)      
+        
 def validate_offer(offer):
     if offer["price"] == "0"|offer["condition"] == "0"|offer["description"] == "0"|offer["seller_id"] == "0":
         return False

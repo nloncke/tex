@@ -1,8 +1,7 @@
 {% extends "base_topsearch.html" %}
 {% block content %}
-{{offer}}
 {% if book %}
-<form id="sell_form" action="/sell/submit/" method="post"> {% csrf_token %}
+<form id="sell_form_edit" action="/sell/edit/submit/" method="post"> {% csrf_token %}
 	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
 	<h1 style="font-size:16px">
 	<table>

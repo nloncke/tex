@@ -7,7 +7,11 @@ import re
 # render(request, html template, function that returns dictionary)
 # render(-, nicole, jeffrey)
 def account_index(request):
-    return render(request,'account_index.html')
+    from account.models import get_seller_offers
+    result = {}
+    seller_id = 10
+    result["Offers"] = get_seller_offers(seller_id)
+    return render(request,'account_index.html', result)
 
 
 def forbidden(request, template_name='403.html'):
