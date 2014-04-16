@@ -44,3 +44,7 @@ def edit_offer(offer_id, price = None, course = None, condition = None, descript
         if description != None:
             object.description = description
         object.save()  
+
+def get_offer_info(offer_id):
+    qset = Offer.objects.filter(id=offer_id)
+    for object in qset:

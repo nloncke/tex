@@ -6,7 +6,7 @@ def put_offer(offer, isbn):
     '''Put offer in table of offers, and update table of users
     '''
     # create offer
-    new_offer = Offer(isbn=isbn, seller_id = offer['seller_id'], price=offer['price'], course=offer["course"], condition=offer['condition'], description=offer['description'], auction_id=offer['auction_id']) 
+    new_offer = Offer(isbn=isbn, seller_id = offer['seller_id'], price=offer['price'], course=offer["course"], condition=offer['condition'], description=offer['description']) 
 
     # put in table of offers
     new_offer.save()

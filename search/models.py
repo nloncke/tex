@@ -8,7 +8,6 @@ class Offer(models.Model):
     course = models.CharField(max_length=100)
     condition = models.CharField(max_length=100)
     description = models.CharField(max_length=800)
-    auction_id = models.IntegerField()
     def __repr__(self):
         s = str(self.seller_id) + ' ' + str(self.price) + ' ' + self.isbn + ' ' + self.course + ' ' + self.condition
         return s
