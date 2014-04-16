@@ -14,9 +14,13 @@ def get_time_left(auction, timenow):
 
 
 def get_book(isbn):
+    ''' Return all the information necessary for the book page
+        Returns an empty dictionary if the isbn is not in the database
+        Fields are {book, amazon, chegg, ..., auctions, offers}
+    '''
     book_info = get_book_info(isbn=isbn, thumb=False)
     if book_info == []:
-        return None
+        return {}
     # Get the first result
     if len(book_info) > 1:
         print "ERROR: ISBN should be unique"
