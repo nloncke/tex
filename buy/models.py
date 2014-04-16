@@ -33,4 +33,4 @@ def edit_offer(offer_id, price = None, course = None, condition = None, descript
         if auction_id != None:
             object.auction_id = auction_id
 
-        object.save()
+        object.save()  
