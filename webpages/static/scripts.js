@@ -50,6 +50,10 @@ $(document).ready(function()
     $("#search_form").attr({action:"/search/course/"});
     $("#search_bar_text").focus();
   });
+  
+
+	$('#clock').countdown({until: 500});
+
 
 // fades out prompt and fades in confirmation for buyer
 // function confirm_purchase() {
@@ -71,8 +75,4 @@ $(document).ready(function()
   // $("#search_bar_text").blur(function(){
     // $(this).css("background-color","#000000");
   // });
-
-
-
-
 });

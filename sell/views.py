@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from search.views import validate_isbn
-from utils import get_book_info
+from utils import get_book_info, put_offer
 from book.utils import get_book
 from buy.models import get_offer, edit_offer
 

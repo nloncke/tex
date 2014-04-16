@@ -8,7 +8,6 @@ from search.views import validate_isbn
 # render(-, nicole, jeffrey)
 
 def book_index(request):
-    # change to isbn13
     isbn = request.POST.get("target_isbn","0")
     if validate_isbn(isbn):
         book = get_book(isbn)
