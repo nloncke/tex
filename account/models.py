@@ -8,7 +8,6 @@ class BookUser(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
 
-    sell_list = models.CharField(max_length=500)
     watch_list = models.CharField(max_length=500)
 
     def __unicode__(self):
