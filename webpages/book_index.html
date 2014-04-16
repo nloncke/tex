@@ -27,21 +27,80 @@
       </div>
 </div>
 
+<!-- AUCTION TABLE -->
+<div class="media">
+	<div class="media-body">
+    	<h3 class="media-heading" style="font-size:28px">Auctions</h3>
+    	<h2 style="font-size:20px">
+	    	<table class="table" width="80%">
+	     		<th></th>
+	     		<th>Last Bid</th>
+	     		<th>Time Left</th>
+	     		<th>Condition</th>
+	     		<th>Description</th>
+	         	<tr>
+          		<!-- button should only trigger modal -->
+	   				<td><button id="auction_{{auction.auction_id}}" data-toggle="modal" data-target="#auction_modal_{{auction.auction_id}}"
+	        			class="btn btn-default translucent_w3"><span><strong>BID</strong></span></button>
+	  				</td>
+          		<!-- end trigger button -->
+         			<td>${{ auction.last_price }}</td>
+              	    <td>1d 3h 20m</td>
+	         		<td>{{ auction.condition }}</td>
+	         		<td>{{ auction.description }}</td>
+         		</tr>	         		         	
+	         	  <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
+            <!-- end of auction prompt modal -->
+            <div class="modal fade" id="auction_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					    	<h4 class="modal-title" id="myModalLabel">Bid for this book!</h4>
+			 			</div>
+				  		<div class="modal-body">
+				    		<div class="modal-bid">
+				    			 <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="158px" width="128px">
+								 <div class="media-body">
+								     <h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
+								     <h2 style="font-size:20px">
+								     	<p>Author(s): {{book.author}}</p>
+								     	<p>ISBN-13: {{book.isbn}}</p>
+								     	<p>Published Date: {{book.pub_date}}</p>
+								     </h2>
+								</div>
+				    			<h2><strong>Time Left</strong></h2>
+				    			<h3>1d 3h 20m</h3>
+				    			<h2><strong>Current Bid</strong></h2>
+				    				<h3>${{auction.last_price}}   + <input type="text" size="5">
+				    				<button type="submit" id="bid" class="btn btn-default translucent_w3">BID</button></h3>
+				    			<h2><strong>Buy Now Price</strong></h2>
+				    				<h3>${{auction.buy_now_price}}
+				    				<button type="submit" id="buy_now" class="btn btn-default translucent_w3">BUY</button></h3>
+				    		</div>
+				 		</div>
+					</div>
+				</div>
+			</div>
+          	</table>
+		</h2>
+	</div>
+</div>
 {% if offers %}
 <!-- OFFERS TABLE -->
 <div class="media">
-      <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px">Offers</h3>
-         <h1 style="font-size:18px">
+	<div class="media-body">
+    	<h3 class="media-heading" style="font-size:28px">Offers</h3>
+    	<h1 style="font-size:18px">
          	<p>Also available from 
          		{% if book.labyrinth %}<a href={{book.labyrinth}} target="_blank">Labyrinth </a>{% endif %}
          		{% if book.amazon %}<a href={{book.amazon}} target="_blank">Amazon </a>{% endif %}
          		{% if book.chegg %}<a href={{book.chegg}} target="_blank">Chegg </a>{% endif %}
          		{% if book.campus %}<a href={{book.campus}} target="_blank">Campus </a>{% endif %}
          	</p>
-         </h1>
-         <h2 style="font-size:20px">
-	         <table class="table" width="80%">
+     	</h1>
+        <h2 style="font-size:20px">
+        	<table class="table" width="80%">
 	     		<th></th>
 	     		<th>Price</th>
 	     		<th>Condition</th>
@@ -152,6 +211,7 @@
          </h2>
       </div>
 </div>
+        
 {% endif %}
 {% endif %}
 {% endblock content %}

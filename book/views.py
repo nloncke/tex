@@ -8,11 +8,17 @@ from search.views import validate_isbn
 # render(-, nicole, jeffrey)
 
 def book_index(request):
-    # change to isbn13
+    auction = {}
+    auction["auction_id"] = "5"
+    auction["last_price"] = "20"
+    auction["buy_now_price"] = "30"
+    auction["condition"] = "Like New"
+    auction["description"] = "it's great"
     isbn = request.POST.get("target_isbn","0")
     if validate_isbn(isbn):
-        book = get_book(isbn)
-        return render(request, 'book_index.html', book)      
+        result = get_book(isbn)
+        result["auction"] = auction
+        return render(request, 'book_index.html', result)      
     else:
         # need an error html page
         return render(request, 'search_empty_prompt.html', {"query": isbn})

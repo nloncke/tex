@@ -10,7 +10,7 @@ def buy_confirmation(request):
     if request.method == "POST":
         offer_id = request.POST.get("offer_id", "0")
         buyer_id = request.POST.get("buyer_id", "0")
-        sold_offer = get_offer(offer_id)
+        sold_offer = remove_offer(offer_id)
         if sold_offer:
             isbn = sold_offer["isbn"]
             seller_id = sold_offer["seller_id"]
