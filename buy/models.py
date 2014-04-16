@@ -20,4 +20,17 @@ def get_offer(offer_id):
         return None
 
 def edit_offer(offer_id, price = None, course = None, condition = None, description = None, auction_id = None):
-  
+    qset = Offer.objects.filter(id=offer_id)
+    for object in qset:
+        if price != None:
+            object.price = price
+        if course != None:
+            object.course = course 
+        if condition != None:
+            object.condition = condition
+        if description != None:
+            object.description = description
+        if auction_id != None:
+            object.auction_id = auction_id
+
+        object.save()
