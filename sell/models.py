@@ -18,7 +18,15 @@ def put_offer(offer, isbn):
 
     return new_offer.id
 
+def get_offer_info(offer_id):
+    # get info of offer with given id
+    # FILTER
+    qset = Offer.objects.filter(id=offer_id)
+    for object in qset:
+        offer = { 'seller_id': object.seller_id, 'price':object.price, 'course':object.course, 'condition':object.condition, 'description':object.description, 'isbn':object.isbn }
+        return offer
 
+    return None
 
 def put_auction(offer, isbn):
     '''Put an auction in table of auctions, and update table of users
