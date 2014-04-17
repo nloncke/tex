@@ -8,10 +8,16 @@ import re
 # render(-, nicole, jeffrey)
 def account_index(request):
     from account.models import get_seller_offers
-    result = {}
+    from sell.utils import get_book_info
+    result = []
     seller_id = 10
-    result["Offers"] = get_seller_offers(seller_id)
-    return render(request,'account_index.html', result)
+    seller_offers = get_seller_offers(seller_id)
+    offers = {}
+    for seller_offer in seller_offers:
+        book_info = get_book_info(seller_offer.isbn)["book"]
+        #offers["offer"] = {"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.offer_id}
+        result.append({"title":book_info["title"], "price":seller_offer.price})
+    return render(request,'account_index.html', {"offers":result})
 
 
 def forbidden(request, template_name='403.html'):

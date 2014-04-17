@@ -24,12 +24,13 @@ def book_index(request):
         return render(request, 'search_empty_prompt.html', {"query": isbn})
     
 def book_follow(request):
+    from account.models import follow
     isbn = request.POST.get("target_isbn", "0")
-    follow_user_id = request.POST.get("follow_user_id", "0")
+    user = request.POST.get("user", "0")
     if validate_isbn(isbn):
-        add_to_follow(follow_user_id=follow_user_id, isbn=isbn)
+        follow(user=user, isbn=isbn)
         result["isbn"] = isbn
-        result["follow_user_id"] = follow_user_id
+        result["user"] = user
         return render(request, 'account_index', result)
     
     else:

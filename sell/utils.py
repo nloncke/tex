@@ -8,6 +8,9 @@ def get_book_info(isbn):
     from search.models import get_book_info
     return {"book":get_book_info(isbn = isbn, thumb=False)[0]}
 
+def get_title(isbn):
+    result = get_book_info(isbn = isbn)[0]
+    return result
 
 # dummy for testing 
 def get_followers(isbn):
