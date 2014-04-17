@@ -55,8 +55,15 @@ def fetch_isbn(isbn):
     except:
         info["title"] = book["title"]
     
-    info["author"] = "/".join(book["authors"])
-    info["pub_date"] = book["publishedDate"]
+    try:
+        info["author"] = "/".join(book["authors"])
+    except
+        info["author"] = "This book as no registered authors :o"
+    
+    try:
+        info["pub_date"] = book["publishedDate"]
+    except:
+        info["pub_date"] = "No published date available"
     try:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
         url_thm = book["imageLinks"]["smallThumbnail"].split("&edge")[0]
