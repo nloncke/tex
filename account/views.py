@@ -15,7 +15,7 @@ def account_index(request):
     return render(request,'account_index.html', result)
 
 def validate(request):
-    return render(request,'index.html')
+    return render(request,'index.html', {"user":request.user.username})
 
 
 def register(request):
