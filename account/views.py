@@ -14,20 +14,25 @@ def account_index(request):
     result["Offers"] = get_seller_offers(seller_id)
     return render(request,'account_index.html', result)
 
-def validate(request):
+def login(request):
     if request.user.is_authenticated():
         return render(request,'index.html', {"user":request.user.username})
     else:
-        return login(request)
+#         return login(request)
+        return register(request)
 
 
-@login_required
 def register(request):
     registered = False
     
     if request.method == 'POST':
         username = request.POST.get("username")
         password = request.POST.get("password")
+        
+        # Dummy for testing
+        from django.contrib import auth
+        user = auth.authenticate(username="tex", password="axal@tex")
+        auth.login(request, user)
         
         registered = True
     return render(request,'account_register.html', {"registered": registered})
