@@ -25,15 +25,14 @@ def login(request):
     if request.user.is_authenticated():
         return render(request,'index.html')
     else:
-#         httpresp, user = login(request)        
-#         if is_registered(user):
-#             return httpresp
+        httpresp, user = login(request)        
+        if is_registered(user):
+            return httpresp
 
-        # Dummy for testing
-        from django.contrib import auth
-        user = auth.authenticate(username="tex", password="axal@tex")
-        auth.login(request, user)
-        
+#         # Dummy for testing
+#         from django.contrib import auth
+#         user = auth.authenticate(username="tex", password="axal@tex")
+#         auth.login(request, user)
         
         return register(request)
 
