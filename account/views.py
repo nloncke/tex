@@ -13,6 +13,20 @@ def account_index(request):
     result["Offers"] = get_seller_offers(seller_id)
     return render(request,'account_index.html', result)
 
+def validate(request):
+    return render(request,'index.html')
+
+
+def register(request):
+    registered = False
+    
+    if request.method == 'POST':
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        
+        registered = True
+    return render(request,'account_register.html', {"registered": registered})
+
 
 def forbidden(request, template_name='403.html'):
     """Default 403 handler"""
