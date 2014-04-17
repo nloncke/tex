@@ -22,11 +22,8 @@ function set_to_isbn(){
 
 $(document).ready(function()
 {
-  // the space after the title is essential (#hack)
-  if($("title").text() == "tex search results ")
-    set_to_isbn();
-  else
-    set_to_title();
+  // default search option is always title
+  set_to_title();
 
   $("#search_by_title").click(set_to_title);
   $("#search_by_isbn").click(set_to_isbn);
