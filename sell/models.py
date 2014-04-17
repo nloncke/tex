@@ -11,11 +11,6 @@ def put_offer(offer, isbn):
     # put in table of offers
     new_offer.save()
 
-    # add offer_id to sell_list of seller
-    qset = BookUser.objects.filter(id=offer['seller_id'])
-    for seller in qset:
-         seller.sell_list = seller.sell_list + ' ' + str(new_offer.id)
-
     return new_offer.id
 
 def get_offer_info(offer_id):
