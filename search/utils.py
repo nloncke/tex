@@ -57,7 +57,7 @@ def fetch_isbn(isbn):
     
     try:
         info["author"] = "/".join(book["authors"])
-    except
+    except: 
         info["author"] = "This book as no registered authors :o"
     
     try:
