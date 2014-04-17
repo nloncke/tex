@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Offer(models.Model):
-    seller_id = models.IntegerField()
+    seller_id = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=7, decimal_places=2) # there are no decimals in the price
     isbn = models.CharField(max_length=20)
     course = models.CharField(max_length=100)
