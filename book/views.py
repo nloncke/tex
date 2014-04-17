@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django_cas.decorators import login_required
 from utils import *
 import re
 from search.views import validate_isbn
@@ -23,16 +24,17 @@ def book_index(request):
         # need an error html page
         return render(request, 'search_empty_prompt.html', {"query": isbn})
     
+    
+@login_required
 def book_follow(request):
     from account.models import follow
     isbn = request.POST.get("target_isbn", "0")
-    user = request.POST.get("user", "0")
+    user = request.user.username
     if validate_isbn(isbn):
         follow(user=user, isbn=isbn)
         result["isbn"] = isbn
         result["user"] = user
         return render(request, 'account_index', result)
-    
     else:
         pass
         # error page

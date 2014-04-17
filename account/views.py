@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
+from django_cas.decorators import login_required
+from django_cas.views import login
 from utils import *
 import re
 
-# render(request, html template, function that returns dictionary)
-# render(-, nicole, jeffrey)
+@login_required
 def account_index(request):
     from account.models import get_seller_offers
     from sell.utils import get_book_info
@@ -18,6 +19,29 @@ def account_index(request):
         #offers["offer"] = {"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.offer_id}
         result.append({"title":book_info["title"], "price":seller_offer.price})
     return render(request,'account_index.html', {"offers":result})
+
+def login(request):
+    if request.user.is_authenticated():
+        return render(request,'index.html', {"user":request.user.username})
+    else:
+#         return login(request)
+        return register(request)
+
+
+def register(request):
+    registered = False
+    
+    if request.method == 'POST':
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        
+        # Dummy for testing
+        from django.contrib import auth
+        user = auth.authenticate(username="tex", password="axal@tex")
+        auth.login(request, user)
+        
+        registered = True
+    return render(request,'account_register.html', {"registered": registered})
 
 
 def forbidden(request, template_name='403.html'):
