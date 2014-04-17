@@ -1,16 +1,11 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-import django_cas
+from search import views
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'TEX.views.home', name='home'),
-    # url(r'^blog/', include('blog.urls')),
-
-    url(r'^$', 'account.views.validate'),
-    url(r'^login/$', django_cas.views.login, name='login'),
-    url(r'^logout/$', django_cas.views.logout, name='logout'),
+    url(r'^$', views.index, name='index'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^helloDjango/', include('helloDjango.urls')),
     url(r'^search/', include('search.urls')),

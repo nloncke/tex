@@ -4,12 +4,14 @@ from utils import *
 from models import *
 from book.utils import *
 import re
+from django_cas.decorators import login_required
 
+@login_required
 def buy_confirmation(request):
     result = {}
     if request.method == "POST":
         offer_id = request.POST.get("offer_id", "0")
-        buyer_id = request.POST.get("buyer_id", "0")
+        buyer_id = request.user.username
         sold_offer = remove_offer(offer_id)
         if sold_offer:
             isbn = sold_offer["isbn"]

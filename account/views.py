@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
-from django.contrib.auth import login
+from django_cas.decorators import login_required
+from django_cas.views import login
 from utils import *
 import re
 
-# render(request, html template, function that returns dictionary)
-# render(-, nicole, jeffrey)
+@login_required
 def account_index(request):
     from account.models import get_seller_offers
     result = {}
@@ -15,9 +15,13 @@ def account_index(request):
     return render(request,'account_index.html', result)
 
 def validate(request):
-    return render(request,'index.html', {"user":request.user.username})
+    if request.user.is_authenticated():
+        return render(request,'index.html', {"user":request.user.username})
+    else:
+        return login(request)
 
 
+@login_required
 def register(request):
     registered = False
     

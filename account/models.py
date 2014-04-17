@@ -42,4 +42,5 @@ class PopulatedCASBackend(CASBackend):
         user = super(PopulatedCASBackend, self).authenticate(
             ticket, service)
 
+        user.save()
         return user
