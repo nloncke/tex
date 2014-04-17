@@ -1,0 +1,25 @@
+{% extends "base_topsearch.html" %}
+
+{% block navbar %}
+{% endblock navbar %}
+
+
+{% block content %}
+<h1>Registration</h1>
+
+        {% if registered %}
+        <strong>Thank you for registering!</strong>
+        <a href="/search/">Return to the homepage.</a><br />
+        {% else %}
+        <strong>Register Here!</strong><br />
+
+<form id="register" method="post" action"/account/register/"> {% csrf_token %}
+	<input type="text" name="username" id="username" placeholder="Username" required/>
+	<input type="text" name="password" id= "password" placeholder="Password" required/>
+	<button type="submit" id="submit_2" class="btn btn-default">
+		Submit
+	 </button>
+</form>
+
+{% endif %}
+{% endblock content%}
