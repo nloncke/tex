@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
+from django.contrib.auth import login
 from utils import *
 import re
 
