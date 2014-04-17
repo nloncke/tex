@@ -4,6 +4,7 @@ from django.template import RequestContext, loader
 from django_cas.decorators import login_required
 from django_cas.views import login
 from utils import *
+from models import *
 import re
 
 @login_required
@@ -22,26 +23,28 @@ def account_index(request):
 
 def login(request):
     if request.user.is_authenticated():
-        return render(request,'index.html', {"user":request.user.username})
+        return render(request,'index.html')
     else:
-#         return login(request)
-        return register(request)
+#         httpresp, user = login(request)        
+#         if is_registered(user):
+#             return httpresp
 
-
-def register(request):
-    registered = False
-    
-    if request.method == 'POST':
-        username = request.POST.get("username")
-        password = request.POST.get("password")
-        
         # Dummy for testing
         from django.contrib import auth
         user = auth.authenticate(username="tex", password="axal@tex")
         auth.login(request, user)
         
-        registered = True
-    return render(request,'account_register.html', {"registered": registered})
+        
+        return register(request)
+
+@login_required
+def register(request):
+    if request.method == 'POST':
+        info["username"] = request.POST.get("username")
+        info["password"] = request.POST.get("password")
+        
+        save_user(request.user, **info)
+    return render(request,'account_register.html', {"registered": is_registered(request.user)})
 
 
 def forbidden(request, template_name='403.html'):

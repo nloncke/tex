@@ -5,21 +5,61 @@
 
 
 {% block content %}
-<h1>Registration</h1>
+{% if registered %}
+		        <h4>Thank you for registering!</h4g>
+        		<a href="/">
+        		Return to the homepage
+        		</a>
 
-        {% if registered %}
-        <strong>Thank you for registering!</strong>
-        <a href="/search/">Return to the homepage.</a><br />
-        {% else %}
-        <strong>Register Here!</strong><br />
+	 {% else %}
+<button id="test" data-toggle="modal" data-target="#register_modal"
+                class="btn btn-default translucent_w3">
+                    <span><strong>Sign up</strong></span>
+                   </button>
 
-<form id="register" method="post" action"/account/register/"> {% csrf_token %}
-	<input type="text" name="username" id="username" placeholder="Username" required/>
-	<input type="text" name="password" id= "password" placeholder="Password" required/>
-	<button type="submit" id="submit_2" class="btn btn-default">
-		Submit
-	 </button>
-</form>
 
-{% endif %}
+<div class="modal fade" id="register_modal" tabindex="-1" role="dialog"
+  aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        	<h4 class="modal-title" id="registerModalLabel">Registration</h4>
+        </div>
+        <div id="confirm_modal_body" class="modal-body">
+		    <strong>Register Here!</strong><br />
+		    <form id="register_form" method="post" action"/account/register/"> {% csrf_token %}
+				<input type="text" name="username" id="username" placeholder="Username" required/>
+				<input type="text" name="password" id= "password" placeholder="Password" required/>
+			</form>
+			<div class="modal-footer">
+				<button type="submit" id="register_btn" class="btn btn-primary"
+				data-target="#register_modal" form="register_form">
+					Register
+				 </button>
+			 </div>
+        </div>
+    </div>
+  </div>
+  		 {% endif %}
+
 {% endblock content%}
+<!--
+
+
+                   onclick="document.getElementById('register_form').submit(); return false;"
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+
+

@@ -85,7 +85,7 @@ USE_L10N = True
 USE_TZ = True
 
 CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
-CAS_REDIRECT_URL = "/search/"
+CAS_REDIRECT_URL = "/"
 CAS_LOGOUT_COMPLETELY = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/

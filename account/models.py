@@ -33,6 +33,25 @@ def unfollow(user, isbn):
     bu.watch_list = ' '.join(tokens)
     bu.save()
 
+
+def is_registered(user):
+    ''' Returns True iff user already in already in our data base
+    '''
+    return user.username=="tex"
+
+
+def save_user(user, **info):
+    ''' Save this user in our database with the information required
+        The specification for info are TBD
+    '''
+    pass
+
+
+
+
+
+
+# Maybe we don't need this
 class PopulatedCASBackend(CASBackend):
     """CAS authentication backend with user data populated from AD"""
 
@@ -44,3 +63,5 @@ class PopulatedCASBackend(CASBackend):
 
         user.save()
         return user
+
+
