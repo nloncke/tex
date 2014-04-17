@@ -37,8 +37,11 @@ def unfollow(user, isbn):
 def is_registered(user):
     ''' Returns True iff user already in already in our data base
     '''
-    return user.username=="tex"
+    qset = User.objects.filter(username=user.username)
+    if not qset:
+        return False
 
+    return True
 
 def save_user(user, **info):
     ''' Save this user in our database with the information required
