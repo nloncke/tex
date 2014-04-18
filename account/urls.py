@@ -6,7 +6,7 @@ from account import views
 #url(nicole and laura, laura, laura)
 urlpatterns = patterns('',
     url(r'^$', views.account_index, name='account_index'),
-    url(r'register/$', views.register, name='register'),
+    url(r'profile/$', views.profile, name='profile'),
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', django_cas.views.logout, name='logout'),
 )

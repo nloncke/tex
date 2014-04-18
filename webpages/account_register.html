@@ -1,17 +1,20 @@
-{% extends "base_topsearch.html" %}
+{% extends "account_profile.html" %}
+
 
 {% block navbar %}
 {% endblock navbar %}
 
 
-{% block content %}
 {% if registered %}
 		        <h4>Thank you for registering!</h4g>
         		<a href="/">
         		Return to the homepage
         		</a>
 
-	 {% else %}
+
+
+
+
 <button id="test" data-toggle="modal" data-target="#register_modal"
                 class="btn btn-default translucent_w3">
                     <span><strong>Sign up</strong></span>
@@ -28,10 +31,7 @@
         </div>
         <div id="confirm_modal_body" class="modal-body">
 		    <strong>Register Here!</strong><br />
-		    <form id="register_form" method="post" action"/account/register/"> {% csrf_token %}
-				<input type="text" name="username" id="username" placeholder="Username" required/>
-				<input type="text" name="password" id= "password" placeholder="Password" required/>
-			</form>
+
 			<div class="modal-footer">
 				<button type="submit" id="register_btn" class="btn btn-primary"
 				data-target="#register_modal" form="register_form">
@@ -42,8 +42,7 @@
     </div>
   </div>
   		 {% endif %}
-
-{% endblock content%}
+	 {% else %}
 <!--
 
 

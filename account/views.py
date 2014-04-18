@@ -37,13 +37,13 @@ def login(request):
         return register(request)
 
 @login_required
-def register(request):
+def profile(request):
     if request.method == 'POST':
         info["username"] = request.POST.get("username")
         info["password"] = request.POST.get("password")
         
         save_user(request.user, **info)
-    return render(request,'account_register.html', {"registered": is_registered(request.user)})
+    return render(request,'account_profile.html')
 
 
 def forbidden(request, template_name='403.html'):
