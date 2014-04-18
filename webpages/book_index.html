@@ -26,7 +26,31 @@
          </h2>
       </div>
 </div>
-
+<!-- follow modal -->
+<div class="modal fade" id="follow_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h4 class="modal-title" id="myModalLabel">Follow this book</h4>
+  </div>
+  <div id="follow_modal_body" class="modal-body">
+    Are you sure you want to follow "{{ book.title }}"? We'll email you when there are new offers.
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+    <form id="follow_book" action="/book/follow/" method="post"> {% csrf_token %}
+    	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
+        <button type="submit" name="book_isbn" value="{{ book.isbn}}"
+        	data-dismiss="modal" onclick="document.getElementById('follow_book').submit(); return false;"
+        	class="btn btn-primary">Yes
+        </button>
+    </form>
+  </div>
+</div>
+  </div>
+</div>
+<!-- end of follow prompt modal -->
 <!-- AUCTION TABLE -->
 <div class="media">
 	<div class="media-body">
@@ -140,8 +164,8 @@
                     class="btn btn-primary">Yes</button>
                     <!-- hidden form to check if offer still there -->
                     <form id="buy_form_{{offer.offer_id}}" name="buy_form" action="/buy/confirm/" method="post"> {% csrf_token %}
-                      <input type="hidden" id="buyer_id" name="buyer_id" value="{{ user }}">
-                      <input type="hidden" id="offer_id" name="offer_id" value="{{ offer.offer_id }}">
+                      <input type="hidden" id="buyer_id" name="buyer_id" value="{{ user }}"/>
+                      <input type="hidden" id="offer_id" name="offer_id" value="{{ offer.offer_id }}"/>
                     </form>
                     <!-- end of hidden form -->
                   </div>
@@ -150,34 +174,9 @@
             </div>
             <!-- end of buyer's prompt modal -->
 
-            <!-- follow modal -->
-            <div class="modal fade" id="follow_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Follow this book</h4>
-                  </div>
-                  <div id="buy_modal_body" class="modal-body">
-                    Are you sure you want to follow "{{ book.title }}"? We'll email you when there are new offers.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <form id="follow" action="/follow/" method="post"> {% csrf_token %}
-                    	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
-                    	<input type="hidden" id="user" name="user" value="temp">
-	                    <button type="submit" name="book_isbn" value="{{ book.isbn}}"
-	                    	data-dismiss="modal" data-toggle="modal" data-target="#confirm_follow_modal"
-	                    	class="btn btn-primary">Yes
-	                    </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end of follow prompt modal -->
+            
 
-             <!-- follow confirmation modal -->
+             <!-- follow confirmation modal 
             <div class="modal fade" id="confirm_follow_modal" tabindex="-1" role="dialog"
             	aria-labelledby="confirmModalLabel" aria-hidden="true">
               <div class="modal-dialog">

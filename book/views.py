@@ -36,7 +36,7 @@ def book_follow(request):
         result["user"] = user
         return render(request, 'account_index', result)
     else:
-        pass
+        return render(request, 'error_page.html')
         # error page
         
         

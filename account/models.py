@@ -25,6 +25,10 @@ def follow(user, isbn):
         bu.watch_list = bu.watch_list + ' ' + isbn
     bu.save()
 
+'''def get_follow_list(user):
+    bu = user.bookuser
+    return bu.watch_list'''
+
 def unfollow(user, isbn):
     bu = user.bookuser
     tokens = bu.watch_list.split()
@@ -37,8 +41,11 @@ def unfollow(user, isbn):
 def is_registered(user):
     ''' Returns True iff user already in already in our data base
     '''
-    return user.username=="tex"
+    qset = User.objects.filter(username=user.username)
+    if not qset:
+        return False
 
+    return True
 
 def save_user(user, **info):
     ''' Save this user in our database with the information required

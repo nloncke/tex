@@ -53,6 +53,7 @@ def sell_edit(request):
         isbn = offer["isbn"]
         result = get_book_info(isbn)
         result["offer"] = offer 
+        result["offer_id"] = offerid
     return render(request, "sell_form_edit.html", result)
 
 @login_required
