@@ -2,14 +2,14 @@
   <!-- The space after the results is essential for default isbn search -->
   {% block title %}tex search results {% endblock title %}
 
-
+{{offer_id}}
 {% block content %}
 <div class="jumbotron" id="message">
   <h1>Thanks!</h1>
   <h2> You'll get an email when someone buys your book. </h2>
   <form action="/sell/edit/" id="edit_{{offer_id}}" method="post"> {% csrf_token %}
   <h3> You can <a href="javascript:{}" onclick="document.getElementById('edit_{{offer_id}}').submit(); return false;">edit</a> your offer at anytime.</h3>
-   	<input type="hidden" id="offer_id" name="offer_id" value="{{offer_id}}">
+   	<input type="hidden" id="offer_id" name="offer_id" value="{{offer_id}}"/>
   </form>
 </div>
 

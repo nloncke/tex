@@ -13,23 +13,23 @@
          <h2 style="font-size:20px">
 	         <table class="table" width="80%">
 	     		<th></th>
+	     		<th></th>
 	     		<th>Book</th>
 	     		<th>Current Price</th>
-	     		{% for offer in offers %}
-	     		<form id="edit_{{offer.offer_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
-	     			<input type="hidden" id="offer_id" value="{{offer.offer_id}}">
-	     		</form>
+	     		{% for offer in offers %}	     		
 	         	<tr>
-	         		<td><button type="submit" id="edit_{{offer.offer_id}}" class="btn btn-default translucent_w3">
+	         		<form id="edit_{{offer.offer_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
+	     				<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}"/>	     		
+	         			<td><button type="submit" id="edit_{{offer.offer_id}}" form="edit_{{offer.offer_id}}" class="btn btn-default translucent_w3">
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>
+	    			</form>
+    				<td><button type="submit" id="remove_{{offer.offer_id}}" class="btn btn-default translucent_w3">
+              			<span><strong>REMOVE</strong></span>
+    				</button></td>
 	         		<td>{{offer.title}}</td>
-	         		<td>{{offer.price}}</td>
-	         		<td><button type="submit" id="remove_{{offer.offer_id}}" class="btn btn-default translucent_w3">
-	              			<span><strong>REMOVE</strong></span>
-	    				</button></td>
-	         	</tr>
-	         
+	         		<td>${{offer.price}}</td>
+	         	</tr>	         
 	         	{% endfor %}
 	         </table>
 	         
@@ -47,9 +47,9 @@
 	         		<td><button type="submit" id="buy" class="btn btn-default translucent_w3">
 	              			<span><strong>BUY</strong></span>
 	    				</button> </td>
+	    			<td><button type="button" id="remove" class="btn btn-default translucent_w3"><span><strong>UNFOLLOW</strong></span></button> </td>
 	         		<td>This is a test title</td>
-	         		<td>$500</td>
-	         		<td><button type="button" id="remove" class="btn btn-default translucent_w3"><span><strong>UNFOLLOW</strong></span></button> </td>
+	         		<td>$500</td>	         		
 	         	</tr>
 	         </table>
 	         
