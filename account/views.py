@@ -12,13 +12,12 @@ def account_index(request):
     from account.models import get_seller_offers
     from sell.utils import get_book_info
     result = []
-    seller_id = 10
+    seller_id = request.user.username
     seller_offers = get_seller_offers(seller_id)
     offers = {}
     for seller_offer in seller_offers:
         book_info = get_book_info(seller_offer.isbn)["book"]
-        #offers["offer"] = {"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.offer_id}
-        result.append({"title":book_info["title"], "price":seller_offer.price})
+        result.append({"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.id})
     return render(request,'account_index.html', {"offers":result})
 
 def login(request):
