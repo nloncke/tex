@@ -9,20 +9,22 @@ import re
 
 @login_required
 def account_index(request):
-    from account.models import get_seller_offers
+    from account.models import get_seller_offers, get_follow_list
     from buy.models import remove_offer
     from sell.utils import get_book_info
-    if request.method == "POST":
+    # only post if removing offer
+    if request.method == "POST": 
         offer_id = request.POST.get("offer_id", "0")
         sold_offer = remove_offer(offer_id)        
     result = []
     seller_id = request.user.username
     seller_offers = get_seller_offers(seller_id)
     offers = {}
+    follow_list = get_follow_list(seller_id)
     for seller_offer in seller_offers:
         book_info = get_book_info(seller_offer.isbn)["book"]
         result.append({"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.id})
-    return render(request,'account_index.html', {"offers":result})
+    return render(request,'account_index.html', {"offers":result, "follow":follow_list})
 
 def login(request):
     if request.user.is_authenticated():
