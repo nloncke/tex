@@ -6,6 +6,11 @@
          <h3 class="media-heading" style="font-size:28px"><strong>My Account</strong></h3>
       </div>
 </div>
+<button id="update_profile" data-toggle="modal"
+	data-target="#profile_modal" class="btn btn-default">
+	<span><strong>Update your profile</strong></span>
+</button>
+
 <div class="media">
       <div class="media-body">
          <h3 class="media-heading" style="font-size:28px">Offering</h3>
@@ -16,10 +21,10 @@
 	     		<th></th>
 	     		<th>Book</th>
 	     		<th>Current Price</th>
-	     		{% for offer in offers %}	     		
+	     		{% for offer in offers %}
 	         	<tr>
 	         		<form id="edit_{{offer.offer_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
-	     				<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}"/>	     		
+	     				<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}"/>
 	         			<td><button type="submit" id="edit_{{offer.offer_id}}" form="edit_{{offer.offer_id}}" class="btn btn-default translucent_w3">
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>
@@ -29,8 +34,8 @@
     				</button></td>
 	         		<td>{{offer.title}}</td>
 	         		<td>${{offer.price}}</td>
-	         	</tr>	
-	         	
+	         	</tr>
+
 	         	<!-- remove modal -->
             <div class="modal fade" id="remove_modal_{{offer.offer_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog"><div class="modal-content"><div class="modal-header">
@@ -48,10 +53,10 @@
                     	<input type="hidden" id="offers" name="offers" value="{{offers}}">
                     </form>
             </div></div></div></div>
-            <!-- end of remove prompt modal -->      
+            <!-- end of remove prompt modal -->
 	         	{% endfor %}
 	         </table>
-	     {% endif %}    
+	     {% endif %}
          </h2>
       </div>
        <div class="media-body">
@@ -69,11 +74,47 @@
 	    				</button> </td>
 	    			<td><button type="button" id="remove" class="btn btn-default translucent_w3"><span><strong>UNFOLLOW</strong></span></button> </td>
 	         		<td>This is a test title</td>
-	         		<td>$500</td>	         		
+	         		<td>$500</td>
 	         	</tr>
 	         </table>
-	         
+
          </h2>
       </div>
-</div> 
+</div>
+
+
+
+
+<!--   FOR UPDATING YOUR PROFILE -->
+
+<div class="modal fade" id="profile_modal" tabindex="-1" role="dialog"
+  aria-labelledby="profileModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        	<h4 class="modal-title" id="profileModalLabel">Update your Profile</h4>
+        </div>
+        <div id="profile_modal_body" class="modal-body">
+		   <form id="profile_form" method="post" action"/account/"> {% csrf_token %}
+				<input type="text" name="first_name" id="first_name" placeholder="First name" required/>
+				<input type="text" name="last_name" id="last_name" placeholder="Last name" required/>
+				<input type="text" name="class_year" id="class_year" placeholder="Class Year" required/>
+			    <label><input required name="default_search" type="radio"   id="title"  value="title" />Title</label>
+			    <label><input required name="default_search" type="radio"   id="isbn"  value="isbn" />ISBN</label>
+			    <label><input required name="default_search" type="radio"   id="author"  value="author" />Author</label>
+			    <label><input required name="default_search" type="radio"   id="course"  value="course" />Course</label>
+
+			</form>
+			<div class="modal-footer">
+				<button type="submit" id="submit" class="btn btn-primary" form="profile_form">
+			    	<span>Update</span>
+				</button>
+			 </div>
+        </div>
+    </div>
+</div>
+
+
+
 {% endblock content %}
