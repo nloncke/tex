@@ -2,6 +2,7 @@ from search.models import *
 import sys
 import urllib2
 import json
+import re
 
 URL_STUB="https://www.googleapis.com/books/v1/volumes?q=isbn:"
 USER_AGENT=[("User-agent", "Mozilla/5.0")]
