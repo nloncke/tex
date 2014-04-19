@@ -8,6 +8,7 @@ from search.views import validate_isbn
 # render(request, html template, function that returns dictionary)
 # render(-, nicole, jeffrey)
 
+
 def book_index(request):
     auction = {}
     auction["auction_id"] = "5"

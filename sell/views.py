@@ -8,8 +8,8 @@ from django_cas.decorators import login_required
 @login_required
 def sell_form(request):   
     result = {}
-    if request.method == 'POST':
-        isbn = request.POST.get("target_isbn","0")
+    if request.method == 'GET':
+        isbn = request.GET.get("isbn","0")
         if validate_isbn(isbn):
             result = get_book_info(isbn)
             return render(request, 'sell_form.html', result)    
