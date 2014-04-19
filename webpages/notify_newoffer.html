@@ -8,12 +8,16 @@
          <img src="cid:frontcover" style="margin-top: 0; margin-right: 10px; float: left !important"
          alt='' />
            <h3 style="margin: 0 0 5px;">
-             New offer for <a href="princetontex.herokuapp.com/?isbn={{book.isbn}}">{{book.title}}</a>
+           	{% if is_auction %}
+           	An Auction has started for
+           	{% else %}
+             New offer for
+            {% endif %}
+             <a href="princetontex.herokuapp.com/?isbn={{book.isbn}}">{{book.title}}</a>
            </h3>
              <b>Price:<b> {{offer.price}} <br>
              <b>Condition:<b> {{offer.condition}} <br>
-             {% if offer.auction_id != "0" %}
-             {{ offer.auction_id }}
+             {% if is_auction %}
 				ADD Auctions details<br>
              {% endif %}
 			For more info: check it out on <a href="princetontex.herokuapp.com/?isbn={{book.isbn}}">tex</a>

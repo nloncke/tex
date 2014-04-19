@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     "search",
     "sell",
     "helloDjango",
+    "django_cron",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'TEX.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
@@ -121,16 +122,16 @@ DATABASES = {'default': dj_database_url.config()}
 # https://docs.djangoproject.com/en/1.6/ref/settings/
 #databases
    
-DATABASES = {
-    'default': {
-        'ENGINE':'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mydatabase',
-        'USER': 'tex',
-        'PASSWORD': 'axal@tex',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE':'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'mydatabase',
+#         'USER': 'tex',
+#         'PASSWORD': 'axal@tex',
+#         'HOST': '127.0.0.1',
+#         'PORT': '5432',
+#     }
+# }
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()

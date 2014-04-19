@@ -2,11 +2,11 @@ from django.db import models
 from search.models import *
 from account.models import *
 
-def put_offer(offer, isbn):
+def put_offer(offer):
     '''Put offer in table of offers, and update table of users
     '''
     # create offer
-    new_offer = Offer(isbn=isbn, seller_id = offer['seller_id'], price=offer['price'], course=offer["course"], condition=offer['condition'], description=offer['description']) 
+    new_offer = Offer(**offer) 
 
     # put in table of offers
     new_offer.save()
@@ -23,7 +23,7 @@ def get_offer_info(offer_id):
 
     return None
 
-def put_auction(offer, isbn):
+def put_auction(auction):
     '''Put an auction in table of auctions, and update table of users
     '''
     return 0

@@ -1,5 +1,5 @@
 from django.utils import timezone
-from time import gmtime 
+from time import localtime, mktime 
 from search.models import *
 import sys
 
@@ -36,9 +36,8 @@ def get_book(isbn):
     result = {"book":book_info}
     
     result["auctions"] = sorted(get_auctions(isbn), key=(lambda x:x["current_price"]))
-    # We will have to deal with timezon problems later
-    timenow = gmtime()
-    #find time left
+    
+    timenow = mktime(localtime())
     map(lambda x:get_time_left(x, timenow), result["auctions"])
     
     
