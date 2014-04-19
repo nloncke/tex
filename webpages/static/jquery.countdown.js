@@ -118,13 +118,13 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
       	var toprint = "";
       	if (date.years > 0)
       		toprint = toprint + date.years + " y ";
-      	if (date.days > 0)
+      	if (date.days > 0 || toprint != "")
       		toprint = toprint + date.days + " d ";
-      	if (date.hours > 0)
+      	if (date.hours > 0 || toprint != "")
       		toprint = toprint + (this.leadingZeros(date.hours)) + " h ";
-		if (date.min > 0)
+		if (date.min > 0 || toprint != "")
       		toprint = toprint + (this.leadingZeros(date.min)) + " m ";
-      	if (date.sec > 0)
+      	if (date.sec > 0 || toprint != "")
       		toprint = toprint + (this.leadingZeros(date.sec)) + " s";
       	return $(this.el).html(toprint);
         //return $(this.el).html("" + date.years + " years, " + date.days + " days, " + (this.leadingZeros(date.hours)) + " hours, " + (this.leadingZeros(date.min)) + " min " + (this.leadingZeros(date.sec)) + " sec");

@@ -23,7 +23,7 @@ function set_to_isbn(){
 $(document).ready(function()
 {
 	$('.countdown').countdown({
-        date: "April 19, 2014 15:03:26"
+        date: "4/19/15 15:03:26"
     });
   // default search option is always title
   set_to_title();
