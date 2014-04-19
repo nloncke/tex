@@ -1,7 +1,13 @@
 {% extends "base_topsearch.html" %}
 {% block header %}
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="/static/jquery.countdown.js"></script>
+<script type="text/javascript">
+$(function() {
+    $('.countdown').countdown({
+        date: "4/20/14 15:03:26"
+    });
+});
+</script>
 {% endblock header %}
 {% block content %}
 {% if book %}
@@ -217,5 +223,6 @@
 
 {% endif %}
 {% endif %}
+
 {% endblock content %}
 
