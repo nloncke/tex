@@ -1,8 +1,6 @@
 from django.template.loader import render_to_string
-from account.models import *
+from book.models import get_followers
 from buy.utils import email_users
-from sys import argv
-
 
 def get_book_info(isbn):
     from search.models import get_book_info
@@ -11,10 +9,6 @@ def get_book_info(isbn):
 def get_title(isbn):
     result = get_book_info(isbn = isbn)[0]
     return result
-
-# dummy for testing 
-def get_followers(isbn):
-    return ["aabdelaz", "lauraxu", "jasala", "nloncke"]
 
 
 def notify_followers(isbn, offer):
@@ -41,7 +35,9 @@ def put_offer(isbn, offer):
     new_offer_id = put_offer(isbn=isbn, offer=offer)
 #     notify_followers(isbn, offer)
     return new_offer_id
+
     
 if __name__ == "__main__":
+    from sys import argv
     notify_followers(argv[1], {})
     

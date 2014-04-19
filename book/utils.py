@@ -21,6 +21,7 @@ def get_book(isbn):
     book_info = get_book_info(isbn=isbn, thumb=False)
     if book_info == []:
         return {}
+    
     # Get the first result
     if len(book_info) > 1:
         print "ERROR: ISBN should be unique"

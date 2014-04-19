@@ -25,9 +25,12 @@ def follow(user, isbn):
         bu.watch_list = bu.watch_list + ' ' + isbn
     bu.save()
 
-'''def get_follow_list(user):
+def get_follow_list(user):
+    '''
     bu = user.bookuser
     return bu.watch_list'''
+    return []
+    
 
 def unfollow(user, isbn):
     bu = user.bookuser

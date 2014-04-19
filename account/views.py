@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
 from django_cas.decorators import login_required
-from django_cas.views import login
 from utils import *
 from models import *
 import re
@@ -27,19 +26,18 @@ def account_index(request):
     return render(request,'account_index.html', {"offers":result, "follow":follow_list})
 
 def login(request):
+    from django_cas.views import login
     if request.user.is_authenticated():
         return render(request,'index.html')
     else:
-        httpresp, user = login(request)        
-        if is_registered(user):
-            return httpresp
-
-#         # Dummy for testing
-#         from django.contrib import auth
-#         user = auth.authenticate(username="tex", password="axal@tex")
-#         auth.login(request, user)
+        # Dummy for testing
+        from django.contrib import auth
+        user = auth.authenticate(username="tex", password="axal@tex")
+        auth.login(request, user)      
         
-        return register(request)
+        return login(request)        
+
+
 
 @login_required
 def profile(request):
