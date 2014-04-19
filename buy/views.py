@@ -3,10 +3,8 @@ from django.http import HttpResponse
 from utils import *
 from models import *
 from book.utils import *
-import re
-from django_cas.decorators import login_required
 
-@login_required
+
 def buy_confirmation(request):
     result = {}
     if request.method == "POST":

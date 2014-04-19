@@ -1,12 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
-from django_cas.decorators import login_required
 from utils import *
 from models import *
 import re
 
-@login_required
 def account_index(request):
     from account.models import get_seller_offers#, get_follow_list
     from buy.models import remove_offer
@@ -39,7 +37,6 @@ def login(request):
         return login(request)        
 
 
-@login_required
 def profile(request):
     if request.method == 'POST':
         info["username"] = request.POST.get("username")

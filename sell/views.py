@@ -2,10 +2,8 @@ from django.shortcuts import render
 from search.views import validate_isbn
 from utils import get_book_info, put_offer, validate_offer
 from book.utils import get_book
-from django_cas.decorators import login_required
 #from buy.models import remove_offer, edit_offer
 
-@login_required
 def sell_form(request):   
     result = {}
     if request.method == 'GET':
@@ -21,7 +19,6 @@ def sell_form(request):
         #return render(request, "error_page.html")      
         pass   
        
-@login_required
 def sell_submit(request):
     offer = {}
     result = {}
@@ -43,7 +40,7 @@ def sell_submit(request):
     else:
         return render(request, "error_page.html")
 
-@login_required    
+  
 def sell_edit(request):
     from sell.models import get_offer_info
     result = {}
@@ -56,7 +53,7 @@ def sell_edit(request):
         result["offer_id"] = offerid
     return render(request, "sell_form_edit.html", result)
 
-@login_required
+
 def sell_edit_submit(request):
     from buy.models import edit_offer
     result = {}

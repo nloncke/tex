@@ -9,3 +9,35 @@ class Custom403Middleware(object):
              return forbidden(request)
           else:
              return response
+         
+         
+from django.conf import settings
+from django_cas.decorators import login_required
+
+class LoginRequiredMiddleware(object):
+    def __init__(self):
+        self.public_views = [self.get_view(v) for v in [
+            "account.views.login",
+            ]]
+    
+    def get_view(self, view_path):
+        i = view_path.rfind('.')
+        module_path, view_name = view_path[:i], view_path[i+1:]
+        module = __import__(module_path, globals(), locals(), [view_name])
+        return getattr(module, view_name)
+
+    def matches_public_view(self, view):
+        for public_view in self.public_views:
+            if view == public_view:
+                return True
+        return False
+
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        if request.user.is_authenticated() or self.matches_public_view(view_func):
+            return None
+        else:
+            return login_required(view_func)(request, *view_args, **view_kwargs)
+      
+        
+        
+        
