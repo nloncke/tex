@@ -15,7 +15,7 @@ def book_index(request):
     auction["buy_now_price"] = "30"
     auction["condition"] = "Like New"
     auction["description"] = "it's great"
-    isbn = request.POST.get("target_isbn","0")
+    isbn = request.GET.get("isbn","0")
     if validate_isbn(isbn):
         result = get_book(isbn)
         result["auction"] = auction
