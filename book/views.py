@@ -1,9 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django_cas.decorators import login_required
 from utils import *
-import re
-from search.views import validate_isbn
+from search.utils import validate_isbn
 
 # render(request, html template, function that returns dictionary)
 # render(-, nicole, jeffrey)
@@ -26,7 +24,6 @@ def book_index(request):
         return render(request, 'search_empty_prompt.html', {"query": isbn})
     
     
-@login_required
 def book_follow(request):
     result = {}
     from account.models import follow

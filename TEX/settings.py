@@ -55,6 +55,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_cas.middleware.CASMiddleware',
     'account.middleware.Custom403Middleware',
+    'account.middleware.LoginRequiredMiddleware',
 #     'django.middleware.doc.XViewMiddleware',
 )
 
