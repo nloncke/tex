@@ -9,7 +9,7 @@ import re
 
 @login_required
 def account_index(request):
-    from account.models import get_seller_offers, get_follow_list
+    from account.models import get_seller_offers#, get_follow_list
     from buy.models import remove_offer
     from sell.utils import get_book_info
     # only post if removing offer
@@ -18,13 +18,14 @@ def account_index(request):
         sold_offer = remove_offer(offer_id)        
     result = []
     seller_id = request.user.username
+    user = request.user
     seller_offers = get_seller_offers(seller_id)
     offers = {}
-    follow_list = get_follow_list(seller_id)
+    #follow_list = get_follow_list(user=user)
     for seller_offer in seller_offers:
         book_info = get_book_info(seller_offer.isbn)["book"]
         result.append({"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.id})
-    return render(request,'account_index.html', {"offers":result, "follow":follow_list})
+    return render(request,'account_index.html', {"offers":result, "follow_list":"test"})
 
 def login(request):
     if request.user.is_authenticated():

@@ -1,4 +1,8 @@
 {% extends "base_topsearch.html" %}
+{% block header %}
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="/static/jquery.countdown.js"></script>
+{% endblock header %}
 {% block content %}
 {% if book %}
 
@@ -69,7 +73,7 @@
 	  				</td>
           		<!-- end trigger button -->
          			<td>${{ auction.last_price }}</td>
-              	    <td>1d 3h 20m</td>
+              	    <td><div class="countdown"></div></td>
 	         		<td>{{ auction.condition }}</td>
 	         		<td>{{ auction.description }}</td>
          		</tr>
