@@ -27,14 +27,16 @@ def book_index(request):
     
 @login_required
 def book_follow(request):
+    result = {}
     from account.models import follow
     isbn = request.POST.get("target_isbn", "0")
-    user = request.user.username
+    username = request.user.username
+    user = request.user
     if validate_isbn(isbn):
         follow(user=user, isbn=isbn)
         result["isbn"] = isbn
-        result["user"] = user
-        return render(request, 'account_index', result)
+        result["user"] = username
+        return render(request, 'account_index.html', result)
     else:
         return render(request, 'error_page.html')
         # error page

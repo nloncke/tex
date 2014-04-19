@@ -18,19 +18,27 @@ def get_seller_offers(seller_id):
     return Offer.objects.filter(seller_id=seller_id)
 
 def follow(user, isbn):
-    bu = user.bookuser
+    qset = BookUser.objects.filter(user=user)
+    for object in qset:
+        if object.watch_list == '':
+            object.watch_list = isbn
+        else:
+            object.watch_list = object.watch_list + '' + isbn
+        object.save()
+        
+    '''bu = user.bookuser
     if bu.watch_list == '':
         bu.watch_list = isbn
     else:
         bu.watch_list = bu.watch_list + ' ' + isbn
-    bu.save()
+    bu.save()'''
+
 
 def get_follow_list(user):
     '''
     bu = user.bookuser
     return bu.watch_list'''
     return []
-    
 
 def unfollow(user, isbn):
     bu = user.bookuser
@@ -58,10 +66,6 @@ def save_user(user, **info):
 
 
 
-
-
-
-# Maybe we don't need this
 class PopulatedCASBackend(CASBackend):
     """CAS authentication backend with user data populated from AD"""
 
