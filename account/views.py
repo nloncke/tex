@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
 from django_cas.decorators import login_required
-from django_cas.views import login
 from utils import *
 from models import *
 import re
@@ -28,28 +27,27 @@ def account_index(request):
     return render(request,'account_index.html', {"offers":result, "follow_list":"test"})
 
 def login(request):
+    from django_cas.views import login
     if request.user.is_authenticated():
         return render(request,'index.html')
     else:
-        httpresp, user = login(request)        
-        if is_registered(user):
-            return httpresp
-
-#         # Dummy for testing
-#         from django.contrib import auth
-#         user = auth.authenticate(username="tex", password="axal@tex")
-#         auth.login(request, user)
+        # Dummy for testing
+        from django.contrib import auth
+        user = auth.authenticate(username="tex", password="axal@tex")
+        auth.login(request, user)      
         
-        return register(request)
+        return login(request)        
+
+
 
 @login_required
-def register(request):
+def profile(request):
     if request.method == 'POST':
         info["username"] = request.POST.get("username")
         info["password"] = request.POST.get("password")
         
         save_user(request.user, **info)
-    return render(request,'account_register.html', {"registered": is_registered(request.user)})
+    return render(request,'account_profile.html')
 
 def forbidden(request, template_name='403.html'):
     """Default 403 handler"""
