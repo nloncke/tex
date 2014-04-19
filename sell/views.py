@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from search.views import validate_isbn
-from utils import get_book_info, put_offer
+from utils import get_book_info, put_offer, validate_offer
 from book.utils import get_book
 from django_cas.decorators import login_required
 #from buy.models import remove_offer, edit_offer
@@ -69,9 +69,3 @@ def sell_edit_submit(request):
         edit_offer(offer_id, price, course, condition, description)
         result["offer_id"] = offer_id
         return render(request, 'sell_submit.html', result)      
-        
-def validate_offer(offer):
-    if offer["price"] == "0"|offer["condition"] == "0"|offer["description"] == "0"|offer["seller_id"] == "0":
-        return False
-    else:
-        return True

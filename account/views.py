@@ -39,7 +39,6 @@ def login(request):
         return login(request)        
 
 
-
 @login_required
 def profile(request):
     if request.method == 'POST':

@@ -36,6 +36,16 @@ def put_offer(isbn, offer):
 #     notify_followers(isbn, offer)
     return new_offer_id
 
+
+        
+def validate_offer(offer):
+    if offer["price"] == "0"|offer["condition"] == "0"|offer["description"] == "0"|offer["seller_id"] == "0":
+        return False
+    else:
+        return True
+
+
+
     
 if __name__ == "__main__":
     from sys import argv
