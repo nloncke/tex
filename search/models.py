@@ -63,26 +63,28 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
             newqset = qset.filter(isbn=object)
             for newob in newqset:
                 if thumb == True:
-                    if not os.path.isfile(newob.thumbnail):
-                        with open(newob.thumbnail, 'wb') as f:
+				    thumbpath = '/app' + newob.thumbnail
+                    if not os.path.isfile(thumbpath):
+                        with open(thumbpath, 'wb') as f:
                             f.write(newob.thumbbytes)
                     books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'thumbnail':newob.thumbnail})
                 else:
-                    if not os.path.isfile(newob.frontcover):
-                        with open(newob.frontcover, 'wb') as f:
+				    coverpath = '/app' + newob.frontcover
+                    if not os.path.isfile(coverpath):
+                        with open(coverpath, 'wb') as f:
                             f.write(newob.coverbytes)
                     books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'frontcover':newob.frontcover})
 
     elif (thumb == True):
         for object in qset:
-            thumbpath = os.path.join(BASE_DIR, object.thumbnail)
+            thumbpath = '/app' + object.thumbnail
             if not os.path.isfile(thumbpath):
                 with open(thumbpath, 'wb') as f:
                     f.write(object.thumbbytes)
         books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumbnail,'pub_date':object.pub_date} for object in qset]
     else:
         for object in qset:
-            coverpath = os.path.join(BASE_DIR, object.frontcover)
+            coverpath = '/app' + object.frontcover  
             if not os.path.isfile(coverpath):
                 with open(coverpath, 'wb') as f:
                     f.write(object.coverbytes)
@@ -98,9 +100,9 @@ def get_course_list(course):
     return set(isbns)
 
 def update_book_cache(**book_info):
-    with open(os.path.join(BASE_DIR, book_info['frontcover']), 'r') as f:
+    with open('/app' + book_info['frontcover'], 'r') as f:
         book_info['coverbytes'] = f.read()
-    with open(os.path.join(BASE_DIR, book_info['thumbnail']), 'r') as f:
+    with open('/app' + book_info['thumbnail'], 'r') as f:
         book_info['thumbbytes'] = f.read()
     book = Book(**book_info)
     book.save()
