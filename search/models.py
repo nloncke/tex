@@ -1,7 +1,7 @@
 from django.db import models
 import os.path
 
-base = ""
+base = "media"
 
 # Create your models here.
 class Offer(models.Model):
