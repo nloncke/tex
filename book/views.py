@@ -8,16 +8,20 @@ from search.utils import validate_isbn
 
 
 def book_index(request):
+    from sell.models import put_auction
     auction = {}
-    auction["auction_id"] = "5"
-    auction["last_price"] = "20"
+    auction["buyer_id"] = "lauraxu"
+    auction["seller_id"] = "lx"
+    auction["end_time"] = "time"
+    auction["current_price"] = "10"
     auction["buy_now_price"] = "30"
-    auction["condition"] = "Like New"
+    auction["condition"] = "Like New"   
     auction["description"] = "it's great"
     isbn = request.GET.get("isbn","0")
+    auction["isbn"] = isbn
+    auction_id = put_auction(auction)
     if validate_isbn(isbn):
         result = get_book(isbn)
-        result["auction"] = auction
         return render(request, 'book_index.html', result)      
     else:
         # need an error html page

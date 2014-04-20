@@ -22,14 +22,19 @@ def sell_form(request):
 def sell_submit(request):
     offer = {}
     result = {}
-    if request.method == 'POST':   
-        offer["isbn"] = request.POST.get("target_isbn", "0")
-        offer["course"] = request.POST.get("course", "0")
-        offer["price"] = request.POST.get("price", "0")
-        offer["condition"] = request.POST.get("picked_condition", "0")
-        offer["description"] = request.POST.get("description", "0")
-        offer["seller_id"] = request.user.username
-        result["offer_id"] = put_offer(offer)
+    if request.method == 'POST':  
+        is_auction = request.POST.get("is_auction", "0")
+        if is_auction == "yes":
+            pass
+        else:
+            offer["isbn"] = request.POST.get("target_isbn", "0")
+            offer["course"] = request.POST.get("course", "0")
+            offer["price"] = request.POST.get("price", "0")
+            offer["condition"] = request.POST.get("picked_condition", "0")
+            offer["description"] = request.POST.get("description", "0")
+            offer["seller_id"] = request.user.username
+            result["offer_id"] = put_offer(offer)
+        
         '''if validate_offer(offer) and validate_isbn(isbn):
             put_offer(offer)
             return render(request, 'sell_submit.html')

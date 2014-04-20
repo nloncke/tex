@@ -61,6 +61,7 @@ $(function() {
   </div>
 </div>
 <!-- end of follow prompt modal -->
+{% if auctions %}
 <!-- AUCTION TABLE -->
 <div class="media">
 	<div class="media-body">
@@ -73,12 +74,13 @@ $(function() {
 	     		<th>Condition</th>
 	     		<th>Description</th>
 	         	<tr>
+	         	{% for auction in auctions %}
           		<!-- button should only trigger modal -->
 	   				<td><button id="auction_{{auction.auction_id}}" data-toggle="modal" data-target="#auction_modal_{{auction.auction_id}}"
 	        			class="btn btn-default translucent_w3"><span><strong>BID</strong></span></button>
 	  				</td>
           		<!-- end trigger button -->
-         			<td>${{ auction.last_price }}</td>
+         			<td>${{ auction.current_price }}</td>
               	    <td><div class="countdown"></div></td>
 	         		<td>{{ auction.condition }}</td>
 	         		<td>{{ auction.description }}</td>
@@ -106,7 +108,7 @@ $(function() {
 				    			<h2><strong>Time Left</strong></h2>
 				    			<h3><div class="countdown"></div></h3>
 				    			<h2><strong>Current Bid</strong></h2>
-				    				<h3>${{auction.last_price}}   + <input type="text" size="5" pattern="(^[1-9]$)|(^[1-9]\d$)">
+				    				<h3>${{auction.current_price}}   + <input type="text" size="5" pattern="(^[1-9]$)|(^[1-9]\d$)">
 				    				<button type="submit" id="bid" class="btn btn-default translucent_w3">BID</button></h3>
 				    			<h2><strong>Buy Now Price</strong></h2>
 				    				<h3>${{auction.buy_now_price}}
@@ -116,10 +118,14 @@ $(function() {
 					</div>
 				</div>
 			</div>
+			{% endfor %}
           	</table>
+          	{% else %}
+	     	<h3 style="font-size:28px">Sorry, there are currently no auctions.</h3>
 		</h2>
 	</div>
 </div>
+{% endif %}
 {% if offers %}
 <!-- OFFERS TABLE -->
 <div class="media">

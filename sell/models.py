@@ -26,4 +26,6 @@ def get_offer_info(offer_id):
 def put_auction(auction):
     '''Put an auction in table of auctions, and update table of users
     '''
-    return 0
+    new_auction = Auction(**auction)
+    new_auction.save()
+    return new_auction.id
