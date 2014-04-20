@@ -37,7 +37,6 @@ def sell_submit(request):
             offer["end_time"] = "time"
             result["offer_id"] = put_auction(offer)
             result["is_auction"] = "true"
-            return render(request, "error_page.html")
         else:
             offer["isbn"] = request.POST.get("target_isbn", "0")
             offer["course"] = request.POST.get("course", "0")
@@ -45,10 +44,10 @@ def sell_submit(request):
             offer["condition"] = request.POST.get("picked_condition", "0")
             offer["description"] = request.POST.get("description", "0")
             offer["seller_id"] = request.user.username
-            result["offer_id"] = put_offer(sell)
-            return render(request, "error_page.html")
+            result["offer_id"] = put_offer(offer)
             #result["is_auction"] = "false"offer
         
+        return render(request, 'sell_submit.html', result)
         '''if validate_offer(offer) and validate_isbn(isbn):
             put_offer(offer)
             return render(request, 'sell_submit.html')
@@ -56,7 +55,7 @@ def sell_submit(request):
             # need an error html page
             return render(request, 'search_empty_prompt.html', {"query": "temporary"})'''
         
-        return render(request, 'sell_submit.html', result)
+        
     else:
         return render(request, "error_page.html")
 
