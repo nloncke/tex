@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     "search",
     "sell",
     "helloDjango",
+    "django_cron",
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,7 +78,7 @@ WSGI_APPLICATION = 'TEX.wsgi.application'
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
 
 USE_I18N = True
 
@@ -120,7 +121,7 @@ DATABASES = {'default': dj_database_url.config()}
 # Comment this out before deploying to Heroku!!!!!!!!!!!!!!!!!!!!!!!!!
 # https://docs.djangoproject.com/en/1.6/ref/settings/
 #databases
-   
+    
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',

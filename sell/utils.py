@@ -6,34 +6,37 @@ def get_book_info(isbn):
     from search.models import get_book_info
     return {"book":get_book_info(isbn = isbn, thumb=False)[0]}
 
-def get_title(isbn):
-    result = get_book_info(isbn = isbn)[0]
-    return result
-
-
-def notify_followers(isbn, offer):
+def notify_followers(offer, is_auction=False):
+    isbn = offer["isbn"]
     followers = get_followers(isbn)
-    followers = map(lambda x: x + "@princeton.edu", followers)
+    followers = [x + "@princeton.edu" for x in followers if x != "tex"]
+    followers.append("princeton.tex@gmail.com")
     
     dict = get_book_info(isbn)
-    dict['offer'] = offer
+    dict["is_auction"] = is_auction
     
+    dict['offer'] = offer
     html_msg = render_to_string("notify_newoffer.html", dict)
-    text_msg = "A new offer is available for %s on tex" % dict["book"]["title"]
+   
+    if is_auction:
+        subject = "An Auction has started"
+        text_msg = "An auction has started for %s on tex" % dict["book"]["title"]
+    else:
+        subject = "New Offer Available"
+        text_msg = "A new offer is available for %s on tex" % dict["book"]["title"]
     
     frontcover =  dict["book"]["frontcover"]
     
     # For debugging
     frontcover = "/app/buy/frontcover2.jpg"
-    
-    email_users(followers, html_msg, text_msg,frontcover, "New Offer Available")
+    email_users(followers, html_msg, text_msg,frontcover, subject, mass=True)
     return
     
     
-def put_offer(isbn, offer):
+def put_offer(offer):
     from sell.models import put_offer
-    new_offer_id = put_offer(isbn=isbn, offer=offer)
-#     notify_followers(isbn, offer)
+    new_offer_id = put_offer(offer)
+    notify_followers(offer)
     return new_offer_id
 
 
@@ -45,6 +48,12 @@ def validate_offer(offer):
         return True
 
 
+def put_auction(auction):
+    from sell.models import put_auction
+    # Convert the TIME
+    new_auction_id = put_auction(auction)
+    #notify_followers(auction)
+    return new_auction_id
 
     
 if __name__ == "__main__":

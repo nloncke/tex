@@ -11,8 +11,7 @@ class Offer(models.Model):
     def __repr__(self):
         s = str(self.seller_id) + ' ' + str(self.price) + ' ' + self.isbn + ' ' + self.course + ' ' + self.condition
         return s
-
-
+    
 class Book(models.Model):
     isbn = models.CharField(max_length=20)
     title = models.CharField(max_length=200)

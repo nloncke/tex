@@ -29,7 +29,7 @@ def sell_submit(request):
         offer["condition"] = request.POST.get("picked_condition", "0")
         offer["description"] = request.POST.get("description", "0")
         offer["seller_id"] = request.user.username
-        result["offer_id"] = put_offer(offer["isbn"], offer)
+        result["offer_id"] = put_offer(offer)
         '''if validate_offer(offer) and validate_isbn(isbn):
             put_offer(offer)
             return render(request, 'sell_submit.html')
