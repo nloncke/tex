@@ -7,8 +7,8 @@ from TEX.settings import BASE_DIR
 
 URL_STUB="https://www.googleapis.com/books/v1/volumes?q=isbn:"
 USER_AGENT=[("User-agent", "Mozilla/5.0")]
-FNTCVR_STUB= os.path.join(BASE_DIR, "/static/frontcover_%s.jpg")
-THUMB_STUB= os.path.join(BASE_DIR, "/static/thumbnail_%s.jpg")
+FNTCVR_STUB= '/app/static/frontcover_%s.jpg'
+THUMB_STUB= '/app/static/thumbnail_%s.jpg'
 FNTCVR_URL="/static/frontcover_%s.jpg"
 THUMB_URL="/static/thumbnail_%s.jpg"
 
