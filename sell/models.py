@@ -27,7 +27,7 @@ def put_auction(auction):
     '''Put an auction in table of auctions, and update table of users
     '''
 	pattern = '%m/%d/%Y %H:%M:%S'
-	epoch = int(time.mktime(time.strptime(auction['end_time', pattern)))
+	epoch = int(time.mktime(time.strptime(auction['end_time'], pattern)))
 	auction['end_time'] = epoch
     new_auction = Auction(**auction)
     new_auction.save()
