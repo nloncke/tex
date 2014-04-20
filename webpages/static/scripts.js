@@ -48,10 +48,10 @@ $(document).ready(function()
     $("#search_bar_text").focus();
   });
 
-  $('#datetimepicker1').datetimepicker({
-    language: 'en',
-    pick12HourFormat: true
-  });
+  // $('#datetimepicker1').datetimepicker({
+  //   language: 'en',
+  //   pick12HourFormat: true
+  // });
 
 });
 // -----------END OF DOCUMENT.READY-----------

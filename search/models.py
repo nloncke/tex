@@ -63,13 +63,13 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
             newqset = qset.filter(isbn=object)
             for newob in newqset:
                 if thumb == True:
-				    thumbpath = '/app' + newob.thumbnail
+                    thumbpath = '/app' + newob.thumbnail
                     if not os.path.isfile(thumbpath):
                         with open(thumbpath, 'wb') as f:
                             f.write(newob.thumbbytes)
                     books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'thumbnail':newob.thumbnail})
                 else:
-				    coverpath = '/app' + newob.frontcover
+                    coverpath = '/app' + newob.frontcover
                     if not os.path.isfile(coverpath):
                         with open(coverpath, 'wb') as f:
                             f.write(newob.coverbytes)

@@ -8,7 +8,8 @@
   <form action="/sell/edit/" id="edit_{{offer_id}}" method="post"> {% csrf_token %}
   <h3> You can <a href="javascript:{}" onclick="document.getElementById('edit_{{offer_id}}').submit(); return false;">edit</a> your offer at anytime.</h3>
    	<input type="hidden" id="offer_id" name="offer_id" value="{{offer_id}}"/>
-  </form>
+   	<input type="hidden" id="is_auction" name= "is_auction" value="{{is_auction}}"/>
+   </form>
 </div>
 
 {% endblock content %}

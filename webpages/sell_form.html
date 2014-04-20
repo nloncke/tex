@@ -15,14 +15,20 @@
 		<tr><th><label>Course:</label></th><td><input id="course" name="course" type="text" required
 			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333"></td></tr>
         <tr><th><label for="id_auction_0">Auction:</label></th>
-        	<td><p id="auction"><label><input id="is_auction" name="is_auction" type="checkbox" value="yes"/>Yes</label></p></td></tr>
-<!-- include dropdown datepicker if the auction is checked -->
-	<tr><th><label>End Date:</label></th><td>
+        	<td><p id="auction"><label><input id="is_auction" name="is_auction" type="checkbox" value="yes"
+        		onclick='$("#auction_enddate").toggle()'/>
+        		Yes</label></p>
+        </td></tr>
+<!-- drop down the datepicker if the auction is checked -->
+	<tr class="collapse" id="auction_enddate"><th><label>End Date:</label></th><td>
 		<div id="dtpsub" class="input-append">
-			<input type="text"></input>
-			<span class="glyphicon glyphicon-calendar"> </span>
+			<input type="text" placeholder="MM/DD/YY HH:MM:SS"
+			pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [01][0-9]:[0-5][0-9]:[0-5][0-9]$">
+		    </input>
+			<span class="glyphicon glyphicon-calendar"></span>
 		</td>
 	</tr>
+
 <!-- 		<div id="datetimepicker1" class="input-append">
 			<input data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
 			<span class="add-on">
@@ -30,6 +36,7 @@
 				</i>
 			</span>
 		</div> -->
+
 	</div>
 <!-- end dropdown datepicker -->
 

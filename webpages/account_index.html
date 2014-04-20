@@ -6,7 +6,7 @@
 		<h3 class="media-heading" style="font-size:28px"><strong>My Account</strong></h3>
 		<button id="update_profile" data-toggle="modal"
 			data-target="#profile_modal" class="btn btn-default">
-			<span><strong>Update your profile</strong></span>
+			<span><strong>Update  profile</strong></span>
 		</button>
 	</div>
 </div>
@@ -57,6 +57,8 @@
             <!-- end of remove prompt modal -->
 	         	{% endfor %}
 	         </table>
+	     {% else %}
+	     <h4>You currently have no offers.</h4>
 	     {% endif %}
          </h2>
       </div>
@@ -94,19 +96,18 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        	<h4 class="modal-title" id="profileModalLabel">Update your Profile</h4>
+        	<h4 class="modal-title" id="profileModalLabel">Update my profile</h4>
         </div>
         <div id="profile_modal_body" class="modal-body">
 		   <form id="profile_form" method="post" action"/account/profile/"> {% csrf_token %}
 				<input type="text" name="first_name" id="first_name" placeholder="First name" required/>
 				<input type="text" name="last_name" id="last_name" placeholder="Last name" required/>
 				<input type="text" name="class_year" id="class_year" placeholder="Class Year" required/>
-			    Search by default:<br>
+			    <br>Search by default:<br>
 			    <label><input required name="default_search" type="radio"   id="title"  value="title" />Title</label>
 			    <label><input required name="default_search" type="radio"   id="isbn"  value="isbn" />ISBN</label>
 			    <label><input required name="default_search" type="radio"   id="author"  value="author" />Author</label>
 			    <label><input required name="default_search" type="radio"   id="course"  value="course" />Course</label>
-
 			</form>
 			<div class="modal-footer">
 				<button type="submit" id="submit" class="btn btn-primary" form="profile_form">

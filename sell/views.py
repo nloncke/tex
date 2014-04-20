@@ -20,12 +20,23 @@ def sell_form(request):
         pass   
        
 def sell_submit(request):
+    from sell.models import put_auction
     offer = {}
     result = {}
     if request.method == 'POST':  
         is_auction = request.POST.get("is_auction", "0")
         if is_auction == "yes":
-            pass
+            offer["isbn"] = request.POST.get("target_isbn", "0")
+            offer["course"] = request.POST.get("course", "0")
+            offer["buy_now_price"] = request.POST.get("price", "0")
+            offer["condition"] = request.POST.get("picked_condition", "0")
+            offer["description"] = request.POST.get("description", "0")
+            offer["seller_id"] = request.user.username
+            offer["buyer_id"] = ""
+            offer["current_price"] = 10
+            offer["end_time"] = "time"
+            result["offer_id"] = put_auction(offer)
+            result["is_auction"] = "true"
         else:
             offer["isbn"] = request.POST.get("target_isbn", "0")
             offer["course"] = request.POST.get("course", "0")
@@ -34,14 +45,17 @@ def sell_submit(request):
             offer["description"] = request.POST.get("description", "0")
             offer["seller_id"] = request.user.username
             result["offer_id"] = put_offer(offer)
+            #result["is_auction"] = "false"offer
         
+        return render(request, 'sell_submit.html', result)
         '''if validate_offer(offer) and validate_isbn(isbn):
             put_offer(offer)
             return render(request, 'sell_submit.html')
         else:
             # need an error html page
             return render(request, 'search_empty_prompt.html', {"query": "temporary"})'''
-        return render(request, 'sell_submit.html', result)
+        
+        
     else:
         return render(request, "error_page.html")
 
@@ -50,6 +64,7 @@ def sell_edit(request):
     from sell.models import get_offer_info
     result = {}
     if request.method == 'POST':  
+        is_auction = request.POST.get("is_auction", "")
         offerid = request.POST.get("offer_id", "0")
         offer = get_offer_info(offerid)
         isbn = offer["isbn"]
