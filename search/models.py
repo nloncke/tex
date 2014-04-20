@@ -11,6 +11,17 @@ class Offer(models.Model):
     def __repr__(self):
         s = str(self.seller_id) + ' ' + str(self.price) + ' ' + self.isbn + ' ' + self.course + ' ' + self.condition
         return s
+
+class Auction(models.Model):
+    current_price = models.IntegerField()
+    buy_now_price = models.IntegerField()
+    buyer_id = models.CharField(max_length=100)
+    seller_id = models.CharField(max_length=100)
+    end_time = models.CharField(max_length=100)
+    isbn = models.CharField(max_length=20)
+    course = models.CharField(max_length=100)
+    condition = models.CharField(max_length=100)
+    description = models.CharField(max_length=800)
     
 class Book(models.Model):
     isbn = models.CharField(max_length=20)
@@ -72,7 +83,10 @@ def update_book_cache(**book_info):
 
 # Dummy for auction stuff
 def get_auctions(isbn):
-    return []
+    qset = Auction.objects.filter(isbn=isbn)
+    auctions = [{'auction_id':object.id,'current_price':object.current_price, 'buy_now_price':object.buy_now_price, 'buyer_id':object.buyer_id,
+                 'seller_id':object.seller_id, 'end_time':object.end_time, 'condition':object.condition, 'description':object.description} for object in qset]
+    return auctions
 
 def get_offers(isbn):
     qset = Offer.objects.filter(isbn=isbn)
