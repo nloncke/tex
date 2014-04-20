@@ -19,11 +19,11 @@ function set_to_isbn(){
     $("#search_form").attr({action:"/search/isbn/"});
     $("#search_bar_text").focus();
   }
-  
+
+// dynamic responses to user inputs
 $(document).ready(function()
 {
-  // default search option is always title
-  set_to_title();
+  set_to_title(); // default search option is always title
 
   $("#search_by_title").click(set_to_title);
   $("#search_by_isbn").click(set_to_isbn);
@@ -48,15 +48,18 @@ $(document).ready(function()
     $("#search_bar_text").focus();
   });
 
+  $('#datetimepicker1').datetimepicker({
+    language: 'en',
+    pick12HourFormat: true
+  });
+
+});
+// -----------END OF DOCUMENT.READY-----------
+
+
 //	$('.countdown').countdown({
   //      date: "4/19/14 15:03:26"
     //});
-  // function() {
-  //   $('#datetimepicker1').datetimepicker({
-  //     language: 'en',
-  //     pick12HourFormat: true
-  //   });
-  // }
 
 
 // fades out prompt and fades in confirmation for buyer
@@ -83,4 +86,3 @@ $(document).ready(function()
 
 
 
-});
