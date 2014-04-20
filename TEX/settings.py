@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
@@ -93,7 +92,7 @@ CAS_LOGOUT_COMPLETELY = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'     #For Heroku
+STATIC_ROOT = 'static'     #For Heroku
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
     , os.path.join(BASE_DIR, 'media')
     )
