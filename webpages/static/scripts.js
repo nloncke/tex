@@ -48,8 +48,6 @@ $(document).ready(function()
     $("#search_bar_text").focus();
   });
 
-  $("#auction_enddate").
-
   // $('#datetimepicker1').datetimepicker({
   //   language: 'en',
   //   pick12HourFormat: true
