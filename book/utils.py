@@ -8,11 +8,6 @@ CHEGG_STUB = "http://www.chegg.com/search/%s"
 CAMPUS_STUB = "http://www.campusbooks.com/books/search.php?search_type=single&isbn=%s"
 LABYRINTH_STUB = "http://www.labyrinthbooks.com/all_search.aspx?sisbn=%s"
 
-
-def get_time_left(auction, timenow):
-    auction["time_left"] = auction["end_time"] - timenow
-
-
 def get_book(isbn):
     ''' Return all the information necessary for the book page
         Returns an empty dictionary if the isbn is not in the database
@@ -35,12 +30,7 @@ def get_book(isbn):
 
     result = {"book":book_info}
     
-    result["auctions"] = sorted(get_auctions(isbn), key=(lambda x:x["current_price"]))
-    
-    timenow = mktime(localtime())
-    map(lambda x:get_time_left(x, timenow), result["auctions"])
-    
-    
+    result["auctions"] = sorted(get_auctions(isbn), key=(lambda y:y["current_price"])) 
     result["offers"] = sorted(get_offers(isbn), key=(lambda x:x["buy_price"]))
     return result
 
