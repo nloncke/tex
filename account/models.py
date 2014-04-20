@@ -7,9 +7,10 @@ from search.models import *
 class BookUser(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
-
     watch_list = models.CharField(max_length=500)
-
+    default_search = models.CharField(max_length=30)
+    class_year = models.CharField(max_length=5)
+    
     def __unicode__(self):
         return self.user.username
 

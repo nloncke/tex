@@ -10,7 +10,7 @@ from buy.messages import *
 from_email =  settings.EMAIL_HOST_USER
 
 def email_users(addrs, html_msg, text_msg, 
-                frontcover="/static/frontcover_default.jpg",
+                frontcover="/app/static/frontcover_default.jpg",
                 subject="", mass=False):
     
     subject = settings.EMAIL_SUBJECT_PREFIX + subject

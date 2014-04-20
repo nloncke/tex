@@ -1,5 +1,6 @@
 from django.db import models
 import os.path
+from TEX.settings import BASE_DIR
 
 # Create your models here.
 class Offer(models.Model):
@@ -29,10 +30,10 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
     frontcover = models.CharField(max_length=100)
-	coverbytes = models.BinaryField()
+    coverbytes = models.BinaryField()
     thumbnail = models.CharField(max_length=100)
-	thumbbytes = models.BinaryField()
-	pub_date = models.CharField(max_length=100) 
+    thumbbytes = models.BinaryField()
+    pub_date = models.CharField(max_length=100) 
     def __repr__(self):
         s = self.isbn + ' ' + self.title + ' ' + self.author + ' ' + self.frontcover + ' ' + self.thumbnail
         return s
@@ -62,27 +63,29 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
             newqset = qset.filter(isbn=object)
             for newob in newqset:
                 if thumb == True:
-					if not os.path.isfile(newob.thumbnail):
-						with open(newob.thumbnail, 'wb') as f:
-							f.write(newob.thumbbytes)
+                    if not os.path.isfile(newob.thumbnail):
+                        with open(newob.thumbnail, 'wb') as f:
+                            f.write(newob.thumbbytes)
                     books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'thumbnail':newob.thumbnail})
                 else:
-					if not os.path.isfile(newob.frontcover):
-						with open(newob.frontcover, 'wb') as f:
-							f.write(newob.coverbytes)
+                    if not os.path.isfile(newob.frontcover):
+                        with open(newob.frontcover, 'wb') as f:
+                            f.write(newob.coverbytes)
                     books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'frontcover':newob.frontcover})
 
     elif (thumb == True):
-		if object in qset:
-			if not os.path.isfile(object.thumbnail):
-				with open(object.thumbnail, 'wb') as f:
-					f.write(object.thumbbytes)
+        for object in qset:
+            thumbpath = os.path.join(BASE_DIR, newob.thumbnail)
+            if not os.path.isfile(thumbpath):
+                with open(thumbpath, 'wb') as f:
+                    f.write(object.thumbbytes)
         books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumbnail,'pub_date':object.pub_date} for object in qset]
     else:
-		if object in qset:
-			if not os.path.isfile(object.frontcover):
-				with open(object.frontcover, 'wb') as f:
-					f.write(object.coverbytes)
+        for object in qset:
+            coverpath = os.path.join(BASE_DIR, newob.frontcover)
+            if not os.path.isfile(coverpath):
+                with open(coverpath, 'wb') as f:
+                    f.write(object.coverbytes)
         books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.frontcover, 'pub_date':object.pub_date} for object in qset]
 
     return books
@@ -95,10 +98,10 @@ def get_course_list(course):
     return set(isbns)
 
 def update_book_cache(**book_info):
-	with open(book_info['frontcover'], 'r') as f:
-...     book_info['coverbytes'] = f.read()
-	with open(book_info['thumbbytes'], 'r') as f:
-		book_info['thumbbytes'] = f.read()
+    with open(os.path.join(BASE_DIR, book_info['frontcover']), 'r') as f:
+        book_info['coverbytes'] = f.read()
+    with open(os.path.join(BASE_DIR, book_info['thumbnail']), 'r') as f:
+        book_info['thumbbytes'] = f.read()
     book = Book(**book_info)
     book.save()
 
