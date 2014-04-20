@@ -75,14 +75,14 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
 
     elif (thumb == True):
         for object in qset:
-            thumbpath = os.path.join(BASE_DIR, newob.thumbnail)
+            thumbpath = os.path.join(BASE_DIR, object.thumbnail)
             if not os.path.isfile(thumbpath):
                 with open(thumbpath, 'wb') as f:
                     f.write(object.thumbbytes)
         books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumbnail,'pub_date':object.pub_date} for object in qset]
     else:
         for object in qset:
-            coverpath = os.path.join(BASE_DIR, newob.frontcover)
+            coverpath = os.path.join(BASE_DIR, object.frontcover)
             if not os.path.isfile(coverpath):
                 with open(coverpath, 'wb') as f:
                     f.write(object.coverbytes)
