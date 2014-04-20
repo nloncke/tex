@@ -29,10 +29,10 @@ class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=100)
     frontcover = models.CharField(max_length=100)
-	coverbytes = models.BinaryField()
+    coverbytes = models.BinaryField()
     thumbnail = models.CharField(max_length=100)
-	thumbbytes = models.BinaryField()
-	pub_date = models.CharField(max_length=100) 
+    thumbbytes = models.BinaryField()
+    pub_date = models.CharField(max_length=100) 
     def __repr__(self):
         s = self.isbn + ' ' + self.title + ' ' + self.author + ' ' + self.frontcover + ' ' + self.thumbnail
         return s
