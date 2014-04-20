@@ -1,5 +1,6 @@
 from search.models import *
 from account.models import *
+import time
 
 def remove_offer(offer_id):
     '''
@@ -24,6 +25,19 @@ def remove_auction(auction_id, buy_now=False):
     '''
     return {}
 
+def expired_auctions():
+        '''
+        Returns a list of auction objects corresponding to the auctions that have expired.
+        Also deletes the auction objects from the database. 
+        '''
+        qset = Auction.objects.filter(end_time__lt=time.time())
+        for object in qset:
+            object.delete()
+        
+        return qset
+        
+    
+    
 def edit_offer(offer_id, price = None, course = None, condition = None, description = None):
     ''' Edit the offer with the new parameters if set
     '''

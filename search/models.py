@@ -19,7 +19,7 @@ class Auction(models.Model):
     buy_now_price = models.IntegerField()
     buyer_id = models.CharField(max_length=100)
     seller_id = models.CharField(max_length=100)
-    end_time = models.CharField(max_length=100)
+    end_time = models.BigIntegerField()
     isbn = models.CharField(max_length=20)
     course = models.CharField(max_length=100)
     condition = models.CharField(max_length=100)
