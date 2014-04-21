@@ -98,6 +98,12 @@ th{
 	font-family: 'ABeeZee', sans-serif;
 }
 
+
+/*Date and time pickers*/
+.dates{
+}
+
+
 /* Three different shades of translucence for white*/
 .translucent_w1{
 	background-color: rgba(255,255,255,.99);
