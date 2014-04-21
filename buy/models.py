@@ -36,8 +36,7 @@ def expired_auctions():
         
         return qset
         
-    
-    
+      
 def edit_offer(offer_id, price = None, course = None, condition = None, description = None):
     ''' Edit the offer with the new parameters if set
     '''
@@ -54,7 +53,7 @@ def edit_offer(offer_id, price = None, course = None, condition = None, descript
         object.save()  
         
 def edit_auction(auction_id, course = None, condition = None, description = None):
-    ''' Edit the offer with the new parameters if set
+    ''' Edit the auction with the new parameters if set
     '''
     qset = Auction.objects.filter(id=auction_id)
     for object in qset:
@@ -65,3 +64,12 @@ def edit_auction(auction_id, course = None, condition = None, description = None
         if description != None:
             object.description = description
         object.save()  
+
+def bid_auction(auction_id, current_price = None):
+    ''' Update current_price of auction after bid
+    '''
+    qset = Auction.objects.filter(id=auction_id)
+    for object in qset:
+        if current_price != None:
+            object.current_price = current_price
+        object.save()
