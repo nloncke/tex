@@ -23,7 +23,8 @@ def account_index(request):
     #follow_list = get_follow_list(user=user)
     for seller_offer in seller_offers:
         book_info = get_book_info(seller_offer.isbn)["book"]
-        result.append({"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.id})
+        result.append({"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.id,
+                       "isbn":seller_offer.isbn})
     return render(request,'account_index.html', {"offers":result, "follow_list":"test"})
 
 def login(request):
