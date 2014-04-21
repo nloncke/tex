@@ -30,7 +30,7 @@ def login(request):
     from django_cas.views import login, logout
     httpresp = login(request)
     if request.user.is_authenticated():
-        if request.user not in alpha:
+        if request.user.username not in alpha:
             httperror = render(request,'alpha_test.html')
             logout(request)
             return httperror
