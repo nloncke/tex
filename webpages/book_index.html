@@ -1,13 +1,6 @@
 {% extends "base_topsearch.html" %}
 {% block header %}
 <script type="text/javascript" src="/static/jquery.countdown.js"></script>
-<script type="text/javascript">
-$(function() {
-    $('.countdown').countdown({
-        date: "4/20/14 15:03:26"
-    });
-});
-</script>
 {% endblock header %}
 {% block content %}
 {% if book %}
@@ -57,10 +50,18 @@ $(function() {
 	  				</td>
           		<!-- end trigger button -->
          			<td>${{ auction.current_price }}</td>
-              	    <td><div class="countdown"></div></td>
+              	    <td><div class="countdown_{{auction.auction_id}}"></div></td>
 	         		<td>{{ auction.condition }}</td>
 	         		<td>{{ auction.description }}</td>
          		</tr>
+         		{{auction.end_time}}
+         	<script type="text/javascript">
+				$(function() {
+				    $('.countdown_{{auction.auction_id}}').countdown({
+				        date: "4/21/14 15:03:26"
+				    });
+				});
+			</script>
 	         	  <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
             <!-- end of auction prompt modal -->
             <div class="modal fade" id="auction_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

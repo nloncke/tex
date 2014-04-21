@@ -31,7 +31,7 @@ def put_auction(auction):
     '''
     pattern = '%m/%d/%y %H:%M:%S'
     epoch = int(time.mktime(time.strptime(auction['end_time'], pattern)))
-    auction['end_time'] = epoch
+    auction['end_time'] = "epoch"
     new_auction = Auction(**auction)
     new_auction.save()
     return new_auction.id
