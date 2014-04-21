@@ -28,6 +28,14 @@ def account_index(request):
 
 def login(request):
     from django_cas.views import login, logout
+    
+#   For local dev  
+    from django.contrib import auth
+    user = auth.authenticate(username="tex", password="axal@tex")
+    auth.login(request, user) 
+    return login(request)
+    
+# for Alpha testers    
     httpresp = login(request)
     if request.user.is_authenticated():
         if request.user.username not in alpha:
@@ -35,17 +43,6 @@ def login(request):
             logout(request)
             return httperror
     return httpresp
-    
-    
-#     if request.user.is_authenticated():
-#         return render(request,'index.html')
-#     else:
-        # Dummy for testing
-#         from django.contrib import auth
-#         user = auth.authenticate(username="tex", password="axal@tex")
-#         auth.login(request, user) 
-#         return login(request)
-        
     
 
 def profile(request):
