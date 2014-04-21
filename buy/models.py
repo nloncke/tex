@@ -74,6 +74,15 @@ def bid_auction(auction_id, current_price = None):
             object.current_price = current_price
         object.save()
 
+def set_buyer_id(auction_id, buyer_id = None):
+    ''' Update Auction with new buyer_id
+    '''
+    qset = Auction.objects.filter(id=auction_id)
+    for object in qset:
+        if buyer_id != None:
+            object.buyer_id = buyer_id
+        object.save()
+        
 def get_current_price(auction_id):
     # get info of offer with given id
     # FILTER
