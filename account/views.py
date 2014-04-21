@@ -5,6 +5,8 @@ from utils import *
 from models import *
 import re
 
+alpha = []
+
 def account_index(request):
     from account.models import get_seller_offers#, get_follow_list
     from buy.models import remove_offer
@@ -26,16 +28,23 @@ def account_index(request):
 
 def login(request):
     from django_cas.views import login
+    httpresp = login(request)
     if request.user.is_authenticated():
-        return render(request,'index.html')
-    else:
+        if request.user not in alpha:
+            return render(request,'alpha_test.html')
+    return httpresp
+    
+    
+#     if request.user.is_authenticated():
+#         return render(request,'index.html')
+#     else:
         # Dummy for testing
-        from django.contrib import auth
-        user = auth.authenticate(username="tex", password="axal@tex")
-        auth.login(request, user)      
+#         from django.contrib import auth
+#         user = auth.authenticate(username="tex", password="axal@tex")
+#         auth.login(request, user) 
+#         return login(request)
         
-        return login(request)        
-
+    
 
 def profile(request):
     if request.method == 'POST':
