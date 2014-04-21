@@ -21,7 +21,7 @@
 	         	<p>Published Date: {{book.pub_date}}</p></h2></div></td></tr>
 		<tr><th><label>Course:</label></th><td><input id="course" name="course" type="text" required
 			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333"></td></tr>
-        <tr><th><label for="id_auction_0">Auction:</label></th>
+        <tr><th><label>Auction:</label></th>
         	<td><p id="auction"><label><input id="is_auction" name="is_auction" type="checkbox" value="yes"
         		onclick='$(".auction").toggle()'/>
         		Yes</label></p>
@@ -29,15 +29,18 @@
 
 <!-- DROP DOWN AUCTION FIELDS -->
 <!-- drop down the datepicker if the auction is checked -->
-	<tr class="collapse" id="auction_enddate"><th><label>End Date:</label></th><td>
+
+
+<!-- 	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
 		<div id="dtpsub" class="input-append">
 			<input type="datetime-local" title="MM/DD/YY HH:MM:SS, 24-hour time">
 		    </input>
 			<span class="glyphicon glyphicon-calendar"></span>
 		</div></td>	
 	</tr>
+ -->
 
-<!-- 	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
+ 	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
 		<div id="datetimepicker1" class="input-append">
 			<input data-format="MM/dd/yyyy HH:mm:ss" title="MM/DD/YY HH:MM:SS, 24-hour time"
 			pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [01][0-9]:[0-5][0-9]:[0-5][0-9]$"
@@ -47,10 +50,25 @@
 				</i>
 			</span>
 		</div>
-	</td></tr> -->
+	</td></tr>
+	
 <!-- end dropdown datepicker -->
 
-	<tr class="collapse auction" id="auction_buy_price"><th><label>Buy Now Price:</label></th><td>
+	<tr><th>
+		<div id="auction_pricename" class="input-append collapse auction">
+			<label>Buy Now Price:</label>
+		</div>
+		<div id="auction_pricename2" class="input-append auction">
+			<label>Price:</label>
+			</div>
+		</th>
+		<td><input id="price" name="price" type="text"
+			required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
+		</td>
+	</tr>	
+
+<!-- this one is still buggy but has popover featues we should include -->
+<!-- 	<tr class="collapse auction" id="auction_buy_price"><th><label>Buy Now Price:</label></th><td>
 		<input id="price" name="price" type="text" required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)"
 		title="Whole numbers only; dollar sign not required" placeholder="e.g 25">
 		<button type="button" class="btn btn-default" data-toggle="popover" data-placement="right"
@@ -59,11 +77,12 @@
 		</button>
 	</td>
 	</tr>
+ -->
 
 <!-- END DROP DOWN AUCTION FIELDS -->
 
-		<tr><th><label>Price:</label></th><td><input id="price" name="price" type="text"
-			 required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"></td></tr>
+<!-- 		<tr><th><label>Price:</label></th><td><input id="price" name="price" type="text"
+			 required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"></td></tr> -->
 
 		<tr><th><label>Condition:</label></th><td><p id="picked_condition">
 			<p><label><input required id="new" name="picked_condition" type="radio" value="New" />New</label></p>

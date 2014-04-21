@@ -1,6 +1,7 @@
 from django.db import models
 import os.path
-from TEX.settings import BASE_DIR
+
+base = "media"
 
 # Create your models here.
 class Offer(models.Model):
@@ -63,13 +64,13 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
             newqset = qset.filter(isbn=object)
             for newob in newqset:
                 if thumb == True:
-                    thumbpath = '/app' + newob.thumbnail
+                    thumbpath = base + newob.thumbnail
                     if not os.path.isfile(thumbpath):
                         with open(thumbpath, 'wb') as f:
                             f.write(newob.thumbbytes)
                     books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'thumbnail':newob.thumbnail})
                 else:
-                    coverpath = '/app' + newob.frontcover
+                    coverpath = base + newob.frontcover
                     if not os.path.isfile(coverpath):
                         with open(coverpath, 'wb') as f:
                             f.write(newob.coverbytes)
@@ -77,14 +78,14 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
 
     elif (thumb == True):
         for object in qset:
-            thumbpath = '/app' + object.thumbnail
+            thumbpath = base + object.thumbnail
             if not os.path.isfile(thumbpath):
                 with open(thumbpath, 'wb') as f:
                     f.write(object.thumbbytes)
         books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumbnail,'pub_date':object.pub_date} for object in qset]
     else:
         for object in qset:
-            coverpath = '/app' + object.frontcover  
+            coverpath = base + object.frontcover  
             if not os.path.isfile(coverpath):
                 with open(coverpath, 'wb') as f:
                     f.write(object.coverbytes)
@@ -100,9 +101,9 @@ def get_course_list(course):
     return set(isbns)
 
 def update_book_cache(**book_info):
-    with open('/app' + book_info['frontcover'], 'r') as f:
+    with open(base + book_info['frontcover'], 'r') as f:
         book_info['coverbytes'] = f.read()
-    with open('/app' + book_info['thumbnail'], 'r') as f:
+    with open(base + book_info['thumbnail'], 'r') as f:
         book_info['thumbbytes'] = f.read()
     book = Book(**book_info)
     book.save()

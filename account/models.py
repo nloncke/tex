@@ -18,6 +18,9 @@ class BookUser(models.Model):
 def get_seller_offers(seller_id):
     return Offer.objects.filter(seller_id=seller_id)
 
+def get_seller_auctions(seller_id):
+    return Auction.objects.filter(seller_id=seller_id)
+
 def follow(user, isbn):
     qset = BookUser.objects.filter(user=user)
     for object in qset:

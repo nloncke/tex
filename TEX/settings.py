@@ -92,9 +92,10 @@ CAS_LOGOUT_COMPLETELY = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'static'     #For Heroku
+STATIC_ROOT = 'staticfiles'     #For Heroku
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
     , os.path.join(BASE_DIR, 'media')
+    , os.path.join(BASE_DIR, 'media/static')
     )
 
 
@@ -120,7 +121,7 @@ DATABASES = {'default': dj_database_url.config()}
 # Comment this out before deploying to Heroku!!!!!!!!!!!!!!!!!!!!!!!!!
 # https://docs.djangoproject.com/en/1.6/ref/settings/
 #databases
-    
+#      
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',

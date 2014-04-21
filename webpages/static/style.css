@@ -59,7 +59,7 @@
    	margin-right: 15%;
    	width: 70%;
    	font-size: 24px;
-   	font-family: 'ABeeZee', sans-serif;   	
+   	font-family: 'ABeeZee', sans-serif;
 }
 
 .media.thumbnail{
@@ -101,8 +101,6 @@ th{
 
 /*Date and time pickers*/
 .dates{
-
-
 }
 
 
@@ -115,7 +113,7 @@ th{
 }
 .translucent_w3 {
    background-color: rgba(255,255,255,.25)
-  	
+
 }
 
 /* Three different shades of translucence for black*/
@@ -129,3 +127,5 @@ th{
    background-color: rgba(0,0,0,.25)
 }
 ul {list-style-type:none}
+
+a {color:#996600}
