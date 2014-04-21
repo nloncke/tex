@@ -24,9 +24,12 @@ def get_offer_info(offer_id):
     return None
 
 def put_auction(auction):
+    import time
+    from datetime import datetime
+    
     '''Put an auction in table of auctions, and update table of users
     '''
-    pattern = '%m/%d/%Y %H:%M:%S'
+    pattern = '%m/%d/%y %H:%M:%S'
     epoch = int(time.mktime(time.strptime(auction['end_time'], pattern)))
     auction['end_time'] = epoch
     new_auction = Auction(**auction)

@@ -34,7 +34,7 @@ def sell_submit(request):
             offer["seller_id"] = request.user.username
             offer["buyer_id"] = ""
             offer["current_price"] = 10
-            offer["end_time"] = "time"
+            offer["end_time"] = request.POST.get("end_time", "0")
             result["offer_id"] = put_auction(offer)
             result["is_auction"] = "true"
         else:
