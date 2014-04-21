@@ -16,7 +16,7 @@
 			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333"></td></tr>
         <tr><th><label>Auction:</label></th>
         	<td><p id="auction"><label><input id="is_auction" name="is_auction" type="checkbox" value="yes"
-        		onclick='$("#auction_enddate").toggle(); $("#auction_buynowprice").toggle();'/>
+        		onclick='$("#auction_enddate").toggle(); $("#auction_pricename").toggle(); $("#auction_pricename2").toggle();'/>
         		Yes</label></p>
         </td></tr>
 <!-- drop down the datepicker if the auction is checked -->
@@ -24,18 +24,24 @@
 			<div id="dtpsub" class="input-append">
 			<td>			
 				<input id="end_time" name="end_time" type="text" placeholder="MM/DD/YY HH:MM:SS"
-					pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [01][0-9]:[0-5][0-9]:[0-5][0-9]$"/>
+					required pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [01][0-9]:[0-5][0-9]:[0-5][0-9]$"
+					title="MM/DD/YY HH:MM:SS">
 				<span class="glyphicon glyphicon-calendar"></span>
 			
 			</td>
 			</div>
 		</tr>
-		<tr class="collapse" id="auction_buynowprice"><th><label>Buy Now Price:</label></th>
-			<div id="dtpsub" class="input-append">
-			<td><input id="buy_now_price" name="buy_now_price" type="text"
+		<tr><th>
+			<div id="auction_pricename" class="input-append collapse">
+			<label>Buy Now Price:</label>
+			</div>
+			<div id="auction_pricename2" class="input-append">
+			<label>Price:</label>
+			</div>
+			</th>
+			<td><input id="price" name="price" type="text"
 				 required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
 			</td>
-			</div>
 		</tr>		
 <!-- 		<div id="datetimepicker1" class="input-append">
 			<input data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
@@ -57,8 +63,6 @@
 		</p></td></tr>
 		<tr><th><label>Description:</label></th><td><textarea required maxlength="100" cols="40" id="description"
 			name="description" rows="5" title="Enter a short description about your book."></textarea></td></tr>
-		<tr><th><label>Price:</label></th><td><input id="price" name="price" type="text"
-			 required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"></td></tr>
  	</table>
     <button type="submit" id="submit" class="btn btn-default">
     	<span><strong>SELL</strong></span>

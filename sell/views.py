@@ -28,7 +28,7 @@ def sell_submit(request):
         if is_auction == "yes":
             offer["isbn"] = request.POST.get("target_isbn", "0")
             offer["course"] = request.POST.get("course", "0")
-            offer["buy_now_price"] = request.POST.get("buy_now_price", "0")
+            offer["buy_now_price"] = request.POST.get("price", "0")
             offer["condition"] = request.POST.get("picked_condition", "0")
             offer["description"] = request.POST.get("description", "0")
             offer["seller_id"] = request.user.username
