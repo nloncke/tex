@@ -27,11 +27,13 @@ def account_index(request):
     return render(request,'account_index.html', {"offers":result, "follow_list":"test"})
 
 def login(request):
-    from django_cas.views import login
+    from django_cas.views import login, logout
     httpresp = login(request)
     if request.user.is_authenticated():
         if request.user not in alpha:
-            return render(request,'alpha_test.html')
+            httperror = render(request,'alpha_test.html')
+            logout(request)
+            return httperror
     return httpresp
     
     
