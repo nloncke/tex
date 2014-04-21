@@ -5,7 +5,7 @@ from utils import *
 from models import *
 import re
 
-alpha = []
+alpha = ["jasala"]
 
 def account_index(request):
     from account.models import get_seller_offers#, get_follow_list
