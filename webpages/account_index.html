@@ -76,7 +76,8 @@
 	     		{% for auction in auctions %}
 	         	<tr>
 	         		<form id="edit_{{auction.auction_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
-	     				<input type="hidden" id="offer_id" name="offer_id" value="{{auction.auction}}"/>
+	     				<input type="hidden" id="offer_id" name="offer_id" value="{{auction.auction_id}}"/>
+	     				<input type="hidden" id="is_auction" name="is_auction" value="true"/>
 	         			<td><button type="submit" id="edit_{{auction.auction_id}}" form="edit_{{auction.auction_id}}" class="btn btn-default translucent_w3">
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>

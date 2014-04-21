@@ -35,3 +35,14 @@ def put_auction(auction):
     new_auction = Auction(**auction)
     new_auction.save()
     return new_auction.id
+
+def get_auction_info(auction_id):
+    # get info of offer with given id
+    # FILTER
+    qset = Auction.objects.filter(id=auction_id)
+    for object in qset:
+        auction = { 'seller_id': object.seller_id, 'current_price':object.current_price, 'buy_now_price':object.buy_now_price, 'end_time':object.end_time, 
+                 'course':object.course, 'condition':object.condition, 'description':object.description, 'isbn':object.isbn }
+        return auction
+
+    return None
