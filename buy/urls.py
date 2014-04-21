@@ -5,5 +5,6 @@ from buy import views
 #url(nicole and laura, laura, laura)
 urlpatterns = patterns('',
     url(r'^confirm/$', views.buy_confirmation, name='buy_confirmation'),
+    url(r'^bid/$', views.bid, name='bid'),
     #url(r'^follow/$', views.book_follow, name='book_follow'),
 )

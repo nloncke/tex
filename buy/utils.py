@@ -9,6 +9,9 @@ from buy.messages import *
 
 from_email =  settings.EMAIL_HOST_USER
 
+def new_price(current_price, bid):
+    return int(current_price) + int(bid)
+
 def email_users(addrs, html_msg, text_msg, 
                 frontcover="/app/static/frontcover_default.jpg",
                 subject="", mass=False):
