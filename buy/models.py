@@ -80,12 +80,18 @@ def bid_auction(auction_id, current_price, buyer_id):
         
         TODO: Check if the current bid will be higher than 
         otherwise a race condition has occurred
+        
+        TODO: There should be error checking to ensure that 
+        qset contains only one auction.
+        
     '''
     qset = Auction.objects.filter(id=auction_id)
     for object in qset:
-        object.current_price = current_price
-        object.buyer_id = buyer_id
-        object.save()
+        if object.current_price < current_price:
+            object.current_price = current_price    
+            object.buyer_id = buyer_id
+            object.save()
+        return object.current_price
         
 def get_current_price(auction_id):
     # get info of offer with given id

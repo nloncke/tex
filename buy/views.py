@@ -42,16 +42,21 @@ def bid(request):
         buyer_id = request.user.username
         auction_id = request.POST.get("auction_id", "0")
         current_price = request.POST.get("current_price", "0")
-        actual_price = get_current_price(auction_id)
+        
+        # Try to bid in one atomic action
+        bid = request.POST.get("bid", "0")
+        new_bid = int(current_price) + int(bid)
+        new_current_price = bid_auction(auction_id, new_bid, buyer_id)
+        
         isbn = get_auction_isbn(auction_id)
         result = get_book(isbn)
-        if int(current_price) == actual_price:
-            bid = request.POST.get("bid", "0")
-            bid_auction(auction_id, new_price(current_price,bid), buyer_id)
-            result["current_price"] = new_price(current_price,bid)
+        
+        result["current_price"] = new_current_price
+        
+        if new_current_price == new_bid:
             result["buyer_id"] = buyer_id
         else:
-            result["current_price"] = actual_price
             result["error"] = "true"
         return render(request, 'bid_confirmation.html', result)
+    
     return render(request, 'error_page.html')
