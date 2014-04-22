@@ -74,22 +74,17 @@ def edit_auction(auction_id, course = None, condition = None, description = None
             object.description = description
         object.save()  
 
-def bid_auction(auction_id, current_price = None):
+def bid_auction(auction_id, current_price, buyer_id):
     ''' Update current_price of auction after bid
+        and update with new buyer
+        
+        TODO: Check if the current bid will be higher than 
+        otherwise a race condition has occurred
     '''
     qset = Auction.objects.filter(id=auction_id)
     for object in qset:
-        if current_price != None:
-            object.current_price = current_price
-        object.save()
-
-def set_buyer_id(auction_id, buyer_id = None):
-    ''' Update Auction with new buyer_id
-    '''
-    qset = Auction.objects.filter(id=auction_id)
-    for object in qset:
-        if buyer_id != None:
-            object.buyer_id = buyer_id
+        object.current_price = current_price
+        object.buyer_id = buyer_id
         object.save()
         
 def get_current_price(auction_id):
