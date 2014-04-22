@@ -87,11 +87,13 @@
 				    			<form id="bid_submit_{{auction.auction_id}}" action="/buy/bid/" method="post"> {% csrf_token %}
 				    				<h3>${{auction.current_price}}   + <input id="bid" name="bid" type="text" size="5" pattern="(^[1-9]$)|(^[1-9]\d$)">
 				    				<button type="submit" id="bid" class="btn btn-default translucent_w3" form="bid_submit_{{auction.auction_id}}">BID</button></h3>
+				    			</form>
 				    			<h2><strong>Buy Now Price</strong></h2>
+				    			<form id="buy_now_{{auction.auction_id}}" action="/buy/confirm/" method="post">{% csrf_token %}
 				    				<h3>${{auction.buy_now_price}}
-				    				<button type="submit" id="buy_now" class="btn btn-default translucent_w3">BUY</button></h3>
+				    				<button type="submit" id="buy_now" class="btn btn-default translucent_w3" form="buy_now_{{auction.auction_id}}">BUY</button></h3>
 				    				<input id="auction_id" name="auction_id" type="hidden" value="{{auction.auction_id}}">
-				    				<input id="current_price" name="current_price" type="hidden" value="{{auction.current_price}}">
+				    				<input id="is_auction" name="is_auction" type="hidden" value="true">
 				    			</form>
 				    		</div>
 				 		</div>

@@ -19,11 +19,20 @@ def remove_offer(offer_id):
     
 def remove_auction(auction_id, buy_now=False):
     '''
-    Returns the isbn, seller id, bidder_id and current_price of the given auction   
+    Returns the isbn, seller id, buyer_id and current_price of the given auction   
     If buy_now, return buy_now_price. 
     Also deletes it from database
     '''
-    return {}
+    qset = Auction.objects.filter(id=auction_id)
+    if len(qset) > 0:
+        if buy_now == False:
+            d =  { 'isbn': qset[0].isbn, 'seller_id':qset[0].seller_id, 'buyer_id':qset[0].buyer_id, 'price':qset[0].current_price }
+        else:
+            d =  { 'isbn': qset[0].isbn, 'seller_id':qset[0].seller_id, 'buyer_id':qset[0].buyer_id, 'price':qset[0].buy_now_price }
+        qset[0].delete()
+        return d
+    else:
+        return {}
 
 def expired_auctions():
         '''

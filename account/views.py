@@ -9,12 +9,17 @@ alpha = ["jasala","lauraxu"]
 
 def account_index(request):
     from account.models import get_seller_offers, get_seller_auctions#, get_follow_list
-    from buy.models import remove_offer
+    from buy.models import remove_offer, remove_auction
     from sell.utils import get_book_info
     # only post if removing offer
     if request.method == "POST": 
-        offer_id = request.POST.get("offer_id", "0")
-        sold_offer = remove_offer(offer_id)        
+        is_auction = request.POST.get("is_auction", "")
+        if is_auction:
+            auction_id = request.POST.get("auction_id", "0")
+            removed_auction = remove_auction(auction_id, False)
+        else:
+            offer_id = request.POST.get("offer_id", "0")
+            sold_offer = remove_offer(offer_id)        
     result_offers = []
     result_auctions = []
     seller_id = request.user.username
