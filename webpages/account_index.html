@@ -103,6 +103,7 @@
                     	onclick="document.getElementById('remove_{{auction.auction_id}}').submit(); return false;"
                     	data-dismiss="modal" class="btn btn-primary" form="remove_{{auction.auction_id}}">Yes</button>
 	                <form id="remove_{{auction.auction_id}}" action="/account/remove/" method="post"> {% csrf_token %}
+	                	<input type="hidden" id="is_auction" name="is_auction" value="true">
                     	<input type="hidden" id="auction_id" name="auction_id" value="{{auction.auction_id}}">
                     	<input type="hidden" id="auctions" name="auctions" value="{{auctions}}">
                     </form>

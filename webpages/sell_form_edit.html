@@ -33,13 +33,13 @@
 			{% else %}
 			<label>Price:</label>
 			{% endif %}
-			</th>
+			</th><span class="glyphicon glyphicon-usd"></span>
 			<td><input id="price" name="price" type="text" {% if is_auction %} readonly {% endif %}
 				 required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" value="{{offer.current_price}}"/>
 			</td>
 		</tr>
 		{% if is_auction %}
-		<tr><th><label>Start Price:</label></th>
+		<tr><th><label>Start Price:</label></th><span class="glyphicon glyphicon-usd"></span>
 		<td><input id="current_price" name="current_price" type="text"
 			required readonly pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
 		</td>
