@@ -1,6 +1,7 @@
 from search.models import *
 from account.models import *
 import time
+from django.db.transaction import atomic
 
 def remove_offer(offer_id):
     '''
@@ -74,6 +75,8 @@ def edit_auction(auction_id, course = None, condition = None, description = None
             object.description = description
         object.save()  
 
+
+@atomic
 def bid_auction(auction_id, current_price, buyer_id):
     ''' Update current_price of auction after bid
         and update with new buyer
