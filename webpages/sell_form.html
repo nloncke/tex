@@ -45,14 +45,21 @@
 			<input id="end_time" name="end_time" data-format="MM/dd/yyyy HH:mm:ss" title="MM/DD/YY HH:MM:SS, 24-hour time"
 			pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [01][0-9]:[0-5][0-9]:[0-5][0-9]$"
 			placeholder="e.g. 09/15/14 17:00:00" type="text" id="end_time" name="end_time">
-			<span class="add-on">
-				<i data-time-icon="icon-time" data-date-icon="icon-calendar">
-				</i>
-			</span>
+			<span class="glyphicon glyphicon-calendar"></span>
 		</div>
 	</td></tr>
 
 <!-- end dropdown datepicker -->
+
+	<tr class="collapse auction"><th>
+		<div id="auction_startprice" class="input-append collapse auction">
+			<label>Start Price:</label>
+		</div>
+		</th>
+		<td><span class="glyphicon glyphicon-usd"></span><input id="current_price" name="current_price" type="text"
+			required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
+		</td>
+	</tr>
 
 	<tr><th>
 		<div id="auction_pricename" class="input-append collapse auction">
@@ -65,16 +72,7 @@
 		<td><span class="glyphicon glyphicon-usd"></span><input id="price" name="price" type="text"
 			required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
 		</td>
-	</tr>	
-	<tr class="collapse auction"><th>
-		<div id="auction_startprice" class="input-append collapse auction">
-			<label>Start Price:</label>
-		</div>	
-		</th>
-		<td><input id="current_price" name="current_price" type="text"
-			required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
-		</td>
-	</tr>	
+	</tr>
 
 <!-- this one is still buggy but has popover featues we should include -->
 <!-- 	<tr class="collapse auction" id="auction_buy_price"><th><label>Buy Now Price:</label></th><td>
