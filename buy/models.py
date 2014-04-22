@@ -50,8 +50,8 @@ def expired_auctions():
 def edit_offer(offer_id, price = None, course = None, condition = None, description = None):
     ''' Edit the offer with the new parameters if set
     '''
-    qset = Offer.objects.filter(id=offer_id)
-    for object in qset:
+    try:
+        object = Offer.objects.get(id=offer_id)
         if price != None:
             object.price = price
         if course != None:
@@ -60,13 +60,18 @@ def edit_offer(offer_id, price = None, course = None, condition = None, descript
             object.condition = condition
         if description != None:
             object.description = description
-        object.save()  
+        object.save()
+    except Offer.DoesNotExist:
+        print "Error Offer id %d should exist" % offer_id
+    except Offer.MultipleObjectsReturned:
+        print "Error Offer id %d should be unique" % offer_id
+        
         
 def edit_auction(auction_id, course = None, condition = None, description = None):
     ''' Edit the auction with the new parameters if set
     '''
-    qset = Auction.objects.filter(id=auction_id)
-    for object in qset:
+    try:
+        object = Auction.objects.get(id=auction_id)
         if course != None:
             object.course = course 
         if condition != None:
@@ -74,33 +79,38 @@ def edit_auction(auction_id, course = None, condition = None, description = None
         if description != None:
             object.description = description
         object.save()  
+    except Auction.DoesNotExist:
+        print "Error Auction id %d should exist" % offer_id
+    except Auction.MultipleObjectsReturned:
+        print "Error Auction id %d should be unique" % offer_id
 
 
 @atomic
 def bid_auction(auction_id, current_price, buyer_id):
     ''' Update current_price of auction after bid
         and update with new buyer
-        
-        TODO: Check if the current bid will be higher than 
-        otherwise a race condition has occurred
-        
-        TODO: There should be error checking to ensure that 
-        qset contains only one auction.
-        
     '''
-    qset = Auction.objects.filter(id=auction_id)
-    for object in qset:
+    try:
+        object = Auction.objects.get(id=auction_id)
         if object.current_price < current_price:
             object.current_price = current_price    
             object.buyer_id = buyer_id
             object.save()
         return object.current_price
+    except Auction.DoesNotExist:
+        print "Error Auction id %d should be exist" % auction_id
+    except Auction.MultipleObjectsReturned:
+        print "Error Auction id %d should be unique" % auction_id
         
 
 def get_auction_isbn(auction_id):
     # get info of offer with given id
     # FILTER
-    qset = Auction.objects.filter(id=auction_id)
-    for object in qset:
+    try: 
+        object = Auction.objects.get(id=auction_id)
         return object.isbn
+    except Auction.DoesNotExist:
+        print "Error Auction id %d should be exist" % auction_id
+    except Auction.MultipleObjectsReturned:
+        print "Error Auction id %d should be unique" % auction_id
     return None
