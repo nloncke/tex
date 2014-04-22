@@ -95,6 +95,11 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
 
 # get isbns
 def get_course_list(course):
+    '''
+    
+    TODO: Course list should also search through the auctions
+    
+    '''
     re = '.*' + course + '.*'
     qset = Offer.objects.filter(course__iregex=re)
     isbns = [object.isbn for object in qset]
@@ -108,8 +113,15 @@ def update_book_cache(**book_info):
     book = Book(**book_info)
     book.save()
 
-# Dummy for auction stuff
 def get_auctions(isbn):
+    '''
+    
+    TODO: Return only active auctions
+    
+    For expired remove them from the database and add them to the notify queue
+    using buy.utils.notify_users_closed_auctions(auctions)
+    
+    '''
     qset = Auction.objects.filter(isbn=isbn)
     auctions = [{'auction_id':object.id,'current_price':object.current_price, 'buy_now_price':object.buy_now_price, 'buyer_id':object.buyer_id,
                  'seller_id':object.seller_id, 'end_time':object.end_time, 'condition':object.condition, 'description':object.description} for object in qset]

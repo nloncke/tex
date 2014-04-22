@@ -51,7 +51,7 @@ def email_users(addrs, html_msg, text_msg,
     msg.send(True)
         
 
-def notify_users(buyer, offer):
+def notify_users_bought_offer(buyer, offer):
     buyer_email = "%s@princeton.edu" % buyer
     seller_email = "%s@princeton.edu" % offer["seller_id"]
     
@@ -70,6 +70,23 @@ def notify_users(buyer, offer):
     email_users([seller_email, buyer_email], html_msg, text_msg, book["frontcover"], 
                  "Transaction Complete")  
     return book
+
+
+
+
+def notify_users_closed_auctions(auctions):
+    '''
+    Takes a list of inactive auctions
+    
+    TODO: notify the seller and highest bidder (if not "")
+    That the auctions is closed and has been removed.
+    
+    '''
+    
+    pass
+
+
+
     
 
 if __name__ == "__main__":
