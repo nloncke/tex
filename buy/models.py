@@ -96,13 +96,6 @@ def bid_auction(auction_id, current_price, buyer_id):
             object.save()
         return object.current_price
         
-def get_current_price(auction_id):
-    # get info of offer with given id
-    # FILTER
-    qset = Auction.objects.filter(id=auction_id)
-    for object in qset:
-        return object.current_price
-    return None
 
 def get_auction_isbn(auction_id):
     # get info of offer with given id

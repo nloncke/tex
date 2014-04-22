@@ -36,7 +36,7 @@ def buy_confirmation(request):
     return render(request, 'error_page.html')
 
 def bid(request):
-    from models import bid_auction, get_current_price, get_auction_isbn
+    from models import bid_auction, get_auction_isbn
     result = {}
     if request.method == "POST":
         buyer_id = request.user.username
