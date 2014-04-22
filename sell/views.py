@@ -33,7 +33,7 @@ def sell_submit(request):
             offer["description"] = request.POST.get("description", "0")
             offer["seller_id"] = request.user.username
             offer["buyer_id"] = ""
-            offer["current_price"] = 10
+            offer["current_price"] = request.POST.get("current_price","0")
             offer["end_time"] = request.POST.get("end_time", "0")
             result["offer_id"] = put_auction(offer)
             result["is_auction"] = "true"

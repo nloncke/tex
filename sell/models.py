@@ -24,11 +24,11 @@ def get_offer_info(offer_id):
     return None
 
 def put_auction(auction):
+    '''Put an auction in table of auctions, and update table of users
+    '''
     import time
     from datetime import datetime
     
-    '''Put an auction in table of auctions, and update table of users
-    '''
     pattern = '%m/%d/%y %H:%M:%S'
     epoch = int(time.mktime(time.strptime(auction['end_time'], pattern)))
     auction['end_time'] = epoch
@@ -37,8 +37,8 @@ def put_auction(auction):
     return new_auction.id
 
 def get_auction_info(auction_id):
-    # get info of offer with given id
-    # FILTER
+    ''''Get auction info given auction_id
+    '''
     qset = Auction.objects.filter(id=auction_id)
     for object in qset:
         auction = { 'seller_id': object.seller_id, 'current_price':object.current_price, 'buy_now_price':object.buy_now_price, 'end_time':object.end_time, 

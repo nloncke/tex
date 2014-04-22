@@ -22,7 +22,7 @@
 			<td>			
 				<input id="end_time" name="end_time" type="text" placeholder="MM/DD/YY HH:MM:SS"
 					required pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [01][0-9]:[0-5][0-9]:[0-5][0-9]$"
-					title="MM/DD/YY HH:MM:SS" {% if is_auction %} readonly {% endif %}>
+					title="MM/DD/YY HH:MM:SS" readonly>
 				<span class="glyphicon glyphicon-calendar"></span>
 			
 			</td>
@@ -37,7 +37,14 @@
 			<td><input id="price" name="price" type="text" {% if is_auction %} readonly {% endif %}
 				 required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" value="{{offer.current_price}}"/>
 			</td>
+		</tr>
+		{% if is_auction %}
+		<tr><th><label>Start Price:</label></th>
+		<td><input id="current_price" name="current_price" type="text"
+			required readonly pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
+		</td>
 		</tr>	
+		{% endif %}
 		<tr><th><label>Condition:</label></th><td><p id="picked_condition">
 			<p><label><input required id="new" name="picked_condition" type="radio" value="New" {% if offer.condition = 'New' %} checked {% endif %}/>New</label></p>
 			<p><label><input required id="like_new" name="picked_condition" type="radio" value="Like New" {% if offer.condition = 'Like New' %} checked {% endif %}/>Like New</label></p>

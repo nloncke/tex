@@ -20,3 +20,24 @@ def buy_confirmation(request):
         return render(request, "buy_confirmation.html", result)
     return render(request, 'error_page.html')
 
+def bid(request):
+    from models import bid_auction, get_current_price, get_auction_isbn, set_buyer_id
+    result = {}
+    if request.method == "POST":
+        buyer_id = request.user.username
+        auction_id = request.POST.get("auction_id", "0")
+        current_price = request.POST.get("current_price", "0")
+        actual_price = get_current_price(auction_id)
+        isbn = get_auction_isbn(auction_id)
+        result = get_book(isbn)
+        if int(current_price) == actual_price:
+            bid = request.POST.get("bid", "0")
+            bid_auction(auction_id, new_price(current_price,bid))
+            set_buyer_id(auction_id=auction_id, buyer_id=buyer_id)
+            result["current_price"] = new_price(current_price,bid)
+            result["buyer_id"] = buyer_id
+        else:
+            result["current_price"] = actual_price
+            result["error"] = "true"
+        return render(request, 'bid_confirmation.html', result)
+    return render(request, 'error_page.html')
