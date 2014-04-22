@@ -8,32 +8,33 @@ def remove_offer(offer_id):
     Returns the isbn, seller id and price of the given offer
     Also deletes it from database
     '''
-    qset = Offer.objects.filter(id=offer_id)
-    if len(qset) > 0:
-        d =  { 'isbn': qset[0].isbn, 'seller_id':qset[0].seller_id, 'price':qset[0].price }
-        qset[0].delete()
+    try:    
+        object = Offer.objects.get(id=offer_id)
+        d =  { 'isbn': object.isbn, 'seller_id':object.seller_id, 'price':object.price }
+        object.delete()
         return d
-
-    else:
+    except Offer.DoesNotExist:
         return {}
     
     
+@atomic
 def remove_auction(auction_id, buy_now=False):
     '''
     Returns the isbn, seller id, buyer_id and current_price of the given auction   
     If buy_now, return buy_now_price. 
     Also deletes it from database
     '''
-    qset = Auction.objects.filter(id=auction_id)
-    if len(qset) > 0:
-        if buy_now == False:
-            d =  { 'isbn': qset[0].isbn, 'seller_id':qset[0].seller_id, 'buyer_id':qset[0].buyer_id, 'price':qset[0].current_price }
+    try: 
+        object = Auction.objects.get(id=auction_id)
+        if buy_now:
+            d = {'isbn': object.isbn, 'seller_id':object.seller_id, 'buyer_id':object.buyer_id, 'price':object.buy_now_price }
         else:
-            d =  { 'isbn': qset[0].isbn, 'seller_id':qset[0].seller_id, 'buyer_id':qset[0].buyer_id, 'price':qset[0].buy_now_price }
-        qset[0].delete()
+            d = {'isbn': object.isbn, 'seller_id':object.seller_id, 'buyer_id':object.buyer_id, 'price':object.current_price }
+        object.delete()
         return d
-    else:
+    except Auction.DoesNotExist:
         return {}
+    # Want Auction.MultipleObjectsReturned to throw an exception
 
 def expired_auctions():
         '''
