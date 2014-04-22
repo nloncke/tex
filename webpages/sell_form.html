@@ -42,7 +42,7 @@
 
  	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
 		<div id="datetimepicker1" class="input-append">
-			<input data-format="MM/dd/yyyy HH:mm:ss" title="MM/DD/YY HH:MM:SS, 24-hour time"
+			<input id="end_time" name="end_time" data-format="MM/dd/yyyy HH:mm:ss" title="MM/DD/YY HH:MM:SS, 24-hour time"
 			pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [01][0-9]:[0-5][0-9]:[0-5][0-9]$"
 			placeholder="e.g. 09/15/14 17:00:00" type="text"></input>
 			<span class="add-on">
@@ -66,7 +66,7 @@
 			required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
 		</td>
 	</tr>	
-	<tr><th>
+	<tr class="collapse auction"><th>
 		<div id="auction_startprice" class="input-append collapse auction">
 			<label>Start Price:</label>
 		</div>	

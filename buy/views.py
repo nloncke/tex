@@ -24,7 +24,7 @@ def bid(request):
     from models import bid_auction, get_current_price, get_auction_isbn, set_buyer_id
     result = {}
     if request.method == "POST":
-        buyer_id = request.user_username
+        buyer_id = request.user.username
         auction_id = request.POST.get("auction_id", "0")
         current_price = request.POST.get("current_price", "0")
         actual_price = get_current_price(auction_id)
@@ -35,6 +35,7 @@ def bid(request):
             bid_auction(auction_id, new_price(current_price,bid))
             set_buyer_id(auction_id=auction_id, buyer_id=buyer_id)
             result["current_price"] = new_price(current_price,bid)
+            result["buyer_id"] = buyer_id
         else:
             result["current_price"] = actual_price
             result["error"] = "true"
