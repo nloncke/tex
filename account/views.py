@@ -27,7 +27,7 @@ def account_index(request):
     seller_offers = get_seller_offers(seller_id)
     seller_auctions = get_seller_auctions(seller_id)
     offers = {}
-    #follow_list = get_follow_list(user=user)
+    follow_list = get_follow_list(user=user)
     for seller_offer in seller_offers:
         book_info = get_book_info(seller_offer.isbn)["book"]
         result_offers.append({"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.id,
@@ -38,7 +38,7 @@ def account_index(request):
         result_auctions.append({"title":book_info["title"], "current_price":seller_auction.current_price, "auction_id":seller_auction.id,
                        "isbn":seller_auction.isbn, "end_time":seller_auction.end_time})
         
-    return render(request,'account_index.html', {"offers":result_offers, "auctions":result_auctions, "follow_list":"test"})
+    return render(request,'account_index.html', {"offers":result_offers, "auctions":result_auctions, "follow_list":follow_list})
 
 def login(request):
     from django_cas.views import login, logout
