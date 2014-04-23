@@ -23,7 +23,7 @@
 			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333"></td></tr>
         <tr><th><label>Auction:</label></th>
         	<td><p id="auction"><label><input id="is_auction" name="is_auction" type="checkbox" value="yes"
-        		onclick='$(".auction").toggle()'/>
+        		onclick='$(".auction").toggle(); $(#".auction").attr('required');'/>
         		Yes</label></p>
         </td></tr>
 
@@ -57,7 +57,7 @@
 		</div>
 		</th>
 		<td><span class="glyphicon glyphicon-usd"></span><input id="current_price" name="current_price" type="text"
-			required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 10"/>
+			 pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 10"/>
 		</td>
 	</tr>
 
