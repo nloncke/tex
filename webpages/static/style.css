@@ -2,6 +2,7 @@
    cursor:pointer;
 }
 
+
 /*formatting the entire welcome header*/
 #banner {
 	background-color: inherit;
@@ -99,8 +100,9 @@ th{
 }
 
 
-/*Date and time pickers*/
-.dates{
+/* My attempt at scoping the datetimepicker css files*/
+.dates {
+  @import "static/bootstrap-combined.min.css";
 }
 
 

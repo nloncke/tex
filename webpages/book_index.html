@@ -221,8 +221,8 @@
  			Are you sure you want to follow "{{ book.title }}"? We'll email you when there are new offers.
   		</div>
  		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
     		<form id="follow_book" action="/book/follow/" method="post"> {% csrf_token %}
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
     			<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
         		<button type="submit" name="book_isbn" value="{{ book.isbn}}"
         			data-dismiss="modal" onclick="document.getElementById('follow_book').submit(); return false;" class="btn btn-primary">Yes
