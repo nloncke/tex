@@ -40,10 +40,11 @@ def account_index(request):
                        "isbn":seller_auction.isbn, "end_time":seller_auction.end_time})
     
     follow_isbns = get_follow_list(user=user)   
-    if follow_isbns:
-        min_offer = {}
-        min_auction = {}
-        for isbn in follow_isbns:
+
+    min_offer = {}
+    min_auction = {}
+    for isbn in follow_isbns:
+        if isbn:
             book_info = get_book(isbn)
             offers = book_info["offers"]
             auctions = book_info["auctions"]
@@ -52,8 +53,7 @@ def account_index(request):
             if auctions:
                 min_auction = auctions[0]
             result_follow.append({"isbn":isbn, "book":book_info["book"], "min_offer":min_offer, "min_auction":min_auction})
-    else:
-        result_follow = []        
+          
     
     return render(request,'account_index.html', {"offers":result_offers, "auctions":result_auctions, "follows":result_follow})
 
