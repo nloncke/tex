@@ -21,7 +21,7 @@
 		<tr><th><label>End Date:</label></th>
 			<td>
 				<input id="end_time" name="end_time" type="text" placeholder="MM/DD/YY HH:MM:SS"
-					required pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [01][0-9]:[0-5][0-9]:[0-5][0-9]$"
+					required pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [012][0-9]:[0-5][0-9]:[0-5][0-9]$"
 					title="MM/DD/YY HH:MM:SS" readonly>
 				<span class="glyphicon glyphicon-calendar"></span>
 
@@ -35,13 +35,13 @@
 			{% endif %}
 			</th>
 			<td><span class="glyphicon glyphicon-usd"></span><input id="price" name="price" type="text" {% if is_auction %} readonly {% endif %}
-				 required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" value="{{offer.current_price}}"/>
+				 required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" {% if is_auction %} value="offer.buy_now_price" {% else %} value="{{offer.current_price}}" {% endif %}/>
 			</td>
 		</tr>
 		{% if is_auction %}
 		<tr><th><label>Start Price:</label></th>
 		<td><span class="glyphicon glyphicon-usd"></span><input id="current_price" name="current_price" type="text"
-			required readonly pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
+			 readonly pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
 		</td>
 		</tr>
 		{% endif %}

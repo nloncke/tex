@@ -53,7 +53,7 @@ def bid(request):
         
         result["current_price"] = new_current_price
         
-        if new_current_price == new_bid:
+        if int(new_current_price) == new_bid:
             result["buyer_id"] = buyer_id
         else:
             result["error"] = "true"
