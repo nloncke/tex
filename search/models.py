@@ -1,5 +1,6 @@
 from django.db import models
 import os.path
+import time
 
 base = "media"
 
@@ -52,13 +53,11 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
     if (isbn != None):
         qset = qset.filter(isbn=isbn)
     if (title != None):
-        regex = '.*' + title + '.*' 
-        qset = qset.filter(title__iregex=regex)
+        qset = qset.filter(title__icontains=title)
     if (author != None):
         tokens = author.split()
         for token in tokens:
-            regex = '.*' + token + '.*'
-            qset = qset.filter(author__iregex=regex)
+            qset = qset.filter(author__icontains=token)
     if (course != None):
         isbns = get_course_list(course)
         for object in isbns:
@@ -97,12 +96,9 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
 # get isbns
 def get_course_list(course):
     '''
-    
-    TODO: Course list should also search through the auctions
-    
+    TODO: Course list should also search through the auctions 
     '''
-    re = '.*' + course + '.*'
-    qset = Offer.objects.filter(course__iregex=re)
+    qset = Offer.objects.filter(course__icontains=course)
     isbns = [object.isbn for object in qset]
     return set(isbns)
 
@@ -116,14 +112,12 @@ def update_book_cache(**book_info):
 
 def get_auctions(isbn):
     '''
-    
-    TODO: Return only active auctions
-    
-    For expired remove them from the database and add them to the notify queue
-    using buy.utils.notify_users_closed_auctions(auctions)
-    
+    Returns only active auctions
+    Daemon will remove inactive auctions from the db, so 
+	we don't have to do that here
     '''
     qset = Auction.objects.filter(isbn=isbn)
+    qset = qset.filter(end_time__lt=time.time())
     auctions = [{'auction_id':object.id,'current_price':object.current_price, 'buy_now_price':object.buy_now_price, 'buyer_id':object.buyer_id,
                  'seller_id':object.seller_id, 'end_time':object.end_time, 'condition':object.condition, 'description':object.description} for object in qset]
     return auctions
