@@ -153,8 +153,8 @@
                     	<input type="hidden" id="target_isbn" name="target_isbn" value="{{follow.book.isbn}}">
 	    			</form>
 	         		<td><a href="/book/?isbn={{follow.book.isbn}}">{{follow.book.title}}</a></td>
-	         		<td>{% if follow.min_offer %}{{follow.min_offer.price}}{% else %}No offers{% endif %}</td>
-	         		<td>{% if follow.min_auction %}{{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
+	         		<td>{% if follow.min_offer %}${{follow.min_offer.buy_price}}{% else %}No offers{% endif %}</td>
+	         		<td>{% if follow.min_auction %}${{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
 	         	</tr>
 	         {% endfor %}
 	         </table>
