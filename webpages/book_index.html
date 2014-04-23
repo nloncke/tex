@@ -46,7 +46,7 @@
 	         	{% for auction in auctions %}
           		<!-- button should only trigger modal -->
 	   				<td><button id="auction_{{auction.auction_id}}" data-toggle="modal" data-target="#auction_modal_{{auction.auction_id}}"
-	        			class="btn btn-default translucent_w3"><span><strong>BID</strong></span></button>
+	        			class="btn btn-default translucent_w3 testHide"><span><strong>BID</strong></span></button>
 	  				</td>
           		<!-- end trigger button -->
          			<td>${{ auction.current_price }}</td>
@@ -61,6 +61,7 @@
 				    });
 				});
 			</script>
+			
 	         	  <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
             <!-- end of auction prompt modal -->
             <div class="modal fade" id="auction_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
