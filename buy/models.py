@@ -49,15 +49,13 @@ def expired_auctions():
         return qset
         
       
-def edit_offer(offer_id, price = None, course = None, condition = None, description = None):
+def edit_offer(offer_id, price = None, condition = None, description = None):
     ''' Edit the offer with the new parameters if set
     '''
     try:
         object = Offer.objects.get(id=offer_id)
         if price != None:
             object.price = price
-        if course != None:
-            object.course = course 
         if condition != None:
             object.condition = condition
         if description != None:
@@ -69,13 +67,11 @@ def edit_offer(offer_id, price = None, course = None, condition = None, descript
         print "Error Offer id %d should be unique" % offer_id
         
         
-def edit_auction(auction_id, course = None, condition = None, description = None):
+def edit_auction(auction_id, condition = None, description = None):
     ''' Edit the auction with the new parameters if set
     '''
     try:
-        object = Auction.objects.get(id=auction_id)
-        if course != None:
-            object.course = course 
+        object = Auction.objects.get(id=auction_id) 
         if condition != None:
             object.condition = condition
         if description != None:

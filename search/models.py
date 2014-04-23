@@ -9,7 +9,6 @@ class Offer(models.Model):
     seller_id = models.CharField(max_length=100)
     price = models.IntegerField()
     isbn = models.CharField(max_length=20)
-    course = models.CharField(max_length=100)
     condition = models.CharField(max_length=100)
     description = models.CharField(max_length=800)
     def __repr__(self):
@@ -24,7 +23,6 @@ class Auction(models.Model):
     epoch = models.BigIntegerField()
     end_time = models.CharField(max_length=50)
     isbn = models.CharField(max_length=20)
-    course = models.CharField(max_length=100)
     condition = models.CharField(max_length=100)
     description = models.CharField(max_length=800)
     
@@ -37,6 +35,7 @@ class Book(models.Model):
     thumbnail = models.CharField(max_length=100)
     thumbbytes = models.BinaryField()
     pub_date = models.CharField(max_length=100) 
+    course_list = models.CharField(max_length=300)
     def __repr__(self):
         s = self.isbn + ' ' + self.title + ' ' + self.author + ' ' + self.frontcover + ' ' + self.thumbnail
         return s
@@ -95,10 +94,7 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
 
 # get isbns
 def get_course_list(course):
-    '''
-    TODO: Course list should also search through the auctions 
-    '''
-    qset = Offer.objects.filter(course__icontains=course)
+    qset = Book.objects.filter(course_list__icontains=course)
     isbns = [object.isbn for object in qset]
     return set(isbns)
 
@@ -107,6 +103,7 @@ def update_book_cache(**book_info):
         book_info['coverbytes'] = f.read()
     with open(base + book_info['thumbnail'], 'r') as f:
         book_info['thumbbytes'] = f.read()
+    book_info['course_list'] = ''
     book = Book(**book_info)
     book.save()
 
@@ -114,7 +111,7 @@ def get_auctions(isbn):
     '''
     Returns only active auctions
     Daemon will remove inactive auctions from the db, so 
-	we don't have to do that here
+    we don't have to do that here
     '''
     qset = Auction.objects.filter(isbn=isbn)
     qset = qset.filter(end_time__lt=time.time())
