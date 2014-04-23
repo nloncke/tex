@@ -7,8 +7,7 @@ def get_followers(isbn):
     ''' Return a list of user_id of all user that are following
     this book 
     '''
-    regex = '.*' + isbn + '.*'
-    qset = BookUser.objects.filter(watch_list__iregex=regex)
+    qset = BookUser.objects.filter(watch_list__icontains=isbn)
 
     followers = []
     for object in qset:
