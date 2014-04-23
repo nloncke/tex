@@ -13,6 +13,11 @@ class BookUser(models.Model):
     
     def __unicode__(self):
         return self.user.username
+    
+    # for local dev
+    def fill_tex(self, user):
+        
+        
 
 # returns list of offers of seller with the given id
 def get_seller_offers(seller_id):
@@ -82,8 +87,14 @@ class PopulatedCASBackend(CASBackend):
             
         if not registered:
             bu = BookUser(user=user, watch_list='', default_search='search_by_title', class_year='')
-            
-        bu.save()    
+            bu.save()  
+
+        if user.username == 'tex':
+            qset = BookUser.objects.filter(user__username=user.username)
+            if not qset:
+                bu = BookUser(user=user, watch_list='', default_search='search_by_title', class_year='')
+                bu.save()  
+   
         return user
 
 
