@@ -8,19 +8,28 @@ import re
 alpha = ["jasala","lauraxu"]
 
 def account_index(request):
-    from account.models import get_seller_offers, get_seller_auctions, get_follow_list
+    from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
     from buy.models import remove_offer, remove_auction
     from sell.utils import get_book_info
     from book.utils import get_book
+    from search.utils import validate_isbn
     # only post if removing offer
     if request.method == "POST": 
-        is_auction = request.POST.get("is_auction", "")
-        if is_auction:
+        action = request.POST.get("action", "")
+        if action == "remove_auction":
             auction_id = request.POST.get("auction_id", "0")
             removed_auction = remove_auction(auction_id, False)
-        else:
+        elif action == "remove_offer":
             offer_id = request.POST.get("offer_id", "0")
-            sold_offer = remove_offer(offer_id)        
+            sold_offer = remove_offer(offer_id) 
+        elif action == "unfollow":     
+            isbn = request.POST.get("target_isbn", "0")
+            user = request.user
+            if validate_isbn(isbn):
+                unfollow(user=user, isbn=isbn)  
+        else:
+            pass # or throw error because shouldn't get here?
+   
     result_offers = []
     result_auctions = []
     result_follow = []
@@ -40,10 +49,11 @@ def account_index(request):
                        "isbn":seller_auction.isbn, "end_time":seller_auction.end_time})
     
     follow_isbns = get_follow_list(user=user)   
-    if follow_isbns:
-        min_offer = {}
-        min_auction = {}
-        for isbn in follow_isbns:
+
+    min_offer = {}
+    min_auction = {}
+    for isbn in follow_isbns:
+        if isbn:
             book_info = get_book(isbn)
             offers = book_info["offers"]
             auctions = book_info["auctions"]
@@ -52,8 +62,7 @@ def account_index(request):
             if auctions:
                 min_auction = auctions[0]
             result_follow.append({"isbn":isbn, "book":book_info["book"], "min_offer":min_offer, "min_auction":min_auction})
-    else:
-        result_follow = []        
+          
     
     return render(request,'account_index.html', {"offers":result_offers, "auctions":result_auctions, "follows":result_follow})
 
@@ -84,7 +93,7 @@ def profile(request):
     if request.method == 'POST':
         info["class_year"] = request.POST.get("class_year")
         info["default_search"] = request.POST.get("default_search")
-        
+        raise Exception("STAPP!")
         save_user(request.user, **info)
     return render(request,'account_profile.html')
 

@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^login/$', views.login, name='login'),
     url(r'^logout/$', django_cas.views.logout, name='logout'),
     url(r'^remove/$', views.account_index, name='remove_offer'),
+    url(r'^unfollow/$', views.account_index, name='unfollow'),
 )

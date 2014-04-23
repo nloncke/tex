@@ -5,7 +5,7 @@
 	$(document).ready(function(){
 		$("#{{user.bookuser.default_search}}").prop('checked', true);
  });
-	
+
 </script>
 {% endblock header %}
 {% block title %}tex account{% endblock title %}
@@ -61,6 +61,7 @@
 	                <form id="remove_{{offer.offer_id}}" action="/account/remove/" method="post"> {% csrf_token %}
                     	<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}">
                     	<input type="hidden" id="offers" name="offers" value="{{offers}}">
+                    	<input type="hidden" id="action" name="action" value="remove_offer">
                     </form>
             </div></div></div></div>
             <!-- end of remove prompt modal -->
@@ -118,7 +119,7 @@
                     	onclick="document.getElementById('remove_{{auction.auction_id}}').submit(); return false;"
                     	data-dismiss="modal" class="btn btn-primary" form="remove_{{auction.auction_id}}">Yes</button>
 	                <form id="remove_{{auction.auction_id}}" action="/account/remove/" method="post"> {% csrf_token %}
-	                	<input type="hidden" id="is_auction" name="is_auction" value="true">
+	                	<input type="hidden" id="action" name="action" value="remove_auction">
                     	<input type="hidden" id="auction_id" name="auction_id" value="{{auction.auction_id}}">
                     	<input type="hidden" id="auctions" name="auctions" value="{{auctions}}">
                     </form>
@@ -146,7 +147,11 @@
 	         		<td><button type="submit" id="buy" class="btn btn-default translucent_w3">
 	              			<span><strong>BUY</strong></span>
 	    				</button> </td>
-	    			<td><button type="button" id="remove" class="btn btn-default translucent_w3"><span><strong>UNFOLLOW</strong></span></button> </td>
+	    			<td><button type="submit" id="remove" class="btn btn-default translucent_w3" form="unfollow_{{follow.book.isbn}}"><span><strong>UNFOLLOW</strong></span></button></td>
+	    			<form id="unfollow_{{follow.book.isbn}}" action="/account/unfollow/" method="post">{% csrf_token %}
+	    				<input type="hidden" id="action" name="action" value="unfollow">
+                    	<input type="hidden" id="target_isbn" name="target_isbn" value="{{follow.book.isbn}}">
+	    			</form>
 	         		<td><a href="/book/?isbn={{follow.book.isbn}}">{{follow.book.title}}</a></td>
 	         		<td>{% if follow.min_offer %}{{follow.min_offer.price}}{% else %}No offers{% endif %}</td>
 	         		<td>{% if follow.min_auction %}{{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>

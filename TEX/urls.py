@@ -1,8 +1,6 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from search import views
-import django_cron
-django_cron.autodiscover()
 admin.autodiscover()
 
 urlpatterns = patterns('',
