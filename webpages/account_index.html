@@ -127,22 +127,29 @@
       </div>
        <div class="media-body">
          <h3 class="media-heading" style="font-size:28px">Following</h3>
-                  {{follow_list}}
+         {% if follows %}
          <h2 style="font-size:20px">
 	         <table class="table" width="80%">
 	     		<th></th>
-	     		<th>Book</th>
-	     		<th>Current Price</th>
 	     		<th></th>
+	     		<th>Book</th>
+	     		<th>Offer Price</th>
+	     		<th>Auction Price</th>
+	     		{% for follow in follows %}
 	         	<tr>
 	         		<td><button type="submit" id="buy" class="btn btn-default translucent_w3">
 	              			<span><strong>BUY</strong></span>
 	    				</button> </td>
 	    			<td><button type="button" id="remove" class="btn btn-default translucent_w3"><span><strong>UNFOLLOW</strong></span></button> </td>
-	         		<td>This is a test title</td>
-	         		<td>$500</td>
+	         		<td>{{follow.book.title}}</td>
+	         		<td>{{follow.offer.price}}</td>
+	         		<td>{{follow.auction.current_price}}</td>
 	         	</tr>
+	         {% endfor %}
 	         </table>
+	     {% else %}
+	     <h4>You are not currently following any books.</h4>
+	     {% endif %}
 
          </h2>
       </div>
