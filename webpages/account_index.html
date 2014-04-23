@@ -138,23 +138,19 @@
          <h2 style="font-size:20px">
 	         <table class="table" width="80%">
 	     		<th></th>
-	     		<th></th>
 	     		<th>Book</th>
 	     		<th>Offer Price</th>
 	     		<th>Auction Price</th>
 	     		{% for follow in follows %}
 	         	<tr>
-	         		<td><button type="submit" id="buy" class="btn btn-default translucent_w3">
-	              			<span><strong>BUY</strong></span>
-	    				</button> </td>
 	    			<td><button type="submit" id="remove" class="btn btn-default translucent_w3" form="unfollow_{{follow.book.isbn}}"><span><strong>UNFOLLOW</strong></span></button></td>
 	    			<form id="unfollow_{{follow.book.isbn}}" action="/account/unfollow/" method="post">{% csrf_token %}
 	    				<input type="hidden" id="action" name="action" value="unfollow">
                     	<input type="hidden" id="target_isbn" name="target_isbn" value="{{follow.book.isbn}}">
 	    			</form>
 	         		<td><a href="/book/?isbn={{follow.book.isbn}}">{{follow.book.title}}</a></td>
-	         		<td>{% if follow.min_offer %}{{follow.min_offer.price}}{% else %}No offers{% endif %}</td>
-	         		<td>{% if follow.min_auction %}{{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
+	         		<td>{% if follow.min_offer %}${{follow.min_offer.buy_price}}{% else %}No offers{% endif %}</td>
+	         		<td>{% if follow.min_auction %}${{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
 	         	</tr>
 	         {% endfor %}
 	         </table>
@@ -180,16 +176,19 @@
         	<h4 class="modal-title" id="profileModalLabel">Update my profile</h4>
         </div>
         <div id="profile_modal_body" class="modal-body">
-		   <form id="profile_form" method="post" action"/account/profile/"> {% csrf_token %}
+		   <form id="profile_form" method="post" action="/account/profile/"> {% csrf_token %}
 				<!-- input type="text" name="first_name" id="first_name" placeholder="First name" required/>
 				<input type="text" name="last_name" id="last_name" placeholder="Last name" required/ -->
-				<input type="text" name="class_year" id="class_year" placeholder="Class Year" required/>
+				Class Year:
+				<input type="text" name="class_year" id="class_year" value="{{ user.bookuser.class_year }}"
+			    required pattern="20(1[4-9]|[2-9][0-9])" title="Enter your graduation year 20XX" />
 			    <br>Search by default:<br>
 			    <label><input required name="default_search" type="radio"   id="title"  value="title" />Title</label>
 			    <label><input required name="default_search" type="radio"   id="isbn"  value="isbn" />ISBN</label>
 			    <label><input required name="default_search" type="radio"   id="author"  value="author" />Author</label>
 			    <label><input required name="default_search" type="radio"   id="course"  value="course" />Course</label>
 			</form>
+
 			<div class="modal-footer">
 				<button type="submit" id="submit" class="btn btn-primary" form="profile_form">
 			    	<span>Update</span>

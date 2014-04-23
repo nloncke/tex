@@ -127,10 +127,10 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
       	if (date.sec > 0 || toprint != "")
       		toprint = toprint + (this.leadingZeros(date.sec)) + " s";
       	
-      	if (toprint != "")
-      		return $(this.el).html(toprint);
+      	if (toprint == "")
+      		('.testHide').hide(); 
       	else
-      		('.testHide').remove();
+      		return $(this.el).html(toprint);
         //return $(this.el).html("" + date.years + " years, " + date.days + " days, " + (this.leadingZeros(date.hours)) + " hours, " + (this.leadingZeros(date.min)) + " min " + (this.leadingZeros(date.sec)) + " sec");
       }
     };
