@@ -94,7 +94,9 @@ p, h1, h2, h3, h4{
 }
 th{
 	font-size:24px;
+ border-top: none; 
 }
+
 .modal-dialog, .modal-header{
 	font-family: 'ABeeZee', sans-serif;
 }
