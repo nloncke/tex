@@ -42,8 +42,6 @@ INSTALLED_APPS = (
     "buy",
     "search",
     "sell",
-    "helloDjango",
-    "django_cron",
 )
 
 MIDDLEWARE_CLASSES = (
