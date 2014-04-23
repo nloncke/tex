@@ -8,19 +8,27 @@ import re
 alpha = ["jasala","lauraxu"]
 
 def account_index(request):
-    from account.models import get_seller_offers, get_seller_auctions, get_follow_list
+    from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
     from buy.models import remove_offer, remove_auction
     from sell.utils import get_book_info
     from book.utils import get_book
     # only post if removing offer
     if request.method == "POST": 
-        is_auction = request.POST.get("is_auction", "")
-        if is_auction:
+        action = request.POST.get("action", "")
+        if action == "remove_auction":
             auction_id = request.POST.get("auction_id", "0")
             removed_auction = remove_auction(auction_id, False)
-        else:
+        elif action == "remove_offer":
             offer_id = request.POST.get("offer_id", "0")
-            sold_offer = remove_offer(offer_id)        
+            sold_offer = remove_offer(offer_id) 
+        elif action == "unfollow":     
+            isbn = request.POST.get("target_isbn", "0")
+            user = request.user
+            if validate_isbn(isbn):
+                unfollow(user=user, isbn=isbn)  
+        else:
+            pass # or throw error because shouldn't get here?
+   
     result_offers = []
     result_auctions = []
     result_follow = []

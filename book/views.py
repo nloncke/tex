@@ -28,9 +28,10 @@ def book_follow(request):
         follow(user=user, isbn=isbn)
         result["isbn"] = isbn
         result["user"] = username
-        return render(request, 'account_index.html', result)
+        return render(request, 'account_index.html', result) # need to reload page or something else
     else:
         return render(request, 'error_page.html')
         # error page
         
-        
+    
+          
