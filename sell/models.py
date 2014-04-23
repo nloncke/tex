@@ -14,8 +14,10 @@ def put_offer(offer):
     
     book = Book.objects.get(isbn=new_offer.isbn)
     if not course in book.course_list:
-        course_list = course_list + ' ' + course
-        
+		if book.course_list:
+			book.course_list = book.course_list + ' ' + course
+        else:
+			book.course_list = course
     book.save()
 
     return new_offer.id
@@ -45,7 +47,12 @@ def put_auction(auction):
     
     book = Book.objects.get(isbn=new_auction.isbn)
     if not course in book.course_list:
-        course_list = course_list + ' ' + course
+		if book.course_list:
+			book.course_list = book.course_list + ' ' + course
+		else:
+			book.course_list = course
+	
+	book.save()
     
     return new_auction.id
 

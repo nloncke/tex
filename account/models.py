@@ -34,7 +34,7 @@ def follow(user, isbn):
 def get_follow_list(user):
   
     bu = user.bookuser
-    return bu.watch_list
+    return bu.watch_list.split(' ')
 
 def unfollow(user, isbn):
     bu = user.bookuser
