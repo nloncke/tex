@@ -22,15 +22,7 @@ def get_seller_offers(seller_id):
 def get_seller_auctions(seller_id):
     return Auction.objects.filter(seller_id=seller_id)
 
-def follow(user, isbn):
-    '''qset = BookUser.objects.filter(user=user)
-    for object in qset:
-        if object.watch_list == '':
-            object.watch_list = isbn
-        else:
-            object.watch_list = object.watch_list + '' + isbn
-        object.save()'''
-        
+def follow(user, isbn):        
     bu = user.bookuser
     if bu.watch_list == '':
         bu.watch_list = isbn
@@ -42,7 +34,7 @@ def follow(user, isbn):
 def get_follow_list(user):
   
     bu = user.bookuser
-    return bu.watch_list
+    return bu.watch_list.split(' ')
 
 def unfollow(user, isbn):
     bu = user.bookuser
@@ -56,17 +48,24 @@ def unfollow(user, isbn):
 def is_registered(user):
     ''' Returns True iff user already in already in our data base
     '''
-    qset = User.objects.filter(username=user.username)
-    if not qset:
+    try:
+        qset = BookUser.objects.get(user__username=user.username)
+        return True
+    except BookUser.DoesNotExist:
         return False
+    
+    # Throw exception if multiple objects returned
 
-    return True
 
 def save_user(user, **info):
     ''' Save this user in our database with the information required
         The specification for info are TBD
+        
+        info is a dictionary with "class_year" and "default_search"
     '''
-    pass
+    user.bookuser.class_year = info['class_year']
+    user.bookuser.default_search = info['default_search']
+    user.bookuser.save()
 
 
 
@@ -82,7 +81,7 @@ class PopulatedCASBackend(CASBackend):
         registered = user.is_registered()
             
         if not registered:
-            bu = BookUser(user=user, watch_list='', default_search='search_by_title', class_year='')
+            bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
             bu.save()  
 
         return user

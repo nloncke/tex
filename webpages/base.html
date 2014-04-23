@@ -19,6 +19,12 @@
 
   {% block header %}
   {% endblock header %}
+
+  <script>
+	$(document).ready(function(){
+		set_to_{{user.bookuser.default_search}}();
+ });
+  </script>
 </head>
 <body>
     {% block navbar %}
