@@ -42,7 +42,7 @@ def expired_auctions():
         Also deletes the auction objects from the database. 
         '''
     
-        qset = Auction.objects.filter(end_time__lt=time.time())
+        qset = Auction.objects.filter(epoch__lt=time.time())
         for object in qset:
             object.delete()
         
