@@ -12,6 +12,6 @@ def get_followers(isbn):
 
     followers = []
     for object in qset:
-       	followers.append(object.user.username)
-		
+           followers.append(object.user.username)
+        
     return followers

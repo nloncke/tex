@@ -30,18 +30,18 @@ def follow(user, isbn):
             object.watch_list = object.watch_list + '' + isbn
         object.save()
         
-    '''bu = user.bookuser
+    bu = user.bookuser
     if bu.watch_list == '':
         bu.watch_list = isbn
     else:
         bu.watch_list = bu.watch_list + ' ' + isbn
-    bu.save()'''
+    bu.save()
 
 
 def get_follow_list(user):
-    '''
+  
     bu = user.bookuser
-    return bu.watch_list'''
+    return bu.watch_list
     return []
 
 def unfollow(user, isbn):
@@ -78,8 +78,11 @@ class PopulatedCASBackend(CASBackend):
 
         user = super(PopulatedCASBackend, self).authenticate(
             ticket, service)
-
-        user.save()
+            
+        if not user.is_registered():
+            bu = BookUser(user=user, watch_list='')
+            
+        bu.save()    
         return user
 
 
