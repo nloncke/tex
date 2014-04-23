@@ -97,6 +97,11 @@ th{
  border-top: none; 
 }
 
+.table-borderless td,
+.table-borderless th {
+  border: 0 !important;
+}
+
 .modal-dialog, .modal-header{
 	font-family: 'ABeeZee', sans-serif;
 }
