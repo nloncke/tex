@@ -57,7 +57,7 @@
          	<script type="text/javascript">
 				$(function() {
 				    $('.countdown_{{auction.auction_id}}').countdown({
-				        date: "4/21/14 15:03:26"
+				        date: "{{auction.end_time}}"
 				    });
 				});
 			</script>
@@ -82,7 +82,7 @@
 								     </h2>
 								</div>
 				    			<h2><strong>Time Left</strong></h2>
-				    			<h3><div class="countdown"></div></h3>
+				    			<h3><div class="countdown_{{auction.auction_id}}"></div></h3>
 				    			<h2><strong>Current Bid</strong></h2>
 				    			<form id="bid_submit_{{auction.auction_id}}" action="/buy/bid/" method="post"> {% csrf_token %}
 				    				<h3>${{auction.current_price}}   + <input id="bid" name="bid" type="text" size="5" pattern="(^[1-9]$)|(^[1-9]\d$)">
@@ -221,8 +221,8 @@
  			Are you sure you want to follow "{{ book.title }}"? We'll email you when there are new offers.
   		</div>
  		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
     		<form id="follow_book" action="/book/follow/" method="post"> {% csrf_token %}
+          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
     			<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
         		<button type="submit" name="book_isbn" value="{{ book.isbn}}"
         			data-dismiss="modal" onclick="document.getElementById('follow_book').submit(); return false;" class="btn btn-primary">Yes

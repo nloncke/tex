@@ -23,13 +23,13 @@ def get_seller_auctions(seller_id):
     return Auction.objects.filter(seller_id=seller_id)
 
 def follow(user, isbn):
-    qset = BookUser.objects.filter(user=user)
+    '''qset = BookUser.objects.filter(user=user)
     for object in qset:
         if object.watch_list == '':
             object.watch_list = isbn
         else:
             object.watch_list = object.watch_list + '' + isbn
-        object.save()
+        object.save()'''
         
     bu = user.bookuser
     if bu.watch_list == '':
@@ -43,7 +43,6 @@ def get_follow_list(user):
   
     bu = user.bookuser
     return bu.watch_list
-    return []
 
 def unfollow(user, isbn):
     bu = user.bookuser

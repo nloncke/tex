@@ -1,4 +1,7 @@
 {% extends "base_topsearch.html" %}
+{% block header %}
+<script type="text/javascript" src="/static/jquery.countdown.js"></script>
+{% endblock header %}
 {% block title %}tex account{% endblock title %}
 {% block content %}
 <div class="media">
@@ -87,9 +90,15 @@
     				</button></td>
 	         		<td><a href="/book/?isbn={{auction.isbn}}">{{auction.title}}</a></td>
 	         		<td>${{auction.current_price}}</td>
-	         		<td>{{auction.end_time}}</td> <!--need countdown-->
+	         		<td><div class="countdown_{{auction.auction_id}}"></div></td> <!--need countdown-->
 	         	</tr>
-
+			<script type="text/javascript">
+				$(function() {
+				    $('.countdown_{{auction.auction_id}}').countdown({
+				        date: "{{auction.end_time}}"
+				    });
+				});
+			</script>
 	         	<!-- remove modal -->
             <div class="modal fade" id="remove_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog"><div class="modal-content"><div class="modal-header">
