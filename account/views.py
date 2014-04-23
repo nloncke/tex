@@ -45,7 +45,10 @@ def login(request):
     
 #   For local dev  
     from django.contrib import auth
+    from account.models import BookUser
     user = auth.authenticate(username="tex", password="axal@tex")
+    bu = BookUser(user=user, watch_list='', default_search='search_by_title', class_year='')
+    bu.save()  
     auth.login(request, user) 
     return login(request)
     

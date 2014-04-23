@@ -85,12 +85,6 @@ class PopulatedCASBackend(CASBackend):
             bu = BookUser(user=user, watch_list='', default_search='search_by_title', class_year='')
             bu.save()  
 
-        if user.username == 'tex':
-            qset = BookUser.objects.filter(user__username=user.username)
-            if not qset:
-                bu = BookUser(user=user, watch_list='', default_search='search_by_title', class_year='')
-                bu.save()  
-   
         return user
 
 
