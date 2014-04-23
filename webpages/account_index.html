@@ -180,16 +180,19 @@
         	<h4 class="modal-title" id="profileModalLabel">Update my profile</h4>
         </div>
         <div id="profile_modal_body" class="modal-body">
-		   <form id="profile_form" method="post" action"/account/profile/"> {% csrf_token %}
+		   <form id="profile_form" method="post" action="/account/profile/"> {% csrf_token %}
 				<!-- input type="text" name="first_name" id="first_name" placeholder="First name" required/>
 				<input type="text" name="last_name" id="last_name" placeholder="Last name" required/ -->
-				<input type="text" name="class_year" id="class_year" placeholder="Class Year" required/>
+				Class Year:
+				<input type="text" name="class_year" id="class_year" value="{{ user.bookuser.class_year }}"
+			    required pattern="20(1[4-9]|[2-9][0-9])" title="Enter your graduation year 20XX" />
 			    <br>Search by default:<br>
 			    <label><input required name="default_search" type="radio"   id="title"  value="title" />Title</label>
 			    <label><input required name="default_search" type="radio"   id="isbn"  value="isbn" />ISBN</label>
 			    <label><input required name="default_search" type="radio"   id="author"  value="author" />Author</label>
 			    <label><input required name="default_search" type="radio"   id="course"  value="course" />Course</label>
 			</form>
+
 			<div class="modal-footer">
 				<button type="submit" id="submit" class="btn btn-primary" form="profile_form">
 			    	<span>Update</span>
