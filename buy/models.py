@@ -41,6 +41,7 @@ def expired_auctions():
         Returns a list of auction objects corresponding to the auctions that have expired.
         Also deletes the auction objects from the database. 
         '''
+    
         qset = Auction.objects.filter(end_time__lt=time.time())
         for object in qset:
             object.delete()
