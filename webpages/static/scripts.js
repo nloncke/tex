@@ -20,15 +20,7 @@ function set_to_isbn(){
     $("#search_bar_text").focus();
   }
 
-// dynamic responses to user inputs
-$(document).ready(function()
-{
-  set_to_title(); // default search option is always title
-
-  $("#search_by_title").click(set_to_title);
-  $("#search_by_isbn").click(set_to_isbn);
-
-  $("#search_by_author").click(function(){
+function set_to_author(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by author",
       	pattern:"^[A-Za-z\\s]+$",
@@ -36,9 +28,9 @@ $(document).ready(function()
     $('#search_by').button("author");
     $("#search_form").attr({action:"/search/author/"});
     $("#search_bar_text").focus();
-  });
+  }
 
-  $("#search_by_course").click(function(){
+function set_to_course(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by course (e.g. cos 333)",
     	pattern:"^(\\s)*[A-Za-z]{3}(\\s)*[0-9]{3}(\\s)*$",
@@ -46,13 +38,20 @@ $(document).ready(function()
     $('#search_by').button("course");
     $("#search_form").attr({action:"/search/course/"});
     $("#search_bar_text").focus();
-  });
+  }
+
+// dynamic responses to user inputs
+$(document).ready(function()
+{
+  $("#search_by_title").click(set_to_title);
+  $("#search_by_isbn").click(set_to_isbn);
+  $("#search_by_author").click(set_to_author);
+  $("#search_by_course").click(set_to_course);
 
   // $('#datetimepicker1').datetimepicker({
   //   language: 'en',
   //   pick12HourFormat: true
   // });
-
 });
 // -----------END OF DOCUMENT.READY-----------
 
