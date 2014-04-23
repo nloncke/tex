@@ -1,5 +1,6 @@
 from django.db import models
 import os.path
+import time
 
 base = "media"
 
@@ -116,14 +117,12 @@ def update_book_cache(**book_info):
 
 def get_auctions(isbn):
     '''
-    
-    TODO: Return only active auctions
-    
-    For expired remove them from the database and add them to the notify queue
-    using buy.utils.notify_users_closed_auctions(auctions)
-    
+    Returns only active auctions
+    Daemon will remove inactive auctions from the db, so 
+	we don't have to do that here
     '''
     qset = Auction.objects.filter(isbn=isbn)
+	qset = qset.filter(end_time__lt=time.time())
     auctions = [{'auction_id':object.id,'current_price':object.current_price, 'buy_now_price':object.buy_now_price, 'buyer_id':object.buyer_id,
                  'seller_id':object.seller_id, 'end_time':object.end_time, 'condition':object.condition, 'description':object.description} for object in qset]
     return auctions
