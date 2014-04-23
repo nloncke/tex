@@ -75,12 +75,13 @@ class PopulatedCASBackend(CASBackend):
 
     def authenticate(self, ticket, service):
         """Authenticates CAS ticket and retrieves user data"""
-
+        registered = user.is_registered()
+        
         user = super(PopulatedCASBackend, self).authenticate(
             ticket, service)
             
-        if not user.is_registered():
-            bu = BookUser(user=user, watch_list='')
+        if not registered:
+            bu = BookUser(user=user, watch_list='', default_search='search_by_title', class_year='')
             
         bu.save()    
         return user
