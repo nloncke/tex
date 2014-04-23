@@ -45,10 +45,10 @@ def login(request):
     
 #   For local dev  
     from django.contrib import auth
-    from account.models import BookUser
+    from account.models import BookUser, is_registered
     user = auth.authenticate(username="tex", password="axal@tex")
-    if user:
-        bu = BookUser(user=user, watch_list='', default_search='search_by_title', class_year='')
+    if not is_registered(user):
+        bu = BookUser(user=user, watch_list='', default_search='author', class_year='')
         bu.save()  
         auth.login(request, user) 
     return login(request)
@@ -65,8 +65,8 @@ def login(request):
 
 def profile(request):
     if request.method == 'POST':
-        info["username"] = request.POST.get("username")
-        info["password"] = request.POST.get("password")
+        info["class_year"] = request.POST.get("class_year")
+        info["default_search"] = request.POST.get("default_search")
         
         save_user(request.user, **info)
     return render(request,'account_profile.html')
