@@ -13,10 +13,6 @@ class BookUser(models.Model):
     
     def __unicode__(self):
         return self.user.username
-    
-    # for local dev
-    def fill_tex(self, user):
-        
         
 
 # returns list of offers of seller with the given id
