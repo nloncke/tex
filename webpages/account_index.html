@@ -1,6 +1,12 @@
 {% extends "base_topsearch.html" %}
 {% block header %}
 <script type="text/javascript" src="/static/jquery.countdown.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#{{user.bookuser.default_search}}").prop('checked', true);
+ });
+	
+</script>
 {% endblock header %}
 {% block title %}tex account{% endblock title %}
 {% block content %}
