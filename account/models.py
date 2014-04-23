@@ -63,7 +63,9 @@ def save_user(user, **info):
         
         info is a dictionary with "class_year" and "default_search"
     '''
-    pass
+    user.bookuser.class_year = info['class_year']
+    user.bookuser.default_search = info['default_search']
+    user.bookuser.save()
 
 
 
