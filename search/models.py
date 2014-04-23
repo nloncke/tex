@@ -53,13 +53,11 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
     if (isbn != None):
         qset = qset.filter(isbn=isbn)
     if (title != None):
-        regex = '.*' + title + '.*' 
-        qset = qset.filter(title__iregex=regex)
+        qset = qset.filter(title__icontains=title)
     if (author != None):
         tokens = author.split()
         for token in tokens:
-            regex = '.*' + token + '.*'
-            qset = qset.filter(author__iregex=regex)
+            qset = qset.filter(author__icontains=token)
     if (course != None):
         isbns = get_course_list(course)
         for object in isbns:
@@ -98,12 +96,9 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
 # get isbns
 def get_course_list(course):
     '''
-    
-    TODO: Course list should also search through the auctions
-    
+    TODO: Course list should also search through the auctions 
     '''
-    re = '.*' + course + '.*'
-    qset = Offer.objects.filter(course__iregex=re)
+    qset = Offer.objects.filter(course__icontains=course)
     isbns = [object.isbn for object in qset]
     return set(isbns)
 
