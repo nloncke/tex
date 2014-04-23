@@ -91,11 +91,10 @@ def login(request):
 
 def profile(request):
     if request.method == 'POST':
-        info["class_year"] = request.POST.get("class_year")
+        info = {"class_year": request.POST.get("class_year")}
         info["default_search"] = request.POST.get("default_search")
-        raise Exception("STAPP!")
         save_user(request.user, **info)
-    return render(request,'account_profile.html')
+    return render(request,'account_index.html')
 
 def forbidden(request, template_name='403.html'):
     """Default 403 handler"""
