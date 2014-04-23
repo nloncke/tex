@@ -11,6 +11,7 @@ def account_index(request):
     from account.models import get_seller_offers, get_seller_auctions, get_follow_list
     from buy.models import remove_offer, remove_auction
     from sell.utils import get_book_info
+    from book.utils import get_book
     # only post if removing offer
     if request.method == "POST": 
         is_auction = request.POST.get("is_auction", "")
@@ -39,9 +40,20 @@ def account_index(request):
                        "isbn":seller_auction.isbn, "end_time":seller_auction.end_time})
     
     follow_isbns = get_follow_list(user=user)   
-    for isbn in follow_isbns:
-        book_info = get_book_info(isbn)
-        result_follow.append({"isbn":isbn, "book":book_info["book"], "offer":book_info["offer"], "auction":book_info["auction"]})        
+    if follow_isbns:
+        min_offer = {}
+        min_auction = {}
+        for isbn in follow_isbns:
+            book_info = get_book(isbn)
+            offers = book_info["offers"]
+            auctions = book_info["auctions"]
+            if offers:
+                min_offer = offers[0]
+            if auctions:
+                min_auction = auctions[0]
+            result_follow.append({"isbn":isbn, "book":book_info["book"], "min_offer":min_offer, "min_auction":min_auction})
+    else:
+        result_follow = []        
     
     return render(request,'account_index.html', {"offers":result_offers, "auctions":result_auctions, "follows":result_follow})
 
