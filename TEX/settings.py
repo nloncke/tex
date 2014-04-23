@@ -61,7 +61,7 @@ MIDDLEWARE_CLASSES = (
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'django_cas.backends.CASBackend',
+    'account.models.PopulatedCASBackend',
 )
 
 CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
