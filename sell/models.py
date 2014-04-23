@@ -6,7 +6,7 @@ def put_offer(offer):
     '''Put offer in table of offers, and update table of users
     '''
     # create offer
-    course = pop('course')
+    course = offer.pop('course')
     new_offer = Offer(**offer) 
     
     # put in table of offers
@@ -41,7 +41,7 @@ def put_auction(auction):
     pattern = '%m/%d/%y %H:%M:%S'
     epoch = int(time.mktime(time.strptime(auction['end_time'], pattern)))
     auction['epoch'] = epoch
-    course = pop('course')
+    course = auction.pop('course')
     new_auction = Auction(**auction)
     new_auction.save()
     

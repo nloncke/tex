@@ -1,6 +1,12 @@
 {% extends "base_topsearch.html" %}
 {% block header %}
 <script type="text/javascript" src="/static/jquery.countdown.js"></script>
+<script>
+	$(document).ready(function(){
+		$("#{{user.bookuser.default_search}}").prop('checked', true);
+ });
+	
+</script>
 {% endblock header %}
 {% block title %}tex account{% endblock title %}
 {% block content %}
@@ -141,9 +147,9 @@
 	              			<span><strong>BUY</strong></span>
 	    				</button> </td>
 	    			<td><button type="button" id="remove" class="btn btn-default translucent_w3"><span><strong>UNFOLLOW</strong></span></button> </td>
-	         		<td>{{follow.book.title}}</td>
-	         		<td>{{follow.offer.price}}</td>
-	         		<td>{{follow.auction.current_price}}</td>
+	         		<td><a href="/book/?isbn={{follow.book.isbn}}">{{follow.book.title}}</a></td>
+	         		<td>{% if follow.min_offer %}{{follow.min_offer.price}}{% else %}No offers{% endif %}</td>
+	         		<td>{% if follow.min_auction %}{{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
 	         	</tr>
 	         {% endfor %}
 	         </table>
