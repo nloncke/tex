@@ -3,8 +3,9 @@
 {% block header %}
 <!-- 	<link href="/static/bootstrap-datetimepicker.min.css" rel="stylesheet">
 	<link href="/static/bootstrap-combined.min.css" rel="stylesheet">
-	<script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
- -->{% endblock header %}
+ -->
+ <script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
+{% endblock header %}
 
 {% block content %}
 {% if book %}
@@ -42,7 +43,7 @@
 
  	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
 		<div id="datetimepicker1" class="input-append">
-			<input id="end_time" name="end_time" data-format="MM/dd/yyyy HH:mm:ss" title="MM/DD/YY HH:MM:SS, 24-hour time"
+			<input id="end_time" name="end_time" data-format="MM/dd/yyyy HH:mm" title="MM/DD/YY HH:MM:SS, 24-hour time"
 			pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [01][0-9]:[0-5][0-9]:[0-5][0-9]$"
 			placeholder="e.g. 09/15/14 17:00:00" type="text" >
 			<span class="glyphicon glyphicon-calendar"></span>
