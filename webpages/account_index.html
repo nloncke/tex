@@ -5,7 +5,7 @@
 	$(document).ready(function(){
 		$("#{{user.bookuser.default_search}}").prop('checked', true);
  });
-	
+
 </script>
 {% endblock header %}
 {% block title %}tex account{% endblock title %}
@@ -147,7 +147,7 @@
 	         		<td><button type="submit" id="buy" class="btn btn-default translucent_w3">
 	              			<span><strong>BUY</strong></span>
 	    				</button> </td>
-	    			<td><button type="button" id="remove" class="btn btn-default translucent_w3" form="unfollow_{{follow.book.isbn}}"><span><strong>UNFOLLOW</strong></span></button></td>
+	    			<td><button type="submit" id="remove" class="btn btn-default translucent_w3" form="unfollow_{{follow.book.isbn}}"><span><strong>UNFOLLOW</strong></span></button></td>
 	    			<form id="unfollow_{{follow.book.isbn}}" action="/account/unfollow/" method="post">{% csrf_token %}
 	    				<input type="hidden" id="action" name="action" value="unfollow">
                     	<input type="hidden" id="target_isbn" name="target_isbn" value="{{follow.book.isbn}}">

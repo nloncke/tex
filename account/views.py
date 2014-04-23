@@ -12,6 +12,7 @@ def account_index(request):
     from buy.models import remove_offer, remove_auction
     from sell.utils import get_book_info
     from book.utils import get_book
+    from search.utils import validate_isbn
     # only post if removing offer
     if request.method == "POST": 
         action = request.POST.get("action", "")
@@ -92,7 +93,7 @@ def profile(request):
     if request.method == 'POST':
         info["class_year"] = request.POST.get("class_year")
         info["default_search"] = request.POST.get("default_search")
-        
+        raise Exception("STAPP!")
         save_user(request.user, **info)
     return render(request,'account_profile.html')
 
