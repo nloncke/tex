@@ -138,15 +138,11 @@
          <h2 style="font-size:20px">
 	         <table class="table" width="80%">
 	     		<th></th>
-	     		<th></th>
 	     		<th>Book</th>
 	     		<th>Offer Price</th>
 	     		<th>Auction Price</th>
 	     		{% for follow in follows %}
 	         	<tr>
-	         		<td><button type="submit" id="buy" class="btn btn-default translucent_w3">
-	              			<span><strong>BUY</strong></span>
-	    				</button> </td>
 	    			<td><button type="submit" id="remove" class="btn btn-default translucent_w3" form="unfollow_{{follow.book.isbn}}"><span><strong>UNFOLLOW</strong></span></button></td>
 	    			<form id="unfollow_{{follow.book.isbn}}" action="/account/unfollow/" method="post">{% csrf_token %}
 	    				<input type="hidden" id="action" name="action" value="unfollow">
