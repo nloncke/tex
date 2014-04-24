@@ -116,9 +116,6 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
       date: "October 3, 2093 13:24:21",
       refresh: 1000,
       onEnd: $.noop,
-     // onEnd: function() {
-	//	$(".testHide").hide(); 
-      //},
       render: function(date) {
       	var toprint = "";
       	if (date.years > 0)
@@ -133,8 +130,6 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
       		toprint = toprint + (this.leadingZeros(date.sec)) + " s";
       	
       	return $(this.el).html(toprint);    	
- 
-        //return $(this.el).html("" + date.years + " years, " + date.days + " days, " + (this.leadingZeros(date.hours)) + " hours, " + (this.leadingZeros(date.min)) + " min " + (this.leadingZeros(date.sec)) + " sec");
       }
     };
     $.fn.countdown = function(options) {

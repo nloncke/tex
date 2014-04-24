@@ -84,7 +84,7 @@
 	     		<th>Current Price</th>
 	     		<th>Time Left</th>
 	     		{% for auction in auctions %}
-	         	<tr>
+	         	<tr class="countdown_{{auction.auction_id}}">
 	         		<form id="edit_{{auction.auction_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
 	     				<input type="hidden" id="offer_id" name="offer_id" value="{{auction.auction_id}}"/>
 	     				<input type="hidden" id="is_auction" name="is_auction" value="true"/>
@@ -97,15 +97,19 @@
     				</button></td>
 	         		<td><a href="/book/?isbn={{auction.isbn}}">{{auction.title}}</a></td>
 	         		<td>${{auction.current_price}}</td>
-	         		<td><div class="countdown_{{auction.auction_id}}"></div></td> <!--need countdown-->
+	         		<td><div class="actualcountdown_{{auction.auction_id}}"></div></td>
 	         	</tr>
 			<script type="text/javascript">
 				$(function() {
-				    $('.countdown_{{auction.auction_id}}').countdown({
-				        date: "{{auction.end_time}}"
+				    $('.actualcountdown_{{auction.auction_id}}').countdown({
+				        date: "{{auction.end_time}}",
+					    onEnd: function() {
+					    	return $(".countdown_{{auction.auction_id}}").hide();
+					    }
 				    });
 				});
 			</script>
+			
 	         	<!-- remove modal -->
             <div class="modal fade" id="remove_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog"><div class="modal-content"><div class="modal-header">
