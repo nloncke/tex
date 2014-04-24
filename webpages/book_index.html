@@ -8,9 +8,10 @@
 {% endblock confirmation %}
 
 <!-- DISPLAY THE BOOK -->
+<div class="center-page">
 <div class="media">
 	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
-	<div class="media-body">
+	<div class="media-body book-info">
 		<h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
     	<h2 style="font-size:20px">
          	<p>Author(s): {{book.author}}</p>
@@ -237,6 +238,7 @@
   		</div>
 	</div>
   </div>
+</div>
 </div>
 <!-- end of follow prompt modal -->
 {% endif %}
