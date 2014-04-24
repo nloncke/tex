@@ -67,6 +67,7 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
           diff -= dateData.min * 60;
         }
         dateData.sec = diff;
+              
         return dateData;
       };
       this.leadingZeros = function(num, length) {
@@ -105,15 +106,19 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
         _this.options.refresh = refresh;
         _this.interval = setInterval(function() {
           return _this.render();
-        }, _this.options.refresh);
+          }, _this.options.refresh);
         return _this;
       };
       return this.init();
     };
-    $.countdown.defaultOptions = {
+	
+	$.countdown.defaultOptions = {
       date: "October 3, 2093 13:24:21",
       refresh: 1000,
       onEnd: $.noop,
+     // onEnd: function() {
+	//	$(".testHide").hide(); 
+      //},
       render: function(date) {
       	var toprint = "";
       	if (date.years > 0)
@@ -127,10 +132,8 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
       	if (date.sec > 0 || toprint != "")
       		toprint = toprint + (this.leadingZeros(date.sec)) + " s";
       	
-      	if (toprint == "")
-      		('.testHide').hide(); 
-      	else
-      		return $(this.el).html(toprint);
+      	return $(this.el).html(toprint);    	
+ 
         //return $(this.el).html("" + date.years + " years, " + date.days + " days, " + (this.leadingZeros(date.hours)) + " hours, " + (this.leadingZeros(date.min)) + " min " + (this.leadingZeros(date.sec)) + " sec");
       }
     };

@@ -8,7 +8,7 @@
 {% if book %}
 
 <!-- DISPLAY THE BOOK -->
-<div class="media">
+<div align="center" class="media">
 	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
 	<div class="media-body">
 		<h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
@@ -24,7 +24,7 @@
 <form id="sell_form" action="/sell/submit/" method="post"> {% csrf_token %}
 	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
 	<h1 style="font-size:16px">
-	<table class="table table-borderless table-condensed table-responsive">	         	
+	<table  class="table table-borderless table-condensed table-responsive">	         	
 		<tr><th><label>Course:</label></th><td><input id="course" name="course" type="text" required
 			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333"></td></tr>
         <tr><th><label>Auction:</label></th>
@@ -39,23 +39,23 @@
 
 
 <!-- drop down the datepicker if the auction is checked -->
-	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
+<!-- 	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
 
 		<div id="dtpsub" class="input-append">
 			<input type="datetime-local" title="MM/DD/YY HH:MM, 24-hour time">
 		    </input>
 		</div></td>
 	</tr>
-
-<!--  	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
+-->
+ 	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
 		<div id="datetimepicker1" class="input-append">
-			<input id="end_time" name="end_time" data-format="MM/dd/yyyy HH:mm" title="MM/DD/YY HH:MM:SS, 24-hour time"
+			<input id="end_time" name="end_time" data-format="MM/dd/yy HH:mm" title="MM/DD/YY HH:MM:SS, 24-hour time"
 			pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [012][0-9]:[0-5][0-9]:[0-5][0-9]$"
 			placeholder="e.g. 09/15/14 17:00" type="text" >
 			<span class="glyphicon glyphicon-calendar"></span>
 		</div>
 	</td></tr>
--->
+
 
 <!-- end dropdown datepicker -->
 
