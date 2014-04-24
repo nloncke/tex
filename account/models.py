@@ -46,7 +46,7 @@ def unfollow(user, isbn):
 
 
 def not_registered(user):
-    ''' Returns True iff user already in already in our data base
+    ''' Returns False iff user already in already in our data base
     '''
     try:
         qset = BookUser.objects.get(user__username=user.username)
