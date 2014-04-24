@@ -108,6 +108,16 @@ th{
   border: 0 !important;
 }
 
+.center-page{
+  margin:auto;
+  width:80%;
+}
+
+.book-info{
+  padding-left:2%;
+  padding-top:0.25%;
+}
+
 .modal-dialog, .modal-header{
 	font-family: 'Open Sans';
 }

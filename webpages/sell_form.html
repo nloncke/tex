@@ -5,12 +5,14 @@
 {% endblock header %}
 
 {% block content %}
+<div class="center-page">
+
 {% if book %}
 
 <!-- DISPLAY THE BOOK -->
-<div align="center" class="media">
+<div class="media">
 	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
-	<div class="media-body">
+	<div class="media-body book-info">
 		<h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
     	<h2 style="font-size:20px">
          	<p>Author(s): {{book.author}}</p>
@@ -19,6 +21,7 @@
         </h2>
     </div>
 </div>
+
 <!-- END BOOK DISPLAY -->         	
 
 <form id="sell_form" action="/sell/submit/" method="post"> {% csrf_token %}
@@ -106,4 +109,6 @@
     </h1>
 </form>
 {% endif %}
+
+</div>
 {% endblock content %}
