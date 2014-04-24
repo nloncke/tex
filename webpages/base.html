@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<link href='http://fonts.googleapis.com/css?family=Roboto|ABeeZee' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Roboto|ABeeZee|Open+Sans' rel='stylesheet' type='text/css'>
   <meta charset="utf-8">
   <title>{% block title %}tex{% endblock %}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,16 +19,15 @@
 
   {% block header %}
   {% endblock header %}
-
   <script>
 	$(document).ready(function(){
 		set_to_{{ user.bookuser.default_search }}();
- });
+ 	});
   </script>
 </head>
 <body>
     {% block navbar %}
-    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top translucent_b1" role="navigation">
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top translucent_b1" role="navigation" style="border-bottom:none">
         <div class="navbar-header navbar-right">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
                 <span class="sr-only">Toggle navigation</span>
