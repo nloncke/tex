@@ -2,7 +2,6 @@
    cursor:pointer;
 }
 
-
 /*formatting the entire welcome header*/
 #banner {
 	background-color: inherit;
@@ -16,11 +15,12 @@
 /*specifically the welcome text*/
 #welcome {
 	font-family: 'ABeeZee', sans-serif;
-	font-size: 200%;
+	font-size: 175%;
    	font-weight: bold;
    	/*color: #FFFFFF;  alternate colors: water, aliceblue, azure */
    	color: rgba(0, 128, 128,.7);
-   	
+   	text-shadow: 2px 2px 3px rgba(251, 246, 217,1);
+
 }
 
 /*positions the entire search bar on the homepage*/
@@ -42,7 +42,7 @@
 }
 
 #search_bar_text{
-	color: #000000;
+	color: black;
 }
 #search_form{
 	font-family: 'Open Sans';
@@ -55,23 +55,23 @@
    margin-right: 10%;
    padding: 2%;
    width: 80%;
-   background-color: rgba(255,255,255,0.2);
+   background-color: rgba(255,255,255,.25);
 }
 .navbar-header {
 	margin-left: 15%;
    	margin-right: 15%;
    	width: 70%;
    	font-size: 24px;
-   	font-family: 'ABeeZee', sans-serif;
+   	font-family: 'Open Sans';
 }
 
 .media.thumbnail{
    background-color: rgba(255,255,255,0.1);
 }
 
-.media-body > a:link {color: #000077;}
+.media-body > a:link {color: #008080;}
 .media-body > a:visited {color: #110055;}
-.media-body > a:hover {color: #eeeeee;}
+.media-body > a:hover {color: rgba(74, 160, 44,.5);}
 
 
 /* style all the input forms on the sell page */
@@ -86,22 +86,25 @@ body {
    padding-top: 30px;
    background: url('paper.jpg');
 }
-
+input, textarea{
+    background-color: rgba(118,206,143,.25)
+    color: black;
+}
 /* change fonts */
 .jumbotron{
   font-family: 'Open Sans';
 }
 p, h1, h2, h3, h4{
   /*font-family: 'ABeeZee', sans-serif;*/
-	 font-family: 'Open Sans';
+	font-family: 'Open Sans';
 }
 th{
 	font-size:24px;
- border-top: none; 
+ 	border-top: none; 
 }
 
 .table-borderless td,
-.table-borderless th {
+.table-borderless th, .table td, .table th{
   border: 0 !important;
 }
 
@@ -118,7 +121,7 @@ th{
 
 /* Three different shades of translucence for white*/
 .translucent_w1{
-	background-color: rgba(255,255,255,.99);
+	background-color: rgba(255,255,255,.75);
 }
 .translucent_w2 {
    background-color: rgba(255,255,255,.5);
@@ -131,7 +134,7 @@ th{
 
 /* Three different shades of translucence for black*/
 .translucent_b1{
-	background-color: rgba(118,206,143,.25)
+	background-color: rgba(74, 160, 44,.25) /*light green */
 	/*background-color: rgba(21, 27, 84,.75)*/
 }
 .translucent_b2 {
@@ -142,4 +145,7 @@ th{
 }
 ul {list-style-type:none}
 
-a {color:#008080}
+
+a:link {color: #008080;}
+a:visited {color: #008080;}
+a:hover {color: rgba(74, 160, 44,.8);}

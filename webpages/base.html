@@ -19,16 +19,15 @@
 
   {% block header %}
   {% endblock header %}
-
   <script>
 	$(document).ready(function(){
 		set_to_{{ user.bookuser.default_search }}();
- });
+ 	});
   </script>
 </head>
 <body>
     {% block navbar %}
-    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top translucent_b1" role="navigation">
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top translucent_b1" role="navigation" style="border-bottom:none">
         <div class="navbar-header navbar-right">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
                 <span class="sr-only">Toggle navigation</span>
