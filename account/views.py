@@ -78,7 +78,7 @@ def login(request):
         bu.save()  
         auth.login(request, user) 
     return login(request)
-    
+     
 # for Alpha testers    
     httpresp = login(request)
     if request.user.is_authenticated():
