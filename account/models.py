@@ -45,14 +45,14 @@ def unfollow(user, isbn):
     bu.save()
 
 
-def is_registered(user):
-    ''' Returns True iff user already in already in our data base
+def not_registered(user):
+    ''' Returns False iff user already in already in our data base
     '''
     try:
         qset = BookUser.objects.get(user__username=user.username)
-        return True
-    except BookUser.DoesNotExist:
         return False
+    except BookUser.DoesNotExist:
+        return True
     
     # Throw exception if multiple objects returned
 
@@ -77,10 +77,8 @@ class PopulatedCASBackend(CASBackend):
         
         user = super(PopulatedCASBackend, self).authenticate(
             ticket, service)
-        
-        registered = user.is_registered()
             
-        if not registered:
+        if not_registered(user):
             bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
             bu.save()  
 

@@ -1,12 +1,78 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <!--     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet"> -->
-    <link rel="stylesheet" type="text/css" media="screen"
-     href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
-  </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link href='http://fonts.googleapis.com/css?family=Roboto|ABeeZee|Open+Sans' rel='stylesheet' type='text/css'>
+  <meta charset="utf-8">
+  <title>{% block title %}tex{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <link href="static/bootstrap.min.css" rel="stylesheet">
+  <link href="static/style.css" rel="stylesheet">
+
+  <link rel="shortcut icon" href="static/favicon.ico">
+
+  <script type="text/javascript" src="static/jquery.min.js"></script>
+  <script type="text/javascript" src="static/bootstrap.min.js"></script>
+  <script type="text/javascript" src="static/scripts.js"></script>
+
+  <script type="text/javascript" src="static/bootstrap-datepicker.js"></script>
+<link href="static/datepicker.css" rel="stylesheet">
+
+<script type="text/javascript">
+        $(function () {
+           $("#datepicker").datepicker({ autoclose: true, todayHighlight: true });
+        });
+        $(function () {
+           $("#timepicker").datepicker({ autoclose: true, todayHighlight: true });
+        });
+    </script>
+
+
+</head>
   <body>
-    <div id="datepicker" class="input-append dates">
+
+
+<div class="form-group row">
+  <div class="col-sm-6">
+    <div class="input-group date" id="datepicker" data-date="4/24/2014" data-date-format="mm/dd/yyyy">
+      <input class="form-control" type="text" readonly >
+      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="form-group row">
+	 <div class='col-sm-6'>
+        <div class='input-group date' id='timepicker' data-date="4/24/2014" data-date-format="mm/dd/yyyy">
+            <input type='text' class="form-control" readonly />
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- <div id="datepicker" class="input-append dates">
       <input type="text" placeholder="mm/dd/YYYY" readonly></input>
       <span class="add-on">
         <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
@@ -22,7 +88,7 @@
 
     <script type="text/javascript"
      src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js">
-    </script> 
+    </script>
     <script type="text/javascript"
      src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
     </script>
@@ -34,7 +100,7 @@
      src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
     </script>
 -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
     $(function() {
       $('#datepicker').datetimepicker({
         format: 'MM/dd/yyyy',
@@ -52,7 +118,7 @@
         language: 'en'
       });
     });
-    </script>
+    </script>  -->
 
   </body>
 <html>
