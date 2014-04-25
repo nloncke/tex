@@ -24,14 +24,25 @@
 
 <script type="text/javascript">
 $(function () {
-    $('#datetimepicker1').datetimepicker({
+    $('#datetimepicker').datetimepicker({
         sideBySide: true,
         minDate: moment().subtract('days', 1),
         sideBySide: true,
     });
 });
 
-
+$(function () {
+  	$("#datetimepicker").on('dp.hide', function(){
+		if(moment().isAfter(moment(
+			$("#end_time").val(), "MM/DD/YY HH:mm"))){
+			alert("Please select a time in the future");
+			$("#submit").attr("disabled", "disabled");
+		}
+		else {
+			$("#submit").removeAttr("disabled");
+		}
+	});
+});
 
 </script>
 
@@ -74,9 +85,9 @@ $(function () {
 <!-- drop down the datepicker if the auction is checked -->
  	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
         <div class='col-sm-2'>
-            <div class='input-group date' id='datetimepicker1'
+            <div class='input-group date' id='datetimepicker'
               data-date-format="MM/DD/YY HH:mm" >
-                <input type='text' id="end_time" name="end_time" class="form-control" readonly/>
+                <input type='text' id="end_time" name="end_time" class="form-control" readonly />
                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
@@ -141,7 +152,7 @@ $(function () {
 			name="description" rows="5" title="Enter a short description about your book."></textarea></td></tr>
 
  	</table>
-    <button type="submit" id="submit" class="btn btn-default">
+    <button type="submit" id="submit" class="btn btn-primary">
     	<span><strong>SELL</strong></span>
 	</button>
     </h1>
