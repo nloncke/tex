@@ -50,8 +50,18 @@ $(document).ready(function()
 
   $("#buy_price_info").popover({
     trigger:"hover",
-    title:"What is this?"
+    title:"What is this?",
+    content:"The auction automatically closes when a student bids this price."
+
+
   });
+
+// called when user clicks a link on results page
+function send_isbn(isbn) {
+  var idstr = '#book_result_' + isbn;
+  $(idstr).submit();
+  return false;
+}
 
   // $('#datetimepicker1').datetimepicker({
   //   language: 'en',
