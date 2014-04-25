@@ -8,7 +8,7 @@
 	  <div class="media thumbnail">
 	  	<input type="hidden" id="isbn" name="isbn" value="{{book.isbn}}">
 	  	<div>
-	    <a href="javascript:{}" onclick="document.getElementById('book_result_{{book.isbn}}').submit(); return false;" class="pull-left thumbnail">
+	    <a href="javascript:{}" onclick="send_isbn({{book.isbn}});" class="pull-left thumbnail">
 	      <img class="media-object" src="{{book.thumbnail}}" alt="{{book.title}}">
 	    </a>
 	    </div>
