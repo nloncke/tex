@@ -153,3 +153,12 @@ ul {list-style-type:none}
 a:link {color: #008080;}
 a:visited {color: #008080;}
 a:hover {color: rgba(74, 160, 44,.8);}
+
+
+#end_time{
+	width:auto;
+}
+
+.debug {
+	border:solid red thin;
+}

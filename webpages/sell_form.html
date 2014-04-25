@@ -6,13 +6,13 @@
 <script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
 
 <script type="text/javascript">
-    $(function () {
-        $('#datetimepicker1').datetimepicker({
-                    language: 'en',
-                    pickDate: true,
-                    sideBySide: false
-                });
+$(function () {
+    $('#datetimepicker').datetimepicker({
+        sideBySide: true,
+        minDate: moment(),
+        sideBySide: true,
     });
+});
 </script>
 {% endblock header %}
 

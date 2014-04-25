@@ -23,17 +23,16 @@
 <script type="text/javascript" src="static/bootstrap-datetimepicker.min.js"></script>
 
 <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker({
-                    language: 'en',
-                    pickDate: true,
-                    sideBySide: false
-                });
-            });
+$(function () {
+    $('#datetimepicker1').datetimepicker({
+        sideBySide: true,
+        minDate: moment().subtract('days', 1),
+        sideBySide: true,
+    });
+});
 
-             $(function () {
-                $('#datetimepicker2').datetimepicker();
-            });
+
+
 </script>
 
   <script>
@@ -43,24 +42,7 @@
   </script>
 
 </head>
-
 <body>
-
-<div class="container">
-    <div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
 
 <div class="media">
 	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
@@ -91,17 +73,14 @@
 
 <!-- drop down the datepicker if the auction is checked -->
  	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
-	<div class="row">
-        <div class='col-sm-6'>
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker2'>
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+        <div class='col-sm-2'>
+            <div class='input-group date' id='datetimepicker1'
+              data-date-format="MM/DD/YY HH:mm" >
+                <input type='text' id="end_time" name="end_time" class="form-control" readonly/>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                </span>
             </div>
-        </div>
-    </div>
+         </div>
 <!--
 
 
