@@ -1,14 +1,17 @@
 {% extends "base_topsearch.html" %}
 
 {% block header %}
-<script type="text/javascript" src="/static/bootstrap-datepicker.js"></script>
-<link href="/static/datepicker.css" rel="stylesheet">
+<link href="/static/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<script type="text/javascript" src="/static/moment.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
+
 <script type="text/javascript">
     $(function () {
-       $("#datepicker").datepicker({ autoclose: true, todayHighlight: true });
-    });
-    $(function () {
-       $("#timepicker").datepicker({ autoclose: true, todayHighlight: true });
+        $('#datetimepicker1').datetimepicker({
+                    language: 'en',
+                    pickDate: true,
+                    sideBySide: false
+                });
     });
 </script>
 {% endblock header %}
@@ -32,12 +35,7 @@
         </h2>
     </div>
 </div>
-<<<<<<< HEAD
 <!-- END BOOK DISPLAY -->
-=======
-
-<!-- END BOOK DISPLAY -->         	
->>>>>>> 3441b06f25cae8a33a58e60d2fc576210ae9fbfa
 
 <form id="sell_form" action="/sell/submit/" method="post"> {% csrf_token %}
 	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
@@ -55,14 +53,17 @@
 
 <!-- drop down the datepicker if the auction is checked -->
  	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
-	 <div class="form-group row">
-	  <div class="col-sm-6">
-	    <div class="input-group date" id="datepicker" data-date="4/24/2014" data-date-format="mm/dd/yyyy">
-	      <input class="form-control" type="text" readonly >
-	      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-	    </div>
-	  </div>
-	</div>
+	<div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
 <!--
 
 

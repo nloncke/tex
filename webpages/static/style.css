@@ -100,7 +100,7 @@ p, h1, h2, h3, h4{
 }
 th{
 	font-size:24px;
- 	border-top: none; 
+ 	border-top: none;
 }
 
 .table-borderless td,
@@ -123,12 +123,6 @@ th{
 }
 
 
-/* My attempt at scoping the datetimepicker css files*/
-.dates {
-  @import "static/bootstrap-combined.min.css";
-}
-
-
 /* Three different shades of translucence for white*/
 .translucent_w1{
 	background-color: rgba(255,255,255,.75);
@@ -137,7 +131,7 @@ th{
    background-color: rgba(255,255,255,.5);
 }
 .translucent_w3 {
-	
+
    background-color: rgba(255,255,255,.4)
 
 }

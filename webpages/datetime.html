@@ -17,6 +17,162 @@
   <script type="text/javascript" src="static/bootstrap.min.js"></script>
   <script type="text/javascript" src="static/scripts.js"></script>
 
+
+<link href="static/bootstrap-datetimepicker.min.css" rel="stylesheet">
+<script type="text/javascript" src="static/moment.min.js"></script>
+<script type="text/javascript" src="static/bootstrap-datetimepicker.min.js"></script>
+
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({
+                    language: 'en',
+                    pickDate: true,
+                    sideBySide: false
+                });
+            });
+
+             $(function () {
+                $('#datetimepicker2').datetimepicker();
+            });
+</script>
+
+  <script>
+	$(document).ready(function(){
+		set_to_isbn();
+ 	});
+  </script>
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="media">
+	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
+	<div class="media-body book-info">
+		<h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
+    	<h2 style="font-size:20px">
+         	<p>Author(s): {{book.author}}</p>
+         	<p>ISBN-13: {{book.isbn}}</p>
+         	<p>Published Date: {{book.pub_date}}</p>
+        </h2>
+    </div>
+</div>
+<!-- END BOOK DISPLAY -->
+
+<form id="sell_form" action="/sell/submit/" method="post"> {% csrf_token %}
+	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
+	<h1 style="font-size:16px">
+	<table  class="table table-borderless table-condensed table-responsive">
+		<tr><th><label>Course:</label></th><td><input id="course" name="course" type="text" required
+			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333"></td></tr>
+        <tr><th><label>Auction:</label></th>
+        	<td><p id="auction"><label><input id="is_auction" name="is_auction" type="checkbox" value="yes"
+        		onclick='$(".auction").toggle(); $(".auction").attr("required");'/>
+        		Yes</label></p>
+        </td></tr>
+
+<!-- DROP DOWN AUCTION FIELDS -->
+
+<!-- drop down the datepicker if the auction is checked -->
+ 	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
+	<div class="row">
+        <div class='col-sm-6'>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker2'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--
+
+
+
+		<div id="datetimepicker1" class="input-append">
+			<input id="end_time" name="end_time" data-format="MM/dd/yy HH:mm" title="MM/DD/YY HH:MM:SS, 24-hour time"
+			pattern="^(0[1-9]|1[012])[/](0[1-9]|[12][0-9]|3[01])[/]\d\d [012][0-9]:[0-5][0-9]:[0-5][0-9]$"
+			placeholder="e.g. 09/15/14 17:00" type="text" >
+			<span class="glyphicon glyphicon-calendar"></span>
+		</div> -->
+
+	</td></tr>
+
+
+<!-- end dropdown datepicker -->
+
+	<tr class="collapse auction"><th>
+		<div id="auction_startprice" class="input-append collapse auction">
+			<label>Start Price:</label>
+		</div>
+		</th>
+		<td><span class="glyphicon glyphicon-usd"></span><input id="current_price" name="current_price" type="text"
+			 pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 10"/>
+		</td>
+	</tr>
+
+	<tr><th>
+		<div id="auction_pricename" class="input-append collapse auction">
+			<label>Buy Now <br> Price:</label>
+		</div>
+		<div id="auction_pricename2" class="input-append auction">
+			<label>Price:</label>
+			</div>
+		</th>
+		<td><span class="glyphicon glyphicon-usd"></span>
+			<input id="price" name="price" type="text"
+			required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
+			<!-- info popover -->
+			<span class="input-append collapse auction">
+			    <span id="buy_price_info" class="glyphicon glyphicon-info-sign" data-toggle="popover"
+			    data-placement="right"
+			    data-content="The auction automatically closes when a student bids this price."></span>
+			</span>
+		    <!-- end info popover -->
+		</td>
+	</tr>
+
+<!-- END DROP DOWN AUCTION FIELDS -->
+
+		<tr><th><label>Condition:</label></th><td><p id="picked_condition">
+			<p><label><input required id="new" name="picked_condition" type="radio" value="New" />New</label></p>
+			<p><label><input required id="like_new" name="picked_condition" type="radio" value="Like New" />Like New</label></p>
+			<p><label><input required id="very_good" name="picked_condition" type="radio" value="Very Good" />Very Good</label></p>
+			<p><label><input required id="good" name="picked_condition" type="radio" value="Good" /> Good</label></p>
+			<p><label><input required id="acceptable" name="picked_condition" type="radio" value="Acceptable" />Acceptable</label></p>
+		</p></td></tr>
+		<tr><th><label>Description:</label></th><td><textarea required maxlength="100" cols="40" id="description"
+			name="description" rows="5" title="Enter a short description about your book."></textarea></td></tr>
+
+ 	</table>
+    <button type="submit" id="submit" class="btn btn-default">
+    	<span><strong>SELL</strong></span>
+	</button>
+    </h1>
+</form>
+{% endif %}
+
+</div>
+</body>
+
+<!--
   <script type="text/javascript" src="static/bootstrap-datepicker.js"></script>
 <link href="static/datepicker.css" rel="stylesheet">
 
@@ -53,9 +209,7 @@
             </span>
         </div>
     </div>
-</div>
-
-
+</div> -->
 
 
 
