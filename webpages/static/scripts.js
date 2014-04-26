@@ -52,9 +52,14 @@ $(document).ready(function()
     trigger:"hover",
     title:"What is this?",
     content:"The auction automatically closes when a student bids this price."
-
-
   });
+
+  // $('#datetimepicker1').datetimepicker({
+  //   language: 'en',
+  //   pick12HourFormat: true
+  // });
+});
+// -----------END OF DOCUMENT.READY-----------
 
 // called when user clicks a link on results page
 function send_isbn(isbn) {
@@ -63,12 +68,7 @@ function send_isbn(isbn) {
   return false;
 }
 
-  // $('#datetimepicker1').datetimepicker({
-  //   language: 'en',
-  //   pick12HourFormat: true
-  // });
-});
-// -----------END OF DOCUMENT.READY-----------
+
 
 
 //	$('.countdown').countdown({
