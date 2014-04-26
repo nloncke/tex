@@ -32,6 +32,7 @@ def sell_submit(request):
             offer["end_time"] = request.POST.get("end_time", "0")
             result["offer_id"] = put_auction(auction=offer)
             result["is_auction"] = "true"
+            result["isbn"] = offer["isbn"]
         else:
             offer["isbn"] = request.POST.get("target_isbn", "0")
             offer["course"] = request.POST.get("course", "0")
@@ -40,6 +41,7 @@ def sell_submit(request):
             offer["description"] = request.POST.get("description", "0")
             offer["seller_id"] = request.user.username
             result["offer_id"] = put_offer(offer=offer)
+            result["isbn"] = offer["isbn"]
     
         return render(request, 'sell_submit.html', result)
             
