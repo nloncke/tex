@@ -1,11 +1,9 @@
 {% extends "base_topsearch.html" %}
 
 {% block header %}
-
 <link href="/static/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <script type="text/javascript" src="/static/moment.min.js"></script>
 <script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
-
 <script type="text/javascript">
 $(function () {
     $('#datetimepicker').datetimepicker({
@@ -50,15 +48,15 @@ $(function () {
 
 
 {% block content %}
-<div class="center-page">
+<div class="center-page center-all">
 
 {% if book %}
 
-
 <!-- DISPLAY THE BOOK -->
-<div class="media">
-	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
-	<div class="media-body book-info">
+<div class="media center-all">
+<div style="padding-left:15%">
+	<img class="media-object pull-left" src="{{book.frontcover}}" alt="{{book.title}}" height="211px" width="171px">
+	<div class="media-body book-info center-all">
 		<h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
     	<h2 style="font-size:20px">
          	<p>Author(s): {{book.author}}</p>
@@ -67,14 +65,17 @@ $(function () {
         </h2>
     </div>
 </div>
+</div>
 <!-- END BOOK DISPLAY -->
 
 <form id="sell_form" action="/sell/submit/" method="post"> {% csrf_token %}
 	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
 	<h1 style="font-size:16px">
-	<table  class="table table-borderless table-condensed table-responsive">
-		<tr><th><label>Course:</label></th><td><input id="course" name="course" type="text" required
-			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333"></td></tr>
+	<table class="table table-borderless table-condensed table-responsive ">
+		<tr><th><label>Course:</label></th><td>
+			<input id="course" name="course" type="text" required
+			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333"></td>
+		</tr>
         <tr><th><label>Auction:</label></th>
         	<td><p id="auction"><label><input id="is_auction" name="is_auction" type="checkbox"/>
         		Yes</label></p>
