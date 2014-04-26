@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from search.views import validate_isbn
-from utils import get_book_info, put_offer, validate_offer
+from utils import get_book_info, put_offer, validate_offer, put_auction
 from book.utils import get_book
 #from buy.models import remove_offer, edit_offer
 
@@ -20,7 +20,6 @@ def sell_form(request):
         pass   
        
 def sell_submit(request):
-    from sell.models import put_auction
     offer = {}
     result = {}
     if request.method == 'POST':  
