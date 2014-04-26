@@ -73,6 +73,16 @@
 					    }
 				    });
 				});
+				$(function() {
+				    $('.modalcountdown_{{auction.auction_id}}').countdown({
+				        date: "{{auction.end_time}}",
+					    onEnd: function() {
+					    	$("#bid_{{auction.auction_id}}").attr("disabled", "disabled");
+					    	$("#buy_now_{{auction.auction_id}}").attr("disabled", "disabled");
+					    	return;
+					    }
+				    });
+				});
 			</script>
 			
 	         	  <!-- modal to prompt bidder. if they bid, confirmation is displayed with new modal. -->
@@ -96,18 +106,18 @@
 								     </h2>
 								</div>
 				    			<h2><strong>Time Left</strong></h2>
-				    			<div class="actualcountdown_{{auction.auction_id}}"></div>
+				    			<div class="modalcountdown_{{auction.auction_id}}"><input id="expired_auction_{{auction.auction_id}}"></div>
 				    			<h2><strong>Current Bid</strong></h2>
 				    			<form id="bid_submit_{{auction.auction_id}}" action="/buy/bid/" method="post"> {% csrf_token %}
 				    				<h3>${{auction.current_price}}   + <input id="bid" name="bid" type="text" size="5" value="1" pattern="(^[1-9]$)|(^[1-9]\d$)">
-				    				<button type="submit" id="bid" class="btn btn-default translucent_w3" form="bid_submit_{{auction.auction_id}}">BID</button></h3>
+				    				<button type="submit" id="bid_{{auction.auction_id}}" class="btn btn-default translucent_w3" form="bid_submit_{{auction.auction_id}}">BID</button></h3>
 				    				<input id="auction_id" name="auction_id" type="hidden" value="{{auction.auction_id}}">
 				    				<input id="current_price" name="current_price" type="hidden" value="{{auction.current_price}}">
 				    			</form>
 				    			<h2><strong>Buy Now Price</strong></h2>
-				    			<form id="buy_now_{{auction.auction_id}}" action="/buy/confirm/" method="post">{% csrf_token %}
+				    			<form id="buy_now_submit_{{auction.auction_id}}" action="/buy/confirm/" method="post">{% csrf_token %}
 				    				<h3>${{auction.buy_now_price}}
-				    				<button type="submit" id="buy_now" class="btn btn-default translucent_w3" form="buy_now_{{auction.auction_id}}">BUY</button></h3>
+				    				<button type="submit" id="buy_now_{{auction.auction_id}}" class="btn btn-default translucent_w3" form="buy_now_submit_{{auction.auction_id}}">BUY</button></h3>
 				    				<input id="auction_id" name="auction_id" type="hidden" value="{{auction.auction_id}}">
 				    				<input id="is_auction" name="is_auction" type="hidden" value="true">
 				    			</form>
