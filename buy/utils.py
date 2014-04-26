@@ -113,7 +113,7 @@ def notify_users_closed_auctions():
             email_users([seller_email], html_msg, text_msg, book["frontcover"], 
                  "Auction Expired")
   
-    return book
+    return
 
 
 

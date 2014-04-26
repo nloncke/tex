@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
 import re
 
-alpha = ["jasala","lauraxu"]
+alpha = ["jasala","lauraxu", "yoyeh", "kohemeng"]
 
 def account_index(request):
     from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
@@ -66,14 +66,14 @@ def login(request):
     from django_cas.views import login, logout
     
 #   For local dev  
-    from django.contrib import auth
-    from account.models import BookUser, not_registered
-    user = auth.authenticate(username="tex", password="axal@tex")
-    if not_registered(user):
-        bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
-        bu.save()  
-        auth.login(request, user) 
-    return login(request)
+#     from django.contrib import auth
+#     from account.models import BookUser, not_registered
+#     user = auth.authenticate(username="tex", password="axal@tex")
+#     if not_registered(user):
+#         bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
+#         bu.save()  
+#         auth.login(request, user) 
+#     return login(request)
      
 # for Alpha testers    
     httpresp = login(request)
