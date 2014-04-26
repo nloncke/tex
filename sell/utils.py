@@ -9,9 +9,8 @@ def get_book_info(isbn):
 def notify_followers(offer, is_auction=False):
     isbn = offer["isbn"]
     followers = get_followers(isbn)
-    followers = [x + "@princeton.edu" for x in followers if x != "tex"]
-    followers.append("princeton.tex@gmail.com")
-    
+    followers = [x + "@princeton.edu" for x in followers]
+
     dict = get_book_info(isbn)
     dict["is_auction"] = is_auction
     
@@ -27,9 +26,7 @@ def notify_followers(offer, is_auction=False):
     
     frontcover =  dict["book"]["frontcover"]
     
-    # For debugging
-    frontcover = "/app/buy/frontcover2.jpg"
-    email_users(followers, html_msg, text_msg,frontcover, subject, mass=True)
+    email_users(followers, html_msg, text_msg, frontcover, subject, mass=True)
     return
     
     

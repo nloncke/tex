@@ -20,7 +20,8 @@ def get_seller_offers(seller_id):
     return Offer.objects.filter(seller_id=seller_id)
 
 def get_seller_auctions(seller_id):
-    return Auction.objects.filter(seller_id=seller_id)
+    qset = Auction.objects.filter(epoch__gt=time.time()) 
+    return qset.filter(seller_id=seller_id)
 
 def follow(user, isbn):        
     bu = user.bookuser

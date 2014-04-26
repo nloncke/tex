@@ -5,15 +5,22 @@ from email.mime.text import MIMEText
 
 from TEX import settings
 from search.models import *
-from buy.messages import *
+from django.template.loader import render_to_string
 
 from_email =  settings.EMAIL_HOST_USER
 
+TEXT_STUB = '%s has just purchased %s from %s for $%s. Please follow up with each other to seal the deal.'
+
 def email_users(addrs, html_msg, text_msg, 
-                frontcover="/app/static/frontcover_default.jpg",
+                frontcover="/static/frontcover_default.jpg",
                 subject="", mass=False):
     
     subject = settings.EMAIL_SUBJECT_PREFIX + subject
+    
+    frontcover="media" + frontcover
+    
+    #REMOVE: For local dev
+    addrs = [from_email if x == "tex@princeton.edu" else x for x in addrs]
     
     # Create a "related" message container that will hold the HTML 
     # message and the image.
@@ -37,7 +44,6 @@ def email_users(addrs, html_msg, text_msg,
         # Fail silently
         pass
         
-    
     # Configure and send an EmailMessage
     if mass:
         msg = EmailMultiAlternatives(subject, None, from_email, bcc=addrs)
@@ -48,7 +54,7 @@ def email_users(addrs, html_msg, text_msg,
     msg.send(True)
         
 
-def notify_users_bought_offer(buyer, offer):
+def notify_users_bought(buyer, offer):
     buyer_email = "%s@princeton.edu" % buyer
     seller_email = "%s@princeton.edu" % offer["seller_id"]
     
@@ -59,15 +65,13 @@ def notify_users_bought_offer(buyer, offer):
         return {}
      
     text_msg = TEXT_STUB % (buyer, book["title"], offer["seller_id"], offer["price"])
-    html_msg = HTML_STUB % text_msg
-
-    # For debugging
-    book["frontcover"] = "frontcover2.jpg"
-
+    offer["title"] = book["title"]
+    offer["buyer_id"] = buyer
+    html_msg = render_to_string("notify_bought.html", offer)
+    
     email_users([seller_email, buyer_email], html_msg, text_msg, book["frontcover"], 
                  "Transaction Complete")  
     return book
-
 
 
 

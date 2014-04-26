@@ -20,16 +20,19 @@ def remove_offer(offer_id):
 @atomic
 def remove_auction(auction_id, buy_now=False):
     '''
-    Returns the isbn, seller id, buyer_id and current_price of the given auction   
-    If buy_now, return buy_now_price. 
-    Also deletes it from database
+    Delete the given auction from the database
+    If buy_now, returns the isbn, seller id, and buy_now_price of the given auction.
+    
+    Else returns the isbn, seller id, buyer_id and current_price
     '''
     try: 
         object = Auction.objects.get(id=auction_id)
+        d = {'isbn': object.isbn, 'seller_id':object.seller_id}
         if buy_now:
-            d = {'isbn': object.isbn, 'seller_id':object.seller_id, 'buyer_id':object.buyer_id, 'price':object.buy_now_price }
+            d['price'] = object.buy_now_price
         else:
-            d = {'isbn': object.isbn, 'seller_id':object.seller_id, 'buyer_id':object.buyer_id, 'price':object.current_price }
+            d['price'] = object.current_price
+            d['buyer_id'] = object.buyer_id
         object.delete()
         return d
     except Auction.DoesNotExist:
