@@ -3,54 +3,16 @@
 {% if sold_offer %}
 <div class="jumbotron" id="message">
   <h1>Thanks!</h1>
-  <h2> You just bought "{{ book.title }}" from
-      {{ seller_id }} for ${{ sold_offer.price }}. We've
-      sent both you and the seller an email detailing
-      the next steps. </h2>
+  <h2> You just bought <a href="/book/?isbn={{auction.isbn}}">{{ book.title }}</a> from
+      {{ seller_id }} for ${{ sold_offer.price }}. Check your email for more info. </h2>
 </div>
-
-  <!-- confirmation modal -->
-  <div class="modal fade" id="confirm_modal" tabindex="-1" role="dialog"
-  aria-labelledby="confirmModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-         {{book}}
-      {% if sold_offer %}
-          <h4 class="modal-title" id="confirmModalLabel">You bought this book!</h4>
-        </div>
-        <div id="confirm_modal_body" class="modal-body">
-          Sweet! You just bought "{{ book.title }}" from
-          {{ seller_id }} for ${{ sold_offer.buy_price }}. We've
-          sent both you and the seller an email detailing
-          the next steps.
-        </div>
-      {% else %}
-          <h4 class="modal-title" id="confirmModalLabel">Oops!</h4>
-        </div>
-        <div id="confirm_modal_body" class="modal-body">
-          Oh no! Someone else must have bought the book from this
-          seller just a second before you. Consider choosing from
-          the remaining offers.
-        </div>
-      {% endif %}
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Okay
-        </button>
-      </div>
-    </div>
-  </div>
-  <!-- end of confirmation modal --> -->
 
 {% else %}
 <div class="jumbotron" id="message">
   <h1>Oh no!</h1>
-  <h2> Someone else must have bought this book from this
+  <h2> Someone else must have bought <a href="/book/?isbn={{auction.isbn}}">{{ book.title }}</a> from this
           seller just a second before you. Consider choosing from the
           remaining offers. </h2>
 </div>
-
-
 {% endif %}
 {% endblock content %}

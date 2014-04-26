@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
-from utils import *
-from models import *
 import re
 
 alpha = ["jasala","lauraxu"]
@@ -18,30 +16,30 @@ def account_index(request):
         action = request.POST.get("action", "")
         if action == "remove_offer":
             offer_id = request.POST.get("offer_id", "0")
-            sold_offer = remove_offer(offer_id) 
+            sold_offer = remove_offer(offer_id=offer_id) 
         elif action == "unfollow":     
             isbn = request.POST.get("target_isbn", "0")
             user = request.user
-            if validate_isbn(isbn):
+            if validate_isbn(isbn=isbn):
                 unfollow(user=user, isbn=isbn)  
         else:
-            pass # or throw error because shouldn't get here?
+            return render(request, 'error_page.html')
    
     result_offers = []
     result_auctions = []
     result_follow = []
     seller_id = request.user.username
     user = request.user
-    seller_offers = get_seller_offers(seller_id)
-    seller_auctions = get_seller_auctions(seller_id)
+    seller_offers = get_seller_offers(seller_id=seller_id)
+    seller_auctions = get_seller_auctions(seller_id=seller_id)
     offers = {}
     for seller_offer in seller_offers:
-        book_info = get_book_info(seller_offer.isbn)["book"]
+        book_info = get_book_info(isbn=seller_offer.isbn)["book"]
         result_offers.append({"title":book_info["title"], "price":seller_offer.price, "offer_id":seller_offer.id,
                        "isbn":seller_offer.isbn})
     auctions = {}
     for seller_auction in seller_auctions:
-        book_info = get_book_info(seller_auction.isbn)["book"]
+        book_info = get_book_info(isbn=seller_auction.isbn)["book"]
         result_auctions.append({"title":book_info["title"], "current_price":seller_auction.current_price, "auction_id":seller_auction.id,
                        "isbn":seller_auction.isbn, "end_time":seller_auction.end_time})
     
@@ -51,7 +49,7 @@ def account_index(request):
     min_auction = {}
     for isbn in follow_isbns:
         if isbn:
-            book_info = get_book(isbn)
+            book_info = get_book(isbn=isbn)
             offers = book_info["offers"]
             auctions = book_info["auctions"]
             if offers:
@@ -59,8 +57,9 @@ def account_index(request):
             if auctions:
                 min_auction = auctions[0]
             result_follow.append({"isbn":isbn, "book":book_info["book"], "min_offer":min_offer, "min_auction":min_auction})
-          
-    
+        else:
+            pass
+             
     return render(request,'account_index.html', {"offers":result_offers, "auctions":result_auctions, "follows":result_follow})
 
 def login(request):
