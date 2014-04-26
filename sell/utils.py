@@ -47,9 +47,8 @@ def validate_offer(offer):
 
 def put_auction(auction):
     from sell.models import put_auction
-    # Convert the TIME
     new_auction_id = put_auction(auction)
-    #notify_followers(auction)
+    notify_followers(auction, True)
     return new_auction_id
 
     
