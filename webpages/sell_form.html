@@ -1,10 +1,8 @@
 {% extends "base_topsearch.html" %}
 {% block header %}
-<script type="text/javascript" src="/static/jquery.validate.min.js"></script>
 <link href="/static/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <script type="text/javascript" src="/static/moment.min.js"></script>
 <script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
-<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
 <script type="text/javascript">
 $(function () {
     $('#datetimepicker').datetimepicker({
@@ -48,29 +46,6 @@ $(function () {
 });
 </script>
 
-
-<script type="text/javascript">
-$(function () {
-	$("#sell_form").validate({
-		rules: {
-			current_price: {
-				depends: function(element) {
-					return $("#is_auction").prop("checked")
-				},
-			},
-			price: {
-				min: $("#current_price").prop("value"),
-				customvalidation: true
-			}
-		}
-	});
-
-	$.validator.addMethod("customvalidation",
-		function(value, element, params) {
-			return this.optional(element) || value == params[0] + params[1];
-		}, jQuery.validator.format("Please enter the correct value for {0} + {1}"));
-});
-</script>
 {% endblock header %}
 
 {% block content %}
@@ -121,7 +96,7 @@ $(function () {
 		<div class="form-group collapse auction" style="padding-left:30%">
 			<label for="current_price" class="col-sm-2 control-label">Start Price ($):</label>
 			<div class="col-sm-10">
-				<input id="current_price" name="current_price" class="form-control" style="width:150px" type="text"
+				<input id="current_price" name="current_price" class="form-control" style="width:150px" type="number"
 				 pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 10"/>
 			</div>
 		</div>
@@ -131,7 +106,7 @@ $(function () {
 			<div class="input-append auction"><label for="price" class="col-sm-2 control-label">Price ($):</label>
 			</div>
 			<div class="col-sm-10">
-				<input id="price" name="price" class="form-control" type="text" style="width:150px"
+				<input id="price" name="price" class="form-control" type="number" style="width:150px"
 				required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
 
 			</div>

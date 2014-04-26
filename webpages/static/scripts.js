@@ -54,11 +54,16 @@ $(document).ready(function()
     content:"The auction automatically closes when a student bids this price."
   });
 
-  // $('#datetimepicker1').datetimepicker({
-  //   language: 'en',
-  //   pick12HourFormat: true
-  // });
+
+  $("#current_price").change( function()  {
+    $("#price").attr({"min": $("#current_price").val()});
+  });
+
+  $("#price").change( function() {
+    $("#current_price").attr({"max": $("#price").val()});      
+  });
 });
+
 // -----------END OF DOCUMENT.READY-----------
 
 // called when user clicks a link on results page
