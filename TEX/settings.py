@@ -62,10 +62,6 @@ AUTHENTICATION_BACKENDS = (
     'account.models.PopulatedCASBackend',
 )
 
-CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
-CAS_LOGOUT_COMPLETELY = False
-CAS_RETRY_LOGIN = True
-
 ROOT_URLCONF = 'TEX.urls'
 
 WSGI_APPLICATION = 'TEX.wsgi.application'
@@ -86,6 +82,8 @@ USE_TZ = True
 CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
 CAS_REDIRECT_URL = "/"
 CAS_LOGOUT_COMPLETELY = True
+CAS_RETRY_LOGIN = True
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
