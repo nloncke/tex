@@ -12,6 +12,9 @@ $(function () {
         minDate: moment().subtract('days', 1),
         sideBySide: true,
     });
+    $("#end_time").attr(
+    	{value:moment().add('days', 1).format("MM/DD/YY HH:mm")}
+    );
 });
 
 $(function () {
@@ -34,13 +37,13 @@ $(function () {
 			$("#end_time").attr('required',true);
 			$("#current_price").attr('required',true);
 			$("#is_auction").val("yes");
-			
+
 		}
 		else {
 			$(".auction").toggle();
 			$("#end_time").attr('required',false);
 			$("#current_price").attr('required',false);
-		}		
+		}
 	});
 });
 </script>
@@ -106,22 +109,22 @@ $(function () {
 			<div class="col-sm-10">
 				<input id="is_auction" name="is_auction" class="checkbox" type="checkbox"/>
 			</div>
-		</div>		
+		</div>
 		<div class="form-group collapse auction" style="padding-left:30%">
-			<label for="end_time" class="col-sm-2 control-label">End Date:</label>		
+			<label for="end_time" class="col-sm-2 control-label">End Date:</label>
             <div class='col-sm-2 input-group date' id='datetimepicker' data-date-format="MM/DD/YY HH:mm">
-                <input type='text' id="end_time" name="end_time" class="form-control" style="width:150px" title="Please select a date and time."/>
+                <input type='text' id="end_time" name="end_time"  readonly class="form-control" style="width:150px" title="Please select a date and time."/>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                </span>   
+                </span>
 	     	</div>
 	    </div>
 		<div class="form-group collapse auction" style="padding-left:30%">
-			<label for="current_price" class="col-sm-2 control-label">Start Price ($):</label>		
+			<label for="current_price" class="col-sm-2 control-label">Start Price ($):</label>
 			<div class="col-sm-10">
 				<input id="current_price" name="current_price" class="form-control" style="width:150px" type="text"
 				 pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 10"/>
 			</div>
-		</div>		
+		</div>
 		<div class="form-group" style="padding-left:30%">
 			<div class="input-append collapse auction"><label for="price" class="col-sm-2 control-label">Buy Now <br> Price ($):</label>
 			</div>
@@ -130,9 +133,9 @@ $(function () {
 			<div class="col-sm-10">
 				<input id="price" name="price" class="form-control" type="text" style="width:150px"
 				required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
-				
+
 			</div>
-		</div>	
+		</div>
 		<div class="input-append collapse auction"><span inline class="help-block">Book is sold if someone bids this price.</span>
 		</div>
 		<div class="form-group ">
