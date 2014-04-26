@@ -90,10 +90,10 @@ def sell_edit_submit(request):
         description = request.POST.get("description", "0")
         if is_auction:
             auction_id=offer_id
-            edit_auction(auction_id, course, condition, description)
+            edit_auction(auction_id=auction_id, course=course, condition=condition, description=description)
         else:
             price = request.POST.get("price" , "0")
-            edit_offer(offer_id, price, course, condition, description)
+            edit_offer(offer_id=offer_id, price=price, course=course, condition=condition, description=description)
             
         result["offer_id"] = offer_id
         result["is_auction"] = is_auction
