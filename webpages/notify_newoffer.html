@@ -13,7 +13,7 @@
            	{% else %}
              New offer for
             {% endif %}
-             <a href="princetontex.herokuapp.com/?isbn={{book.isbn}}">{{book.title}}</a>
+             <a href="princetontex.herokuapp.com/book/?isbn={{book.isbn}}">{{book.title}}</a>
            </h3>
              {% if is_auction %}
              <b>Starting Price:</b> ${{offer.current_price}}<br>
@@ -24,7 +24,7 @@
              <b>Price:</b> ${{offer.price}} <br>
              <b>Condition:</b> {{offer.condition}}<br>
              {% endif %}
-			For more info: check it out on <a href="princetontex.herokuapp.com/?isbn={{book.isbn}}">tex</a>
+			For more info: check it out on <a href="princetontex.herokuapp.com/book/?isbn={{book.isbn}}">tex</a>
      </div>
    </div>
    You are receiving this email because you are following {{book.title}} on <a href="princetontex.herokuapp.com">tex</a>.

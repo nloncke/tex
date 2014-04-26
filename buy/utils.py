@@ -95,25 +95,22 @@ def notify_users_closed_auctions():
     expired = expired_auctions()
 
     for object in expired:
-        offer = {'course':object.course, 'offer_id':object.id, 'price':object.current_price, 'seller_id':object.seller_id,'condition':object.condition, 'description':object.description}
         if object.buyer_id:
             notify_user_bought(object.buyer_id, offer)
         else:
-            seller_email = "%s@princeton.edu" % offer["seller_id"]
+            seller_email = "%s@princeton.edu" % object.seller_id
     
-            book = get_book_info(isbn=offer["isbn"], thumb = False)
+            book = get_book_info(isbn=object.isbn , thumb = False)
             if book:
                 book = book[0]
             else:
                 return {}
      
             text_msg = SAD_STUB % book["title"]
-            offer["title"] = book["title"]
-            html_msg = render_to_string("notify_nosale.html", offer)
+            html_msg = render_to_string("notify_nosale.html", book)
     
             email_users([seller_email], html_msg, text_msg, book["frontcover"], 
                  "Auction Expired")
-  
     return
 
 

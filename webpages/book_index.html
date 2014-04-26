@@ -8,7 +8,6 @@
 {% endblock confirmation %}
 
 <!-- DISPLAY THE BOOK -->
-<div class="center-page">
 <div class="media">
 	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
 	<div class="media-body book-info">
@@ -29,7 +28,7 @@
       	<button type="submit" id="follow" data-toggle="modal" data-target="#follow_modal" class="btn btn-default translucent_w3">
         	<span><strong>FOLLOW</strong></span>
         </button>
-        
+
         {% endif %}
     	</h2>
   	</div>
@@ -48,7 +47,7 @@
 	     		<th>Time Left</th>
 	     		<th>Condition</th>
 	     		<th>Description</th>
-	         	
+
 	         	{% for auction in auctions %}
 	         	<tr class="countdown_{{auction.auction_id}}">
           		<!-- button should only trigger modal -->
@@ -60,7 +59,7 @@
               	    <td><div class="actualcountdown_{{auction.auction_id}}"></div></td>
 	         		<td>{{ auction.condition }}</td>
 	         		<td>{{ auction.description }}</td>
-	         		
+
          		</tr>
          	<script type="text/javascript">
 				$(function() {
@@ -82,7 +81,7 @@
 				    });
 				});
 			</script>
-			
+
 	         	  <!-- modal to prompt bidder. if they bid, confirmation is displayed with new modal. -->
             <!-- end of auction prompt modal -->
             <div class="modal fade" id="auction_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -272,8 +271,6 @@
   		</div>
 	</div>
   </div>
-</div>
-
 </div>
 <!-- end of follow prompt modal -->
 {% endif %}
