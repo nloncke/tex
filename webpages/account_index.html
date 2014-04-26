@@ -5,18 +5,20 @@
 	$(document).ready(function(){
 		$("#{{user.bookuser.default_search}}").prop('checked', true);
  });
-
 </script>
 {% endblock header %}
 {% block title %}tex account{% endblock title %}
+
 {% block content %}
+<div class="center-page">
 <div class="media">
 	<div class="media-body">
-		<h3 class="media-heading" style="font-size:36px"><strong>My Account</strong></h3>
-		<button id="update_profile" data-toggle="modal"
-			data-target="#profile_modal" class="btn btn-default translucent_w3">
-			<span><strong>Update  profile</strong></span>
+		<h3 class="media-heading" style="font-size:36px;"><strong>My Account</strong>
+		<button id="update_profile" data-toggle="modal"	data-target="#profile_modal"
+		        class="btn btn-default translucent_w3">
+			<span><strong>Update profile</strong></span>
 		</button>
+	    </h3>
 	</div>
 </div>
 
@@ -165,7 +167,7 @@
          </h2>
       </div>
 </div>
-
+</div>
 
 
 

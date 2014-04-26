@@ -24,7 +24,24 @@ $(function () {
 		}
 		else {
 			$("#submit").removeAttr("disabled");
+			}
+	});
+});
+
+$(function () {
+	$("#is_auction").click(function () {
+		if ($("#is_auction").is(':checked')) {
+			$(".auction").toggle();
+			$("#end_time").attr('required',true);
+			$("#current_price").attr('required',true);
+
 		}
+		else {
+			$(".auction").toggle();
+			$("#end_time").attr('required',false);
+			$("#current_price").attr('required',false);
+		}
+
 	});
 });
 
@@ -59,8 +76,7 @@ $(function () {
 		<tr><th><label>Course:</label></th><td><input id="course" name="course" type="text" required
 			 pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333"></td></tr>
         <tr><th><label>Auction:</label></th>
-        	<td><p id="auction"><label><input id="is_auction" name="is_auction" type="checkbox" value="yes"
-        		onclick='$(".auction").toggle(); $(".auction").attr("required");'/>
+        	<td><p id="auction"><label><input id="is_auction" name="is_auction" type="checkbox"/>
         		Yes</label></p>
         </td></tr>
 
@@ -70,7 +86,7 @@ $(function () {
  	<tr class="collapse auction" id="auction_enddate"><th><label>End Date:</label></th><td>
 	<div class='col-sm-2'>
             <div class='input-group date' id='datetimepicker' data-date-format="MM/DD/YY HH:mm">
-                <input type='text' id="end_time" name="end_time" class="form-control" readonly/>
+                <input type='text' id="end_time" name="end_time" class="form-control" title="Please select a date and time."/>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
