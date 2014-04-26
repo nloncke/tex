@@ -99,7 +99,7 @@
 				    			<div class="actualcountdown_{{auction.auction_id}}"></div>
 				    			<h2><strong>Current Bid</strong></h2>
 				    			<form id="bid_submit_{{auction.auction_id}}" action="/buy/bid/" method="post"> {% csrf_token %}
-				    				<h3>${{auction.current_price}}   + <input id="bid" name="bid" type="text" size="5" pattern="(^[1-9]$)|(^[1-9]\d$)">
+				    				<h3>${{auction.current_price}}   + <input id="bid" name="bid" type="text" size="5" value="1" pattern="(^[1-9]$)|(^[1-9]\d$)">
 				    				<button type="submit" id="bid" class="btn btn-default translucent_w3" form="bid_submit_{{auction.auction_id}}">BID</button></h3>
 				    				<input id="auction_id" name="auction_id" type="hidden" value="{{auction.auction_id}}">
 				    				<input id="current_price" name="current_price" type="hidden" value="{{auction.current_price}}">
