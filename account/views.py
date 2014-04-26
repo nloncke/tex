@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
 import re
 
-alpha = ["jasala","lauraxu", "yoyeh", "kohemeng"]
+alpha = ["jasala","lauraxu", "yoyeh", "kohemeng", "hmccormi", "swatters", "salberti", "fpina"]
 
 def account_index(request):
     from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
