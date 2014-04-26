@@ -7,7 +7,8 @@ alpha = ["jasala","lauraxu", "nloncke", "yoyeh", "kohemeng",
     "hmccormi", "swatters", "salberti", "fpina", "yunzhil",
     "dkoltuny", "lslosar", "abuddhir", "afyabrou", "cgordon",
     "mmedward", "lberdick", "morgant", "echeruiy", "ethill",
-    "rdaker", "mwirth", "gdsheppe", "jgsamuel", "pmoon", "aabdelaz"]
+    "rdaker", "mwirth", "gdsheppe", "jgsamuel", "pmoon", "aabdelaz"
+    , "splichte"]
 
 def account_index(request):
     from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
@@ -74,14 +75,14 @@ def login(request):
     from django_cas.views import login, logout
     
 #   For local dev  
-    from django.contrib import auth
-    from account.models import BookUser, not_registered
-    user = auth.authenticate(username="tex", password="axal@tex")
-    if not_registered(user):
-        bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
-        bu.save()  
-        auth.login(request, user) 
-    return login(request)
+#     from django.contrib import auth
+#     from account.models import BookUser, not_registered
+#     user = auth.authenticate(username="tex", password="axal@tex")
+#     if not_registered(user):
+#         bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
+#         bu.save()  
+#         auth.login(request, user) 
+#     return login(request)
      
 # for Alpha testers    
     httpresp = login(request)
