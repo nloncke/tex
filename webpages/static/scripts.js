@@ -54,11 +54,21 @@ $(document).ready(function()
     content:"The auction automatically closes when a student bids this price."
   });
 
-  // $('#datetimepicker1').datetimepicker({
-  //   language: 'en',
-  //   pick12HourFormat: true
-  // });
+  $("#current_price").change(
+    if ($("#current_price").value != null && $("#price").value != null) {
+      if ($("#current_price").value >= $("#price").value) {
+        alert("Min price must be less than buy now price.");
+      }
+    });
+
+  $("#price").change(
+    if ($("#current_price").value != null && $("#price").value != null) {
+      if ($("#current_price").value >= $("#price").value) {
+        alert("Min price must be less than buy now price.");
+      }
+    });
 });
+
 // -----------END OF DOCUMENT.READY-----------
 
 // called when user clicks a link on results page
