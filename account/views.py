@@ -90,6 +90,7 @@ def login(request):
     
 
 def profile(request):
+    from models import save_user
     if request.method == 'POST':
         info = {"class_year": request.POST.get("class_year")}
         info["default_search"] = request.POST.get("default_search")
