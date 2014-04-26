@@ -6,7 +6,8 @@ import re
 alpha = ["jasala","lauraxu", "nloncke", "yoyeh", "kohemeng",
     "hmccormi", "swatters", "salberti", "fpina", "yunzhil",
     "dkoltuny", "lslosar", "abuddhir", "afyabrou", "cgordon",
-    "lberdick", "morgant"]
+    "lberdick", "morgant", "ethill", "rdaker", "mwirth", "gdsheppe",
+         "jgsamuel", "pmoon"]
 
 def account_index(request):
     from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
