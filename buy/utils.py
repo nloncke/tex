@@ -66,8 +66,9 @@ def notify_users_bought(buyer, offer):
      
     text_msg = TEXT_STUB % (buyer, book["title"], offer["seller_id"], offer["price"])
     offer["title"] = book["title"]
-    html_msg = HTML_STUB % text_msg
-
+    offer["buyer_id"] = buyer
+    html_msg = render_to_string("notify_bought.html", offer)
+    
     email_users([seller_email, buyer_email], html_msg, text_msg, book["frontcover"], 
                  "Transaction Complete")  
     return book
