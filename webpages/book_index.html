@@ -96,7 +96,7 @@
 								     </h2>
 								</div>
 				    			<h2><strong>Time Left</strong></h2>
-				    			<h3><div class="countdown_{{auction.auction_id}}"></div></h3>
+				    			<div class="actualcountdown_{{auction.auction_id}}"></div>
 				    			<h2><strong>Current Bid</strong></h2>
 				    			<form id="bid_submit_{{auction.auction_id}}" action="/buy/bid/" method="post"> {% csrf_token %}
 				    				<h3>${{auction.current_price}}   + <input id="bid" name="bid" type="text" size="5" pattern="(^[1-9]$)|(^[1-9]\d$)">
