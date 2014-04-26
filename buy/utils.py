@@ -96,7 +96,7 @@ def notify_users_closed_auctions():
 
     for object in expired:
         if object.buyer_id:
-            notify_user_bought(object.buyer_id, offer)
+            notify_users_bought(object.buyer_id, offer)
         else:
             seller_email = "%s@princeton.edu" % object.seller_id
     
