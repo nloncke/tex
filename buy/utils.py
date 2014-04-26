@@ -75,14 +75,28 @@ def notify_users_bought(buyer, offer):
 
 
 
-def notify_users_closed_auctions(auctions):
+def notify_users_closed_auctions():
     '''
-    Takes a list of inactive auctions
+    This function is called to clean up closed auctions
     
-    TODO: notify the seller and highest bidder (if not "")
-    That the auctions is closed and has been removed.
-    
+    TODO: Get all expired auctions
+    for each auction:
+        Check if there exists a highest bidder.
+        
+        If so, call notify_users_bought
+        
+        Otherwise, inform the seller of the bad news. 
+        And that the auctions is closed and has been removed.
+        
+        See notify_users_bought and notifty_nosale.html as guides
     '''
+    
+    
+    
+    
+    
+    
+    
     
     pass
 
