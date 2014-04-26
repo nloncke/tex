@@ -54,19 +54,15 @@ $(document).ready(function()
     content:"The auction automatically closes when a student bids this price."
   });
 
-  $("#current_price").change(
-    if ($("#current_price").value != null && $("#price").value != null) {
-      if ($("#current_price").value >= $("#price").value) {
-        alert("Min price must be less than buy now price.");
-      }
-    });
 
-  $("#price").change(
-    if ($("#current_price").value != null && $("#price").value != null) {
-      if ($("#current_price").value >= $("#price").value) {
-        alert("Min price must be less than buy now price.");
-      }
-    });
+  $("#current_price").change( function()  {
+    $("#price").attr({min: $("#current_price").val()});
+  });
+
+  $("#price").change( function()
+  {
+      $("#current_price").attr({max: $("#price").val()});      
+  });
 });
 
 // -----------END OF DOCUMENT.READY-----------
