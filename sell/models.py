@@ -27,7 +27,7 @@ def get_offer_info(offer_id):
     # FILTER
     qset = Offer.objects.filter(id=offer_id)
     for object in qset:
-        offer = { 'course':offer.course, 'seller_id': object.seller_id, 'price':object.price, 'condition':object.condition, 'description':object.description, 'isbn':object.isbn }
+        offer = { 'course':object.course, 'seller_id': object.seller_id, 'price':object.price, 'condition':object.condition, 'description':object.description, 'isbn':object.isbn }
         return offer
 
     return None
