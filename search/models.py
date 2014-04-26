@@ -66,7 +66,7 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
     if (course != None):
         isbns = get_course_list(course)
         for object in isbns:
-            newob = qset.filter(isbn=object)
+            newqset = qset.filter(isbn=object)
             for newob in newqset:
                 if thumb == True:
                     thumbpath = base + newob.thumbnail
