@@ -4,7 +4,6 @@ from utils import *
 from models import *
 from book.utils import *
 
-
 def buy_confirmation(request):
     result = {}
     if request.method == "POST":
@@ -22,6 +21,7 @@ def buy_confirmation(request):
                     result = get_book(isbn)
                     result["sold_offer"] = sold_auction
                     result["seller_id"] = seller_id
+                    notify_users_bought(buyer_id, sold_auction)
         else:
             offer_id = request.POST.get("offer_id", "0")
             buyer_id = request.user.username
@@ -32,6 +32,7 @@ def buy_confirmation(request):
                 result = get_book(isbn)
                 result["sold_offer"] = sold_offer
                 result["seller_id"] = seller_id
+                notify_users_bought(buyer_id, sold_offer)
         return render(request, "buy_confirmation.html", result)
     return render(request, 'error_page.html')
 

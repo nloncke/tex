@@ -27,9 +27,7 @@ def notify_followers(offer, is_auction=False):
     
     frontcover =  dict["book"]["frontcover"]
     
-    # For debugging
-    frontcover = "/app/buy/frontcover2.jpg"
-    email_users(followers, html_msg, text_msg,frontcover, subject, mass=True)
+    email_users(followers, html_msg, text_msg, frontcover, subject, mass=True)
     return
     
     
