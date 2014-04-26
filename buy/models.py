@@ -52,7 +52,7 @@ def expired_auctions():
         return qset
         
       
-def edit_offer(offer_id, price = None, condition = None, description = None):
+def edit_offer(offer_id, price = None, condition = None, description = None, course = None):
     ''' Edit the offer with the new parameters if set
     '''
     try:
@@ -63,6 +63,14 @@ def edit_offer(offer_id, price = None, condition = None, description = None):
             object.condition = condition
         if description != None:
             object.description = description
+        if course != None:
+            object.course = course
+            book = Book.objects.get(object.isbn)
+            if course not in book.course_list:
+                if book.course_list:
+                    book.course_list = book.course_list + ' ' + course
+                else:
+                    book.course_list = course
         object.save()
     except Offer.DoesNotExist:
         print "Error Offer id %d should exist" % offer_id
@@ -70,7 +78,7 @@ def edit_offer(offer_id, price = None, condition = None, description = None):
         print "Error Offer id %d should be unique" % offer_id
         
         
-def edit_auction(auction_id, condition = None, description = None):
+def edit_auction(auction_id, condition = None, description = None, course = None):
     ''' Edit the auction with the new parameters if set
     '''
     try:
@@ -79,6 +87,14 @@ def edit_auction(auction_id, condition = None, description = None):
             object.condition = condition
         if description != None:
             object.description = description
+        if course != None:
+            object.course = course
+            book = Book.objects.get(object.isbn)
+            if course not in book.course_list:
+                if book.course_list:
+                    book.course_list = book.course_list + ' ' + course
+                else:
+                    book.course_list = course
         object.save()  
     except Auction.DoesNotExist:
         print "Error Auction id %d should exist" % offer_id
@@ -99,7 +115,7 @@ def bid_auction(auction_id, current_price, buyer_id):
             object.save()
         return object.current_price
     except Auction.DoesNotExist:
-        print "Error Auction id %d should be exist" % auction_id
+        print "Error Auction id %d should exist" % auction_id
     except Auction.MultipleObjectsReturned:
         print "Error Auction id %d should be unique" % auction_id
         
