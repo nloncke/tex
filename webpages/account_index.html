@@ -79,7 +79,6 @@
          	{% if auctions %}
 	         <table class="table" width="80%">
 	     		<th></th>
-	     		<th></th>
 	     		<th>Book</th>
 	     		<th>Current Price</th>
 	     		<th>Time Left</th>
@@ -92,9 +91,6 @@
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>
 	    			</form>
-    				<td><button type="submit" id="remove_{{auction.auction_id}}" data-toggle="modal" data-target="#remove_modal_{{auction.auction_id}}" class="btn btn-default translucent_w3">
-              			<span><strong>REMOVE</strong></span>
-    				</button></td>
 	         		<td><a href="/book/?isbn={{auction.isbn}}">{{auction.title}}</a></td>
 	         		<td>${{auction.current_price}}</td>
 	         		<td><div class="actualcountdown_{{auction.auction_id}}"></div></td>
@@ -109,26 +105,6 @@
 				    });
 				});
 			</script>
-			
-	         	<!-- remove modal -->
-            <div class="modal fade" id="remove_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog"><div class="modal-content"><div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Remove this book</h4></div>
-                  <div id="remove_modal_body" class="modal-body">
-                    Are you sure you want to remove "{{auction.title}}"?</div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" name="remove_book" value="{{auction.auction_id}}"
-                    	onclick="document.getElementById('remove_{{auction.auction_id}}').submit(); return false;"
-                    	data-dismiss="modal" class="btn btn-primary" form="remove_{{auction.auction_id}}">Yes</button>
-	                <form id="remove_{{auction.auction_id}}" action="/account/remove/" method="post"> {% csrf_token %}
-	                	<input type="hidden" id="action" name="action" value="remove_auction">
-                    	<input type="hidden" id="auction_id" name="auction_id" value="{{auction.auction_id}}">
-                    	<input type="hidden" id="auctions" name="auctions" value="{{auctions}}">
-                    </form>
-            </div></div></div></div>
-            <!-- end of remove prompt modal -->
 	         	{% endfor %}
 	         </table>
 	     {% else %}

@@ -16,10 +16,7 @@ def account_index(request):
     # only post if removing offer
     if request.method == "POST": 
         action = request.POST.get("action", "")
-        if action == "remove_auction":
-            auction_id = request.POST.get("auction_id", "0")
-            removed_auction = remove_auction(auction_id, False)
-        elif action == "remove_offer":
+        if action == "remove_offer":
             offer_id = request.POST.get("offer_id", "0")
             sold_offer = remove_offer(offer_id) 
         elif action == "unfollow":     
