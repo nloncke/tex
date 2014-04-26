@@ -95,7 +95,8 @@ def notify_users_closed_auctions():
     expired = expired_auctions()
 
     for object in expired:
-        offer = {'course':object.course, 'offer_id':object.id, 'price':object.current_price, 
+        offer = {'course':object.course, 'offer_id':object.id, 'isbn':object.isbn,
+                 'price':object.current_price, 
                  'seller_id':object.seller_id,'condition':object.condition}
         if object.buyer_id:
             notify_users_bought(object.buyer_id, offer)
