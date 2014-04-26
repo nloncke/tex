@@ -9,9 +9,8 @@ def get_book_info(isbn):
 def notify_followers(offer, is_auction=False):
     isbn = offer["isbn"]
     followers = get_followers(isbn)
-    followers = [x + "@princeton.edu" for x in followers if x != "tex"]
-    followers.append("princeton.tex@gmail.com")
-    
+    followers = [x + "@princeton.edu" for x in followers]
+
     dict = get_book_info(isbn)
     dict["is_auction"] = is_auction
     
@@ -48,9 +47,8 @@ def validate_offer(offer):
 
 def put_auction(auction):
     from sell.models import put_auction
-    # Convert the TIME
     new_auction_id = put_auction(auction)
-    #notify_followers(auction)
+    notify_followers(auction, True)
     return new_auction_id
 
     

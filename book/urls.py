@@ -6,5 +6,6 @@ from book import views
 urlpatterns = patterns('',
     url(r'^$', views.book_index, name='book_index'),
     url(r'^follow/$', views.book_follow, name='book_follow'),
+    url(r'^unfollow/$', views.book_unfollow, name='book_unfollow'),
 )
 

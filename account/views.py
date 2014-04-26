@@ -16,10 +16,7 @@ def account_index(request):
     # only post if removing offer
     if request.method == "POST": 
         action = request.POST.get("action", "")
-        if action == "remove_auction":
-            auction_id = request.POST.get("auction_id", "0")
-            removed_auction = remove_auction(auction_id, False)
-        elif action == "remove_offer":
+        if action == "remove_offer":
             offer_id = request.POST.get("offer_id", "0")
             sold_offer = remove_offer(offer_id) 
         elif action == "unfollow":     
@@ -71,10 +68,10 @@ def login(request):
     
 #   For local dev  
     from django.contrib import auth
-    from account.models import BookUser, is_registered
+    from account.models import BookUser, not_registered
     user = auth.authenticate(username="tex", password="axal@tex")
     if not_registered(user):
-        bu = BookUser(user=user, watch_list='', default_search='author', class_year='')
+        bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
         bu.save()  
         auth.login(request, user) 
     return login(request)
