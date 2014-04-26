@@ -108,10 +108,9 @@ def notify_users_closed_auctions():
      
             text_msg = SAD_STUB % book["title"]
             offer["title"] = book["title"]
-            offer["buyer_id"] = buyer
             html_msg = render_to_string("notify_nosale.html", offer)
     
-            email_users(seller_email, html_msg, text_msg, book["frontcover"], 
+            email_users([seller_email], html_msg, text_msg, book["frontcover"], 
                  "Auction Expired")
   
     return book
