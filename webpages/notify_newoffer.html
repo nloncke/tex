@@ -15,10 +15,14 @@
             {% endif %}
              <a href="princetontex.herokuapp.com/?isbn={{book.isbn}}">{{book.title}}</a>
            </h3>
-             <b>Price:<b> ${{offer.price}} <br>
-             <b>Condition:<b> {{offer.condition}} <br>
              {% if is_auction %}
-				ADD Auctions details<br>
+             <b>Starting Price:</b> ${{offer.current_price}}<br>
+             <b>Buy Now Price:</b> ${{offer.buy_now_price}}<br>
+             <b>Condition:</b> {{offer.condition}} <br>
+             <b>End Time:</b> {{offer.end_time}} <br>
+			 {% else %}
+             <b>Price:</b> ${{offer.price}} <br>
+             <b>Condition:</b> {{offer.condition}}<br>
              {% endif %}
 			For more info: check it out on <a href="princetontex.herokuapp.com/?isbn={{book.isbn}}">tex</a>
      </div>

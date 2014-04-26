@@ -75,7 +75,7 @@
 				});
 			</script>
 			
-	         	  <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
+	         	  <!-- modal to prompt bidder. if they bid, confirmation is displayed with new modal. -->
             <!-- end of auction prompt modal -->
             <div class="modal fade" id="auction_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				<div class="modal-dialog">
@@ -152,11 +152,11 @@
              		</td>
               	<!-- end trigger button -->
 
-              		<td>${{ offer.buy_price }}</td>
+              <td>${{ offer.buy_price }}</td>
 	         		<td>{{ offer.condition }}</td>
 	         		<td>{{ offer.description }}</td>
 	         	</tr>
-	        <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
+ 	        <!-- modal to prompt buyer. if they buy, confirmation is displayed with new modal. -->
             <div class="modal fade" id="buy_modal_{{offer.offer_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog">
               	<div class="modal-content">
@@ -171,8 +171,8 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" data-dismiss="modal" data-target="#confirm_modal" 
-                    	onclick="document.getElementById('buy_form_{{offer.offer_id}}').submit(); return false;" class="btn btn-primary">Yes</button>
+                    <button type="submit" data-dismiss="modal"
+                    	onclick="document.getElementById('buy_form_{{offer.offer_id}}').submit(); $('#buy_modal_{{offer.offer_id}}').modal('hide'); return false;" class="btn btn-primary">Yes</button>
                     <!-- hidden form to check if offer still there -->
                     <form id="buy_form_{{offer.offer_id}}" name="buy_form" action="/buy/confirm/" method="post"> {% csrf_token %}
                       <input type="hidden" id="buyer_id" name="buyer_id" value="{{ user }}"/>

@@ -11,6 +11,7 @@ class Offer(models.Model):
     isbn = models.CharField(max_length=20)
     condition = models.CharField(max_length=100)
     description = models.CharField(max_length=800)
+    course = models.CharField(max_length=200)
     def __repr__(self):
         s = str(self.seller_id) + ' ' + str(self.price) + ' ' + self.isbn + ' ' + self.course + ' ' + self.condition
         return s
@@ -25,7 +26,12 @@ class Auction(models.Model):
     isbn = models.CharField(max_length=20)
     condition = models.CharField(max_length=100)
     description = models.CharField(max_length=800)
-    
+    course = models.CharField(max_length=200)
+    def __repr__(self):
+        s = str(self.seller_id) + ' ' + str(self.current_price) + ' ' + self.isbn + ' ' + self.course + ' ' + self.condition
+        return s
+
+
 class Book(models.Model):
     isbn = models.CharField(max_length=20)
     title = models.CharField(max_length=200)
@@ -37,7 +43,7 @@ class Book(models.Model):
     pub_date = models.CharField(max_length=100) 
     course_list = models.CharField(max_length=300)
     def __repr__(self):
-        s = self.isbn + ' ' + self.title + ' ' + self.author + ' ' + self.frontcover + ' ' + self.thumbnail
+        s = self.isbn + ' ' + self.title + ' ' + self.author + ' ' + self.frontcover + ' ' + self.thumbnail + ' ' + self.course_list
         return s
 
 # 
@@ -60,7 +66,7 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
     if (course != None):
         isbns = get_course_list(course)
         for object in isbns:
-            newqset = qset.filter(isbn=object)
+            newob = qset.filter(isbn=object)
             for newob in newqset:
                 if thumb == True:
                     thumbpath = base + newob.thumbnail
@@ -115,13 +121,13 @@ def get_auctions(isbn):
     '''
     qset = Auction.objects.filter(isbn=isbn)
     qset = qset.filter(epoch__gt=time.time())
-    auctions = [{'auction_id':object.id,'current_price':object.current_price, 'buy_now_price':object.buy_now_price, 'buyer_id':object.buyer_id,
+    auctions = [{'course':object.course, 'auction_id':object.id, 'current_price':object.current_price, 'buy_now_price':object.buy_now_price, 'buyer_id':object.buyer_id,
                  'seller_id':object.seller_id, 'end_time':object.end_time, 'condition':object.condition, 'description':object.description} for object in qset]
     return auctions
 
 def get_offers(isbn):
     qset = Offer.objects.filter(isbn=isbn)
-    offers = [{'offer_id':object.id, 'buy_price':object.price, 'seller_id':object.seller_id,
+    offers = [{'course':object.course, 'offer_id':object.id, 'buy_price':object.price, 'seller_id':object.seller_id,
              'condition':object.condition, 'description':object.description} for object in qset]
     return offers
 

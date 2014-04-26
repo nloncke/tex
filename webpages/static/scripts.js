@@ -52,16 +52,7 @@ $(document).ready(function()
     trigger:"hover",
     title:"What is this?",
     content:"The auction automatically closes when a student bids this price."
-
-
   });
-
-// called when user clicks a link on results page
-function send_isbn(isbn) {
-  var idstr = '#book_result_' + isbn;
-  $(idstr).submit();
-  return false;
-}
 
   // $('#datetimepicker1').datetimepicker({
   //   language: 'en',
@@ -70,6 +61,12 @@ function send_isbn(isbn) {
 });
 // -----------END OF DOCUMENT.READY-----------
 
+// called when user clicks a link on results page
+function send_isbn(isbn) {
+  var idstr = '#book_result_' + isbn;
+  $(idstr).submit();
+  return false;
+}
 
 //	$('.countdown').countdown({
   //      date: "4/19/14 15:03:26"

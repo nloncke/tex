@@ -41,8 +41,28 @@ $(function () {
 		}		
 	});
 });
-
 </script>
+
+<script type="text/javascript">
+$(function () {
+	$("#sell_form").validate({
+		rules: {
+			course: "required",
+			is_auction:,
+			end_time:,
+			current_price:,
+			price:,
+			picked_condition:,
+			description:,
+			email: {
+				required: true,
+				email: true
+			}
+		}
+	});
+}
+</script>
+
 {% endblock header %}
 
 {% block content %}
