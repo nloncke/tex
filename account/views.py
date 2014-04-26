@@ -3,7 +3,6 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
 import re
 
-<<<<<<< HEAD
 alpha = ["jasala","lauraxu", "nloncke", "yoyeh", "kohemeng",
     "hmccormi", "swatters", "salberti", "fpina", "yunzhil",
     "dkoltuny", "lslosar", "abuddhir", "afyabrou", "cgordon",
