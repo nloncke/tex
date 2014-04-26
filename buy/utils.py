@@ -91,6 +91,7 @@ def notify_users_closed_auctions():
         
         See notify_users_bought and notify_nosale.html as guides
     '''
+    from models import expired_auctions
     expired = expired_auctions()
 
     for object in expired:
