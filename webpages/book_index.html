@@ -171,7 +171,7 @@
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button type="submit" data-toggle="modal" data-target="#confirm_modal_{{offer.offer_id}}"
+                    <button type="submit" data-dismiss="modal"
                     	onclick="document.getElementById('buy_form_{{offer.offer_id}}').submit(); $('#buy_modal_{{offer.offer_id}}').modal('hide'); return false;" class="btn btn-primary">Yes</button>
                     <!-- hidden form to check if offer still there -->
                     <form id="buy_form_{{offer.offer_id}}" name="buy_form" action="/buy/confirm/" method="post"> {% csrf_token %}
@@ -184,27 +184,6 @@
               </div>
             </div>
             <!-- end of buyer's prompt modal -->
-            <!-- buy confirmation modal -->
-            <div class="modal fade" id="confirm_modal_{{offer.offer_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                      <h4 class="modal-title" id="myModalLabel">You bought this book!</h4>
-                  </div>
-                  <div id="confirm_modal_body" class="modal-body">
-                    Sweet! You just bought "{{ book.title }}" from
-                    {{ seller_id }} for ${{ sold_offer.buy_price }}. We've
-                    sent both you and the seller an email detailing
-                    the next steps.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Great</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end of buy confirmation modal -->
 
 
 
