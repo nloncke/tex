@@ -38,7 +38,7 @@ def put_auction(auction):
     import time
     from datetime import datetime
     
-    pattern = '%m/%d/%y %H:%M:%S'
+    pattern = '%m/%d/%y %H:%M'
     epoch = int(time.mktime(time.strptime(auction['end_time'], pattern)))
     auction['epoch'] = epoch
     course = auction.pop('course')
