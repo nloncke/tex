@@ -33,7 +33,8 @@ def buy_confirmation(request):
                 result["sold_offer"] = sold_offer
                 result["seller_id"] = seller_id
                 notify_users_bought(buyer_id, sold_offer)
-        return render(request, "buy_confirmation.html", result)
+        return render(request, "book_index.html", result) # debugging buy confirmation modal
+        # return render(request, "buy_confirmation.html", result)
     return render(request, 'error_page.html')
 
 def bid(request):
