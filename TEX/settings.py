@@ -54,11 +54,10 @@ MIDDLEWARE_CLASSES = (
     'django_cas.middleware.CASMiddleware',
     'account.middleware.Custom403Middleware',
     'account.middleware.LoginRequiredMiddleware',
-#     'django.middleware.doc.XViewMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
-#     'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
     'account.models.PopulatedCASBackend',
 )
 
@@ -86,7 +85,7 @@ CAS_RETRY_LOGIN = True
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'     #For Heroku
+STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
     , os.path.join(BASE_DIR, 'media')
     , os.path.join(BASE_DIR, 'media/static')
@@ -116,16 +115,16 @@ DATABASES = {'default': dj_database_url.config()}
 # https://docs.djangoproject.com/en/1.6/ref/settings/
 #databases
        
-# DATABASES = {
-#     'default': {
-#         'ENGINE':'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'mydatabase',
-#         'USER': 'tex',
-#         'PASSWORD': 'axal@tex',
-#         'HOST': '127.0.0.1',
-#         'PORT': '5432',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE':'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydatabase',
+        'USER': 'tex',
+        'PASSWORD': 'axal@tex',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
+    }
+}
 
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()

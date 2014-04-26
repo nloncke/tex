@@ -21,7 +21,7 @@ def email_users(addrs, html_msg, text_msg,
     frontcover="media" + frontcover
     
     #REMOVE: For local dev
-#     addrs = [from_email if x == "tex@princeton.edu" else x for x in addrs]
+    addrs = [from_email if x == "tex@princeton.edu" else x for x in addrs]
     
     # Create a "related" message container that will hold the HTML 
     # message and the image.
