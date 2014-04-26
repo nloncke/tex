@@ -56,12 +56,11 @@ $(document).ready(function()
 
 
   $("#current_price").change( function()  {
-    $("#price").attr({min: $("#current_price").val()});
+    $("#price").attr({"min": $("#current_price").val()});
   });
 
-  $("#price").change( function()
-  {
-      $("#current_price").attr({max: $("#price").val()});      
+  $("#price").change( function() {
+    $("#current_price").attr({"max": $("#price").val()});      
   });
 });
 
