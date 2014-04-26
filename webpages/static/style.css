@@ -108,9 +108,15 @@ th{
   border: 0 !important;
 }
 
+/*applies to a div that holds everything in the page*/
 .center-page{
   margin:auto;
   width:80%;
+}
+
+/*this class attempts to center all the text within it*/
+.center-all{
+  text-align: center;
 }
 
 .book-info{
