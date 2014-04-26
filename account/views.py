@@ -71,7 +71,7 @@ def login(request):
     from account.models import BookUser, not_registered
     user = auth.authenticate(username="tex", password="axal@tex")
     if not_registered(user):
-        bu = BookUser(user=user, watch_list='', default_search='author', class_year='')
+        bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
         bu.save()  
         auth.login(request, user) 
     return login(request)

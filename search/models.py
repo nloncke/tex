@@ -114,7 +114,7 @@ def get_auctions(isbn):
     we don't have to do that here
     '''
     qset = Auction.objects.filter(isbn=isbn)
-    qset = qset.filter(end_time__lt=time.time())
+    qset = qset.filter(epoch__gt=time.time())
     auctions = [{'auction_id':object.id,'current_price':object.current_price, 'buy_now_price':object.buy_now_price, 'buyer_id':object.buyer_id,
                  'seller_id':object.seller_id, 'end_time':object.end_time, 'condition':object.condition, 'description':object.description} for object in qset]
     return auctions
