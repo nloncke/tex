@@ -9,8 +9,10 @@ def account_index(request):
     from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
     from buy.models import remove_offer, remove_auction
     from sell.utils import get_book_info
-    from book.utils import get_book, notify_users_closed_auctions
+    from book.utils import get_book
     from search.utils import validate_isbn
+    
+    from buy.utils import notify_users_closed_auctions
     notify_users_closed_auctions()
     
     # only post if removing offer
