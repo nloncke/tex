@@ -129,6 +129,9 @@ and GPL-3.0 (http://opensource.org/licenses/GPL-3.0) licenses.
       	if (date.sec > 0 || toprint != "")
       		toprint = toprint + (this.leadingZeros(date.sec)) + " s";
       	
+      	if (toprint == "")
+      		toprint = "Expired";
+      		
       	return $(this.el).html(toprint);    	
       }
     };
