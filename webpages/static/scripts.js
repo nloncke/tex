@@ -47,7 +47,7 @@ $(document).ready(function()
   $("#search_by_isbn").click(set_to_isbn);
   $("#search_by_author").click(set_to_author);
   $("#search_by_course").click(set_to_course);
-
+  
   $("#buy_price_info").popover({
     trigger:"hover",
     title:"What is this?",
