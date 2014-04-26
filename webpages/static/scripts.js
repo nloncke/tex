@@ -68,9 +68,6 @@ function send_isbn(isbn) {
   return false;
 }
 
-
-
-
 //	$('.countdown').countdown({
   //      date: "4/19/14 15:03:26"
     //});
