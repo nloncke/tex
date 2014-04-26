@@ -65,7 +65,7 @@ def edit_offer(offer_id, price = None, condition = None, description = None, cou
             object.description = description
         if course != None:
             object.course = course
-            book = Book.objects.get(object.isbn)
+            book = Book.objects.get(isbn=object.isbn)
             if course not in book.course_list:
                 if book.course_list:
                     book.course_list = book.course_list + ' ' + course
