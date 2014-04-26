@@ -73,7 +73,15 @@
 .media-body > a:visited {color: #110055;}
 .media-body > a:hover {color: rgba(74, 160, 44,.5);}
 
-
+.modal-content {
+	font-family: 'Open Sans';
+	background: url('paper.jpg');
+}
+.modal-header {
+	 border-bottom: none;
+	 height: 40px;
+	 background-color: rgba(74, 160, 44,.25);
+}
 /* style all the input forms on the sell page */
 .sell_form {
   autocomplete: "on";
@@ -87,6 +95,7 @@ body {
    background: url('paper.jpg');
 }
 input, textarea{
+	font-family: 'Open Sans';
     background-color: rgba(118,206,143,.25)
     color: black;
 }

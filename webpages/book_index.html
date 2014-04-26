@@ -90,12 +90,11 @@
 					<div class="modal-content">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					    	<h4 class="modal-title" id="myModalLabel">Bid for {{book.title}}!</h4>
 			 			</div>
 				  		<div class="modal-body">
 				    		<div class="modal-bid">
 				    			 <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="158px" width="128px">
-								 <div class="media-body">
+								 <div class="media-body book-info">
 								     <h3 class="media-heading" style="font-size:28px"><strong>{{book.title}}</strong></h3>
 								     <h2 style="font-size:20px">
 								     	<p>Author(s): {{book.author}}</p>
@@ -107,7 +106,7 @@
 				    			<div class="modalcountdown_{{auction.auction_id}}"><input id="expired_auction_{{auction.auction_id}}"></div>
 				    			<h2><strong>Current Bid</strong></h2>
 				    			<form id="bid_submit_{{auction.auction_id}}" action="/buy/bid/" method="post"> {% csrf_token %}
-				    				<h3>${{auction.current_price}}   + <input id="bid" name="bid" type="text" size="5" value="1" pattern="(^[1-9]$)|(^[1-9]\d$)">
+				    				<h3>${{auction.current_price}}  + <input id="bid" name="bid" type="text" size="2" value="1" pattern="(^[1-9]$)|(^[1-9]\d$)">
 				    				<button type="submit" id="bid_{{auction.auction_id}}" class="btn btn-default translucent_w3" form="bid_submit_{{auction.auction_id}}">BID</button></h3>
 				    				<input id="auction_id" name="auction_id" type="hidden" value="{{auction.auction_id}}">
 				    				<input id="current_price" name="current_price" type="hidden" value="{{auction.current_price}}">
@@ -170,7 +169,6 @@
               	<div class="modal-content">
               		<div class="modal-header">
               			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    	<h4 class="modal-title" id="myModalLabel">Buy this book!</h4>
                  	</div>
                   <div id="buy_modal_body" class="modal-body">
                     Are you sure you want to purchase "{{ book.title }}" for
@@ -178,9 +176,9 @@
                     with you and the seller with relevant contact information.
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-default translucent_w3" data-dismiss="modal">No</button>
                     <button type="submit" data-dismiss="modal"
-                    	onclick="document.getElementById('buy_form_{{offer.offer_id}}').submit(); $('#buy_modal_{{offer.offer_id}}').modal('hide'); return false;" class="btn btn-primary">Yes</button>
+                    	onclick="document.getElementById('buy_form_{{offer.offer_id}}').submit(); $('#buy_modal_{{offer.offer_id}}').modal('hide'); return false;" class="btn btn-default translucent_w3">Yes</button>
                     <!-- hidden form to check if offer still there -->
                     <form id="buy_form_{{offer.offer_id}}" name="buy_form" action="/buy/confirm/" method="post"> {% csrf_token %}
                       <input type="hidden" id="buyer_id" name="buyer_id" value="{{ user }}"/>
@@ -237,17 +235,16 @@
 	<div class="modal-content">
   		<div class="modal-header">
     		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    		<h4 class="modal-title" id="myModalLabel">Follow this book</h4>
   		</div>
   		<div id="follow_modal_body" class="modal-body">
  			Are you sure you want to follow "{{ book.title }}"? We'll email you when there are new offers.
   		</div>
  		<div class="modal-footer">
     		<form id="follow_book" action="/book/follow/" method="post"> {% csrf_token %}
-          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-default translucent_w3" data-dismiss="modal">No</button>
     			<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
         		<button type="submit" name="book_isbn" value="{{ book.isbn}}"
-        			data-dismiss="modal" onclick="document.getElementById('follow_book').submit(); return false;" class="btn btn-primary">Yes
+        			data-dismiss="modal" onclick="document.getElementById('follow_book').submit(); return false;" class="btn btn-default translucent_w3">Yes
         		</button>
     		</form>
   		</div>
@@ -260,17 +257,16 @@
 	<div class="modal-content">
   		<div class="modal-header">
     		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    		<h4 class="modal-title" id="myModalLabel">Unfollow this book</h4>
   		</div>
   		<div id="follow_modal_body" class="modal-body">
  			Are you sure you want to unfollow "{{ book.title }}"?
   		</div>
  		<div class="modal-footer">
     		<form id="unfollow_book" action="/book/unfollow/" method="post"> {% csrf_token %}
-          <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+          <button type="button" class="btn btn-default translucent_w3" data-dismiss="modal">No</button>
     			<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
         		<button type="submit" name="book_isbn" value="{{ book.isbn}}"
-        			data-dismiss="modal" onclick="document.getElementById('unfollow_book').submit(); return false;" class="btn btn-primary">Yes
+        			data-dismiss="modal" onclick="document.getElementById('unfollow_book').submit(); return false;" class="btn btn-default translucent_w3">Yes
         		</button>
     		</form>
   		</div>
