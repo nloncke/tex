@@ -1,8 +1,10 @@
 {% extends "base_topsearch.html" %}
 {% block header %}
+<script type="text/javascript" src="/static/jquery.validate.min.js"></script>
 <link href="/static/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <script type="text/javascript" src="/static/moment.min.js"></script>
 <script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
+<script src="http://jquery.bassistance.de/validate/additional-methods.js"></script>
 <script type="text/javascript">
 $(function () {
     $('#datetimepicker').datetimepicker({
@@ -46,24 +48,29 @@ $(function () {
 });
 </script>
 
+
 <script type="text/javascript">
 $(function () {
 	$("#sell_form").validate({
 		rules: {
 			current_price: {
 				depends: function(element) {
-					return $("#is_auction:checked")
-				}
-
-			}
-			price: {
-				min: current_price
+					return $("#is_auction").prop("checked")
+				},
 			},
+			price: {
+				min: $("#current_price").prop("value"),
+				customvalidation: true
+			}
 		}
 	});
-}
-</script>
 
+	$.validator.addMethod("customvalidation",
+		function(value, element, params) {
+			return this.optional(element) || value == params[0] + params[1];
+		}, jQuery.validator.format("Please enter the correct value for {0} + {1}"));
+});
+</script>
 {% endblock header %}
 
 {% block content %}
@@ -154,4 +161,5 @@ $(function () {
 
 {% endif %}
 </div>
+
 {% endblock content %}
