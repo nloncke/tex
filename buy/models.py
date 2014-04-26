@@ -3,13 +3,16 @@ from account.models import *
 import time
 from django.db.transaction import atomic
 
-def remove_offer(offer_id):
+def remove_offer(offer_id, buyer_id=""):
     '''
     Returns the isbn, seller id and price of the given offer
     Also deletes it from database
     '''
     try:    
         object = Offer.objects.get(id=offer_id)
+        # To prevent cheating
+        if object.seller_id == buyer_id:
+            return None
         d =  { 'isbn': object.isbn, 'seller_id':object.seller_id, 'price':object.price }
         object.delete()
         return d
@@ -18,7 +21,7 @@ def remove_offer(offer_id):
     
     
 @atomic
-def remove_auction(auction_id, buy_now=False):
+def remove_auction(auction_id, buy_now=False, buyer_id=""):
     '''
     Delete the given auction from the database
     If buy_now, returns the isbn, seller id, and buy_now_price of the given auction.
@@ -27,6 +30,10 @@ def remove_auction(auction_id, buy_now=False):
     '''
     try: 
         object = Auction.objects.get(id=auction_id)
+        # To prevent cheating
+        if object.seller_id == buyer_id:
+            return None
+        
         d = {'isbn': object.isbn, 'seller_id':object.seller_id}
         if buy_now:
             d['price'] = object.buy_now_price

@@ -14,7 +14,10 @@ def buy_confirmation(request):
             if request.method == "POST":
                 auction_id = request.POST.get("auction_id","0")
                 buyer_id = request.user.username
-                sold_auction = remove_auction(auction_id, True)
+                sold_auction = remove_auction(auction_id, True, buyer_id=buyer_id)
+                if sold_auction == None:
+                    return render(request, 'nocheating.html', {'buyer_id':buyer_id})
+                    
                 if sold_auction:
                     isbn = sold_auction["isbn"]
                     seller_id = sold_auction["seller_id"]
@@ -25,7 +28,9 @@ def buy_confirmation(request):
         else:
             offer_id = request.POST.get("offer_id", "0")
             buyer_id = request.user.username
-            sold_offer = remove_offer(offer_id)
+            sold_offer = remove_offer(offer_id, buyer_id=buyer_id)
+            if sold_offer == None:
+                    return render(request, 'nocheating.html', {'buyer_id':buyer_id})
             if sold_offer:
                 isbn = sold_offer["isbn"]
                 seller_id = sold_offer["seller_id"]
