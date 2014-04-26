@@ -10,6 +10,7 @@ from django.template.loader import render_to_string
 from_email =  settings.EMAIL_HOST_USER
 
 TEXT_STUB = '%s has just purchased %s from %s for $%s. Please follow up with each other to seal the deal.'
+SAD_STUB = 'Your auction of %s has expired. If you like, you can attempt sell or auction it again.'
 
 def email_users(addrs, html_msg, text_msg, 
                 frontcover="/static/frontcover_default.jpg",
@@ -78,8 +79,8 @@ def notify_users_bought(buyer, offer):
 def notify_users_closed_auctions():
     '''
     This function is called to clean up closed auctions
-    
-    TODO: Get all expired auctions
+    Get all expired auctions
+ 
     for each auction:
         Check if there exists a highest bidder.
         
@@ -88,17 +89,31 @@ def notify_users_closed_auctions():
         Otherwise, inform the seller of the bad news. 
         And that the auctions is closed and has been removed.
         
-        See notify_users_bought and notifty_nosale.html as guides
+        See notify_users_bought and notify_nosale.html as guides
     '''
+    expired = expired_auctions()
+
+    for object in expired:
+        offer = {'course':object.course, 'offer_id':object.id, 'price':object.current_price, 'seller_id':object.seller_id,'condition':object.condition, 'description':object.description}
+        if object.buyer_id:
+            notify_user_bought(object.buyer_id, offer)
+        else:
+            seller_email = "%s@princeton.edu" % offer["seller_id"]
     
+            book = get_book_info(isbn=offer["isbn"], thumb = False)
+            if book:
+                book = book[0]
+            else:
+                return {}
+     
+            text_msg = SAD_STUB % book["title"]
+            offer["title"] = book["title"]
+            html_msg = render_to_string("notify_nosale.html", offer)
     
-    
-    
-    
-    
-    
-    
-    pass
+            email_users([seller_email], html_msg, text_msg, book["frontcover"], 
+                 "Auction Expired")
+  
+    return book
 
 
 
