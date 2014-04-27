@@ -80,20 +80,25 @@ def sell_edit_submit(request):
     from buy.models import edit_offer, edit_auction
     result = {}
     if request.method == 'POST':
-        is_auction = request.POST.get("is_auction", "")
-        offer_id = request.POST.get("offer_id", "0")
-        course = request.POST.get("course", "0")
-        condition = request.POST.get("picked_condition", "0")
-        description = request.POST.get("description", "0")
-        if is_auction:
-            auction_id=offer_id
-            edit_auction(auction_id=auction_id, course=course, condition=condition, description=description)
+        isbn = request.POST.get("target_isbn", "0")
+        if validate_isbn(isbn=isbn):
+            is_auction = request.POST.get("is_auction", "")
+            offer_id = request.POST.get("offer_id", "0")
+            course = request.POST.get("course", "0")
+            condition = request.POST.get("picked_condition", "0")
+            description = request.POST.get("description", "0")
+            if is_auction:
+                auction_id=offer_id
+                edit_auction(auction_id=auction_id, course=course, condition=condition, description=description)
+            else:
+                price = request.POST.get("price" , "0")
+                edit_offer(offer_id=offer_id, price=price, course=course, condition=condition, description=description)
+                
+            result["offer_id"] = offer_id
+            result["is_auction"] = is_auction
+            result["isbn"] = isbn
+            return render(request, 'sell_submit.html', result) 
         else:
-            price = request.POST.get("price" , "0")
-            edit_offer(offer_id=offer_id, price=price, course=course, condition=condition, description=description)
-            
-        result["offer_id"] = offer_id
-        result["is_auction"] = is_auction
-        return render(request, 'sell_submit.html', result)      
+            return render(request, "error_page.html")     
     else:
         return render(request, "error_page.html")  
