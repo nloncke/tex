@@ -2,7 +2,11 @@
 {% block content %}
 <div class="jumbotron" id="message">
   <h1>Hi, {{buyer_id}}!</h1>
+  {% if error %}
   <h2>Sorry, you can't bid on or buy your own book.</h2>
+  {% else %}
+  <h2>You are currently the highest bidder, so you cannot bid again.</h2>
+  {% endif %}
 </div>
 
 {% endblock content %}

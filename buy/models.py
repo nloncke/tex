@@ -109,8 +109,7 @@ def edit_auction(auction_id, condition = None, description = None, course = None
         print "Error Auction id %d should exist" % auction_id
     except Auction.MultipleObjectsReturned:
         print "Error Auction id %d should be unique" % auction_id
-
-
+    
 @atomic
 def bid_auction(auction_id, current_price, buyer_id):
     ''' Update current_price of auction after bid
@@ -119,7 +118,9 @@ def bid_auction(auction_id, current_price, buyer_id):
     try:
         object = Auction.objects.get(id=auction_id)
         if object.seller_id == buyer_id:
-            return -1
+            return 1
+        if object.buyer_id == buyer_id:
+            return 2
         if object.current_price < current_price:
             object.current_price = current_price    
             object.buyer_id = buyer_id

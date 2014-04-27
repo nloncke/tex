@@ -28,7 +28,7 @@ def buy_confirmation(request):
             buyer_id = request.user.username
             sold_offer = remove_offer(offer_id, buyer_id=buyer_id)
             if sold_offer == None:
-                    return render(request, 'nocheating.html', {'buyer_id':buyer_id})
+                return render(request, 'nocheating.html', {'buyer_id':buyer_id, 'error':"cheating"})
             if sold_offer:
                 isbn = sold_offer["isbn"]
                 seller_id = sold_offer["seller_id"]
@@ -53,7 +53,9 @@ def bid(request):
         bid = request.POST.get("bid", "0")
         new_bid = int(current_price) + int(bid)
         new_current_price = bid_auction(auction_id=auction_id, current_price=new_bid, buyer_id=buyer_id)
-        if new_current_price == -1:
+        if new_current_price == 1:
+            return render(request, 'nocheating.html', {'buyer_id':buyer_id, 'error':"cheating"})
+        if new_current_price == 2:
             return render(request, 'nocheating.html', {'buyer_id':buyer_id})
         isbn = get_auction_isbn(auction_id=auction_id)
         result = get_book(isbn=isbn)
