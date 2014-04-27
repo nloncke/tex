@@ -62,6 +62,13 @@ $(document).ready(function()
   $("#price").change( function() {
     $("#current_price").attr({"max": $("#price").val()});      
   });
+  
+  $("#bid").change( function() {
+  	var current_price = $("#current_price").val();
+  	var buy_now_price = $("#buy_now_price").val();
+  	$("#bid").attr({"max":buy_now_price - current_price - 1 });
+  });
+  	
 });
 
 // -----------END OF DOCUMENT.READY-----------

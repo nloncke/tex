@@ -3,14 +3,14 @@
 {% if sold_offer %}
 <div class="jumbotron" id="message">
   <h1>Thanks!</h1>
-  <h2> You just bought <a href="/book/?isbn={{auction.isbn}}">{{ book.title }}</a> from
+  <h2> You just bought <a href="/book/?isbn={{sold_offer.isbn}}">{{ book.title }}</a> from
       {{ seller_id }} for ${{ sold_offer.price }}. Check your email for more info. </h2>
 </div>
 
 {% else %}
 <div class="jumbotron" id="message">
   <h1>Oh no!</h1>
-  <h2> Someone else must have bought <a href="/book/?isbn={{auction.isbn}}">{{ book.title }}</a> from this
+  <h2> Someone else must have bought <a href="/book/?isbn={{sold_offer.isbn}}">{{ book.title }}</a> from this
           seller just a second before you. Consider choosing from the
           remaining offers. </h2>
 </div>

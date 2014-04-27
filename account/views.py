@@ -7,8 +7,13 @@ alpha = ["jasala","lauraxu", "nloncke", "yoyeh", "kohemeng",
     "hmccormi", "swatters", "salberti", "fpina", "yunzhil",
     "dkoltuny", "lslosar", "abuddhir", "afyabrou", "cgordon",
     "mmedward", "lberdick", "morgant", "echeruiy", "ethill",
+<<<<<<< HEAD
     "rdaker", "mwirth", "gdsheppe", "jgsamuel", "pmoon", "aabdelaz"
     , "splichte"]
+=======
+    "rdaker", "mwirth", "gdsheppe", "jgsamuel", "pmoon", "aabdelaz",
+    "sgichohi"]
+>>>>>>> d641b31cb429c6d7735f30292674c31b7642c1cb
 
 def account_index(request):
     from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
