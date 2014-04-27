@@ -2,14 +2,14 @@
 {% block content %}
 {% if is_unfollow %}
 <div class="jumbotron" id="message">
-  <h2> You have just unfollowed <a href="/book/?isbn={{book.isbn}}">"{{ book.title }}"</a>.</h2>
+  <h2> You have just unfollowed <a href="/book/?isbn={{book.isbn}}">{{ book.title }}</a>.</h2>
 </div>
 
 
 
 {% else %}
 <div class="jumbotron" id="message">
-  <h2> You just followed <a href="/book/?isbn={{book.isbn}}">"{{ book.title }}"</a>. We'll email you with price updates.</h2>
+  <h2> You just followed <a href="/book/?isbn={{book.isbn}}">{{ book.title }}</a>. We'll email you with price updates.</h2>
 </div>
 
 

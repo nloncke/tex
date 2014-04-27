@@ -14,7 +14,7 @@
 	<div class="media-body">
 		<h3 class="media-heading" style="font-size:36px;"><strong>My Account</strong>
 		<button id="update_profile" data-toggle="modal"	data-target="#profile_modal"
-		        class="btn btn-default translucent_w3">
+		        class="btn btn-default translucent_button">
 			<span><strong>Update profile</strong></span>
 		</button>
 	    </h3>
@@ -35,11 +35,11 @@
 	         	<tr>
 	         		<form id="edit_{{offer.offer_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
 	     				<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}"/>
-	         			<td><button type="submit" id="edit_{{offer.offer_id}}" form="edit_{{offer.offer_id}}" class="btn btn-default translucent_w3">
+	         			<td><button type="submit" id="edit_{{offer.offer_id}}" form="edit_{{offer.offer_id}}" class="btn btn-default translucent_button">
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>
 	    			</form>
-    				<td><button type="submit" id="remove_{{offer.offer_id}}" data-toggle="modal" data-target="#remove_modal_{{offer.offer_id}}" class="btn btn-default translucent_w3">
+    				<td><button type="submit" id="remove_{{offer.offer_id}}" data-toggle="modal" data-target="#remove_modal_{{offer.offer_id}}" class="btn btn-default translucent_button">
               			<span><strong>REMOVE</strong></span>
     				</button></td>
 	         		<td><a href="/book/?isbn={{offer.isbn}}">{{offer.title}}</a></td>
@@ -52,12 +52,12 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Remove this book</h4></div>
                   <div id="remove_modal_body" class="modal-body">
-                    Are you sure you want to remove "{{offer.title}}"?</div>
+                    Are you sure you want to remove {{offer.title}}?</div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-default translucent_button" data-dismiss="modal">No</button>
                     <button type="submit" name="remove_book" value="{{offer.offer_id}}"
                     	onclick="document.getElementById('remove_{{offer.offer_id}}').submit(); return false;"
-                    	data-dismiss="modal" class="btn btn-primary" form="remove_{{offer.offer_id}}">Yes</button>
+                    	data-dismiss="modal" class="btn btn-default blue_button" form="remove_{{offer.offer_id}}">Yes</button>
 	                <form id="remove_{{offer.offer_id}}" action="/account/remove/" method="post"> {% csrf_token %}
                     	<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}">
                     	<input type="hidden" id="offers" name="offers" value="{{offers}}">
@@ -87,7 +87,7 @@
 	         		<form id="edit_{{auction.auction_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
 	     				<input type="hidden" id="offer_id" name="offer_id" value="{{auction.auction_id}}"/>
 	     				<input type="hidden" id="is_auction" name="is_auction" value="true"/>
-	         			<td><button type="submit" id="edit_{{auction.auction_id}}" form="edit_{{auction.auction_id}}" class="btn btn-default translucent_w3">
+	         			<td><button type="submit" id="edit_{{auction.auction_id}}" form="edit_{{auction.auction_id}}" class="btn btn-default translucent_button">
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>
 	    			</form>
@@ -123,15 +123,36 @@
 	     		<th>Auction Price</th>
 	     		{% for follow in follows %}
 	         	<tr>
-	    			<td><button type="submit" id="remove" class="btn btn-default translucent_w3" form="unfollow_{{follow.book.isbn}}"><span><strong>UNFOLLOW</strong></span></button></td>
-	    			<form id="unfollow_{{follow.book.isbn}}" action="/account/unfollow/" method="post">{% csrf_token %}
-	    				<input type="hidden" id="action" name="action" value="unfollow">
-                    	<input type="hidden" id="target_isbn" name="target_isbn" value="{{follow.book.isbn}}">
-	    			</form>
+	    			<td><button type="submit" id="unfollow_{{follow.book.isbn}}" data-toggle="modal" data-target="#unfollow_modal_{{follow.book.isbn}}"
+	    				class="btn btn-default translucent_button" form="unfollow_{{follow.book.isbn}}"><span><strong>UNFOLLOW</strong></span></button></td>
 	         		<td><a href="/book/?isbn={{follow.book.isbn}}">{{follow.book.title}}</a></td>
 	         		<td>{% if follow.min_offer %}${{follow.min_offer.buy_price}}{% else %}No offers{% endif %}</td>
 	         		<td>{% if follow.min_auction %}${{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
 	         	</tr>
+	         	<!-- unfollow modal -->
+				<div class="modal fade" id="unfollow_modal_{{follow.book.isbn}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				  <div class="modal-dialog">
+					<div class="modal-content">
+				  		<div class="modal-header">
+				    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				  		</div>
+				  		<div id="follow_modal_body" class="modal-body">
+				 			Are you sure you want to unfollow {{follow.book.title}}?
+				  		</div>
+				 		<div class="modal-footer">
+				 			<form id="unfollow_{{follow.book.isbn}}" action="/account/unfollow/" method="post">{% csrf_token %}
+				 				<button type="button" class="btn btn-default translucent_button" data-dismiss="modal">No</button>
+								<input type="hidden" id="action" name="action" value="unfollow">
+				            	<input type="hidden" id="target_isbn" name="target_isbn" value="{{follow.book.isbn}}">
+				            	<button type="submit" name="book_isbn" value="{{ book.isbn}}"
+				        			data-dismiss="modal" onclick="document.getElementById('unfollow_{{follow.book.isbn}}').submit(); return false;" class="btn btn-default blue_button">Yes
+				        		</button>
+					    	</form>
+				  		</div>
+					</div>
+				  </div>
+				</div>
+				<!-- end of follow prompt modal -->
 	         {% endfor %}
 	         </table>
 	     {% else %}
@@ -142,8 +163,6 @@
       </div>
 </div>
 </div>
-
-
 
 <!--   FOR UPDATING YOUR PROFILE -->
 
@@ -172,7 +191,7 @@
 			    </div>
 			</form>
 			<div class="modal-footer">
-				<button type="submit" id="submit" class="btn btn-default translucent_w3" form="profile_form">
+				<button type="submit" id="submit" class="btn btn-default blue_button" form="profile_form">
 			    	<span>Update</span>
 				</button>
 			 </div>
