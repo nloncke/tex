@@ -61,21 +61,20 @@
 		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		  		</div>
 		  		<div id="sell_modal_body" class="modal-body">
-		 			<form id="sell_form" name="sell_form" action="/sell/" method="get">
+		 			<form id="sell_form" role="form" class="form-inline" name="sell_form" action="/sell/" method="get">
+		 			<h2>
 		 			<div class="form-group">
-						<label for="course" class="col-sm-2 control-label" style="text-align:left">ISBN:</label>
-						<div class="col-sm-10">
-							<input id="isbn" name="isbn" class="form-control" style="width:150px" type="text" required 
+						<label for="isbn"  style="text-align:left">ISBN:</label>
+							<input id="isbn" name="isbn" class="form-control" style="width:200px" type="text" required 
 							pattern:"(^(( )*([0-9]-?){9}[0-9Xx]( )*)$)|(^(( )*(97[89]-?([0-9]-?){9}[0-9])( )*)$)"
 							title="Enter a valid isbn">
- 						</div>
-							
-					</div>
+							<button type="submit" id="submit" class="btn btn-default blue_button" style="display:inline" >
+			    	<span>SELL</span>
+					</button>									
+					</div>					
+					</h2>	
 					</form>
-					<button type="submit" class="btn btn-default blue_button"
-					 onclick="document.getElementById('sell_form').submit(); return false;">
-							<span><strong>SELL</strong></span>
-			      	</button>
+					
 				</div>
 			</div>
 		  </div>
