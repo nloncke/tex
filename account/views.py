@@ -52,10 +52,10 @@ def account_index(request):
                        "isbn":seller_auction.isbn, "end_time":seller_auction.end_time})
     
     follow_isbns = get_follow_list(user=user)   
-
-    min_offer = {}
-    min_auction = {}
+    
     for isbn in follow_isbns:
+        min_offer = {}
+        min_auction = {}
         if isbn:
             book_info = get_book(isbn=isbn)
             offers = book_info["offers"]

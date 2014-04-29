@@ -129,6 +129,7 @@
 	         		<td>{% if follow.min_offer %}${{follow.min_offer.buy_price}}{% else %}No offers{% endif %}</td>
 	         		<td>{% if follow.min_auction %}${{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
 	         	</tr>
+	         	
 	         	<!-- unfollow modal -->
 				<div class="modal fade" id="unfollow_modal_{{follow.book.isbn}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
@@ -144,7 +145,7 @@
 				 				<button type="button" class="btn btn-default translucent_button" data-dismiss="modal">No</button>
 								<input type="hidden" id="action" name="action" value="unfollow">
 				            	<input type="hidden" id="target_isbn" name="target_isbn" value="{{follow.book.isbn}}">
-				            	<button type="submit" name="book_isbn" value="{{ book.isbn}}"
+				            	<button type="submit" name="book_isbn" value="{{ follow.book.isbn}}"
 				        			data-dismiss="modal" onclick="document.getElementById('unfollow_{{follow.book.isbn}}').submit(); return false;" class="btn btn-default blue_button">Yes
 				        		</button>
 					    	</form>
