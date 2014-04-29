@@ -9,9 +9,9 @@ def sell_form(request):
         isbn = request.GET.get("isbn","0")
         if validate_isbn(isbn=isbn):
             isbn = convert_to_13(isbn=isbn)
-            result = search_by_isbn(isbn, False)["books"]
-            if result:
-                result["book"] = result[0]
+            results = search_by_isbn(isbn, False)["books"]
+            if results:
+                result["book"] = results[0]
                 return render(request, 'sell_form.html', result)
             else:
                 return render(request, 'search_empty.html', {"query": isbn})

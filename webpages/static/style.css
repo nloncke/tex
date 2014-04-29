@@ -5,10 +5,7 @@
 /*formatting the entire welcome header*/
 #banner {
 	background-color: inherit;
-	top: 10%;
-	margin-left: 15%;
-   	margin-right: 15%;
-	width: 70%;
+	outline:solid white thick;
 
 }
 
@@ -20,20 +17,41 @@
    	/*color: #FFFFFF;  alternate colors: water, aliceblue, azure */
    	color: rgba(0, 128, 128,.7);
    	text-shadow: 2px 2px 3px rgba(251, 246, 217,1);
+   	border:solid green thick;
 
 }
 
 /*positions the entire search bar on the homepage*/
 #homesearch {
-	top:  48%;
-	left: 15%;
-	width: 70%;
+	/*top:  48%;
+	left: 15%; */
+	width: auto;
+	max-width: 800px;
+	border:solid blue thick;
 }
+
+/* For homepage */
+.outter_center {
+	border:solid black thick;
+	margin-top: 10%;
+	height:auto;
+}
+
+.inner_center {
+	border:solid yellow thick;
+}
+
+
+
 
 /*positions the search bar on subsequent pages
 .topsearch {
 	width: 70%;
 }
+
+
+
+
 
 /*Prevent the width of the dropdown button from changing on click*/
 #search_by{
@@ -91,9 +109,16 @@
 /* For the background of the pages */
 body {
     /*background-color:#c1cdd5;*/
-   padding-top: 30px;
+   padding-top: 40px;
    background: url('paper.jpg');
+   min-height:100%;
 }
+
+html {
+	height:100%;
+}
+
+
 input, textarea{
 	font-family: 'Open Sans';
     background-color: rgba(118,206,143,.25)
@@ -161,12 +186,12 @@ th{
 }
 .blue_button{
 	background-color:rgba(0, 128, 128,.2);
-	font-weight:bold;	
+	font-weight:bold;
    	box-shadow:inset 0 0 3px rgba(0, 128, 128,.45);
 }
 .translucent_button{
 	background-color: rgba(255,255,255,.4);
-	font-weight:bold;	
+	font-weight:bold;
    	box-shadow:inset 0 0 3px rgba(0,0,0,.3);
 }
 /* Three different shades of translucence for black*/
@@ -195,4 +220,5 @@ a:hover {color: rgba(74, 160, 44,.6);}
 .debug {
 	border:solid red thick;
 }
+
 

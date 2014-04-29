@@ -1,12 +1,12 @@
 {% extends "base.html" %}
-{% block header %}
-{% endblock header %}
 {% block body %}
-	<div class="jumbotron" id="banner">
-		<h1> <p class="text-center" id="welcome">tex</p>
-		</h1>
-	</div>
-	<div class="container", id="homesearch">
+<div class="outter_center">
+	<div class="inner_center">
+		<div class="jumbotron" id="banner">
+			<h1> <p class="text-center" id="welcome">tex</p>
+			</h1>
+		</div>
+		<div class="container", id="homesearch">
 		<form id="search_form" action="/search/title/" method="post"> {% csrf_token %}
 			<div class="input-group input-group-lg">
 				<div class="input-group-btn">
@@ -38,6 +38,8 @@
 			</div>
 		</form>
 	</div>
+	</div>
+</div>
 {% endblock body %}
 
 

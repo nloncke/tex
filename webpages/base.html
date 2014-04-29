@@ -25,7 +25,7 @@
  	});
   </script>
 </head>
-<body>
+<body class="debug">
     {% block navbar %}
     <nav class="navbar navbar-default navbar-inverse navbar-fixed-top translucent_b1" role="navigation" style="border-bottom:none">
         <div class="navbar-header navbar-right">
@@ -65,16 +65,16 @@
 		 			<h2>
 		 			<div class="form-group">
 						<label for="isbn"  style="text-align:left">ISBN:</label>
-							<input id="isbn" name="isbn" class="form-control" style="width:200px" type="text" required 
+							<input id="isbn" name="isbn" class="form-control" style="width:200px" type="text" required
 							pattern:"(^(( )*([0-9]-?){9}[0-9Xx]( )*)$)|(^(( )*(97[89]-?([0-9]-?){9}[0-9])( )*)$)"
 							title="Enter a valid isbn">
 							<button type="submit" id="submit" class="btn btn-default blue_button" style="display:inline" >
 			    	<span>SELL</span>
-					</button>									
-					</div>					
-					</h2>	
+					</button>
+					</div>
+					</h2>
 					</form>
-					
+
 				</div>
 			</div>
 		  </div>
