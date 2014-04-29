@@ -10,7 +10,7 @@ from django.template.loader import render_to_string
 from_email =  settings.EMAIL_HOST_USER
 
 TEXT_STUB = '%s has just purchased %s from %s for $%s. Please follow up with each other to seal the deal.'
-SAD_STUB = 'Your auction of %s has expired. If you like, you can attempt sell or auction it again.'
+SAD_STUB = 'Hello %s,\nYour auction of %s has expired. You are welcome to auction it again or offer at a fixed price.'
 
 def email_users(addrs, html_msg, text_msg, 
                 frontcover="/static/frontcover_default.jpg",
@@ -108,8 +108,11 @@ def notify_users_closed_auctions():
                 book = book[0]
             else:
                 return {}
+            
+            book["seller_id"] = object.seller_id
      
-            text_msg = SAD_STUB % book["title"]
+            # Add the user name to reduce spam count
+            text_msg = SAD_STUB % (object.seller_id, book["title"])
             html_msg = render_to_string("notify_nosale.html", book)
     
             email_users([seller_email], html_msg, text_msg, book["frontcover"], 
