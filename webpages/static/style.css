@@ -107,6 +107,15 @@ p, h1, h2, h3, h4{
   /*font-family: 'ABeeZee', sans-serif;*/
 	font-family: 'Open Sans';
 }
+h3 {
+	font-size: 16px;
+}
+h2{
+	font-size: 20px;
+}
+h1 {
+	font-size: 28px;
+}
 th{
 	font-size:24px;
  	border-top: none;
@@ -123,11 +132,8 @@ th{
   width:80%;
 }
 
-/*this class attempts to center all the stuff within it*/
-div.center-all{
-  text-align: center;
-  vertical-align: middle;
-}
+
+
 /*beware: specific to displaying the book! */
 /*img.center-all{
   display: block;
@@ -135,10 +141,6 @@ div.center-all{
   margin-right: auto;
 }
 */
-.book-info{
-  padding-left:2%;
-  padding-top:0.25%;
-}
 
 .modal-dialog, .modal-header{
 	font-family: 'Open Sans';

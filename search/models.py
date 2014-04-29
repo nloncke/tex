@@ -96,7 +96,8 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
                     f.write(object.coverbytes)
         books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.frontcover, 'pub_date':object.pub_date} for object in qset]
 
-    return books
+    sorted_books = sorted(books, key=lambda k: k['title']) 
+    return sorted_books
 
 # get isbns
 def get_course_list(course):
