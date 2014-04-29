@@ -97,7 +97,7 @@ $(function () {
 			<label for="current_price" class="col-sm-2 control-label">Start Price ($):</label>
 			<div class="col-sm-10">
 				<input id="current_price" name="current_price" class="form-control" style="width:150px" type="number"
-				 pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 10"/>
+				 min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g 10"/>
 			</div>
 		</div>
 		<div class="form-group" style="padding-left:30%">
@@ -107,7 +107,7 @@ $(function () {
 			</div>
 			<div class="col-sm-10">
 				<input id="price" name="price" class="form-control" type="number" style="width:150px"
-				required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
+				required min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
 
 			</div>
 		</div>
