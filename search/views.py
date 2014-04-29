@@ -37,6 +37,7 @@ def title(request):
             books = search_by_title(query=title)
             if books["books"]:
                 books["query"] = title
+                books["search_length"] = len(books["books"])
                 return render(request, 'search_results.html', books)
             else:
                 return render(request, 'search_empty_prompt.html', {"query": title})
