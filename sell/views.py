@@ -9,7 +9,7 @@ def sell_form(request):
         isbn = request.GET.get("isbn","0")
         if validate_isbn(isbn=isbn):
             isbn = convert_to_13(isbn=isbn)
-            result["book"] = search_by_isbn(query=isbn, False)["books"][0]              
+            result["book"] = search_by_isbn(isbn, False)["books"][0]              
             return render(request, 'sell_form.html', result)    
         else:
             return render(request, "error_page.html") 
