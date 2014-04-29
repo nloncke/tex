@@ -34,15 +34,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
             </button>
 	        <div class="collapse navbar-collapse navbar-right" id="collapse">
 	        	<ul class="nav navbar-nav">
-	            	<li><a href="/">Home</a></li>
+	            	<li><a href="/">home</a></li>
+	            	<li><a href="" data-toggle="modal" data-target="#sell_modal">sell</a></li>
 						{% if user.is_authenticated %}
 	            	<li><a href="/account/">{{user}}</a></li>
-	            	<li><a href="/account/logout/"> Logout</a></li>
+	            	<li><a href="/account/logout/"> logout</a></li>
 	            		{% else %}
-					<li><a href="/account/login/">Login</a></li>
+					<li><a href="/account/login/">login</a></li>
 					{% endif %}
 	            </ul>
 	        </div>
@@ -50,9 +52,34 @@
 	            {% block topsearch %}
 				{% endblock topsearch %}
 			</div>
-
 		</div>
     </nav>
+    <div class="modal fade" id="sell_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			<div class="modal-content">
+		  		<div class="modal-header">
+		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  		</div>
+		  		<div id="sell_modal_body" class="modal-body">
+		 			<form id="sell_form" name="sell_form" action="/sell/" method="get">
+		 			<div class="form-group">
+						<label for="course" class="col-sm-2 control-label" style="text-align:left">ISBN:</label>
+						<div class="col-sm-10">
+							<input id="isbn" name="isbn" class="form-control" style="width:150px" type="text" required 
+							pattern:"(^(( )*([0-9]-?){9}[0-9Xx]( )*)$)|(^(( )*(97[89]-?([0-9]-?){9}[0-9])( )*)$)"
+							title="Enter a valid isbn">
+ 						</div>
+							
+					</div>
+					</form>
+					<button type="submit" class="btn btn-default blue_button"
+					 onclick="document.getElementById('sell_form').submit(); return false;">
+							<span><strong>SELL</strong></span>
+			      	</button>
+				</div>
+			</div>
+		  </div>
+	</div>
 	{% endblock navbar %}
 
 	{% block body %}
