@@ -117,10 +117,23 @@ def notify_users_closed_auctions():
     return
 
 
-
+def notify_old_bidder(old_buyer, result):
+    '''Notify the old bidder that they have been outbid '''
+    
+    to_addr = old_buyer + "@princeton.edu"
+    
+    html_msg = render_to_string("notify_outbid.html", result)
+    text_msg = "You've been outbid in the auction for %s. \
+    The new price is $%s.\n Auction ends on %s." % (result["title"], 
+        result["current_price"], result["end_time"])
+    
+    email_users([to_addr], html_msg, text_msg, result["frontcover"], 
+                "You've been outbid")
+    
     
 
 if __name__ == "__main__":
     import sys
-    notify_users(sys.argv[1], {"seller_id":"jasala", "price": "700", "title":"The Practice of Programming",
-                                 "isbn":"9780393979503"})
+    notify_old_bidder(sys.argv[1], {"seller_id":"jasala", "price": "700", 
+        "title":"The Practice of Programming", "frontcover":"/static/frontcover_9780393979503.jpg",
+         "end_time":"4/30/14 11:09", "current_price":"56", "isbn":"9780393979503"})

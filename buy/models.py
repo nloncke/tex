@@ -118,14 +118,15 @@ def bid_auction(auction_id, current_price, buyer_id):
     try:
         object = Auction.objects.get(id=auction_id)
         if object.seller_id == buyer_id:
-            return 1
+            return 1, None, {}
         if object.buyer_id == buyer_id:
-            return 2
+            return 2, None, {}
         if object.current_price < current_price:
             object.current_price = current_price    
-            object.buyer_id = buyer_id
+            object.buyer_id, old_buyer = buyer_id, object.buyer_id
             object.save()
-        return object.current_price
+        return object.current_price, old_buyer, {"isbn":object.isbn, 
+              "end_time":object.end_time}
     except Auction.DoesNotExist:
         print "Error Auction id %d should exist" % auction_id
     except Auction.MultipleObjectsReturned:
