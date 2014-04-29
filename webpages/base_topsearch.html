@@ -2,6 +2,7 @@
 {% block title %}tex{% endblock title %}
 
 {% block topsearch %}
+<div class="navbar-form">
   <form id="search_form" action="/search/title/" method="post">   {% csrf_token %}
 	 <div class="input-group">
 	    <div class="input-group-btn">
@@ -33,6 +34,7 @@
 	    </div>
 	 </div>
  </form>
+</div>
 {% endblock topsearch %}
 
 
