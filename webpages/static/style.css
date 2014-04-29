@@ -34,17 +34,6 @@
 	height:auto;
 }
 
-
-
-/*positions the search bar on subsequent pages
-.topsearch {
-	width: 70%;
-}
-
-
-
-
-
 /*Prevent the width of the dropdown button from changing on click*/
 #search_by{
     width: 100px;
@@ -68,9 +57,9 @@
    background-color: rgba(255,255,255,.25);
 }
 .navbar-header {
-	margin-left: 15%;
-   	margin-right: 15%;
-   	width: 70%;
+	margin-left: 10%;
+   	margin-right: 10%;
+   	width: 80%;
    	font-size: 24px;
    	font-family: 'Open Sans';
 }
@@ -213,4 +202,11 @@ a:hover {color: rgba(74, 160, 44,.6);}
 	outline:solid red thick;
 }
 
+.debug2 {
+	outline:solid blue thick;
+}
+
+.debug3 {
+	outline:dashed green thick;
+}
 
