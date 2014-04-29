@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block body %}
-<div class="outter_center">
-	<div class="inner_center">
-		<div class="jumbotron" id="banner">
-			<h1> <p class="text-center" id="welcome">tex</p>
-			</h1>
-		</div>
+<div class="banner_center">
+	<div class="jumbotron" id="banner">
+		<h1> <p class="text-center" id="welcome">tex</p>
+		</h1>
+		<h5 class="text-center" id="sub_welcome">
+		Exchanging text books made easy</h5>
 		<div class="container", id="homesearch">
 		<form id="search_form" action="/search/title/" method="post"> {% csrf_token %}
 			<div class="input-group input-group-lg">
@@ -35,9 +35,9 @@
 							<span class="glyphicon glyphicon-search"> </span>
 						</button>
 					</div>
-			</div>
-		</form>
-	</div>
+				</div>
+			</form>
+		</div>
 	</div>
 </div>
 {% endblock body %}
