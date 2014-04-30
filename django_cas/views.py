@@ -65,12 +65,9 @@ def _logout_url(request, next_page=None):
 
 def login(request, next_page=None, required=False):
     """Forwards to CAS login URL or verifies CAS ticket"""
-
     if not next_page:
         next_page = _redirect_url(request)
     if request.user.is_authenticated():
-#         message = "You are logged in as %s." % request.user.username
-#         messages.info(request, message)
         return HttpResponseRedirect(next_page)
     ticket = request.GET.get('ticket')
     service = _service_url(request, next_page)

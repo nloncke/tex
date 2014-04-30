@@ -39,5 +39,3 @@ class LoginRequiredMiddleware(object):
             return login_required(view_func)(request, *view_args, **view_kwargs)
       
         
-        
-        

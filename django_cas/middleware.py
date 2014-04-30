@@ -40,7 +40,7 @@ class CASMiddleware(object):
                 return None
         elif not view_func.__module__.startswith('django.contrib.admin.'):
             return None
-
+        
         if request.user.is_authenticated():
             if request.user.is_staff:
                 return None
@@ -48,5 +48,9 @@ class CASMiddleware(object):
                 error = ('<h1>Forbidden</h1><p>You do not have staff '
                          'privileges.</p>')
                 return HttpResponseForbidden(error)
+            
         params = urlencode({REDIRECT_FIELD_NAME: request.get_full_path()})
-        return HttpResponseRedirect(reverse(cas_login) + '?' + params)
+        
+        return login(request, *view_args, **view_kwargs)
+#         return HttpResponseRedirect(reverse(cas_login) + '?' + params)
+
