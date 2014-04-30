@@ -58,7 +58,7 @@
                     <button type="submit" name="remove_book" value="{{offer.offer_id}}"
                     	onclick="document.getElementById('remove_{{offer.offer_id}}').submit(); return false;"
                     	data-dismiss="modal" class="btn btn-default blue_button" form="remove_{{offer.offer_id}}">Yes</button>
-	                <form id="remove_{{offer.offer_id}}" action="/account/remove/" method="post"> {% csrf_token %}
+	                <form id="remove_{{offer.offer_id}}" action="/account/" method="post"> {% csrf_token %}
                     	<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}">
                     	<input type="hidden" id="offers" name="offers" value="{{offers}}">
                     	<input type="hidden" id="action" name="action" value="remove_offer">
@@ -141,7 +141,7 @@
 				 			Are you sure you want to unfollow {{follow.book.title}}?
 				  		</div>
 				 		<div class="modal-footer">
-				 			<form id="unfollow_{{follow.book.isbn}}" action="/account/unfollow/" method="post">{% csrf_token %}
+				 			<form id="unfollow_{{follow.book.isbn}}" action="/account/" method="post">{% csrf_token %}
 				 				<button type="button" class="btn btn-default translucent_button" data-dismiss="modal">No</button>
 								<input type="hidden" id="action" name="action" value="unfollow">
 				            	<input type="hidden" id="target_isbn" name="target_isbn" value="{{follow.book.isbn}}">
