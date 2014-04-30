@@ -62,7 +62,7 @@ def bid(request):
 #         isbn = get_auction_isbn(auction_id=auction_id)
         isbn = info["isbn"]
         
-        result = get_book_info(isbn=isbn)[0]
+        result = get_book_info(isbn=isbn, thumb=False)[0]
         
         result["current_price"] = str(new_current_price)
         result["end_time"] = info["end_time"]
