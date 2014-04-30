@@ -29,16 +29,25 @@ def isbn(request):
     
 def title(request):
     from utils import search_by_title, validate_title
+    from search.models import get_offers, get_auctions
     if request.method == "POST":
         title = request.POST.get("search_input","0")
         title = title.lstrip()
         title = title.rstrip()
         if validate_title(title=title):
-            books = search_by_title(query=title)
-            if books["books"]:
-                books["query"] = title
-                books["search_length"] = len(books["books"])
-                return render(request, 'search_results.html', books)
+            result = search_by_title(query=title)
+            if result["books"]:
+                result["query"] = title
+                result["search_length"] = len(result["books"])
+                for book in result["books"]:
+                    offer = sorted(get_offers(book["isbn"]), key=(lambda x:x["buy_price"]))
+                    if offer:
+                        book["min_offer"] = offer[0]["buy_price"]
+                    auction = sorted(get_auctions(book["isbn"]), key=(lambda y:y["current_price"])) 
+                    if auction:
+                        book["min_auction"] = auction[0]["current_price"]
+                
+                return render(request, 'search_results.html', result)
             else:
                 return render(request, 'search_empty_prompt.html', {"query": title})
         else:

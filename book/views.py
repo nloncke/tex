@@ -23,7 +23,7 @@ def book_index(request):
                 if i == len(follow_isbns):
                     follow(user=user, isbn=isbn)
             elif action == "unfollow":
-                unfollow(user=user, isbn=isbn)  #BUGS!!!!!
+                unfollow(user=user, isbn=isbn) 
             else:
                 return render(request, 'error_page.html')
     else:
