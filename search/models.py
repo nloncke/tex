@@ -12,7 +12,7 @@ class Offer(models.Model):
     condition = models.CharField(max_length=100)
     description = models.CharField(max_length=800)
     course = models.CharField(max_length=200)
-    def __repr__(self):
+    def __unicode__(self):
         s = str(self.seller_id) + ' ' + str(self.price) + ' ' + self.isbn + ' ' + self.course + ' ' + self.condition
         return s
 
@@ -27,7 +27,7 @@ class Auction(models.Model):
     condition = models.CharField(max_length=100)
     description = models.CharField(max_length=800)
     course = models.CharField(max_length=200)
-    def __repr__(self):
+    def __unicode__(self):
         s = str(self.seller_id) + ' ' + str(self.current_price) + ' ' + self.isbn + ' ' + self.course + ' ' + self.condition
         return s
 
@@ -42,7 +42,7 @@ class Book(models.Model):
     thumbbytes = models.BinaryField()
     pub_date = models.CharField(max_length=100) 
     course_list = models.CharField(max_length=300)
-    def __repr__(self):
+    def __unicode__(self):
         s = self.isbn + ' ' + self.title + ' ' + self.author + ' ' + self.frontcover + ' ' + self.thumbnail + ' ' + self.course_list
         return s
 
