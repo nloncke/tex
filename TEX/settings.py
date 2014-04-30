@@ -53,6 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_cas.middleware.CASMiddleware',
     'account.middleware.Custom403Middleware',
+    'account.middleware.Custom404Middleware',
     'account.middleware.LoginRequiredMiddleware',
 )
 
@@ -82,6 +83,10 @@ CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
 CAS_REDIRECT_URL = "/"
 CAS_LOGOUT_COMPLETELY = True
 CAS_RETRY_LOGIN = True
+
+LOGIN_URL="/account/login/"
+LOGIN_REDIRECT_URL="/"
+LOGOUT_URL = "/"
 
 
 STATIC_URL = '/static/'
@@ -136,6 +141,3 @@ ALLOWED_HOSTS = ['*']
 
 MEDIA_ROOT="media"
 MEDIA_URL="/media/"
-
-
-LOGIN_URL="/account/login/"

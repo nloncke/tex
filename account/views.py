@@ -104,10 +104,11 @@ def profile(request):
         save_user(request.user, **info)
     return render(request,'account_index.html')
 
-def forbidden(request, template_name='403.html'):
-    """Default 403 handler"""
+def forbidden(request):
+    '''Default 403 handler'''
+    return render(request, "error_page.html")
 
-    t = loader.get_template(template_name)
-    return HttpResponseForbidden(t.render(RequestContext(request)))
-
+def not_found(request):
+    ''' Default 404 handler '''
+    return render(request, "error_page.html")
 
