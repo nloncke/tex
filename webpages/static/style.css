@@ -55,9 +55,16 @@
 .search-th{
   font-size:20px;
   text-align: "center";
-  color: #008080;
+  color: #008080; /*match the book links*/
 }
 
+/*large font sizes, bookpage*/
+.header {
+  font-size: 28px;
+}
+.subheader {
+  font-size: 20px;
+}
 
 #search_form{
 	font-family: 'Open Sans';
