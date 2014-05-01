@@ -23,7 +23,14 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ADMINS = (("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
+ADMINS = (("Axal", "princeton.tex@gmail.com"),
+          ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
+          ("Laura Xu", "lauraxu@princeton.edu"),
+          ("Jeffrey Asala", "jasala@princeton.edu"),
+          ("Nicole Loncke", "nloncke@princeton.edu"))
+
+MANAGERS = (("Axal", "princeton.tex@gmail.com"),
+          ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
           ("Laura Xu", "lauraxu@princeton.edu"),
           ("Jeffrey Asala", "jasala@princeton.edu"),
           ("Nicole Loncke", "nloncke@princeton.edu"))
@@ -52,6 +59,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_cas.middleware.CASMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'account.middleware.Custom403Middleware',
     'account.middleware.Custom404Middleware',
     'account.middleware.LoginRequiredMiddleware',
