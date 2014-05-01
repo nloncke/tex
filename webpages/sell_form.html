@@ -19,11 +19,11 @@ $(function () {
   	$("#datetimepicker").on('dp.hide', function(){
 		if(moment().isAfter(moment(
 			$("#end_time").val(), "MM/DD/YY HH:mm"))){
+			$("#submit").prop( "disabled", true);
 			alert("Please select a time in the future");
-			$("#submit").attr("disabled", "disabled");
 		}
 		else {
-			$("#submit").removeAttr("disabled");
+			$("#submit").prop( "disabled", false );
 			}
 	});
 });

@@ -45,7 +45,7 @@ $(document).ready(function()
   $("#search_by_isbn").click(set_to_isbn);
   $("#search_by_author").click(set_to_author);
   $("#search_by_course").click(set_to_course);
-  
+
   $("#buy_price_info").popover({
     trigger:"hover",
     title:"Buy now price?",
@@ -55,7 +55,7 @@ $(document).ready(function()
 
   $("#is_auction").tooltip({
     trigger:"hover",
-    title:"Allow students to bid on your book?";
+    title:"Allow students to bid on your book?",
   });
 
   $("#current_price").change( function()  {
@@ -63,15 +63,15 @@ $(document).ready(function()
   });
 
   $("#price").change( function() {
-    $("#current_price").attr({"max": $("#price").val()});      
+    $("#current_price").attr({"max": $("#price").val()});
   });
-  
+
   $("#bid").change( function() {
   	var current_price = $("#current_price").val();
   	var buy_now_price = $("#buy_now_price").val();
   	$("#bid").attr({"max":buy_now_price - current_price - 1 });
   });
-  	
+
 });
 
 // -----------END OF DOCUMENT.READY-----------
