@@ -20,12 +20,14 @@
     	<a href="/sell/?isbn={{book.isbn}}"><button type="submit" class="btn btn-default blue_button">
 			<span><strong>SELL</strong></span>
       	</button></a>
-      	{% if is_follow %}
-        <button type="submit" id="unfollow" data-toggle="modal" data-target="#unfollow_modal" class="btn btn-default blue_button">
-        	<span><strong>UNFOLLOW</strong></span>
-        </button>
+      	{% if is_follow %}   	
+	        <button type="submit" id="unfollow" form="unfollow_book" class="btn btn-default blue_button"
+	        	onclick="document.getElementById('unfollow_book').submit(); return false;">
+	        	<span><strong>UNFOLLOW</strong></span>
+	        </button>     
         {% else %}
-      	<button type="submit" id="follow" data-toggle="modal" data-target="#follow_modal" class="btn btn-default blue_button">
+      	<button type="submit" id="follow" class="btn btn-default blue_button"
+      		onclick="document.getElementById('follow_book').submit(); return false;">
         	<span><strong>FOLLOW</strong></span>
         </button>
 
@@ -33,8 +35,14 @@
     	</h2>
   	</div>
 </div>
-
-
+<form id="unfollow_book" action="/book/" method="post"> {% csrf_token %}
+	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
+	<input type="hidden" id="book_action" name="book_action" value="unfollow">
+</form>
+<form id="follow_book" action="/book/" method="post"> {% csrf_token %}
+	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
+    <input type="hidden" id="book_action" name="book_action" value="follow">
+</form>
 <!-- AUCTION TABLE -->
 <div class="media">
 	<div class="media-body">
@@ -229,51 +237,6 @@
 </div>
 {% endif %}
 
-<!-- follow modal -->
-<div class="modal fade" id="follow_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-	<div class="modal-content">
-  		<div class="modal-header">
-    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  		</div>
-  		<div id="follow_modal_body" class="modal-body">
- 			Are you sure you want to follow {{ book.title }}? We'll email you when there are new offers.
-  		</div>
- 		<div class="modal-footer">
-    		<form id="follow_book" action="/book/follow/" method="post"> {% csrf_token %}
-          <button type="button" class="btn btn-default translucent_button" data-dismiss="modal">No</button>
-    			<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
-        		<button type="submit" name="book_isbn" value="{{ book.isbn}}"
-        			data-dismiss="modal" onclick="document.getElementById('follow_book').submit(); return false;" class="btn btn-default blue_button">Yes
-        		</button>
-    		</form>
-  		</div>
-	</div>
-  </div>
-</div>
-<!-- unfollow modal -->
-<div class="modal fade" id="unfollow_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-	<div class="modal-content">
-  		<div class="modal-header">
-    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  		</div>
-  		<div id="follow_modal_body" class="modal-body">
- 			Are you sure you want to unfollow {{ book.title }}?
-  		</div>
- 		<div class="modal-footer">
-    		<form id="unfollow_book" action="/book/unfollow/" method="post"> {% csrf_token %}
-          <button type="button" class="btn btn-default translucent_button" data-dismiss="modal">No</button>
-    			<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
-        		<button type="submit" name="book_isbn" value="{{ book.isbn}}"
-        			data-dismiss="modal" onclick="document.getElementById('unfollow_book').submit(); return false;" class="btn btn-default blue_button">Yes
-        		</button>
-    		</form>
-  		</div>
-	</div>
-  </div>
-</div>
-<!-- end of follow prompt modal -->
 {% endif %}
 {% endblock content %}
 
