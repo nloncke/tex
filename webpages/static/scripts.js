@@ -53,6 +53,10 @@ $(document).ready(function()
     buys the book and the auction closes."
   });
 
+  $("#is_auction").tooltip({
+    trigger:"hover",
+    title:"Allow students to bid on your book?";
+  });
 
   $("#current_price").change( function()  {
     $("#price").attr({"min": $("#current_price").val()});

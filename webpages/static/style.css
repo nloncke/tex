@@ -19,7 +19,9 @@
 
 /*For formatting message under the tex banner*/
 #sub_welcome {
-
+  font-family: "Open Sans";
+  font-size: 100%;
+  color: rgba(0, 128, 128,.8);
 }
 
 /*positions the entire search bar on the homepage*/
@@ -78,14 +80,11 @@
 }
 .modal-header {
 	 border-bottom: none;
-	 height: 40px;
+	 height: 50px;
 	 background-color: rgba(74, 160, 44,.25);
 }
-/* style all the input forms on the sell page */
-.sell_form {
-  autocomplete: "on";
-  required;
-}
+
+
 
 /* For the background of the pages */
 body {
@@ -147,6 +146,16 @@ th{
 /*fixed width for sell form fields */
 .sell-field {
   width: 150px;
+}
+
+/* style all the input forms on the sell page */
+.sell-label {
+  text-align: left;
+}
+
+/*vertically center checkbox*/
+#is_auction {
+  margin-top: 1.2%;
 }
 
 /*beware: specific to displaying the book! */
