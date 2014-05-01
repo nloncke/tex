@@ -138,7 +138,16 @@ th{
   width:80%;
 }
 
+/*padded for sell form*/
+.glyphicon-info-sign {
+  padding-left: 25%;
+  padding-top: 25%;
+}
 
+/*fixed width for sell form fields */
+.sell-field {
+  width: 150px;
+}
 
 /*beware: specific to displaying the book! */
 /*img.center-all{

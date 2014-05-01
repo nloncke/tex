@@ -48,8 +48,9 @@ $(document).ready(function()
   
   $("#buy_price_info").popover({
     trigger:"hover",
-    title:"What is this?",
-    content:"The auction automatically closes when a student bids this price."
+    title:"Buy now price?",
+    content:"When a student bids this price, she automatically \
+    buys the book and the auction closes."
   });
 
 
