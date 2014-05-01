@@ -13,7 +13,7 @@
 	font-size: 175%;
    	font-weight: bold;
    	/*color: #FFFFFF;  alternate colors: water, aliceblue, azure */
-   	color: rgba(0, 128, 128,.7);
+    color: rgba(0, 128, 128,.7);
    	text-shadow: 2px 2px 3px rgba(251, 246, 217,1);
 }
 
@@ -45,6 +45,20 @@
 #search_bar_text{
 	color: black;
 }
+
+/* standardize search results column widths */
+.fixed-cell-width {
+  width: 65%;
+}
+
+/*style the search results table headers*/
+.search-th{
+  font-size:20px;
+  text-align: "center";
+  color: #008080;
+}
+
+
 #search_form{
 	font-family: 'Open Sans';
 }
