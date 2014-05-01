@@ -31,7 +31,7 @@ function set_to_author(){
 
 function set_to_course(){
     $("#search_bar_text").attr(
-    	{placeholder:"Search by course (e.g. cos 333) or department (e.g. psy)",
+    	{placeholder:"Search by course (e.g. cos 333)",
     	title:'Enter a valid course name e.g COS 333'});
     $('#search_by').button("course");
     $("#search_form").attr({action:"/search/course/"});
