@@ -2,7 +2,6 @@
 function set_to_title(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by title",
-      	pattern:"^[\'\":0-9A-Za-z\\s]+$",
     	title:"Enter only letters, numbers and whitespace"});
     $('#search_by').button("title");
     $("#search_form").attr({action:"/search/title/"});
@@ -33,7 +32,6 @@ function set_to_author(){
 function set_to_course(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by course (e.g. cos 333)",
-    	pattern:"^(\\s)*[A-Za-z]{3}(\\s)*[0-9]{3}(\\s)*$",
     	title:'Enter a valid course name e.g COS 333'});
     $('#search_by').button("course");
     $("#search_form").attr({action:"/search/course/"});
@@ -50,10 +48,15 @@ $(document).ready(function()
   
   $("#buy_price_info").popover({
     trigger:"hover",
-    title:"What is this?",
-    content:"The auction automatically closes when a student bids this price."
+    title:"Buy now price?",
+    content:"When a student bids this price, she automatically \
+    buys the book and the auction closes."
   });
 
+  $("#is_auction").tooltip({
+    trigger:"hover",
+    title:"Allow students to bid on your book?";
+  });
 
   $("#current_price").change( function()  {
     $("#price").attr({"min": $("#current_price").val()});

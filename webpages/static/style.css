@@ -13,13 +13,15 @@
 	font-size: 175%;
    	font-weight: bold;
    	/*color: #FFFFFF;  alternate colors: water, aliceblue, azure */
-   	color: rgba(0, 128, 128,.7);
+    color: rgba(0, 128, 128,.7);
    	text-shadow: 2px 2px 3px rgba(251, 246, 217,1);
 }
 
 /*For formatting message under the tex banner*/
 #sub_welcome {
-
+  font-family: "Open Sans";
+  font-size: 100%;
+  color: rgba(0, 128, 128,.8);
 }
 
 /*positions the entire search bar on the homepage*/
@@ -43,6 +45,27 @@
 #search_bar_text{
 	color: black;
 }
+
+/* standardize search results column widths */
+.fixed-cell-width {
+  width: 65%;
+}
+
+/*style the search results table headers*/
+.search-th{
+  font-size:20px;
+  text-align: "center";
+  color: #008080; /*match the book links*/
+}
+
+/*large font sizes, bookpage*/
+.header {
+  font-size: 28px;
+}
+.subheader {
+  font-size: 20px;
+}
+
 #search_form{
 	font-family: 'Open Sans';
 }
@@ -78,14 +101,11 @@
 }
 .modal-header {
 	 border-bottom: none;
-	 height: 40px;
+	 height: 50px;
 	 background-color: rgba(74, 160, 44,.25);
 }
-/* style all the input forms on the sell page */
-.sell_form {
-  autocomplete: "on";
-  required;
-}
+
+
 
 /* For the background of the pages */
 body {
@@ -138,7 +158,26 @@ th{
   width:80%;
 }
 
+/*padded for sell form*/
+.glyphicon-info-sign {
+  padding-left: 25%;
+  padding-top: 25%;
+}
 
+/*fixed width for sell form fields */
+.sell-field {
+  width: 150px;
+}
+
+/* style all the input forms on the sell page */
+.sell-label {
+  text-align: left;
+}
+
+/*vertically center checkbox*/
+#is_auction {
+  margin-top: 1.2%;
+}
 
 /*beware: specific to displaying the book! */
 /*img.center-all{
