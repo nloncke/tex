@@ -7,8 +7,8 @@ alpha = ["jasala","lauraxu", "nloncke", "yoyeh", "kohemeng",
     "hmccormi", "swatters", "salberti", "fpina", "yunzhil",
     "dkoltuny", "lslosar", "abuddhir", "afyabrou", "cgordon",
     "mmedward", "lberdick", "morgant", "echeruiy", "ethill",
-    "rdaker", "mwirth", "gdsheppe", "jgsamuel", "pmoon", "aabdelaz",
-    "sgichohi"]
+    "rdaker", "mwirth", "gdsheppe", "jgsamuel", "pmoon", "aabdelaz"
+    , "splichte", "sgichohi"]
 
 def account_index(request):
     from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
@@ -53,10 +53,10 @@ def account_index(request):
                        "isbn":seller_auction.isbn, "end_time":seller_auction.end_time})
     
     follow_isbns = get_follow_list(user=user)   
-
-    min_offer = {}
-    min_auction = {}
+    
     for isbn in follow_isbns:
+        min_offer = {}
+        min_auction = {}
         if isbn:
             book_info = get_book(isbn=isbn)
             offers = book_info["offers"]
@@ -78,11 +78,13 @@ def login(request):
     from django.contrib import auth
     from account.models import BookUser, not_registered
     user = auth.authenticate(username="tex", password="axal@tex")
+    auth.login(request, user)
     if not_registered(user):
         bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
         bu.save()  
         auth.login(request, user) 
     return login(request)
+      
      
 # for Alpha testers    
     httpresp = login(request)
@@ -102,10 +104,11 @@ def profile(request):
         save_user(request.user, **info)
     return render(request,'account_index.html')
 
-def forbidden(request, template_name='403.html'):
-    """Default 403 handler"""
+def forbidden(request):
+    '''Default 403 handler'''
+    return render(request, "error_page.html")
 
-    t = loader.get_template(template_name)
-    return HttpResponseForbidden(t.render(RequestContext(request)))
-
+def not_found(request):
+    ''' Default 404 handler '''
+    return render(request, "error_page.html")
 

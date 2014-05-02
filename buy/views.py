@@ -42,7 +42,8 @@ def buy_confirmation(request):
 
 def bid(request):
     from models import bid_auction, get_auction_isbn
-    from book.utils import get_book
+    from search.utils import get_book_info
+    from utils import notify_old_bidder
     result = {}
     if request.method == "POST":
         buyer_id = request.user.username
@@ -52,15 +53,22 @@ def bid(request):
         # Try to bid in one atomic action
         bid = request.POST.get("bid", "0")
         new_bid = int(current_price) + int(bid)
-        new_current_price = bid_auction(auction_id=auction_id, current_price=new_bid, buyer_id=buyer_id)
+        (new_current_price, old_buyer, info) = bid_auction(auction_id=auction_id, current_price=new_bid, buyer_id=buyer_id)
         if new_current_price == 1:
             return render(request, 'nocheating.html', {'buyer_id':buyer_id, 'error':"cheating"})
         if new_current_price == 2:
             return render(request, 'nocheating.html', {'buyer_id':buyer_id})
-        isbn = get_auction_isbn(auction_id=auction_id)
-        result = get_book(isbn=isbn)
+        # Not necessary anymore    
+#         isbn = get_auction_isbn(auction_id=auction_id)
+        isbn = info["isbn"]
+        
+        result = get_book_info(isbn=isbn, thumb=False)[0]
         
         result["current_price"] = str(new_current_price)
+        result["end_time"] = info["end_time"]
+        
+        if old_buyer:
+            notify_old_bidder(old_buyer, result)
         
         if new_current_price == new_bid:
             result["buyer_id"] = buyer_id

@@ -2,8 +2,8 @@
 {% block title %}tex{% endblock title %}
 
 {% block topsearch %}
-  <form id="search_form" action="/search/title/" method="post"
-	class="navbar-form navbar-left topsearch">   {% csrf_token %}
+<div class="navbar-form">
+  <form id="search_form" action="/search/title/" method="post">   {% csrf_token %}
 	 <div class="input-group">
 	    <div class="input-group-btn">
 	       <button id ="search_by" type="button" class="btn btn-default dropdown-toggle translucent_w1"
@@ -34,6 +34,7 @@
 	    </div>
 	 </div>
  </form>
+</div>
 {% endblock topsearch %}
 
 

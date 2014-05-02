@@ -1,18 +1,19 @@
 from django.shortcuts import render
-from search.utils import validate_isbn
+from search.utils import validate_isbn, convert_to_13
 
 def sell_form(request):   
-    from utils import get_book_info
+    from search.utils import search_by_isbn
     result = {}
     if request.method == 'GET':
         isbn = request.GET.get("isbn","0")
         if validate_isbn(isbn=isbn):
-            result = get_book_info(isbn=isbn)
-            return render(request, 'sell_form.html', result)    
-        else:
-            return render(request, "error_page.html") 
-    else: 
-        return render(request, "error_page.html")   
+            isbn = convert_to_13(isbn=isbn)
+            results = search_by_isbn(isbn, False)["books"]
+            if results:
+                result["book"] = results[0]
+                return render(request, 'sell_form.html', result)
+        return render(request, 'search_empty.html', {"query": isbn})
+    return render(request, "error_page.html")   
        
 def sell_submit(request):
     from utils import put_offer, put_auction

@@ -13,7 +13,7 @@
 
   <link rel="shortcut icon" href="/static/favicon.ico">
 
-  <script type="text/javascript" src="/static/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="/static/bootstrap.min.js"></script>
   <script type="text/javascript" src="/static/scripts.js"></script>
 
@@ -27,32 +27,59 @@
 </head>
 <body>
     {% block navbar %}
-    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top translucent_b1" role="navigation" style="border-bottom:none">
-        <div class="navbar-header navbar-right">
+    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top translucent_b1"
+     role="navigation" style="border-bottom:none">
+     	<div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
                 <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
 	        <div class="collapse navbar-collapse navbar-right" id="collapse">
 	        	<ul class="nav navbar-nav">
-	            	<li><a href="/">Home</a></li>
+	            	<li><a href="/">home</a></li>
+	            	<li><a href="" data-toggle="modal" data-target="#sell_modal">sell</a></li>
 						{% if user.is_authenticated %}
 	            	<li><a href="/account/">{{user}}</a></li>
-	            	<li><a href="/account/logout/"> Logout</a></li>
+	            	<li><a href="/account/logout/"> logout</a></li>
 	            		{% else %}
-					<li><a href="/account/login/">Login</a></li>
+					<li><a href="/account/login/">login</a></li>
 					{% endif %}
 	            </ul>
 	        </div>
-	        <div class="navbar-right" style="width:62%" align="left">
 	            {% block topsearch %}
 				{% endblock topsearch %}
-			</div>
-
 		</div>
     </nav>
+    <div class="modal fade" id="sell_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-md">
+			<div class="modal-content">
+		  		<div class="modal-header">
+		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  			<h2 class="modal-title">Sell a book</h2>
+		  		</div>
+		  		<div id="sell_modal_body" class="modal-body center-page">
+		 			<form id="sell_form" role="form" class="form-inline center-page" name="sell_form" action="/sell/" method="get">
+
+		 			<div class="form-group">
+		 			<h2>
+		 				<label for="isbn" style="text-align:center">ISBN:</label>
+							<input id="isbn" name="isbn" class="form-control" style="width:200px" type="text" required
+							pattern:"(^(( )*([0-9]-?){9}[0-9Xx]( )*)$)|(^(( )*(97[89]-?([0-9]-?){9}[0-9])( )*)$)"
+							title="Enter a valid isbn">
+							<button type="submit" id="submit" class="btn btn-default blue_button" style="display:inline" >
+			    	<span>SELL</span>
+					</button>
+					</h2>
+					</div>
+					</form>
+
+				</div>
+			</div>
+		  </div>
+	</div>
 	{% endblock navbar %}
 
 	{% block body %}

@@ -1,5 +1,5 @@
-from django.http import HttpResponseForbidden
-from account.views import forbidden
+from django.http import HttpResponseForbidden, HttpResponseNotFound
+from account.views import forbidden, not_found
 
 class Custom403Middleware(object):
       """Catches 403 responses and renders 403.html"""
@@ -9,6 +9,15 @@ class Custom403Middleware(object):
              return forbidden(request)
           else:
              return response
+
+class Custom404Middleware(object):
+      """Catches 404 responses and renders error_page.html"""
+
+      def process_response(self, request, response):
+          if isinstance(response, HttpResponseNotFound):
+             return not_found(request)
+          else:
+             return response    
          
          
 from django.conf import settings
@@ -38,6 +47,4 @@ class LoginRequiredMiddleware(object):
         else:
             return login_required(view_func)(request, *view_args, **view_kwargs)
       
-        
-        
         

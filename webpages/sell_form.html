@@ -19,11 +19,11 @@ $(function () {
   	$("#datetimepicker").on('dp.hide', function(){
 		if(moment().isAfter(moment(
 			$("#end_time").val(), "MM/DD/YY HH:mm"))){
+			$("#submit").prop( 'disabled', true);
 			alert("Please select a time in the future");
-			$("#submit").attr("disabled", "disabled");
 		}
 		else {
-			$("#submit").removeAttr("disabled");
+			$("#submit").prop( "disabled", false );
 			}
 	});
 });
@@ -49,22 +49,19 @@ $(function () {
 {% endblock header %}
 
 {% block content %}
-<div class="center-all">
 
 {% if book %}
 <!-- DISPLAY THE BOOK -->
-<div class="media center-all">
-	<div style="padding-left:15%">
-		<img class="media-object pull-left" src="{{book.frontcover}}" alt="{{book.title}}" height="211px" width="171px">
-		<div class="media-body book-info" style="text-align:left">
-			<h3 class="media-heading" style="font-size:28px"><a href="/sell/?isbn={{book.isbn}}"><strong>{{book.title}}</strong></a></h3>
-	    	<h2 style="font-size:20px">
-	         	<p>Author(s): {{book.author}}</p>
-	         	<p>ISBN-13: {{book.isbn}}</p>
-	         	<p>Published Date: {{book.pub_date}}</p>
-	        </h2>
-	    </div>
-	</div>
+<div class="media">
+	<img class="media-object pull-left" src="{{book.frontcover}}" alt="{{book.title}}" height="211px" width="171px">
+	<div class="media-body book-info sell-label">
+		<h1 class="media-heading"><a href="/book/?isbn={{book.isbn}}"><strong>{{book.title}}</strong></a></h1>
+    	<h2>
+         	<p>Author(s): {{book.author}}</p>
+         	<p>ISBN-13: {{book.isbn}}</p>
+         	<p>Published Date: {{book.pub_date}}</p>
+        </h2>
+    </div>
 </div>
 <!-- END BOOK DISPLAY -->
 
@@ -72,57 +69,60 @@ $(function () {
 
 <form id="sell_form" action="/sell/submit/" class="form-horizontal" role="form" method="post"> {% csrf_token %}
 	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
-	<h1 style="font-size:16px">
-		<div class="form-group" style="padding-left:30%">
-			<label for="course" class="col-sm-2 control-label">Course:</label>
+	<h2>
+		<div class="form-group">
+			<label for="course" class="col-sm-2 control-label sell-label">Course:</label>
 			<div class="col-sm-10">
-				<input id="course" name="course" class="form-control" style="width:150px" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g COS 333" placeholder="e.g COS 333">
+				<input id="course" name="course" class="form-control sell-field" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g. COS 333" placeholder="e.g. COS 333">
 			</div>
 		</div>
-		<div class="form-group" style="padding-left:30%">
-			<label for="is_auction" class="col-sm-2 control-label">Auction:</label>
+		<div class="form-group">
+			<label for="is_auction" class="col-sm-2 control-label sell-label"> Auction:</label>
 			<div class="col-sm-10">
-				<input id="is_auction" name="is_auction" class="checkbox" type="checkbox"/>
+				<label for="is_auction"class="checkbox-inline">
+					<input id="is_auction" name="is_auction" class="checkbox pull-left" type="checkbox"
+					data-toggle="tooltip"/>Yes!</label>
 			</div>
 		</div>
-		<div class="form-group collapse auction" style="padding-left:30%">
-			<label for="end_time" class="col-sm-2 control-label">End Date:</label>
+		<div class="form-group collapse auction">
+			<label for="end_time" class="col-sm-2 control-label sell-label">End Date:</label>
             <div class='col-sm-2 input-group date' id='datetimepicker' data-date-format="MM/DD/YY HH:mm">
-                <input type='text' id="end_time" name="end_time"  readonly class="form-control" style="width:150px" title="Please select a date and time."/>
+                <input type='text' id="end_time" name="end_time"  readonly class="form-control sell-field" title="Please select a date and time."/>
                 <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                 </span>
 	     	</div>
 	    </div>
-		<div class="form-group collapse auction" style="padding-left:30%">
-			<label for="current_price" class="col-sm-2 control-label">Start Price ($):</label>
-			<div class="col-sm-10">
-				<input id="current_price" name="current_price" class="form-control" style="width:150px" type="number"
-				 min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g 10"/>
+		<div class="form-group collapse auction">
+			<label for="current_price" class="col-sm-2 control-label sell-label">Start Price ($):</label>
+			<div class="col-sm-10" >
+				<input id="current_price" name="current_price" class="form-control sell-field" type="number"
+				 min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g. 10"/>
 			</div>
 		</div>
-		<div class="form-group" style="padding-left:30%">
-			<div class="input-append collapse auction"><label for="price" class="col-sm-2 control-label">Buy Now <br> Price ($):</label>
+		<div class="form-group">
+			<div class="input-append collapse auction"><label for="price" class="col-sm-2 control-label sell-label">Buy Now <br> Price ($):</label>
 			</div>
-			<div class="input-append auction"><label for="price" class="col-sm-2 control-label">Price ($):</label>
+			<div class="input-append auction"><label for="price" class="col-sm-2 control-label sell-label">Price ($):</label>
 			</div>
-			<div class="col-sm-10">
-				<input id="price" name="price" class="form-control" type="number" style="width:150px"
-				required min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g 25"/>
+			<div class="col-sm-3" >
+				<input id="price" name="price" class="form-control sell-field pull-left" type="number"
+				required min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g. 25"/>
+				<span id="buy_price_info" class="collapse auction pull-left" data-container="body" data-toggle="popover" data-placement="right">
+					<span class="glyphicon glyphicon-info-sign"></span>
+				</span>
+			</div>
 
-			</div>
-		</div>
-		<div class="input-append collapse auction"><span inline class="help-block">Book is sold if someone bids this price.</span>
 		</div>
 		<div class="form-group ">
-			<label for="condition" class="col-sm-2 control-label" style="padding-left:20%">Condition:</label>
+			<label for="condition" class="col-sm-2 control-label sell-label">Condition:</label>
 			<label for="new" class="radio-inline"><input required id="new" name="picked_condition" type="radio" value="New"/>New</label>
 			<label for="like_new" class="radio-inline"><input required id="like_new" name="picked_condition" type="radio" value="Like New"/>Like New</label>
 			<label for="very_good" class="radio-inline"><input required id="very_good" name="picked_condition" type="radio" value="Very Good"/>Very Good</label>
 			<label for="good" class="radio-inline"><input required id="good" name="picked_condition" type="radio" value="Good"}/> Good</label>
 			<label for="acceptable" class="radio-inline"><input required id="acceptable" name="picked_condition" type="radio" value="Acceptable"/>Acceptable</label>
 		</div>
-		<div class="form-group" style="padding-left:30%">
-			<label for="description" class="col-sm-2 control-label">Description:</label>
+		<div class="form-group">
+			<label for="description" class="col-sm-2 control-label sell-label">Description:</label>
 			<div class="col-sm-10">
 				<textarea required maxlength="100" cols="40" id="description" class="form-control" style="width:250px"
 				name="description" rows="5" title="Enter a short description about your book."></textarea>
@@ -131,7 +131,7 @@ $(function () {
     <button type="submit" id="submit" class="btn btn-default blue_button">
     	<span><strong>SELL</strong></span>
 	</button>
-    </h1>
+    </h2>
 </form>
 
 {% endif %}

@@ -5,7 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^supersecretadminurl/', include(admin.site.urls)),
     url(r'^helloDjango/', include('helloDjango.urls')),
     url(r'^search/', include('search.urls')),
     url(r'^book/', include('book.urls')),
@@ -14,4 +14,3 @@ urlpatterns = patterns('',
     url(r'^account/', include('account.urls')),
     url(r'.*', "search.views.error_page"),
 )
-#test

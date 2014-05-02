@@ -9,8 +9,9 @@ from django.template.loader import render_to_string
 
 from_email =  settings.EMAIL_HOST_USER
 
-TEXT_STUB = '%s has just purchased %s from %s for $%s. Please follow up with each other to seal the deal.'
-SAD_STUB = 'Your auction of %s has expired. If you like, you can attempt sell or auction it again.'
+TEXT_STUB = '{0} has just purchased {1} from {2} for ${3}. Please follow up with each other to seal the deal.\
+    \nBook Description: {4}\n{0} may not to purchase the book if it does not match this description.'
+SAD_STUB = 'Hello %s,\nYour auction of %s has expired. You are welcome to auction it again or offer at a fixed price.'
 
 def email_users(addrs, html_msg, text_msg, 
                 frontcover="/static/frontcover_default.jpg",
@@ -55,7 +56,7 @@ def email_users(addrs, html_msg, text_msg,
     msg.send(True)
         
 
-def notify_users_bought(buyer, offer):
+def notify_users_bought(buyer, offer, book={}):
     buyer_email = "%s@princeton.edu" % buyer
     seller_email = "%s@princeton.edu" % offer["seller_id"]
     
@@ -65,13 +66,15 @@ def notify_users_bought(buyer, offer):
     else:
         return {}
      
-    text_msg = TEXT_STUB % (buyer, book["title"], offer["seller_id"], offer["price"])
+    text_msg = TEXT_STUB.format(buyer, book["title"], offer["seller_id"], 
+                            offer["price"], offer["description"])
     offer["title"] = book["title"]
     offer["buyer_id"] = buyer
     html_msg = render_to_string("notify_bought.html", offer)
     
     email_users([seller_email, buyer_email], html_msg, text_msg, book["frontcover"], 
-                 "Transaction Complete")  
+                 "Transaction Complete") 
+    print text_msg 
     return book
 
 
@@ -108,8 +111,11 @@ def notify_users_closed_auctions():
                 book = book[0]
             else:
                 return {}
+            
+            book["seller_id"] = object.seller_id
      
-            text_msg = SAD_STUB % book["title"]
+            # Add the user name to reduce spam count
+            text_msg = SAD_STUB % (object.seller_id, book["title"])
             html_msg = render_to_string("notify_nosale.html", book)
     
             email_users([seller_email], html_msg, text_msg, book["frontcover"], 
@@ -117,10 +123,25 @@ def notify_users_closed_auctions():
     return
 
 
-
+def notify_old_bidder(old_buyer, result):
+    '''Notify the old bidder that they have been outbid '''
+    
+    to_addr = old_buyer + "@princeton.edu"
+    
+    html_msg = render_to_string("notify_outbid.html", result)
+    text_msg = "You've been outbid in the auction for %s. \
+    The new price is $%s.\n Auction ends on %s." % (result["title"], 
+        result["current_price"], result["end_time"])
+    
+    email_users([to_addr], html_msg, text_msg, result["frontcover"], 
+                "You've been outbid")
+    
     
 
 if __name__ == "__main__":
     import sys
-    notify_users(sys.argv[1], {"seller_id":"jasala", "price": "700", "title":"The Practice of Programming",
-                                 "isbn":"9780393979503"})
+    notify_users_bought(sys.argv[1], {"seller_id":"jasala", "price": "700",
+         "end_time":"4/30/14 11:09", "current_price":"56", "isbn":"9780393979503",
+         "description": "It's great!!"}
+    , {"title":"The Practice of Programming", "frontcover":"/static/frontcover_9780393979503.jpg"}
+                      )

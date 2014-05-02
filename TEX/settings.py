@@ -23,7 +23,14 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ADMINS = (("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
+ADMINS = (("Axal", "princeton.tex@gmail.com"),
+          ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
+          ("Laura Xu", "lauraxu@princeton.edu"),
+          ("Jeffrey Asala", "jasala@princeton.edu"),
+          ("Nicole Loncke", "nloncke@princeton.edu"))
+
+MANAGERS = (("Axal", "princeton.tex@gmail.com"),
+          ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
           ("Laura Xu", "lauraxu@princeton.edu"),
           ("Jeffrey Asala", "jasala@princeton.edu"),
           ("Nicole Loncke", "nloncke@princeton.edu"))
@@ -52,7 +59,9 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_cas.middleware.CASMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
     'account.middleware.Custom403Middleware',
+    'account.middleware.Custom404Middleware',
     'account.middleware.LoginRequiredMiddleware',
 )
 
@@ -82,6 +91,10 @@ CAS_SERVER_URL = 'https://fed.princeton.edu/cas/'
 CAS_REDIRECT_URL = "/"
 CAS_LOGOUT_COMPLETELY = True
 CAS_RETRY_LOGIN = True
+
+LOGIN_URL="/account/login/"
+LOGIN_REDIRECT_URL="/"
+LOGOUT_URL = "/"
 
 
 STATIC_URL = '/static/'
@@ -114,7 +127,7 @@ DATABASES = {'default': dj_database_url.config()}
 # Comment this out before deploying to Heroku!!!!!!!!!!!!!!!!!!!!!!!!!
 # https://docs.djangoproject.com/en/1.6/ref/settings/
 #databases
-       
+#        
 DATABASES = {
     'default': {
         'ENGINE':'django.db.backends.postgresql_psycopg2',
@@ -136,6 +149,3 @@ ALLOWED_HOSTS = ['*']
 
 MEDIA_ROOT="media"
 MEDIA_URL="/media/"
-
-
-LOGIN_URL="/account/login/"

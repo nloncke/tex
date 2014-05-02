@@ -6,9 +6,37 @@
 {% block content %}
 <div class="jumbotron" id="message">
   <h1>We're sorry</h1>
-  <h2> There are no current offers for <strong>"{{ query }}"</strong>. </h2>
-  <h3> Are you sure you spelled everything correctly? <br/>
-  	 Try searching again by ISBN.</h3>
+  <h2>Your query <strong>"{{ query }}"</strong> did not match any results.</h2>
+  <h3>Please search by ISBN for more accurate results.</h3>
+  <button type="submit" class="btn btn-default blue_button" data-toggle="modal"
+   data-target="#add_modal">ADD BOOK</button>
 </div>
+
+<div class="modal fade" id="add_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-md">
+			<div class="modal-content">
+		  		<div class="modal-header">
+		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  			<h2 class="modal-title">Add a book</h2>
+		  		</div>
+		  		<div id="add_modal_body" class="modal-body center-page">
+		 			<form id="add_form" role="form" class="form-inline center-page" name="addl_form" action="/book/add/" method="get">
+
+		 			<div class="form-group">
+		 			<h2>
+		 				<label for="isbn" style="text-align:center">ISBN:</label>
+							<input id="isbn" name="isbn" class="form-control" style="width:200px" type="text" required
+							pattern:"(^(( )*([0-9]-?){9}[0-9Xx]( )*)$)|(^(( )*(97[89]-?([0-9]-?){9}[0-9])( )*)$)"
+							title="Enter a valid isbn">
+							<button type="submit" id="submit" class="btn btn-default blue_button" style="display:inline" >
+			    	<span>Add</span>
+					</button>
+					</h2>
+					</div>
+					</form>
+				</div>
+			</div>
+		  </div>
+	</div>
 
 {% endblock content %}

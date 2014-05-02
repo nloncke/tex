@@ -23,7 +23,7 @@
 
 <div class="media">
       <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px"><strong>Offering</strong></h3>
+         <h3 class="media-heading" style="font-size:28px"><strong><br>Offering</strong></h3>
          <h2 style="font-size:20px">
          	{% if offers %}
 	         <table class="table" width="80%">
@@ -52,13 +52,13 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title" id="myModalLabel">Remove this book</h4></div>
                   <div id="remove_modal_body" class="modal-body">
-                    Are you sure you want to remove {{offer.title}}?</div>
+                    Are you sure you want to stop offering {{offer.title}}?</div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default translucent_button" data-dismiss="modal">No</button>
                     <button type="submit" name="remove_book" value="{{offer.offer_id}}"
                     	onclick="document.getElementById('remove_{{offer.offer_id}}').submit(); return false;"
                     	data-dismiss="modal" class="btn btn-default blue_button" form="remove_{{offer.offer_id}}">Yes</button>
-	                <form id="remove_{{offer.offer_id}}" action="/account/remove/" method="post"> {% csrf_token %}
+	                <form id="remove_{{offer.offer_id}}" action="/account/" method="post"> {% csrf_token %}
                     	<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}">
                     	<input type="hidden" id="offers" name="offers" value="{{offers}}">
                     	<input type="hidden" id="action" name="action" value="remove_offer">
@@ -113,7 +113,7 @@
          </h2>
       </div>
        <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px"><strong>Following</strong></h3>
+         <h3 class="media-heading" style="font-size:28px"><strong><br>Following</strong></h3>
          {% if follows %}
          <h2 style="font-size:20px">
 	         <table class="table" width="80%">
@@ -129,6 +129,7 @@
 	         		<td>{% if follow.min_offer %}${{follow.min_offer.buy_price}}{% else %}No offers{% endif %}</td>
 	         		<td>{% if follow.min_auction %}${{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
 	         	</tr>
+	         	
 	         	<!-- unfollow modal -->
 				<div class="modal fade" id="unfollow_modal_{{follow.book.isbn}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
@@ -140,11 +141,11 @@
 				 			Are you sure you want to unfollow {{follow.book.title}}?
 				  		</div>
 				 		<div class="modal-footer">
-				 			<form id="unfollow_{{follow.book.isbn}}" action="/account/unfollow/" method="post">{% csrf_token %}
+				 			<form id="unfollow_{{follow.book.isbn}}" action="/account/" method="post">{% csrf_token %}
 				 				<button type="button" class="btn btn-default translucent_button" data-dismiss="modal">No</button>
 								<input type="hidden" id="action" name="action" value="unfollow">
 				            	<input type="hidden" id="target_isbn" name="target_isbn" value="{{follow.book.isbn}}">
-				            	<button type="submit" name="book_isbn" value="{{ book.isbn}}"
+				            	<button type="submit" name="book_isbn" value="{{ follow.book.isbn}}"
 				        			data-dismiss="modal" onclick="document.getElementById('unfollow_{{follow.book.isbn}}').submit(); return false;" class="btn btn-default blue_button">Yes
 				        		</button>
 					    	</form>

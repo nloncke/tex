@@ -5,11 +5,6 @@
 /*formatting the entire welcome header*/
 #banner {
 	background-color: inherit;
-	top: 10%;
-	margin-left: 15%;
-   	margin-right: 15%;
-	width: 70%;
-
 }
 
 /*specifically the welcome text*/
@@ -18,21 +13,27 @@
 	font-size: 175%;
    	font-weight: bold;
    	/*color: #FFFFFF;  alternate colors: water, aliceblue, azure */
-   	color: rgba(0, 128, 128,.7);
+    color: rgba(0, 128, 128,.7);
    	text-shadow: 2px 2px 3px rgba(251, 246, 217,1);
+}
 
+/*For formatting message under the tex banner*/
+#sub_welcome {
+  font-family: "Open Sans";
+  font-size: 100%;
+  color: rgba(0, 128, 128,.8);
 }
 
 /*positions the entire search bar on the homepage*/
 #homesearch {
-	top:  48%;
-	left: 15%;
-	width: 70%;
+	width: auto;
+	max-width: 800px;
 }
 
-/*positions the search bar on subsequent pages
-.topsearch {
-	width: 70%;
+/* For homepage */
+.banner_center {
+	margin-top: 5%;
+	height:auto;
 }
 
 /*Prevent the width of the dropdown button from changing on click*/
@@ -44,6 +45,27 @@
 #search_bar_text{
 	color: black;
 }
+
+/* standardize search results column widths */
+.fixed-cell-width {
+  width: 65%;
+}
+
+/*style the search results table headers*/
+.search-th{
+  font-size:20px;
+  text-align: center;
+  color: #008080; /*match the book links*/
+}
+
+/*large font sizes, bookpage*/
+.header {
+  font-size: 28px;
+}
+.subheader {
+  font-size: 20px;
+}
+
 #search_form{
 	font-family: 'Open Sans';
 }
@@ -58,9 +80,9 @@
    background-color: rgba(255,255,255,.25);
 }
 .navbar-header {
-	margin-left: 15%;
-   	margin-right: 15%;
-   	width: 70%;
+	margin-left: 10%;
+   	margin-right: 10%;
+   	width: 80%;
    	font-size: 24px;
    	font-family: 'Open Sans';
 }
@@ -79,24 +101,28 @@
 }
 .modal-header {
 	 border-bottom: none;
-	 height: 40px;
+	 height: 50px;
 	 background-color: rgba(74, 160, 44,.25);
 }
-/* style all the input forms on the sell page */
-.sell_form {
-  autocomplete: "on";
-  required;
-}
+
+
 
 /* For the background of the pages */
 body {
     /*background-color:#c1cdd5;*/
-   padding-top: 30px;
+   padding-top: 40px;
    background: url('paper.jpg');
+   min-height:100%;
 }
+
+html {
+	height:100%;
+}
+
+
 input, textarea{
 	font-family: 'Open Sans';
-    background-color: rgba(118,206,143,.25)
+    background-color: rgba(118,206,143,.25);
     color: black;
 }
 /* change fonts */
@@ -106,6 +132,15 @@ input, textarea{
 p, h1, h2, h3, h4{
   /*font-family: 'ABeeZee', sans-serif;*/
 	font-family: 'Open Sans';
+}
+h3 {
+	font-size: 16px;
+}
+h2{
+	font-size: 20px;
+}
+h1 {
+	font-size: 28px;
 }
 th{
 	font-size:24px;
@@ -123,11 +158,27 @@ th{
   width:80%;
 }
 
-/*this class attempts to center all the stuff within it*/
-div.center-all{
-  text-align: center;
-  vertical-align: middle;
+/*padded for sell form*/
+.glyphicon-info-sign {
+  padding-left: 25%;
+  padding-top: 25%;
 }
+
+/*fixed width for sell form fields */
+.sell-field {
+  width: 150px;
+}
+
+/* style all the input forms on the sell page */
+.sell-label {
+  text-align: left;
+}
+
+/*vertically center checkbox*/
+#is_auction {
+  margin-top: 1.2%;
+}
+
 /*beware: specific to displaying the book! */
 /*img.center-all{
   display: block;
@@ -135,10 +186,6 @@ div.center-all{
   margin-right: auto;
 }
 */
-.book-info{
-  padding-left:2%;
-  padding-top:0.25%;
-}
 
 .modal-dialog, .modal-header{
 	font-family: 'Open Sans';
@@ -159,12 +206,12 @@ div.center-all{
 }
 .blue_button{
 	background-color:rgba(0, 128, 128,.2);
-	font-weight:bold;	
+	font-weight:bold;
    	box-shadow:inset 0 0 3px rgba(0, 128, 128,.45);
 }
 .translucent_button{
 	background-color: rgba(255,255,255,.4);
-	font-weight:bold;	
+	font-weight:bold;
    	box-shadow:inset 0 0 3px rgba(0,0,0,.3);
 }
 /* Three different shades of translucence for black*/
@@ -191,6 +238,14 @@ a:hover {color: rgba(74, 160, 44,.6);}
 }
 
 .debug {
-	border:solid red thick;
+	outline:solid red thick;
+}
+
+.debug2 {
+	outline:solid blue thick;
+}
+
+.debug3 {
+	outline:dashed green thick;
 }
 
