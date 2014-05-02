@@ -22,8 +22,8 @@ def search_by_author(query):
 def search_by_course(query):
     return {"books":get_book_info(course = query)}
 
-def search_by_isbn(query):
-    result = get_book_info(isbn = query)
+def search_by_isbn(query, thumb=True):
+    result = get_book_info(isbn = query, thumb=thumb)
     if result == []:
         info = fetch_isbn(query)
         if info:
