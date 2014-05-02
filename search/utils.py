@@ -90,6 +90,37 @@ def fetch_isbn(isbn):
     info["thumbnail"] = thumbnail
     return info
 
+def create_aws_request(isbn):
+    request = 'http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&Operation=\
+ItemLookup&ResponseGroup=Large&SearchIndex=All\
+&IdType=ISBN&ItemId=' + isbn + '&AWSAccessKeyId=AKIAIX6HI3E2UEYCJTLQ\
+&AssociateTag=tex052-20&Timestamp='
+
+    import time 
+    time = time.gmtime(time.time())
+    stamp = time.strftime('%Y-%m-%dT%H:%M:%SZ', time)  
+    request += stamp
+
+    import urllib
+    request = urllib.quote(request)
+
+    list = request.split('?')
+    list.pop(0)
+    params = ''.join(list)
+    list = params.split('&')
+    list = sorted(list)
+    string = '&'.join(list)
+    string = 'GET\nwebservices.amazon.com\n/onca/xml\n' + string
+    secret_key = '70alKsiyh/W3a8UaSWi/czQkKAdtZlDbCOt1faTD'
+
+    sha256 = OpenSSL::Digest::SHA256.new
+    sig = OpenSSL::HMAC.digest(sha256, secret_key, string)
+    signature = Base64.encode64(sig)
+    signature = urllib.quote(signature)
+    request = request + '&Signature=' + signature
+
+    return request
+
 def validate_isbn(isbn):
     regex = re.compile("(^((\s)*([0-9]-?){9}[0-9Xx](\s)*)$)|(^((\s)*(97[89]-?([0-9]-?){9}[0-9])(\s)*)$)")
     if regex.search(isbn):
