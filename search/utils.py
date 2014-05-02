@@ -22,8 +22,8 @@ def search_by_author(query):
 def search_by_course(query):
     return {"books":get_book_info(course = query)}
 
-def search_by_isbn(query, thumb=True):
-    result = get_book_info(isbn = query, thumb=thumb)
+def search_by_isbn(query):
+    result = get_book_info(isbn = query)
     if result == []:
         info = fetch_isbn(query)
         if info:
@@ -91,18 +91,18 @@ def fetch_isbn(isbn):
     return info
 
 def create_aws_request(isbn):
-    request = 'http://webservices.amazon.com/onca/xml?Service=AWSECommerceService&Operation=\
+    request = 'webservices.amazon.com/onca/xml?Service=AWSECommerceService&Operation=\
 ItemLookup&ResponseGroup=Large&SearchIndex=All\
-&IdType=ISBN&ItemId=' + isbn + '&AWSAccessKeyId=AKIAIX6HI3E2UEYCJTLQ\
+&IdType=ISBN&ItemId=' + isbn + '&AWSAccessKeyId=AKIAIFNKBO5CZQFRA67Q\
 &AssociateTag=tex052-20&Timestamp='
 
     import time 
-    time = time.gmtime(time.time())
-    stamp = time.strftime('%Y-%m-%dT%H:%M:%SZ', time)  
+    curTime = time.gmtime(time.time())
+    stamp = time.strftime('%Y-%m-%dT%H:%M:%SZ', curTime)  
     request += stamp
 
     import urllib
-    request = urllib.quote(request)
+    request = urllib.quote(request, '/?=+&')
 
     list = request.split('?')
     list.pop(0)
@@ -111,13 +111,14 @@ ItemLookup&ResponseGroup=Large&SearchIndex=All\
     list = sorted(list)
     string = '&'.join(list)
     string = 'GET\nwebservices.amazon.com\n/onca/xml\n' + string
-    secret_key = '70alKsiyh/W3a8UaSWi/czQkKAdtZlDbCOt1faTD'
 
-    sha256 = OpenSSL::Digest::SHA256.new
-    sig = OpenSSL::HMAC.digest(sha256, secret_key, string)
-    signature = Base64.encode64(sig)
-    signature = urllib.quote(signature)
-    request = request + '&Signature=' + signature
+    import hmac
+    import hashlib
+    import base64
+    dig = hmac.new(b'/SrwaV1M2Due6flsdNS+4Ln1DL0G7J1n/g+aTjeB', msg=string, digestmod=hashlib.sha256).digest()
+    signature = base64.b64encode(dig).decode() 
+    signature = urllib.quote_plus(signature)
+    request = 'http://' + request + '&Signature=' + signature
 
     return request
 
