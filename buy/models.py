@@ -118,10 +118,10 @@ def bid_auction(auction_id, current_price, buyer_id):
     try:
         object = Auction.objects.get(id=auction_id)
         old_buyer = object.buyer_id
-        if object.seller_id == buyer_id:
+        '''if object.seller_id == buyer_id:
             return 1, None, {}
         if object.buyer_id == buyer_id:
-            return 2, None, {}
+            return 2, None, {}'''
         if object.current_price < current_price:
             object.current_price = current_price    
             object.buyer_id = buyer_id
