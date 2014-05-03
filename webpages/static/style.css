@@ -55,8 +55,17 @@
 }
 
 /* standardize search results column widths */
-.fixed-cell-width {
+.fixed-result-width {
   width: 65%;
+}
+
+/* standardize book page column widths */
+.fixed-book-width {
+  width: 75%;
+}
+
+#other_sites{
+  padding-top: 2%;
 }
 
 /*style the search results table headers*/
@@ -166,6 +175,12 @@ th{
   width:80%;
 }
 
+#footer {
+    padding-bottom:5.5rem;
+    position:relative;
+    display:block;
+    text-align:center;
+}
 /*padded for sell form*/
 .glyphicon-info-sign {
   padding-left: 25%;
@@ -198,7 +213,6 @@ th{
 .modal-dialog, .modal-header{
 	font-family: 'Open Sans';
 }
-
 
 /* Three different shades of translucence for white*/
 .translucent_w1{
@@ -248,12 +262,9 @@ a:hover {color: rgba(74, 160, 44,.6);}
 .debug {
 	outline:solid red thick;
 }
-
 .debug2 {
 	outline:solid blue thick;
 }
-
 .debug3 {
 	outline:dashed green thick;
 }
-
