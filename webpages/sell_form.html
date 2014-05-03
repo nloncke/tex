@@ -43,6 +43,23 @@ $(function () {
 			$("#current_price").attr('required',false);
 		}
 	});
+	
+$(function (){
+	$("#buyback_submit").click(function () {
+		var val;
+		var est;
+		var result;
+		val = $("#buyback_price").val();
+		if($("#buyback_new").is(':checked')) {
+			est = val * 0.25;
+		}
+		else if($("#buyback_used").is(':checked')) {
+			est = val * 0.2;
+		}
+		result = "Buyback estimate: $ "+ est.toFixed(2);
+		$("#estimate").html(result);
+	});
+});
 });
 </script>
 
@@ -60,10 +77,38 @@ $(function () {
          	<p>Author(s): {{book.author}}</p>
          	<p>ISBN-13: {{book.isbn}}</p>
          	<p>Published Date: {{book.pub_date}}</p>
+         	<a href="" data-toggle="modal" data-target="#buyback_modal"><p>Interested in Labyrinth's buyback?</p></a>
         </h2>
     </div>
 </div>
 <!-- END BOOK DISPLAY -->
+ <div class="modal fade" id="buyback_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-md">
+			<div class="modal-content">
+		  		<div class="modal-header">
+		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  			<h2 class="modal-title">Labyrinth buyback estimator</h2>
+		  		</div>
+		  		<div class="modal-body center-page">
+		 			<div class="form-group">
+		 			<h2>			
+					<label for="buyback_price" class=" control-label sell-label">How much did you pay for the book?</label>
+						<input id="buyback_price" name="buyback_price" class="form-control sell-field" type="number" 
+					 				min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g. 10" required/>
+					<label for="condition" style="text-align:center">Condition:</label>
+						<label id="condition" for="buyback_new" class="radio-inline"><input required id="buyback_new" name="buyback_condition" type="radio" value="1"/>New</label>
+						<label id="condition" for="buyback_used" class="radio-inline"><input required id="buyback_used" name="buyback_condition" type="radio" value="0"/>Used</label>
+					<br><button type="click" id="buyback_submit" class="btn btn-default blue_button" >
+	    				<span>Estimate</span>
+					</button>	
+					<br><br><label id="estimate"></label>
+					<h3>See <a href="http://www.labyrinthbooks.com/cb_home.aspx">here</a> for more info.</h3>
+					</h2>
+					</div>
+				</div>
+			</div>
+		  </div>
+	</div>
 
 <!-- sell form -->
 

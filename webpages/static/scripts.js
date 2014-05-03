@@ -49,13 +49,13 @@ $(document).ready(function()
   $("#buy_price_info").popover({
     trigger:"hover",
     title:"Buy now price?",
-    content:"When a student bids this price, she automatically \
-    buys the book and the auction closes."
+    content:"Someone who bids this price automatically \
+    buys the book and closes the auction."
   });
 
   $("#is_auction").tooltip({
     trigger:"hover",
-    title:"Allow students to bid on your book?",
+    title:"Want people to bid on your book?",
   });
 
   $("#current_price").change( function()  {
