@@ -7,6 +7,10 @@
 	background-color: inherit;
 }
 
+.banner_header{
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
 /*specifically the welcome text*/
 #welcome {
 	font-family: 'ABeeZee', sans-serif;
@@ -20,8 +24,12 @@
 /*For formatting message under the tex banner*/
 #sub_welcome {
   font-family: "Open Sans";
+  font-weight: bold;
   font-size: 100%;
   color: rgba(0, 128, 128,.8);
+  margin-bottom: 20px;
+  margin-top: -20px;
+
 }
 
 /*positions the entire search bar on the homepage*/
