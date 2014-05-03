@@ -73,15 +73,15 @@ $(function () {
 		<div class="form-group">
 			<label for="course" class="col-sm-2 control-label sell-label">Course:</label>
 			<div class="col-sm-10">
-				<input id="course" name="course" class="form-control sell-field" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" title="Enter a valid course name e.g. COS 333" placeholder="e.g. COS 333">
+				<input id="course" name="course" class="form-control sell-field" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" placeholder="e.g. COS 333">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="is_auction" class="col-sm-2 control-label sell-label"> Auction:</label>
 			<div class="col-sm-10">
-				<label for="is_auction"class="checkbox-inline">
-					<input id="is_auction" name="is_auction" class="checkbox pull-left" type="checkbox"
-					data-toggle="tooltip"/>Yes!</label>
+				<label for="is_auction" class="checkbox-inline" data-toggle="tooltip">
+					<input id="is_auction" name="is_auction" class="checkbox pull-left" type="checkbox"/>
+					Yes!</label>
 			</div>
 		</div>
 		<div class="form-group collapse auction">
@@ -106,16 +106,16 @@ $(function () {
 			</div>
 			<div class="col-sm-3" >
 				<input id="price" name="price" class="form-control sell-field pull-left" type="number"
-				required min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g. 25"/>
+				required min="1" max="999" data-toggle="tooltip" data-title="Whole numbers only; dollar sign not required" placeholder="e.g. 25"/>
 				<span id="buy_price_info" class="collapse auction pull-left" data-container="body" data-toggle="popover" data-placement="right">
 					<span class="glyphicon glyphicon-info-sign"></span>
 				</span>
 			</div>
 
 		</div>
-		<div class="form-group ">
+		<div class="form-group">
 			<label for="condition" class="col-sm-2 control-label sell-label">Condition:</label>
-			<label for="new" class="radio-inline"><input required id="new" name="picked_condition" type="radio" value="New"/>New</label>
+			<label for="new" class="radio-inline"><input required style="margin-left:0px" id="new" name="picked_condition" type="radio" value="New"/>New</label>
 			<label for="like_new" class="radio-inline"><input required id="like_new" name="picked_condition" type="radio" value="Like New"/>Like New</label>
 			<label for="very_good" class="radio-inline"><input required id="very_good" name="picked_condition" type="radio" value="Very Good"/>Very Good</label>
 			<label for="good" class="radio-inline"><input required id="good" name="picked_condition" type="radio" value="Good"}/> Good</label>
