@@ -93,7 +93,7 @@ def fetch_isbn(isbn):
 def create_aws_request(isbn):
     request = 'webservices.amazon.com/onca/xml?Service=AWSECommerceService&Operation=\
 ItemLookup&ResponseGroup=Large&SearchIndex=All\
-&IdType=ISBN&ItemId=' + isbn + '&AWSAccessKeyId=AKIAIFNKBO5CZQFRA67Q\
+&IdType=ISBN&ItemId=' + isbn + '&AWSAccessKeyId=AKIAI3JGASQGHO7YCP3Q\
 &AssociateTag=tex052-20&Timestamp='
 
     import time 
@@ -115,7 +115,7 @@ ItemLookup&ResponseGroup=Large&SearchIndex=All\
     import hmac
     import hashlib
     import base64
-    dig = hmac.new(b'/SrwaV1M2Due6flsdNS+4Ln1DL0G7J1n/g+aTjeB', msg=string, digestmod=hashlib.sha256).digest()
+    dig = hmac.new(b'Tx9XGGbYjlp0hDJLmDp9USt9OVm0mTPmy2lvqo4M', msg=string, digestmod=hashlib.sha256).digest()
     signature = base64.b64encode(dig).decode() 
     signature = urllib.quote_plus(signature)
     request = 'http://' + request + '&Signature=' + signature
