@@ -53,10 +53,17 @@ $(document).ready(function()
     buys the book and closes the auction."
   });
 
+// SELL FORM TOOLTIPS
   $("#is_auction").tooltip({
     trigger:"hover",
     title:"Want people to bid on your book?",
   });
+
+  $("#course").tooltip({
+    trigger:"hover",
+    title:"Enter a valid course name e.g. COS 333",
+  });
+
 
   $("#current_price").change( function()  {
     $("#price").attr({"min": $("#current_price").val()});
