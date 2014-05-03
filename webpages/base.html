@@ -86,9 +86,23 @@
 	{% endblock body %}
 
 	{% block footer %}
-	{% endblock footer %}
- <section id="footer">
-	 	<span id="contact_link" class="footer-link" href="#contactform">Contact</span> 
+	 <section id="footer">
+	 	<a href="" data-toggle="modal" data-target="#about_modal"><span id="about" class="footer-link">About</span></a>
 	 </section>
+	 <div class="modal fade" id="about_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-md">
+			<div class="modal-content">
+		  		<div class="modal-header">
+		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  		</div>
+		  		<div id="about_modal_body" class="modal-body">
+					<p><h2>Welcome to tex - your one stop shop for buying and selling textbooks!</h2><br>Looking to buy a book? With just one search, you can check out offers
+						from on- and off-campus (Amazon, Labyrinth, Chegg, and Campus). <br>Or hoping to get rid of your old textbooks? Just find your book, and set up
+						an offer or start an auction to get the best price.  </p>
+				</div>
+			</div>
+		  </div>
+	</div>
+	{% endblock footer %}
 </body>
 </html>

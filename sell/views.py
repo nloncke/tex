@@ -1,12 +1,16 @@
 from django.shortcuts import render
 from search.utils import validate_isbn, convert_to_13
+import re
 
 def sell_form(request):   
     from search.utils import search_by_isbn
     result = {}
     if request.method == 'GET':
         isbn = request.GET.get("isbn","0")
+        isbn = isbn.lstrip()
+        isbn = isbn.rstrip()
         if validate_isbn(isbn=isbn):
+            isbn = re.sub("[^0-9Xx]", "", isbn)
             isbn = convert_to_13(isbn=isbn)
             results = search_by_isbn(query=isbn, thumb=False)["books"]
             if results:
