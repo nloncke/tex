@@ -1,4 +1,4 @@
-  // Functions for changing the search bar
+// Functions for changing the search bar
 function set_to_title(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by title",
