@@ -14,9 +14,9 @@ def sell_form(request):
             isbn = re.sub("[^0-9Xx]", "", isbn)
             isbn = convert_to_13(isbn=isbn)
             results = search_by_isbn(query=isbn, thumb=False)["books"]
-            add_links(results)
             if results:
                 result["book"] = results[0]
+                add_links(result["book"])
                 return render(request, 'sell_form.html', result)
         return render(request, 'search_empty.html', {"query": isbn})
     return render(request, "error_page.html")   
