@@ -167,6 +167,12 @@ th{
   width:80%;
 }
 
+#footer {
+    padding-bottom:5.5rem;
+    position:relative;
+    display:block;
+    text-align:center;
+}
 /*padded for sell form*/
 .glyphicon-info-sign {
   padding-left: 25%;
