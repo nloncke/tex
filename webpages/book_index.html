@@ -13,7 +13,7 @@
 	<div class="media-body book-info">
 		<table class="table">
 			<tr>
-				<td>
+				<td class="fixed-book-width">
 				<h3 class="media-heading header"><strong>{{book.title}}</strong></h3>
 		    	<h2 class="subheader">
 		         	<p>Author(s): {{book.author}}</p>
@@ -37,8 +37,8 @@
 		        {% endif %}
 		    	</h2>
 		    	</td>
-		    	<td>
-		    		<h3 class="media-heading header" style="font-size:20px"><strong>Offers from other sites</strong></h3>
+		    	<td id="other_sites">
+		    		<h3 class="media-heading header" style="font-size:20px"><strong>Other sites</strong></h3>
 		    		{% if book.labyrinth %}
 	         		<h3><a href={{book.labyrinth}} target="_blank"><img src="/static/labyrinth.ico" alt="Labyrinth"></a>
 	         		<a href={{book.labyrinth}} target="_blank"> Labyrinth </a>
