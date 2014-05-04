@@ -4,6 +4,10 @@
 <script>
 	$(document).ready(function(){
 		$("#{{user.bookuser.default_search}}").prop('checked', true);
+
+		if (window.location.hash == "#profile") {
+		     $('#profile_modal').modal('show');
+		}
  });
 </script>
 {% endblock header %}
