@@ -129,7 +129,7 @@
 	         		<td>{% if follow.min_offer %}${{follow.min_offer.buy_price}}{% else %}No offers{% endif %}</td>
 	         		<td>{% if follow.min_auction %}${{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
 	         	</tr>
-	         	
+
 	         	<!-- unfollow modal -->
 				<div class="modal fade" id="unfollow_modal_{{follow.book.isbn}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
@@ -175,7 +175,8 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
         <div id="profile_modal_body" class="modal-body">
-		   <form id="profile_form" method="post" action="/account/profile/"> {% csrf_token %}
+		   <form id="profile_form" method="post" action="/account/"> {% csrf_token %}
+		   		<input type="hidden" id="action" name="action" value="update">
 				<!-- input type="text" name="first_name" id="first_name" placeholder="First name" required/>
 				<input type="text" name="last_name" id="last_name" placeholder="Last name" required/ -->
 				<div class="form-group">
