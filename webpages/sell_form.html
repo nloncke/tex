@@ -63,16 +63,19 @@
 			</div>
 		</div>
 		<div class="form-group collapse auction">
+			<div class="input-append collapse auction">
 			<label for="end_time" class="col-sm-2 control-label sell-label">End Date:</label>
-            <div class='col-sm-2 input-group date' id='datetimepicker' data-date-format="MM/DD/YY HH:mm">
-                <input type='text' id="end_time" name="end_time"  readonly class="form-control sell-field" title="Please select a date and time."/>
-                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+		    </div>
+            <div class='col-sm-3 input-group date' id='datetimepicker' data-date-format="MM/DD/YY HH:mm">
+                <input type='text' id="end_time" name="end_time" readonly class="form-control sell-field pull-left" title="Please select a date and time."/>
+                <span class="input-group-addon pull-left">
+                	<span class="glyphicon glyphicon-calendar"></span>
                 </span>
 	     	</div>
 	    </div>
 		<div class="form-group collapse auction">
 			<label for="current_price" class="col-sm-2 control-label sell-label">Start Price ($):</label>
-			<div class="col-sm-10" >
+			<div class="col-sm-10">
 				<input id="current_price" name="current_price" class="form-control sell-field" type="number"
 				 min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g. 10"/>
 			</div>
@@ -82,9 +85,10 @@
 			</div>
 			<div class="input-append auction"><label for="price" class="col-sm-2 control-label sell-label">Price ($):</label>
 			</div>
-			<div class="col-sm-3" >
+			<div class="col-sm-3">
 				<input id="price" name="price" class="form-control sell-field pull-left" type="number"
-				required min="1" max="999" data-toggle="tooltip" data-title="Whole numbers only; dollar sign not required" placeholder="e.g. 25"/>
+				required min="1" max="999" data-toggle="tooltip" data-title="Whole numbers only; dollar sign not required"
+				placeholder="e.g. 25"/>
 				<span id="buy_price_info" class="collapse auction pull-left" data-container="body" data-toggle="popover" data-placement="right">
 					<span class="glyphicon glyphicon-info-sign"></span>
 				</span>

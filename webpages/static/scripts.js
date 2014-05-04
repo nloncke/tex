@@ -81,7 +81,6 @@ $(document).ready(function()
 
   // sell form scripts to follow...
   $('#datetimepicker').datetimepicker({
-    sideBySide: true,
     minDate: moment().subtract('days', 1),
     sideBySide: true,
   });
