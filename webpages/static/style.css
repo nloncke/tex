@@ -130,6 +130,7 @@ body {
    background: url('paper.jpg');
    min-height:100%;
    font-size:1em;
+   margin-top: 50px;
 }
 
 html {
@@ -252,22 +253,19 @@ th{
 	background-color: rgba(74, 160, 44,.25);
 }
 
-/*.nav-background {
-    /*background-color: rgba(0,0,0,0.3);*/
-/*}
-.nav-background::after {
-    content: "";
-    background-image: url('paper.jpg');
-    opacity: 0.5;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
+ /*For mobile devices*/
+@media (max-width: 767px) {
+	.nav-wrapper {
+		height: 72px;
+	}
+	img.media-object{
+		height: 50px;
+		width:50px;
+	}
+	body {
+	   margin-top: 72px;
+	}
 }
-.nav-background > * {
-    z-index: 10;
-}*/
 
 
 ul {list-style-type:none}
