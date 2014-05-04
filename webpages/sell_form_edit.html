@@ -1,36 +1,26 @@
-{% extends "base_topsearch.html" %}
-{% block content %}
-{% if book %}
-	<!-- DISPLAY THE BOOK -->
-	<div class="media center-all">
-			<img class="media-object pull-left" src="{{book.frontcover}}" alt="{{book.title}}" height="211px" width="171px">
-			<div class="media-body book-info" style="text-align:left">
-				<h1 class="media-heading" style="font-size:28px"><a href="/book/?isbn={{book.isbn}}"><strong>{{book.title}}</strong></a></h1>
-		    	<h2>
-		         	<p>Author(s): {{book.author}}</p>
-		         	<p>ISBN-13: {{book.isbn}}</p>
-		         	<p>Published Date: {{book.pub_date}}</p>
-		        </h2>
-		    </div>
-	</div>
-	<!-- END BOOK DISPLAY -->
-	<!-- sell form -->
+{% extends "base_book.html" %}
 
+{% block displaytitle %}
+	<h1 class="media-heading" style="font-size:28px"><a href="/book/?isbn={{book.isbn}}"><strong>{{book.title}}</strong></a></h1>
+{% endblock displaytitle %}
+
+<!-- END BOOK DISPLAY -->
+{% block extras %}
+	<!-- sell form -->
 	<form id="sell_form_edit" action="/sell/edit/submit/" class="form-horizontal" role="form" method="post"> {% csrf_token %}
 		<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
 		<input type="hidden" id="offer_id" name="offer_id" value="{{offer_id}}"/>
 		<input type="hidden" id="is_auction" name="is_auction" value="{{is_auction}}"/>
 		<h2>
-			<div class="form-group">
-				<label for="course" class="col-sm-2 control-label" style="text-align:left">Course:</label>
-				<div class="col-sm-10">
-					<input id="course" name="course" class="form-control" style="width:150px" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" 
-					title="Enter a valid course name e.g COS 333" value="{{offer.course}}">
-				</div>
+		<div class="form-group">
+			<label for="course" class="col-sm-2 control-label sell-label">Course:</label>
+			<div class="col-sm-10">
+				<input id="course" name="course" class="form-control sell-field" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" placeholder="e.g. COS 333">
 			</div>
+		</div>
 			{% if is_auction %}
 			<div class="form-group">
-				<label for="is_auction" class="col-sm-2 control-label" style="text-align:left">Auction:</label>
+				<label for="is_auction" class="col-sm-2 control-label sell-label">Auction:</label>
 				<div class="col-sm-10">
 					<input id="is_auction" name="is_auction" {% if is_auction %} checked onclick="return false" {% endif %} class="checkbox" type="checkbox"/>
 				</div>
@@ -38,40 +28,46 @@
 			{% endif %}	
 			{% if is_auction %}
 			<div class="form-group">
-				<label for="end_time" class="col-sm-2 control-label" style="text-align:left">End Date:</label>		
+				<label for="end_time" class="col-sm-2 control-label sell-label">End Date:</label>		
             	<div class="col-sm-2 input-group date" id="datetimepicker">
-					<input type='text' id="end_time" name="end_time" class="form-control" style="width:150px" value="{{offer.end_time}}" readonly title="Please select a date and time."/>
+					<input type='text' id="end_time" name="end_time" class="form-control sell-field" value="{{offer.end_time}}" readonly title="Please select a date and time."/>
                		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
                 	</span>   
 	     		</div>
 	   		</div>	       
 			<div class="form-group">
-				<label for="current_price" class="col-sm-2 control-label" style="text-align:left">Start Price ($):</label>		
+				<label for="current_price" class="col-sm-2 control-label sell-label">Start Price ($):</label>		
 				<div class="col-sm-10">
-					<input id="current_price" name="current_price" class="form-control" style="width:150px" type="text"
+					<input id="current_price" name="current_price" class="form-control sell-field" type="text"
 					 pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" title="Whole numbers only; dollar sign not required" value="{{offer.current_price}}" readonly>
 				</div>
 			</div>	
 			{% endif %}		
 			<div class="form-group">
-				{% if is_auction %}
-				<label for="price" class="col-sm-2 control-label" style="text-align:left">Buy Now <br> Price ($):</label>
-				{% else %}
-				<label for="price" class="col-sm-2 control-label" style="text-align:left">Price ($):</label>
-				{% endif %}		
-				<div class="col-sm-10">
-					<input id="price" name="price" class="form-control" type="text" style="width:150px" required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" 
-					title="Whole numbers only; dollar sign not required" {% if is_auction %} readonly value="{{offer.buy_now_price}}" {% else %} value="{{offer.price}}" {% endif %}/>				
+				<div class="input-append">
+					{% if is_auction %}
+					<label for="price" class="col-sm-2 control-label sell-label">Buy Now<br>Price ($):</label>
+					{% else %}				
+					<label for="price" class="col-sm-2 control-label sell-label">Price ($):</label>
+					{% endif %}
 				</div>
-			</div>	
-			{% if is_auction %}
-			<span inline class="help-block">Book is sold if someone bids this price.</span>
-			{% endif %}	
+				<div class="col-sm-3">
+					<input id="price" name="price" class="form-control sell-field pull-left" type="number" required
+					title="Whole numbers only; dollar sign not required"
+					{% if is_auction %} readonly value="{{offer.buy_now_price}}"
+					{% else %} value="{{offer.price}}" {% endif %}/>	
+					{% if is_auction %}
+					<span id="buy_price_info" class="pull-left" data-container="body" data-toggle="popover" data-placement="right">
+						<span class="glyphicon glyphicon-info-sign"></span>
+					</span>
+					{% endif %}			
+				</div>
+			</div>
 
-			<div class="form-group ">
-				<label for="condition" class="col-sm-2 control-label" style="text-align:left">Condition:</label>
+			<div class="form-group">
+				<label for="condition" class="col-sm-2 control-label sell-label">Condition:</label>
 				<label for="new" class="radio-inline">
-					<input required id="new" name="picked_condition" type="radio" value="New" {% if offer.condition = 'New' %} checked {% endif %}/>New</label>
+					<input required id="new" style="margin-left:0px" name="picked_condition" type="radio" value="New" {% if offer.condition = 'New' %} checked {% endif %}/>New</label>
 				<label for="like_new" class="radio-inline">
 					<input required id="like_new" name="picked_condition" type="radio" value="Like New" {% if offer.condition = 'Like New' %} checked {% endif %}/>Like New</label>
 				<label for="very_good" class="radio-inline">
@@ -82,7 +78,7 @@
 					<input required id="acceptable" name="picked_condition" type="radio" value="Acceptable" {% if offer.condition = 'Acceptable' %} checked {% endif %}/>Acceptable</label>
 			</div>
 			<div class="form-group">
-				<label for="description" class="col-sm-2 control-label" style="text-align:left">Description:</label>
+				<label for="description" class="col-sm-2 control-label sell-label">Description:</label>
 				<div class="col-sm-10">
 					<textarea required maxlength="100" cols="40" id="description" class="form-control" style="width:250px"
 					name="description" rows="5" title="Enter a short description about your book.">{{offer.description}}</textarea>
@@ -94,6 +90,4 @@
 		</button>
 	</h2>
 </form>
-{% endif %}
-</div>
-{% endblock content %}
+{% endblock extras %}

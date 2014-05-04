@@ -1,4 +1,4 @@
-  // Functions for changing the search bar
+// Functions for changing the search bar
 function set_to_title(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by title",
@@ -53,7 +53,7 @@ $(document).ready(function()
     buys the book and closes the auction."
   });
 
-// SELL FORM TOOLTIPS
+  // SELL FORM TOOLTIPS
   $("#is_auction").tooltip({
     trigger:"hover",
     title:"Want people to bid on your book?",
@@ -77,6 +77,57 @@ $(document).ready(function()
   	var current_price = $("#current_price").val();
   	var buy_now_price = $("#buy_now_price").val();
   	$("#bid").attr({"max":buy_now_price - current_price - 1 });
+  });
+
+  // sell form scripts to follow...
+  $('#datetimepicker').datetimepicker({
+    sideBySide: true,
+    minDate: moment().subtract('days', 1),
+    sideBySide: true,
+  });
+
+  $("#end_time").attr(
+    {value:moment().add('days', 1).format("MM/DD/YY HH:mm")}
+  );
+
+  $("#datetimepicker").on('dp.hide', function(){
+    if(moment().isAfter(moment(
+      $("#end_time").val(), "MM/DD/YY HH:mm"))){
+      $("#submit").prop( 'disabled', true);
+      alert("Please select a time in the future");
+      }
+    else {
+      $("#submit").prop( "disabled", false );
+    }
+  });
+
+  $("#is_auction").click(function () {
+    if ($("#is_auction").is(':checked')) {
+      $(".auction").toggle();
+      $("#end_time").attr('required',true);
+      $("#current_price").attr('required',true);
+      $("#is_auction").val("yes");
+    }
+    else {
+      $(".auction").toggle();
+      $("#end_time").attr('required',false);
+      $("#current_price").attr('required',false);
+    }
+  });
+
+$("#buyback_submit").click(function () {
+    var val;
+    var est;
+    var result;
+    val = $("#buyback_price").val();
+    if($("#buyback_new").is(':checked')) {
+      est = val * 0.25;
+    }
+    else if($("#buyback_used").is(':checked')) {
+      est = val * 0.2;
+    }
+    result = "Buyback estimate: $ "+ est.toFixed(2);
+    $("#estimate").html(result);
   });
 
 });

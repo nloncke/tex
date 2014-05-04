@@ -1,88 +1,22 @@
-{% extends "base_topsearch.html" %}
+{% extends "base_book.html" %}
 {% block header %}
 <link href="/static/bootstrap-datetimepicker.min.css" rel="stylesheet">
 <script type="text/javascript" src="/static/moment.min.js"></script>
 <script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
-<script type="text/javascript">
-$(function () {
-    $('#datetimepicker').datetimepicker({
-        sideBySide: true,
-        minDate: moment().subtract('days', 1),
-        sideBySide: true,
-    });
-    $("#end_time").attr(
-    	{value:moment().add('days', 1).format("MM/DD/YY HH:mm")}
-    );
-});
-
-$(function () {
-  	$("#datetimepicker").on('dp.hide', function(){
-		if(moment().isAfter(moment(
-			$("#end_time").val(), "MM/DD/YY HH:mm"))){
-			$("#submit").prop( 'disabled', true);
-			alert("Please select a time in the future");
-		}
-		else {
-			$("#submit").prop( "disabled", false );
-			}
-	});
-});
-
-$(function () {
-	$("#is_auction").click(function () {
-		if ($("#is_auction").is(':checked')) {
-			$(".auction").toggle();
-			$("#end_time").attr('required',true);
-			$("#current_price").attr('required',true);
-			$("#is_auction").val("yes");
-
-		}
-		else {
-			$(".auction").toggle();
-			$("#end_time").attr('required',false);
-			$("#current_price").attr('required',false);
-		}
-	});
-	
-$(function (){
-	$("#buyback_submit").click(function () {
-		var val;
-		var est;
-		var result;
-		val = $("#buyback_price").val();
-		if($("#buyback_new").is(':checked')) {
-			est = val * 0.25;
-		}
-		else if($("#buyback_used").is(':checked')) {
-			est = val * 0.2;
-		}
-		result = "Buyback estimate: $ "+ est.toFixed(2);
-		$("#estimate").html(result);
-	});
-});
-});
-</script>
-
 {% endblock header %}
 
-{% block content %}
-
-{% if book %}
 <!-- DISPLAY THE BOOK -->
-<div class="media">
-	<img class="media-object pull-left" src="{{book.frontcover}}" alt="{{book.title}}" height="211px" width="171px">
-	<div class="media-body book-info sell-label">
-		<h1 class="media-heading"><a href="/book/?isbn={{book.isbn}}"><strong>{{book.title}}</strong></a></h1>
-    	<h2>
-         	<p>Author(s): {{book.author}}</p>
-         	<p>ISBN-13: {{book.isbn}}</p>
-         	<p>Published Date: {{book.pub_date}}</p>
-         	<a href="" data-toggle="modal" data-target="#buyback_modal"><p>Interested in Labyrinth's buyback?</p></a>
-        </h2>
-    </div>
-</div>
+{% block displaytitle %}
+	<h1 class="media-heading"><a href="/book/?isbn={{book.isbn}}"><strong>{{book.title}}</strong></a></h1>
+{% endblock displaytitle %}
+
+	{% block buyback %}
+	<a href="" data-toggle="modal" data-target="#buyback_modal"><p>Labyrinth Buyback Estimator!</p></a>
+	{% endblock buyback %}
+
 <!-- END BOOK DISPLAY -->
- <div class="modal fade" id="buyback_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+{% block extras %}
+	<div class="modal fade" id="buyback_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		  <div class="modal-dialog modal-md">
 			<div class="modal-content">
 		  		<div class="modal-header">
@@ -111,7 +45,6 @@ $(function (){
 	</div>
 
 <!-- sell form -->
-
 <form id="sell_form" action="/sell/submit/" class="form-horizontal" role="form" method="post"> {% csrf_token %}
 	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
 	<h2>
@@ -178,8 +111,4 @@ $(function (){
 	</button>
     </h2>
 </form>
-
-{% endif %}
-</div>
-
-{% endblock content %}
+{% endblock extras %}

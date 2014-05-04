@@ -1,70 +1,34 @@
-{% extends "base_topsearch.html" %}
+<!-- display the book -->
+{% extends "base_book.html" %}
 {% block header %}
 <script type="text/javascript" src="/static/jquery.countdown.js"></script>
 {% endblock header %}
-{% block content %}
-{% if book %}
-{% block confirmation %}
-{% endblock confirmation %}
 
-<!-- DISPLAY THE BOOK -->
-<div class="media">
-	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
-	<div class="media-body book-info">
-		<table class="table">
-			<tr>
-				<td class="fixed-book-width">
-				<h1 class="media-heading"><strong>{{book.title}}</strong></h1>
-		    	<h2 class="subheader">
-		         	<p>Author(s): {{book.author}}</p>
-		         	<p>ISBN-13: {{book.isbn}}</p>
-		         	<p>Published Date: {{book.pub_date}}</p>
-		    	<!-- button should submit book's isbn and change URL -->
-		    	<a href="/sell/?isbn={{book.isbn}}"><button type="submit" class="btn btn-default blue_button">
-					<span><strong>SELL</strong></span>
-		      	</button></a>
-		      	{% if is_follow %}
-			        <button type="submit" id="unfollow" form="unfollow_book" class="btn btn-default blue_button"
-			        	onclick="document.getElementById('unfollow_book').submit(); return false;">
-			        	<span><strong>UNFOLLOW</strong></span>
-			        </button>
-		        {% else %}
-		      	<button type="submit" id="follow" class="btn btn-default blue_button"
-		      		onclick="document.getElementById('follow_book').submit(); return false;">
-		        	<span><strong>FOLLOW</strong></span>
-		        </button>
-		
-		        {% endif %}
-		    	</h2>
-		    	</td>
-		    	<td id="other_sites">
-		    		<h3 class="media-heading header" style="font-size:20px"><strong>Other sites</strong></h3>
-		    		{% if book.labyrinth %}
-	         		<h3><a href={{book.labyrinth}} target="_blank"><img src="/static/labyrinth.ico" alt="Labyrinth"></a>
-	         		<a href={{book.labyrinth}} target="_blank"> Labyrinth </a>
-	         	    </h3>
-		    		{% endif %}
-	         		{% if book.amazon %}
-	         		<h3><a href={{book.amazon}} target="_blank"> <img src="/static/amazon.ico" alt="Amazon"></a>
-	         		<a href={{book.amazon}} target="_blank"> Amazon </a>
-	         	    </h3>
-	         	    {% endif %}
-	         		{% if book.chegg %}
-	         		<h3><a href={{book.chegg}} target="_blank"> <img src="/static/chegg.ico" alt="Chegg"></a>
-	         		<a href={{book.chegg}} target="_blank"> Chegg </a>
-	         	    </h3>
-	         		{% endif %}
-	         		{% if book.campus %}
-	         		<h3><a href={{book.campus}} target="_blank"> <img src="/static/campus.ico" alt="Campus Books"></a>
-	         		<a href={{book.campus}} target="_blank"> Campus Books </a>
-	         	    </h3>
-	         		{% endif %}
 
-		    	</td>
-	    	</tr>
-    	</table>
-  	</div>
-</div>
+{% block displaytitle %}
+	<h3 class="media-heading header"><strong>{{book.title}}</strong></h3>
+{% endblock displaytitle %}
+
+
+{% block sellfollow %}
+	<!-- button should submit book's isbn and change URL -->
+	<a href="/sell/?isbn={{book.isbn}}"><button type="submit" class="btn btn-default blue_button">
+		<span><strong>SELL</strong></span>
+	</button></a>
+	{% if is_follow %}
+	<button type="submit" id="unfollow" form="unfollow_book" class="btn btn-default blue_button"
+	        onclick="document.getElementById('unfollow_book').submit(); return false;">
+	<span><strong>UNFOLLOW</strong></span>
+	</button>
+	{% else %}
+	<button type="submit" id="follow" class="btn btn-default blue_button"
+    	onclick="document.getElementById('follow_book').submit(); return false;">
+    	<span><strong>FOLLOW</strong></span>
+    </button>
+    {% endif %}
+{% endblock sellfollow %}
+
+{% block extras %}
 <form id="unfollow_book" action="/book/" method="post"> {% csrf_token %}
 	<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}"/>
 	<input type="hidden" id="book_action" name="book_action" value="unfollow">
@@ -298,8 +262,5 @@
   </div>
 </div>
 <!-- end of follow prompt modal -->
-{% else %}
-<h1>No Book found</h1>
-{% endif %}
-{% endblock content %}
 
+{% endblock extras %}
