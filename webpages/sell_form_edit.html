@@ -44,29 +44,30 @@
 			</div>	
 			{% endif %}		
 			<div class="form-group">
-				{% if is_auction %}
-				<label for="price" class="col-sm-2 control-label sell-label">Buy Now <br> Price ($):</label>
-				{% else %}
-				<label for="price" class="col-sm-2 control-label sell-label">Price ($):</label>
-				{% endif %}		
-				<div class="col-sm-3 debug2">
-					<input id="price" name="price" class="form-control sell-field" type="text" required pattern="(^[1-9]$)|(^[1-9]\d$)|(^[1-9]\d\d$)" 
-					title="Whole numbers only; dollar sign not required" {% if is_auction %} readonly value="{{offer.buy_now_price}}" {% else %} value="{{offer.price}}" {% endif %}/>	
+				<div class="input-append">
+					{% if is_auction %}
+					<label for="price" class="col-sm-2 control-label sell-label">Buy Now<br>Price ($):</label>
+					{% else %}				
+					<label for="price" class="col-sm-2 control-label sell-label">Price ($):</label>
+					{% endif %}
+				</div>
+				<div class="col-sm-3">
+					<input id="price" name="price" class="form-control sell-field pull-left" type="number" required
+					title="Whole numbers only; dollar sign not required"
+					{% if is_auction %} readonly value="{{offer.buy_now_price}}"
+					{% else %} value="{{offer.price}}" {% endif %}/>	
 					{% if is_auction %}
 					<span id="buy_price_info" class="pull-left" data-container="body" data-toggle="popover" data-placement="right">
 						<span class="glyphicon glyphicon-info-sign"></span>
 					</span>
 					{% endif %}			
 				</div>
-			</div>	
-			{% if is_auction %}
-			<span inline class="help-block">Book is sold if someone bids this price.</span>
-			{% endif %}	
+			</div>
 
-			<div class="form-group ">
+			<div class="form-group">
 				<label for="condition" class="col-sm-2 control-label sell-label">Condition:</label>
 				<label for="new" class="radio-inline">
-					<input required id="new" name="picked_condition" type="radio" value="New" {% if offer.condition = 'New' %} checked {% endif %}/>New</label>
+					<input required id="new" style="margin-left:0px" name="picked_condition" type="radio" value="New" {% if offer.condition = 'New' %} checked {% endif %}/>New</label>
 				<label for="like_new" class="radio-inline">
 					<input required id="like_new" name="picked_condition" type="radio" value="Like New" {% if offer.condition = 'Like New' %} checked {% endif %}/>Like New</label>
 				<label for="very_good" class="radio-inline">

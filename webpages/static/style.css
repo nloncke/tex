@@ -76,12 +76,12 @@
 }
 
 /*large font sizes, bookpage*/
-.header {
+/*.header {
   font-size: 28px;
 }
 .subheader {
   font-size: 20px;
-}
+}*/
 
 #search_form{
 	font-family: 'Open Sans';
@@ -129,6 +129,7 @@ body {
     /*background-color:#c1cdd5;*/
    background: url('paper.jpg');
    min-height:100%;
+   font-size:1em;
 }
 
 html {
@@ -150,13 +151,13 @@ p, h1, h2, h3, h4{
 	font-family: 'Open Sans';
 }
 h3 {
-	font-size: 16px;
+	font-size: 1em;
 }
 h2{
-	font-size: 20px;
+	font-size: 1.5em;
 }
 h1 {
-	font-size: 28px;
+	font-size: 2em;
 }
 th{
 	font-size:24px;
@@ -244,7 +245,10 @@ th{
 }
 ul {list-style-type:none}
 
-
+.navbar-inverse .navbar-nav>li>a{
+	color:#008080;
+	font-size:20px;
+}
 a:link {color: #008080;}
 a:visited {color: #008080;}
 a:hover {color: rgba(74, 160, 44,.6);}

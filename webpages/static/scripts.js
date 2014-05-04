@@ -107,7 +107,6 @@ $(document).ready(function()
       $("#end_time").attr('required',true);
       $("#current_price").attr('required',true);
       $("#is_auction").val("yes");
-
     }
     else {
       $(".auction").toggle();
