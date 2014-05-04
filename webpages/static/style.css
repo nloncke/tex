@@ -104,17 +104,23 @@
 .media-body > a:visited {color: #110055;}
 .media-body > a:hover {color: rgba(74, 160, 44,.5);}
 
+
 .modal-content {
 	font-family: 'Open Sans';
 	background: url('paper.jpg');
+	font-size:1em;
 }
 .modal-header {
 	 border-bottom: none;
 	 height: 50px;
 	 background-color: rgba(74, 160, 44,.25);
 }
-
-
+.modal-dialog, .modal-header{
+	font-family: 'Open Sans';
+}
+.modal-font {
+	font-size:.95em;
+}
 
 /* For the background of the pages */
 body {
@@ -139,9 +145,14 @@ input, textarea{
 .jumbotron{
   font-family: 'Open Sans';
 }
-p, h1, h2, h3, h4{
+p, h1, h2, h3, h4, td, th{
   /*font-family: 'ABeeZee', sans-serif;*/
 	font-family: 'Open Sans';
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+margin-top: 10px;
+margin-bottom: 5px;
 }
 h3 {
 	font-size: 1em;
@@ -153,9 +164,9 @@ h1 {
 	font-size: 2em;
 }
 th{
-	font-size:24px;
  	border-top: none;
 }
+
 
 .table-borderless td,
 .table-borderless th, .table td, .table th{
@@ -203,9 +214,6 @@ th{
 }
 */
 
-.modal-dialog, .modal-header{
-	font-family: 'Open Sans';
-}
 
 /* Three different shades of translucence for white*/
 .translucent_w1{
@@ -222,11 +230,13 @@ th{
 .blue_button{
 	background-color:rgba(0, 128, 128,.2);
 	font-weight:bold;
+	font-size:.8em;
    	box-shadow:inset 0 0 3px rgba(0, 128, 128,.45);
 }
 .translucent_button{
 	background-color: rgba(255,255,255,.4);
 	font-weight:bold;
+	font-size:1em;
    	box-shadow:inset 0 0 3px rgba(0,0,0,.3);
 }
 /* Three different shades of translucence for black*/

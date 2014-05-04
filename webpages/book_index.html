@@ -6,7 +6,7 @@
 
 
 {% block displaytitle %}
-	<h3 class="media-heading header"><strong>{{book.title}}</strong></h3>
+	<h1 class="media-heading"><strong>{{book.title}}</strong></h1>
 {% endblock displaytitle %}
 
 
@@ -40,9 +40,9 @@
 <!-- AUCTION TABLE -->
 <div class="media">
 	<div class="media-body">
-    	<h3 class="media-heading header"><br><strong>Auctions</strong></h3>
+    	<h1 class="media-heading"><br><strong>Auctions</strong></h1>
     	{% if auctions %}
-    	<h2 class="subheader">
+    	<h2>
 	    	<table class="table table-borderless table-responsive" width="80%">
 	     		<th></th>
 	     		<th>Last Bid</th>
@@ -61,51 +61,48 @@
               	    <td><div class="actualcountdown_{{auction.auction_id}}"></div></td>
 	         		<td>{{ auction.condition }}</td>
 	         		<td>{{ auction.description }}</td>
-
          		</tr>
-         	<script type="text/javascript">
-				$(function() {
-				    $('.actualcountdown_{{auction.auction_id}}').countdown({
-				        date: "{{auction.end_time}}",
-					    onEnd: function() {
-					    	return $(".countdown_{{auction.auction_id}}").hide();
-					    }
-				    });
-				});
-				$(function() {
-				    $('.modalcountdown_{{auction.auction_id}}').countdown({
-				        date: "{{auction.end_time}}",
-					    onEnd: function() {
-					    	$("#bid_{{auction.auction_id}}").attr("disabled", "disabled");
-					    	$("#buy_now_{{auction.auction_id}}").attr("disabled", "disabled");
-					    	return;
-					    }
-				    });
-				});
-			</script>
+	         	<script type="text/javascript">
+					$(function() {
+					    $('.actualcountdown_{{auction.auction_id}}').countdown({
+					        date: "{{auction.end_time}}",
+						    onEnd: function() {
+						    	return $(".countdown_{{auction.auction_id}}").hide();
+						    }
+					    });
+					});
+					$(function() {
+					    $('.modalcountdown_{{auction.auction_id}}').countdown({
+					        date: "{{auction.end_time}}",
+						    onEnd: function() {
+						    	$("#bid_{{auction.auction_id}}").attr("disabled", "disabled");
+						    	$("#buy_now_{{auction.auction_id}}").attr("disabled", "disabled");
+						    	return;
+						    }
+					    });
+					});
+				</script>
 
-	         	  <!-- modal to prompt bidder. if they bid, confirmation is displayed with new modal. -->
-            <!-- end of auction prompt modal -->
-            <div class="modal fade" id="auction_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			 			</div>
-				  		<div class="modal-body">
-				    		<div class="modal-bid">
+		         <!-- modal to prompt bidder. if they bid, confirmation is displayed with new modal. -->
+	            <div class="modal fade" id="auction_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				 			</div>
+					  		<div class="modal-body">
 				    			 <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="158px" width="128px">
-								 <div class="media-body book-info">
-								     <h3 class="media-heading header"><strong>{{book.title}}</strong></h3>
-								     <h2 class="subheader">
+								 <div class="media-body">
+								     <h1 class="media-heading modal-font"><strong>{{book.title}}</strong></h1>
+								     <h2 class="modal-font">
 								     	<p>Author(s): {{book.author}}</p>
 								     	<p>ISBN-13: {{book.isbn}}</p>
 								     	<p>Published Date: {{book.pub_date}}</p>
 								     </h2>
 								</div>
-				    			<h2><strong>Time Left</strong></h2>
+				    			<h2 class="modal-font"><strong>Time Left</strong></h2>
 				    			<div class="modalcountdown_{{auction.auction_id}}"><input id="expired_auction_{{auction.auction_id}}"></div>
-				    			<h2><strong>Current Bid</strong></h2>
+				    			<h2 class="modal-font"><strong>Current Bid</strong></h2>
 				    			<form id="bid_submit_{{auction.auction_id}}" action="/buy/bid/" method="post"> {% csrf_token %}
 				    				<h3>${{auction.current_price}}  + <input id="bid" name="bid" type="number" style="width:50px" value="1" pattern="(^[1-9]$)|(^[1-9]\d$)"
 				    					title="You have bid higher than the buy now price. You can buy the book or bid less.">
@@ -114,32 +111,31 @@
 				    				<input id="current_price" name="current_price" type="hidden" value="{{auction.current_price}}">
 				    				<input id="buy_now_price" name="buy_now_price" type="hidden" value="{{auction.buy_now_price}}">
 				    			</form>
-				    			<h2><strong>Buy Now Price</strong></h2>
+				    			<h2 class="modal-font"><strong>Buy Now Price</strong></h2>
 				    			<form id="buy_now_submit_{{auction.auction_id}}" action="/buy/confirm/" method="post">{% csrf_token %}
 				    				<h3>${{auction.buy_now_price}}
 				    				<button type="submit" id="buy_now_{{auction.auction_id}}" class="btn btn-default blue_button" form="buy_now_submit_{{auction.auction_id}}">BUY</button></h3>
 				    				<input id="auction_id" name="auction_id" type="hidden" value="{{auction.auction_id}}">
 				    				<input id="is_auction" name="is_auction" type="hidden" value="true">
 				    			</form>
-				    		</div>
-				 		</div>
+					 		</div>
+						</div>
 					</div>
 				</div>
-			</div>
 			{% endfor %}
           	</table>
           	{% else %}
-	     	<h3 style="font-size:22px">Sorry, there are currently no auctions.</h3>
+	     	<h2>Sorry, there are currently no auctions.</h2>
 		</h2>
+		{% endif %}
 	</div>
 </div>
-{% endif %}
 <!-- OFFERS TABLE -->
 <div class="media">
 	<div class="media-body">
-    	<h3 class="media-heading header"><br><strong>Offers</strong></h3>
+    	<h1 class="media-heading"><br><strong>Offers</strong></h1>
     	{% if offers %}
-        <h2 class="subheader">
+        <h2>
         	<table class="table table-borderless" width="80%">
 	     		<th></th>
 	     		<th>Price</th>
@@ -154,7 +150,7 @@
              		</td>
               	<!-- end trigger button -->
 
-              <td>${{ offer.buy_price }}</td>
+              		<td>${{ offer.buy_price }}</td>
 	         		<td>{{ offer.condition }}</td>
 	         		<td>{{ offer.description }}</td>
 	         	</tr>
@@ -183,39 +179,15 @@
                 </div>
               </div>
             </div>
-            <!-- end of buyer's prompt modal -->
-
-
-
-             <!-- follow confirmation modal
-            <div class="modal fade" id="confirm_follow_modal" tabindex="-1" role="dialog"
-            	aria-labelledby="confirmModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="confirmModalLabel">You are now following this book!</h4>
-                  </div>
-                  <div id="confirm_modal_body" class="modal-body">
-                  	Thanks for following "{{ book.title }}"! You can edit your follow list on your account page.
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Okay
-                    	</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end of follow confirmation modal -->
-
           {% endfor %}
 	         </table>
 	     {% else %}
-	     <h3 style="font-size:22px">Sorry, there are currently no offers.</h3>
+	     <h2>Sorry, there are currently no offers.</h2>
       </h2>
+      {% endif %}
    </div>
 </div>
-{% endif %}
+
 
 <!-- follow modal -->
 <div class="modal fade" id="follow_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
