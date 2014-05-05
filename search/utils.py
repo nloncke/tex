@@ -4,6 +4,7 @@ import urllib2
 import json
 import re
 from TEX.settings import BASE_DIR
+import xml.etree.ElementTree as ET
 
 URL_STUB="https://www.googleapis.com/books/v1/volumes?q=isbn:"
 USER_AGENT=[("User-agent", "Mozilla/5.0")]
@@ -89,6 +90,58 @@ def fetch_isbn(isbn):
     info["frontcover"] = frontcover
     info["thumbnail"] = thumbnail
     return info
+
+def fetch_isbn_amazon(isbn):
+    url = create_aws_request(isbn)
+    response = urllib2.urlopen(url)
+    tree = ET.parse(response)
+    root = tree.getroot()
+    
+    # fix tags
+    for item in root.iter('*'):
+        l = item.tag.split('}')
+        item.tag = l[1]
+
+    # find item we want 
+    for item in root.iter('Item'):
+        for attribute in item.iter('ItemAttributes'):
+            for binding in attribute.iter('Binding'):
+                     if 'Kindle' not in binding.text:
+                         break
+        
+    # now we have the non kindle edition 
+    info = {}
+    info['isbn'] = isbn
+    info['title'] = attribute.find('Title').text
+    info['author'] = attribute.find('Author').text
+    info['pub_date'] = attribute.find('PublicationDate').text
+    try:
+        imageItem = item.find('MediumImage')
+        url_fnt = imageItem.find('URL').text
+        imageItem = item.find('SmallImage')
+        url_thm = imageItem.find('URL').text
+        opener = urllib2.build_opener()
+        opener.addheaders = USER_AGENT
+        img = opener.open(url_fnt)
+        frontcover = FNTCVR_STUB % isbn
+        with open(frontcover, "wb") as f:
+            f.write(img.read())
+        img = opener.open(url_thm)
+        thumbnail = THUMB_STUB % isbn
+        with open(thumbnail, "wb") as f:
+            f.write(img.read())
+        # Set to the right url
+        frontcover = FNTCVR_URL % isbn
+        thumbnail = THUMB_URL % isbn    
+    except:
+        frontcover = FNTCVR_URL % "default"
+        thumbnail = THUMB_URL % "default"
+
+    info['frontcover'] = frontcover
+    info['thumbnail'] = thumbnail
+
+    return info
+
 
 def create_aws_request(isbn):
     request = 'webservices.amazon.com/onca/xml?Service=AWSECommerceService&Operation=\
