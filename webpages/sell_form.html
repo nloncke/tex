@@ -40,18 +40,18 @@
 <!-- END BOOK DISPLAY -->
 {% block extras %}
 	<div class="modal fade" id="buyback_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-md">
+		  <div class="modal-dialog modal-md" style="width:350px">
 			<div class="modal-content">
 		  		<div class="modal-header">
 		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		  			<h2 class="modal-title">Labyrinth buyback estimator</h2>
+		  			<h2 class="modal-title">Labyrinth Buyback Estimator</h2>
 		  		</div>
-		  		<div class="modal-body center-page">		
+		  		<div class="modal-body">		
 		 			<div class="form-group">
 			 			<h2>
 	
 						<label for="buyback_price" class=" control-label sell-label">How much did you pay for the book?</label>
-							<input id="buyback_price" name="buyback_price" class="form-control sell-field" type="number"
+							<input id="buyback_price" name="buyback_price" class="form-control sell-field" type="number" style="width:100px"
 						 				min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g. 10" required/>
 						<label for="condition" style="text-align:center">Condition:</label>
 							<input required id="buyback_new" name="buyback_condition" type="radio" value="1"/>New
