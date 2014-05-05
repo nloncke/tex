@@ -14,7 +14,7 @@
 /*specifically the welcome text*/
 #welcome {
 	font-family: 'ABeeZee', sans-serif;
-	font-size: 175%;
+	font-size: 2em;
    	font-weight: bold;
    	/*color: #FFFFFF;  alternate colors: water, aliceblue, azure */
     color: rgba(0, 128, 128,.7);
@@ -22,14 +22,16 @@
 }
 
 /*For formatting message under the tex banner*/
-#sub_welcome {
-  font-family: "Open Sans";
-  font-weight: bold;
-  font-size: 100%;
-  color: rgba(0, 128, 128,.8);
-  margin-bottom: 20px;
-  margin-top: -20px;
+.text-homepage{
+	font-family: "Open Sans";
+	font-weight: bold;
+	font-size: 100%;
+}
 
+#sub_welcome {
+	color: rgba(0, 128, 128,.8);
+	  margin-bottom: 20px;
+	  margin-top: -20px;
 }
 
 /*positions the entire search bar on the homepage*/
@@ -70,7 +72,6 @@
 
 /*style the search results table headers*/
 .search-th{
-  font-size:20px;
   text-align: center;
   color: #008080; /*match the book links*/
 }
@@ -100,7 +101,7 @@
 	margin-left: 10%;
    	margin-right: 10%;
    	width: 80%;
-   	font-size: 24px;
+   	font-size: 1em;
    	font-family: 'Open Sans';
 }
 
@@ -112,9 +113,14 @@
 .media-body > a:visited {color: #110055;}
 .media-body > a:hover {color: rgba(74, 160, 44,.5);}
 
+
 .modal-content {
 	font-family: 'Open Sans';
 	background: url('paper.jpg');
+	font-size:1em;
+}
+.modal-footer {
+	padding: 10px 10px 10px;
 }
 .modal-header {
 	 border-bottom: none;
@@ -122,7 +128,12 @@
 	 background-color: rgba(74, 160, 44,.25);
 }
 
-
+.modal-dialog, .modal-header{
+	font-family: 'Open Sans';
+}
+.modal-font {
+	font-size:1em;
+}
 
 /* For the background of the pages */
 body {
@@ -147,12 +158,17 @@ input, textarea{
 .jumbotron{
   font-family: 'Open Sans';
 }
-p, h1, h2, h3, h4{
+p, h1, h2, h3, h4, td, th{
   /*font-family: 'ABeeZee', sans-serif;*/
 	font-family: 'Open Sans';
 }
+
+h1, .h1, h2, .h2, h3, .h3 {
+margin-top: 10px;
+margin-bottom: 5px;
+}
 h3 {
-	font-size: 1em;
+	font-size: 1.25em;
 }
 h2{
 	font-size: 1.5em;
@@ -160,11 +176,16 @@ h2{
 h1 {
 	font-size: 2em;
 }
+p {
+	font-size 1.5em;
+}
 th{
-	font-size:24px;
  	border-top: none;
 }
 
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+	padding: 5px;
+}
 .table-borderless td,
 .table-borderless th, .table td, .table th{
   border: 0 !important;
@@ -175,12 +196,16 @@ th{
   margin:auto;
   width:80%;
 }
+#footer{
+	position:absolute;
+	left:0;
+	bottom:0;
+	width:100%;
+	height:130px;
+}
+#footer-container #footer{
+	text-align:center;
 
-#footer {
-    padding-bottom:5.5rem;
-    position:relative;
-    display:block;
-    text-align:center;
 }
 /*padded for sell form*/
 .glyphicon-info-sign {
@@ -197,7 +222,11 @@ th{
 .sell-label {
   text-align: left;
 }
-
+ label {
+ 	margin-top:5px;
+ 	margin-bottom:5px;
+ 
+ }
 /*vertically center checkbox*/
 #is_auction {
   margin-top: 1.2%;
@@ -211,9 +240,6 @@ th{
 }
 */
 
-.modal-dialog, .modal-header{
-	font-family: 'Open Sans';
-}
 
 /* Three different shades of translucence for white*/
 .translucent_w1{
@@ -230,11 +256,13 @@ th{
 .blue_button{
 	background-color:rgba(0, 128, 128,.2);
 	font-weight:bold;
+	font-size:.8em;
    	box-shadow:inset 0 0 3px rgba(0, 128, 128,.45);
 }
 .translucent_button{
 	background-color: rgba(255,255,255,.4);
 	font-weight:bold;
+	font-size:.8em;
    	box-shadow:inset 0 0 3px rgba(0,0,0,.3);
 }
 
@@ -268,6 +296,16 @@ th{
 	th {
 		font-size: 12px;
 	}
+
+	.outerframe {
+	   margin-bottom: 5%;
+	   margin-top: 5%;
+	   margin-left: 10%;
+	   margin-right: 10%;
+	   padding: 2%;
+	   width: 80%;
+	   background-color: rgba(255,255,255,.25);
+	}
 }
 
 
@@ -275,7 +313,7 @@ ul {list-style-type:none}
 
 .navbar-inverse .navbar-nav>li>a{
 	color:#008080;
-	font-size:20px;
+	font-size:1.75em;
 }
 a:link {color: #008080;}
 a:visited {color: #008080;}

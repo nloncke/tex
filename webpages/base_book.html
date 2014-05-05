@@ -6,13 +6,13 @@
 <!-- DISPLAY THE BOOK AND OTHER SITES -->
 <div class="media">
 	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
-	<div class="media-body book-info">
+	<div class="media-body">
 		<table class="table">
 			<tr>
 				<td class="fixed-book-width">
 					{% block displaytitle %}
 					{% endblock displaytitle %}
-					<h2 class="subheader">
+					<h2>
 						<p>Author(s): {{book.author}}</p>
 						<p>ISBN-13: {{book.isbn}}</p>
 						<p>Published Date: {{book.pub_date}}</p>
@@ -26,26 +26,26 @@
 		    	</h2>
 		    	</td>
 		    	<td id="other_sites">
-		    		<h3 class="media-heading header" style="font-size:20px"><strong>Other sites</strong></h3>
+		    		<h1 class="media-heading"><strong>Other sites</strong></h1>
 	         		{% if book.amazon %}
-	         		<h3><a href={{book.amazon}} target="_blank"> <img src="/static/amazon.ico" alt="Amazon"></a>
+	         		<h2><a href={{book.amazon}} target="_blank"> <img src="/static/amazon.ico" alt="Amazon"></a>
 	         		<a href={{book.amazon}} target="_blank"> Amazon </a>
-	         	    </h3>
+	         	    </h2>
 	         	    {% endif %}
 	         		{% if book.campus %}
-	         		<h3><a href={{book.campus}} target="_blank"> <img src="/static/campus.ico" alt="Campus Books"></a>
+	         		<h2><a href={{book.campus}} target="_blank"> <img src="/static/campus.ico" alt="Campus Books"></a>
 	         		<a href={{book.campus}} target="_blank"> Campus Books </a>
-	         	    </h3>
+	         	    </h2>
 	         		{% endif %}
 	         		{% if book.chegg %}
-	         		<h3><a href={{book.chegg}} target="_blank"> <img src="/static/chegg.ico" alt="Chegg"></a>
+	         		<h2><a href={{book.chegg}} target="_blank"> <img src="/static/chegg.ico" alt="Chegg"></a>
 	         		<a href={{book.chegg}} target="_blank"> Chegg </a>
-	         	    </h3>
+	         	    </h2>
 	         		{% endif %}
 		    		{% if book.labyrinth %}
-	         		<h3><a href={{book.labyrinth}} target="_blank"><img src="/static/labyrinth.ico" alt="Labyrinth"></a>
+	         		<h2><a href={{book.labyrinth}} target="_blank"><img src="/static/labyrinth.ico" alt="Labyrinth"></a>
 	         		<a href={{book.labyrinth}} target="_blank"> Labyrinth </a>
-	         	    </h3>
+	         	    </h2>
 		    		{% endif %}
 		    	</td>
     	</table>		    	
@@ -56,7 +56,7 @@
 {% endblock extras %}
 
 {% else %} 
-<h1>No Book found</h1>
+<h1>No book found</h1>
 
 {% endif %}
 {% endblock content %}

@@ -6,7 +6,7 @@
   <h1>Thanks!</h1> 
   <h2> You'll get an email when someone buys your <a href="/book/?isbn={{isbn}}">book</a>. </h2>
   <form action="/sell/edit/" id="edit_{{offer_id}}" method="post"> {% csrf_token %}
-  <h3> You can <a href="javascript:{}" onclick="document.getElementById('edit_{{offer_id}}').submit(); return false;">edit</a> your offer at anytime.</h3>
+  <h2> You can <a href="javascript:{}" onclick="document.getElementById('edit_{{offer_id}}').submit(); return false;">edit</a> your offer at anytime.</h2>
    	<input type="hidden" id="offer_id" name="offer_id" value="{{offer_id}}"/>
    	<input type="hidden" id="is_auction" name= "is_auction" value="{{is_auction}}"/>
    </form>

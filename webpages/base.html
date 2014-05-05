@@ -88,22 +88,33 @@
 	{% endblock body %}
 
 	{% block footer %}
-	 <section id="footer">
-	 	<a href="" data-toggle="modal" data-target="#about_modal"><span id="about" class="footer-link">About</span></a>
-	 </section>
-	 <div class="modal fade" id="about_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-md">
-			<div class="modal-content">
-		  		<div class="modal-header">
-		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		  		</div>
-		  		<div id="about_modal_body" class="modal-body">
-					<p><h2>Welcome to tex - your one stop shop for buying and selling textbooks!</h2><br>Looking to buy a book? With just one search, you can check out offers
-						from on- and off-campus (Amazon, Labyrinth, Chegg, and Campus). <br>Or hoping to get rid of your old textbooks? Just find your book, and set up
-						an offer or start an auction to get the best price.  </p>
+	 <div id="footer">
+	 	<div class="container" id="footer-container">
+	 	<h2><a href="" data-toggle="modal" data-target="#about_modal"><span id="about" class="footer-link">About</span></a></h2>
+	 
+	 	<div class="modal fade" id="about_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog modal-md"   style="width:400px">
+				<div class="modal-content">
+		  			<div class="modal-header">
+		    			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  			</div>
+		  			<div id="about_modal_body" class="modal-body">
+						<h1 style="font-weight:bold">Welcome to <strong style="color:#008080">tex</strong> - where <strong style="color:#008080;">tex</strong>changing books is made easy!</h1>
+						<h2>Created as a project for COS 333, <strong style="color:#008080">tex</strong> simplifies buying and selling textbooks. 
+							Easily compare prices from on- and off-campus offers so that you can get the best price for your books. </h2>
+						<h2><i style="font-weight:bold; color:#008080; padding: 0px 5px 0px 0px;">Looking to buy a book?</i> With just one search, you can check out offers
+						from on- and off-campus (Amazon, Labyrinth, Chegg, and Campus).</h2>
+						<h2><i style="font-weight:bold; color:#008080; padding: 0px 5px 0px 0px;">Or hoping to get rid of your old textbooks?</i> Just find your book, and set up
+						an offer or start an auction to get the best price.</h2>
+						<h2><i style="font-weight:bold; color:#008080; padding: 0px 5px 0px 0px;">What if the book you want isn't available?</i> You can follow the book that you want
+							and we'll email you the moment someone offers it.</h2>
+						<br>
+						<h3>Email us at <strong style="color:#008080">princeton.tex@gmail.com</strong> if you have questions or comments.</h3>
+					</div>
 				</div>
-			</div>
 		  </div>
+		</div>
+		</div>
 	</div>
 	{% endblock footer %}
 </body>
