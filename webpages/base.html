@@ -19,7 +19,7 @@
 
   {% block header %}
   {% endblock header %}
-  <script>
+  <script type="text/javascript">
 	$(document).ready(function(){
 		set_to_{{user.bookuser.default_search}}();
  	});
@@ -27,46 +27,48 @@
 </head>
 <body>
     {% block navbar %}
-    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top translucent_b1"
-     role="navigation" style="border-bottom:none">
-     	<div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-	        <div class="collapse navbar-collapse navbar-right" id="collapse">
-	        	<ul class="nav navbar-nav">
-	            	<li><a href="/">home</a></li>
-	            	<li><a href="" data-toggle="modal" data-target="#sell_modal">sell</a></li>
-						{% if user.is_authenticated %}
-	            	<li><a href="/account/">{{user}}</a></li>
-	            	<li><a href="/account/logout/"> logout</a></li>
-	            		{% else %}
-					<li><a href="/account/login/">login</a></li>
-					{% endif %}
-	            </ul>
-	        </div>
-	            {% block topsearch %}
-				{% endblock topsearch %}
-		</div>
-    </nav>
+    <div class="nav-wrapper">
+	    <nav class="navbar navbar-default navbar-inverse navbar-fixed-top nav-background"
+	     role="navigation" style="border-bottom:none">
+	     	<div class="navbar-header">
+	            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#collapse">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+		        <div class="collapse navbar-collapse navbar-right" id="collapse">
+		        	<ul class="nav navbar-nav">
+		            	<li><a href="/">home</a></li>
+		            	<li><a href="" data-toggle="modal" data-target="#sell_modal">sell</a></li>
+							{% if user.is_authenticated %}
+		            	<li><a href="/account/">{{user}}</a></li>
+		            	<li><a href="/account/logout/"> logout</a></li>
+		            		{% else %}
+						<li><a href="/account/login/">login</a></li>
+						{% endif %}
+		            </ul>
+		        </div>
+		            {% block topsearch %}
+					{% endblock topsearch %}
+			</div>
+	    </nav>
+    </div>
     <div class="modal fade" id="sell_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-md">
+		  <div class="modal-dialog modal-md"  style="width:300px">
 			<div class="modal-content">
 		  		<div class="modal-header">
 		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		  			<h2 class="modal-title">Sell a book</h2>
 		  		</div>
-		  		<div id="sell_modal_body" class="modal-body center-page">
-		 			<form id="sell_form" role="form" class="form-inline center-page" name="sell_form" action="/sell/" method="get">
+		  		<div id="sell_modal_body" class="modal-body">
+		 			<form id="sell_form" role="form" class="form-inline" name="sell_form" action="/sell/" method="get">
 
 		 			<div class="form-group">
 		 			<h2>
 		 				<label for="isbn" style="text-align:center">ISBN:</label>
-							<input id="isbn" name="isbn" class="form-control" style="width:200px" type="text" required
+							<input id="isbn" name="isbn" class="form-control" style="width:150px" type="text" required
 							pattern:"(^(( )*([0-9]-?){9}[0-9Xx]( )*)$)|(^(( )*(97[89]-?([0-9]-?){9}[0-9])( )*)$)"
 							title="Enter a valid isbn">
 							<button type="submit" id="submit" class="btn btn-default blue_button" style="display:inline" >
@@ -86,22 +88,33 @@
 	{% endblock body %}
 
 	{% block footer %}
-	 <section id="footer">
-	 	<a href="" data-toggle="modal" data-target="#about_modal"><span id="about" class="footer-link">About</span></a>
-	 </section>
-	 <div class="modal fade" id="about_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-md">
-			<div class="modal-content">
-		  		<div class="modal-header">
-		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		  		</div>
-		  		<div id="about_modal_body" class="modal-body">
-					<p><h2>Welcome to tex - your one stop shop for buying and selling textbooks!</h2><br>Looking to buy a book? With just one search, you can check out offers
-						from on- and off-campus (Amazon, Labyrinth, Chegg, and Campus). <br>Or hoping to get rid of your old textbooks? Just find your book, and set up
-						an offer or start an auction to get the best price.  </p>
+	 <div id="footer">
+	 	<div class="container" id="footer-container">
+	 	<h3><a href="" data-toggle="modal" data-target="#about_modal"><span id="about" class="footer-link">About</span></a></h3>
+
+	 	<div class="modal fade" id="about_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  	<div class="modal-dialog modal-md"   style="width:700px">
+				<div class="modal-content">
+		  			<div class="modal-header">
+		    			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		  			</div>
+		  			<div id="about_modal_body" class="modal-body" style="text-align:left">
+						<h1 style="font-weight:bold">Welcome to <strong style="color:#008080">tex</strong> - where <strong style="color:#008080;">tex</strong>changing books is made easy!</h1>
+						<h2>Created as a project for COS 333, <strong style="color:#008080">tex</strong> simplifies buying and selling textbooks.
+							Easily compare prices from on- and off-campus offers so that you can get the best price for your books. </h2>
+						<h2><i style="font-weight:bold; color:#008080; padding: 0px 5px 0px 0px;">Looking to buy a book?</i> With just one search, you can check out offers
+						from on- and off-campus (Amazon, Labyrinth, Chegg, and Campus).</h2>
+						<h2><i style="font-weight:bold; color:#008080; padding: 0px 5px 0px 0px;">Or hoping to get rid of your old textbooks?</i> Just find your book, and set up
+						an offer or start an auction to get the best price.</h2>
+						<h2><i style="font-weight:bold; color:#008080; padding: 0px 5px 0px 0px;">What if the book you want isn't available?</i> You can follow the book that you want
+							and we'll email you the moment someone offers it.</h2>
+						<br>
+						<h3>Email us at <strong style="color:#008080">princeton.tex@gmail.com</strong> if you have questions or comments.</h3>
+					</div>
 				</div>
-			</div>
 		  </div>
+		</div>
+		</div>
 	</div>
 	{% endblock footer %}
 </body>

@@ -1,9 +1,13 @@
 {% extends "base_topsearch.html" %}
 {% block header %}
 <script type="text/javascript" src="/static/jquery.countdown.js"></script>
-<script>
+<script type="text/javascript">
 	$(document).ready(function(){
 		$("#{{user.bookuser.default_search}}").prop('checked', true);
+
+		if (window.location.hash == "#profile") {
+		     $('#profile_modal').modal('show');
+		}
  });
 </script>
 {% endblock header %}
@@ -12,19 +16,18 @@
 {% block content %}
 <div class="media">
 	<div class="media-body">
-		<h3 class="media-heading" style="font-size:36px;"><strong>My Account</strong>
-		<button id="update_profile" data-toggle="modal"	data-target="#profile_modal"
+		<h1 class="media-heading"><strong>My Account</strong></h1>
+		<h2><button id="update_profile" data-toggle="modal"	data-target="#profile_modal"
 		        class="btn btn-default translucent_button">
 			<span><strong>Update profile</strong></span>
-		</button>
-	    </h3>
+		</button></h2>
 	</div>
 </div>
 
 <div class="media">
       <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px"><strong><br>Offering</strong></h3>
-         <h2 style="font-size:20px">
+         <h1 class="media-heading"><strong><br>Offering</strong></h1>
+         <h2>
          	{% if offers %}
 	         <table class="table" width="80%">
 	     		<th></th>
@@ -50,7 +53,7 @@
             <div class="modal fade" id="remove_modal_{{offer.offer_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
               <div class="modal-dialog"><div class="modal-content"><div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Remove this book</h4></div>
+                    </div>
                   <div id="remove_modal_body" class="modal-body">
                     Are you sure you want to stop offering {{offer.title}}?</div>
                   <div class="modal-footer">
@@ -68,14 +71,15 @@
 	         	{% endfor %}
 	         </table>
 	     {% else %}
-	     <h4>You currently have no offers.</h4>
+	     <h2>You currently have no offers.</h2>
 	     {% endif %}
          </h2>
       </div>
+  </div>
 <div class="media">
       <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px"><strong>Auctioning</strong></h3>
-         <h2 style="font-size:20px">
+         <h1 class="media-heading"><strong>Auctioning</strong></h1>
+         <h2>
          	{% if auctions %}
 	         <table class="table" width="80%">
 	     		<th></th>
@@ -108,14 +112,14 @@
 	         	{% endfor %}
 	         </table>
 	     {% else %}
-	     <h4>You currently have no auctions.</h4>
+	     <h2>You currently have no auctions.</h2>
 	     {% endif %}
          </h2>
       </div>
        <div class="media-body">
-         <h3 class="media-heading" style="font-size:28px"><strong><br>Following</strong></h3>
+         <h1 class="media-heading"><strong><br>Following</strong></h1>
          {% if follows %}
-         <h2 style="font-size:20px">
+         <h2>
 	         <table class="table" width="80%">
 	     		<th></th>
 	     		<th>Book</th>
@@ -124,12 +128,12 @@
 	     		{% for follow in follows %}
 	         	<tr>
 	    			<td><button type="submit" id="unfollow_{{follow.book.isbn}}" data-toggle="modal" data-target="#unfollow_modal_{{follow.book.isbn}}"
-	    				class="btn btn-default translucent_button" form="unfollow_{{follow.book.isbn}}"><span><strong>UNFOLLOW</strong></span></button></td>
+	    				class="btn btn-default translucent_button"><span><strong>UNFOLLOW</strong></span></button></td>
 	         		<td><a href="/book/?isbn={{follow.book.isbn}}">{{follow.book.title}}</a></td>
 	         		<td>{% if follow.min_offer %}${{follow.min_offer.buy_price}}{% else %}No offers{% endif %}</td>
 	         		<td>{% if follow.min_auction %}${{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
 	         	</tr>
-	         	
+
 	         	<!-- unfollow modal -->
 				<div class="modal fade" id="unfollow_modal_{{follow.book.isbn}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 				  <div class="modal-dialog">
@@ -157,12 +161,11 @@
 	         {% endfor %}
 	         </table>
 	     {% else %}
-	     <h4>You are not currently following any books.</h4>
+	     <h2>You are not currently following any books.</h2>
 	     {% endif %}
 
          </h2>
       </div>
-</div>
 </div>
 
 <!--   FOR UPDATING YOUR PROFILE -->
@@ -174,21 +177,24 @@
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         </div>
+        <h2>
         <div id="profile_modal_body" class="modal-body">
-		   <form id="profile_form" method="post" action="/account/profile/"> {% csrf_token %}
+		   <form id="profile_form" method="post" action="/account/"> {% csrf_token %}
+		   		<input type="hidden" id="action" name="action" value="update">
 				<!-- input type="text" name="first_name" id="first_name" placeholder="First name" required/>
 				<input type="text" name="last_name" id="last_name" placeholder="Last name" required/ -->
 				<div class="form-group">
-				<label for="class_year" class="ontrol-label" style="font-size:20px">Class Year:</label>
+
+				<label for="class_year" class="control-label">Class Year:</label>
 					<input type="text" name="class_year" id="class_year" class="form-control" style="width:100px" value="{{ user.bookuser.class_year }}"
 				    required pattern="20(1[4-9]|[2-9][0-9])" title="Enter your graduation year 20XX" />
 			    </div>
-			    <div class="form-group" style="font-size:20px">
-			    <label for="default_search" class="control-label">Search by default:</label><br>
-				    <label><input required name="default_search" type="radio"   id="title"  value="title" style="font-size:14px"/>Title</label>
-				    <label><input required name="default_search" type="radio"   id="isbn"  value="isbn" style="font-size:14px"/>ISBN</label>
-				    <label><input required name="default_search" type="radio"   id="author"  value="author" style="font-size:14px"/>Author</label>
-				    <label><input required name="default_search" type="radio"   id="course"  value="course" style="font-size:14px"/>Course</label>
+			    <div class="form-group">
+			    <label for="default_search" class="control-label">Select your default dearch option:</label><br>
+				    <label><input required name="default_search" type="radio"   id="title"  value="title" style="font-size:14px"/> Title</label>
+				    <label><input required name="default_search" type="radio"   id="isbn"  value="isbn" style="font-size:14px"/> ISBN</label>
+				    <label><input required name="default_search" type="radio"   id="author"  value="author" style="font-size:14px"/> Author</label>
+				    <label><input required name="default_search" type="radio"   id="course"  value="course" style="font-size:14px"/> Course</label>
 			    </div>
 			</form>
 			<div class="modal-footer">
@@ -197,7 +203,10 @@
 				</button>
 			 </div>
         </div>
+		</h2>
+	   </div>
     </div>
+</div>
 
 
 

@@ -11,7 +11,7 @@ alpha = ["jasala","lauraxu", "nloncke", "yoyeh", "kohemeng",
     , "splichte", "sgichohi"]
 
 def account_index(request):
-    from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow
+    from account.models import get_seller_offers, get_seller_auctions, get_follow_list, unfollow, save_user
     from buy.models import remove_offer, remove_auction
     from sell.utils import get_book_info
     from book.utils import get_book
@@ -25,12 +25,16 @@ def account_index(request):
         action = request.POST.get("action", "")
         if action == "remove_offer":
             offer_id = request.POST.get("offer_id", "0")
-            sold_offer = remove_offer(offer_id=offer_id) 
+            remove_offer(offer_id=offer_id) 
         elif action == "unfollow":     
             isbn = request.POST.get("target_isbn", "0")
             user = request.user
             if validate_isbn(isbn=isbn):
-                unfollow(user=user, isbn=isbn)  
+                unfollow(user=user, isbn=isbn) 
+        elif action == "update":
+            info = {"class_year": request.POST.get("class_year")}
+            info["default_search"] = request.POST.get("default_search")
+            save_user(request.user, **info)
         else:
             return render(request, 'error_page.html')
    
@@ -95,15 +99,7 @@ def login(request):
             return httperror
     return httpresp
     
-
-def profile(request):
-    from models import save_user
-    if request.method == 'POST':
-        info = {"class_year": request.POST.get("class_year")}
-        info["default_search"] = request.POST.get("default_search")
-        save_user(request.user, **info)
-    return render(request,'account_index.html')
-
+    
 def forbidden(request):
     '''Default 403 handler'''
     return render(request, "error_page.html")

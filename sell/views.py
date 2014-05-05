@@ -66,6 +66,7 @@ def sell_submit(request):
 def sell_edit(request):
     from sell.models import get_offer_info, get_auction_info
     from utils import get_book_info
+    from book.utils import add_links
     result = {}
     if request.method == 'POST':  
         is_auction = request.POST.get("is_auction", "")
@@ -76,6 +77,7 @@ def sell_edit(request):
             offer = get_offer_info(offer_id=offerid)
         isbn = offer["isbn"]
         result = get_book_info(isbn=isbn)
+        add_links(result["book"])
         result["offer"] = offer 
         result["offer_id"] = offerid
         result["is_auction"] = is_auction

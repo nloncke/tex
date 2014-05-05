@@ -1,0 +1,62 @@
+{% extends "base_topsearch.html" %}
+
+{% block content %}
+{% if book %}
+
+<!-- DISPLAY THE BOOK AND OTHER SITES -->
+<div class="media">
+	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
+	<div class="media-body">
+		<table class="table">
+			<tr>
+				<td class="fixed-book-width">
+					{% block displaytitle %}
+					{% endblock displaytitle %}
+					<h2>
+						<p>Author(s): {{book.author}}</p>
+						<p>ISBN-13: {{book.isbn}}</p>
+						<p>Published Date: {{book.pub_date}}</p>
+
+		         	{% block sellfollow %}
+		         	{% endblock sellfollow %}
+
+		         	{% block buyback %}
+		         	{% endblock buyback %}
+
+		    	</h2>
+		    	</td>
+		    	<td id="other_sites">
+		    		<h1 class="media-heading"><strong>Other sites</strong></h1>
+	         		{% if book.amazon %}
+	         		<h2><a href={{book.amazon}} target="_blank"> <img src="/static/amazon.ico" alt="Amazon"></a>
+	         		<a href={{book.amazon}} target="_blank"> Amazon </a>
+	         	    </h2>
+	         	    {% endif %}
+	         		{% if book.campus %}
+	         		<h2><a href={{book.campus}} target="_blank"> <img src="/static/campus.ico" alt="Campus Books"></a>
+	         		<a href={{book.campus}} target="_blank"> Campus Books </a>
+	         	    </h2>
+	         		{% endif %}
+	         		{% if book.chegg %}
+	         		<h2><a href={{book.chegg}} target="_blank"> <img src="/static/chegg.ico" alt="Chegg"></a>
+	         		<a href={{book.chegg}} target="_blank"> Chegg </a>
+	         	    </h2>
+	         		{% endif %}
+		    		{% if book.labyrinth %}
+	         		<h2><a href={{book.labyrinth}} target="_blank"><img src="/static/labyrinth.ico" alt="Labyrinth"></a>
+	         		<a href={{book.labyrinth}} target="_blank"> Labyrinth </a>
+	         	    </h2>
+		    		{% endif %}
+		    	</td>
+    	</table>		    	
+  	</div>
+</div>
+
+{% block extras %}
+{% endblock extras %}
+
+{% else %} 
+<h1>No book found</h1>
+
+{% endif %}
+{% endblock content %}

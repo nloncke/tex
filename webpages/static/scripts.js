@@ -1,4 +1,4 @@
-  // Functions for changing the search bar
+// Functions for changing the search bar
 function set_to_title(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by title",
@@ -59,7 +59,7 @@ $(document).ready(function()
     title:"Want people to bid on your book?",
   });
 
-  $("#course").tooltip({
+  $("#book_course").tooltip({
     trigger:"hover",
     title:"Enter a valid course name e.g. COS 333",
   });
@@ -80,34 +80,12 @@ $(document).ready(function()
   });
 
   // sell form scripts to follow...
-  $('#datetimepicker').datetimepicker({
-    sideBySide: true,
-    minDate: moment().subtract('days', 1),
-    sideBySide: true,
-  });
-
-  $("#end_time").attr(
-    {value:moment().add('days', 1).format("MM/DD/YY HH:mm")}
-  );
-
-  $("#datetimepicker").on('dp.hide', function(){
-    if(moment().isAfter(moment(
-      $("#end_time").val(), "MM/DD/YY HH:mm"))){
-      $("#submit").prop( 'disabled', true);
-      alert("Please select a time in the future");
-      }
-    else {
-      $("#submit").prop( "disabled", false );
-    }
-  });
-
   $("#is_auction").click(function () {
     if ($("#is_auction").is(':checked')) {
       $(".auction").toggle();
       $("#end_time").attr('required',true);
       $("#current_price").attr('required',true);
       $("#is_auction").val("yes");
-
     }
     else {
       $(".auction").toggle();
@@ -129,6 +107,18 @@ $("#buyback_submit").click(function () {
     }
     result = "Buyback estimate: $ "+ est.toFixed(2);
     $("#estimate").html(result);
+  });
+
+
+  // For toggling the navbar
+  $("#collapse").on("show.bs.collapse", function() {
+  	$(".nav-wrapper").height(250);
+  	$("body").css("margin-top", 250);
+  });
+
+  $("#collapse").on("hide.bs.collapse", function() {
+  	$(".nav-wrapper").height(72);
+  	$("body").css("margin-top", 72);
   });
 
 });
