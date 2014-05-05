@@ -16,27 +16,27 @@
   			<tr>
   				<td class="fixed-result-width">
 		       <a href="/book/?isbn={{book.isbn}}">
-		       <h3 style="font-size:28px" class="media-heading">{{book.title}}</h3>
+		       <h1 class="media-heading">{{book.title}}</h1>
 		       </a>
-		       <p style="font-size:18px">
+		       <h2>
 		       Author(s): {{book.author}} <br/>
 		       Published Date: {{book.pub_date}}
-		       </p>
+		       </h2>
 	    	</td>
 	        <td>
-				<p class="search-th">Lowest Offer</p>
+				<h1 class="search-th">Lowest Offer</h1>
 				{% if book.min_offer %}
-				<h3 align=center>${{book.min_offer}}</h3>
+				<h2 align=center>${{book.min_offer}}</h2>
 				{% else %}
-				<h3 align=center>No offers</h3>
+				<h2 align=center>No offers</h2>
 				{% endif %}
 			</td>
 			<td>
-				<p class="search-th">Lowest Auction</p>
+				<h1 class="search-th">Lowest Auction</h1>
 				{% if book.min_auction %}
-				<h3 align=center>${{book.min_auction}}</h3>
+				<h2 align=center>${{book.min_auction}}</h2>
 				{% else %}
-				<h3 align=center>No auctions</h3>
+				<h2 align=center>No auctions</h2>
 				{% endif %}
 			</td>
 		   	</tr>
