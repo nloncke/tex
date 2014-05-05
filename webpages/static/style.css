@@ -196,17 +196,13 @@ th{
   margin:auto;
   width:80%;
 }
-#footer{
-	position:absolute;
-	left:0;
-	bottom:0;
-	width:100%;
-	height:130px;
+#footer {
+	position: absolute;
+	width: 100%;
+	height: 130px;
+	text-align: center;
 }
-#footer-container #footer{
-	text-align:center;
 
-}
 /*padded for sell form*/
 /*.glyphicon-info-sign {
   padding-left: 25%;
