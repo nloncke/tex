@@ -207,7 +207,7 @@ th{
 */
 /*fixed width for sell form fields */
 .sell-field {
-  width: 225px;
+  width: 150px;
 }
 
 /* style all the input forms on the sell page */
@@ -216,9 +216,10 @@ th{
 }
 
 /*adjust the enddate input*/
-#datetimepicker {
+/*#datetimepicker {
 	padding-left: 1.5%;
 }
+*/
 
 label{
  	margin-top:5px;
