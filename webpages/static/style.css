@@ -176,9 +176,6 @@ h2{
 h1 {
 	font-size: 2em;
 }
-p {
-	font-size 1.5em;
-}
 th{
  	border-top: none;
 }
@@ -227,7 +224,7 @@ th{
  label {
  	margin-top:5px;
  	margin-bottom:5px;
- 
+
  }
 /*vertically center checkbox*/
 #is_auction {

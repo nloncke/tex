@@ -4,7 +4,7 @@
 <script type="text/javascript" src="/static/moment.min.js"></script>
 <script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
 
-<script>
+<script type="text/javascript">
 // These scripts need to be here since they require moments.js and datetimepicker.js
   $('#datetimepicker').datetimepicker({
     minDate: moment().subtract('days', 1),
@@ -46,10 +46,10 @@
 		    		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 		  			<h2 class="modal-title">Labyrinth buyback estimator</h2>
 		  		</div>
-		  		<div class="modal-body center-page">		
+		  		<div class="modal-body center-page">
 		 			<div class="form-group">
 			 			<h2>
-	
+
 						<label for="buyback_price" class=" control-label sell-label">How much did you pay for the book?</label>
 							<input id="buyback_price" name="buyback_price" class="form-control sell-field" type="number"
 						 				min="1" max="999" title="Whole numbers only; dollar sign not required" placeholder="e.g. 10" required/>
