@@ -7,6 +7,10 @@
 	background-color: inherit;
 }
 
+.banner_header{
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
 /*specifically the welcome text*/
 #welcome {
 	font-family: 'ABeeZee', sans-serif;
@@ -18,10 +22,16 @@
 }
 
 /*For formatting message under the tex banner*/
+.text-homepage{
+	font-family: "Open Sans";
+	font-weight: bold;
+	font-size: 100%;
+}
+
 #sub_welcome {
-  font-family: "Open Sans";
-  font-size: 100%;
-  color: rgba(0, 128, 128,.8);
+	color: rgba(0, 128, 128,.8);
+	  margin-bottom: 20px;
+	  margin-top: -20px;
 }
 
 /*positions the entire search bar on the homepage*/
@@ -125,10 +135,10 @@
 /* For the background of the pages */
 body {
     /*background-color:#c1cdd5;*/
-   padding-top: 40px;
    background: url('paper.jpg');
    min-height:100%;
    font-size:1em;
+   margin-top: 50px;
 }
 
 html {
@@ -243,17 +253,50 @@ th{
 	font-size:1em;
    	box-shadow:inset 0 0 3px rgba(0,0,0,.3);
 }
-/* Three different shades of translucence for black*/
-.translucent_b1{
-	background-color: rgba(74, 160, 44,.25) /*light green */
-	/*background-color: rgba(21, 27, 84,.75)*/
+
+.nav-wrapper {
+	height: 50px;
+	background: url('paper.jpg');
+	position: fixed;
+    right: 0;
+    left: 0;
+    top: 0;
+    border-width: 0 0 1px;
+    z-index: 10;
 }
-.translucent_b2 {
-   background-color: rgba(0,0,0,.5)
+
+.nav-background{
+	background-color: rgba(74, 160, 44,.25);
 }
-.translucent_b3 {
-   background-color: rgba(0,0,0,.25)
+
+ /*For mobile devices*/
+@media (max-width: 767px) {
+	.nav-wrapper {
+		height: 72px;
+	}
+	img.media-object{
+		height: 50px;
+		width:50px;
+	}
+	body {
+	   margin-top: 72px;
+	}
+	th {
+		font-size: 12px;
+	}
+
+	.outerframe {
+	   margin-bottom: 5%;
+	   margin-top: 5%;
+	   margin-left: 10%;
+	   margin-right: 10%;
+	   padding: 2%;
+	   width: 80%;
+	   background-color: rgba(255,255,255,.25);
+	}
 }
+
+
 ul {list-style-type:none}
 
 .navbar-inverse .navbar-nav>li>a{
@@ -270,11 +313,11 @@ a:hover {color: rgba(74, 160, 44,.6);}
 }
 
 .debug {
-	outline:solid red thick;
+	border:solid red thick;
 }
 .debug2 {
-	outline:solid blue thick;
+	border:solid blue thick;
 }
 .debug3 {
-	outline:dashed green thick;
+	border:dashed green thick;
 }
