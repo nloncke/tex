@@ -85,13 +85,13 @@
 
 		         <!-- modal to prompt bidder. if they bid, confirmation is displayed with new modal. -->
 	            <div class="modal fade" id="auction_modal_{{auction.auction_id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
+					<div class="modal-dialog" style="width:450px">
 						<div class="modal-content">
 							<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				 			</div>
 					  		<div class="modal-body">
-				    			 <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="158px" width="128px">
+				    			 <img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="158px" width="128px" style="padding-right:5px">
 								 <div class="media-body">
 								     <h1 class="media-heading modal-font"><strong>{{book.title}}</strong></h1>
 								     <h2 class="modal-font">
