@@ -77,13 +77,13 @@
 }
 
 /*large font sizes, bookpage*/
-.header {
+/*.header {
   font-size: 28px;
 }
 .subheader {
   font-size: 20px;
 }
-
+*/
 #search_form{
 	font-family: 'Open Sans';
 }
@@ -208,20 +208,26 @@ th{
 
 }
 /*padded for sell form*/
-.glyphicon-info-sign {
+/*.glyphicon-info-sign {
   padding-left: 25%;
   padding-top: 25%;
 }
-
+*/
 /*fixed width for sell form fields */
 .sell-field {
-  width: 150px;
+  width: 225px;
 }
 
 /* style all the input forms on the sell page */
 .sell-label {
   text-align: left;
 }
+
+/*adjust the enddate input*/
+#datetimepicker {
+	padding-left: 1.5%;
+}
+
  label {
  	margin-top:5px;
  	margin-bottom:5px;

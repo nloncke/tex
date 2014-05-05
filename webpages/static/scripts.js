@@ -59,7 +59,7 @@ $(document).ready(function()
     title:"Want people to bid on your book?",
   });
 
-  $("#course").tooltip({
+  $("#book_course").tooltip({
     trigger:"hover",
     title:"Enter a valid course name e.g. COS 333",
   });

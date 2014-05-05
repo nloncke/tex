@@ -5,7 +5,7 @@
 <script type="text/javascript" src="/static/bootstrap-datetimepicker.min.js"></script>
 
 <script>
-// These scripts need to be here since the require moments.js and datetimepicker.js
+// These scripts need to be here since they require moments.js and datetimepicker.js
   $('#datetimepicker').datetimepicker({
     minDate: moment().subtract('days', 1),
     sideBySide: true,
@@ -75,7 +75,7 @@
 		<div class="form-group">
 			<label for="course" class="col-sm-2 control-label sell-label">Course:</label>
 			<div class="col-sm-10">
-				<input id="course" name="course" class="form-control sell-field" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" placeholder="e.g. COS 333">
+				<input id="book_course" name="course" class="form-control sell-field" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" placeholder="e.g. COS 333">
 			</div>
 		</div>
 		<div class="form-group">
@@ -91,7 +91,7 @@
 			<label for="end_time" class="col-sm-2 control-label sell-label">End Date:</label>
 		    </div>
             <div class='col-sm-3 input-group date' id='datetimepicker' data-date-format="MM/DD/YY HH:mm">
-                <input type='text' id="end_time" name="end_time" readonly class="form-control sell-field pull-left" title="Please select a date and time."/>
+                <input type='text' id="end_time" name="end_time" readonly class="form-control pull-left sell-field" title="Please select a date and time."/>
                 <span class="input-group-addon pull-left">
                 	<span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -109,7 +109,7 @@
 			</div>
 			<div class="input-append auction"><label for="price" class="col-sm-2 control-label sell-label">Price ($):</label>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-10">
 				<input id="price" name="price" class="form-control sell-field pull-left" type="number"
 				required min="1" max="999" data-toggle="tooltip" data-title="Whole numbers only; dollar sign not required"
 				placeholder="e.g. 25"/>
