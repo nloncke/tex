@@ -26,7 +26,9 @@ def search_by_course(query):
 def search_by_isbn(query, thumb=True):
     result = get_book_info(isbn = query, thumb=thumb)
     if result == []:
-        info = fetch_isbn(query)
+        info = fetch_isbn_amazon(query)
+        if not info:
+            info = fetch_isbn(query)
         if info:
             update_book_cache(**info)
             result = [info]
