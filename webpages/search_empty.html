@@ -4,12 +4,14 @@
 <div class="jumbotron" id="message">
   <h1>We're sorry</h1>
   <h2> We do not have the book ISBN:<strong>{{ query }}</strong> in our system.</h2>
-  <h3> Here are some sellers that may offer what you seek:</h3>
+  <h2> Here are some sellers that may offer what you seek:
+  <br><br>
   <ul>
       <li><a href="http://www.amazon.com/gp/search/ref=sr_adv_b/?search-alias=stripbooks&field-isbn={{query}}" target="_blank">Amazon</a></li>
       <li><a href="http://www.chegg.com/search/{{query}}" target="_blank">Chegg</a></li>
       <li><a href="http://www.campusbooks.com/books/search.php?search_type=single&isbn={{query}}" target="_blank">Campus Books</a></li>
       <li><a href="http://www.labyrinthbooks.com/all_search.aspx?sisbn={{query}}" target="_blank">Labyrinth</a></li>
   </ul>
+  </h2>
 </div>
 {% endblock content %}
