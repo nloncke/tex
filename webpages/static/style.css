@@ -16,9 +16,9 @@
 	font-family: 'ABeeZee', sans-serif;
 	font-size: 2em;
    	font-weight: bold;
-   	/*color: #FFFFFF;  alternate colors: water, aliceblue, azure */
-    color: rgba(0, 128, 128,.7);
-   	text-shadow: 2px 2px 3px rgba(251, 246, 217,1);
+    color: rgba(0, 128, 128,.8);
+  /* 	text-shadow: 2px 2px 3px rgba(251, 246, 217,1);*/
+ 	text-shadow: 2px 2px 3px white;
 }
 
 /*For formatting message under the tex banner*/
@@ -314,8 +314,9 @@ th{
 ul {list-style-type:none}
 
 .navbar-inverse .navbar-nav>li>a{
-	color:#008080;
+	color: rgba(0, 128, 128,.8);
 	font-size:1.75em;
+	font-weight:bold;
 }
 a:link {color: #008080;}
 a:visited {color: #008080;}
