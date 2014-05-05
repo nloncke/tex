@@ -7,7 +7,7 @@
 <!-- END BOOK DISPLAY -->
 {% block extras %}
 	<!-- sell form -->
-	<form id="sell_form_edit" action="/sell/edit/submit/" class="form-horizontal" role="form" method="post"> {% csrf_token %}
+	<form id="sell_form_edit" action="/sell/edit/submit/" class="form-horizontal" method="post"> {% csrf_token %}
 		<input type="hidden" id="target_isbn" name="target_isbn" value="{{book.isbn}}">
 		<input type="hidden" id="offer_id" name="offer_id" value="{{offer_id}}"/>
 		<input type="hidden" id="is_auction" name="is_auction" value="{{is_auction}}"/>
@@ -15,7 +15,7 @@
 		<div class="form-group">
 			<label for="course" class="col-sm-2 control-label sell-label">Course:</label>
 			<div class="col-sm-10">
-				<input id="course" name="course" class="form-control sell-field" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" placeholder="e.g. COS 333">
+				<input id="course" name="course" class="form-control sell-field" type="text" required pattern="(^[a-zA-Z]{3}( )*[0-9]{3}$)" value="{{offer.course}}">
 			</div>
 		</div>
 			{% if is_auction %}
