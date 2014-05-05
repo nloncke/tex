@@ -150,7 +150,6 @@ html {
 
 input, textarea{
 	font-family: 'Open Sans';
-    background-color: rgba(118,206,143,.25);
     color: black;
 }
 /* change fonts */
@@ -174,9 +173,6 @@ h2{
 }
 h1 {
 	font-size: 2em;
-}
-p {
-	font-size 1.5em;
 }
 th{
  	border-top: none;
@@ -223,10 +219,10 @@ th{
 	padding-left: 1.5%;
 }
 
- label {
+label{
  	margin-top:5px;
  	margin-bottom:5px;
- 
+
  }
 /*vertically center checkbox*/
 #is_auction {
