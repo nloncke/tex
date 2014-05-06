@@ -53,16 +53,33 @@ $(document).ready(function()
     buys the book and closes the auction."
   });
 
-  // SELL FORM TOOLTIPS
-  $("#is_auction").tooltip({
+  $("#current_price_info").popover({
     trigger:"hover",
-    title:"Want people to bid on your book?",
+    title:"Start price?",
+    content:"The auction starts at this price; bidders \
+    cannot bid below this amount.",
   });
 
-  $("#book_course").tooltip({
-    trigger:"hover",
-    title:"Enter a valid course name e.g. COS 333",
-  });
+  // SELL FORM TOOLTIPS
+  // $("#is_auction").tooltip({
+  //   trigger:"hover",
+  //   title:"Want people to bid on your book?",
+  // });
+
+  // $("#book_course").tooltip({
+  //   trigger:"hover",
+  //   title:"Enter a valid course name e.g. COS 333",
+  // });
+
+  // $("#end_time").tooltip({
+  //   trigger:"hover",
+  //   title:"Please select a date and time at which to end your auction.",
+  // });
+
+  // $("#current_price").tooltip({
+  //   trigger:"hover",
+  //   title:"Whole numbers only; dollar sign not required.",
+  // });
 
 
   $("#current_price").change( function()  {
