@@ -127,9 +127,11 @@ def fetch_isbn_amazon(isbn):
     except:
         info['title'] = 'Untitled'
 
-    try:
-        info['author'] = attribute.find('Author').text
-    except:
+    authors = attribute.iter('Author')
+    list = [author.text for author in authors ] 
+    info['author'] = '/'.join(list)
+    
+    if info['author'] == '':
         info['author'] = 'Unavailable'
     try:
         info['pub_date'] = attribute.find('PublicationDate').text
