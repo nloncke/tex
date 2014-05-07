@@ -22,7 +22,7 @@ function set_to_isbn(){
 function set_to_author(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by author",
-      	pattern:"^[A-Za-z\\s]+$",
+      	pattern:"^[A-Za-z\\s\.]+$",
     	title:"Enter only letters and spaces"});
     $('#search_by').button("author");
     $("#search_form").attr({action:"/search/author/"});

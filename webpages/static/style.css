@@ -30,8 +30,9 @@
 
 #sub_welcome {
 	color: rgba(0, 128, 128,.8);
-	  margin-bottom: 20px;
-	  margin-top: -20px;
+	font-size: 1.5em;
+	margin-bottom: 20px;
+/*	margin-top: -20px;*/
 }
 
 /*positions the entire search bar on the homepage*/
@@ -107,6 +108,14 @@
 
 .media.thumbnail{
    background-color: rgba(255,255,255,0.1);
+}
+
+.result-thumbnail {
+   width: 50px;
+}
+.frontcover {
+	height: 211px;
+	width: 171px;
 }
 
 .media-body > a:link {color: #008080;}
@@ -201,7 +210,7 @@ th{
 
 /*fixed width for sell form fields */
 .sell-field {
-  width: 150px;
+  width: 150px !important;
 }
 
 /* style all the input forms on the sell page */
@@ -215,10 +224,10 @@ th{
 }
 
 /*adjust the enddate input*/
-/*#datetimepicker {
-	padding-left: 1.5%;
+#datetimepicker, #datetimepicker2 {
+	padding-left: 15px;
 }
-*/
+
 
 label{
  	margin-top:5px;
@@ -279,7 +288,7 @@ label{
 	background-color: rgba(74, 160, 44,.25);
 }
 
- /*For mobile devices*/
+/*For mobile devices*/
 @media (max-width: 767px) {
 	.nav-wrapper {
 		height: 72px;
@@ -305,12 +314,16 @@ label{
 	   background-color: rgba(255,255,255,.25);
 	}
 
-	/*show only other seller icons*/
-
+	/*show only the icons of other sellers*/
 	.otherseller {
 		display: none;
 	}
-}
+
+/*	#end_time2 {
+	}
+	#datetimepicker2{
+	}
+*/}
 
 
 ul {list-style-type:none}
@@ -325,8 +338,12 @@ a:visited {color: #008080;}
 a:hover {color: rgba(74, 160, 44,.6);}
 
 
-#end_time{
+#end_time, #end_time2{
 	width:auto;
+}
+
+#submit {
+	display: inline !important;
 }
 
 .debug {
