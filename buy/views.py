@@ -43,6 +43,7 @@ def buy_confirmation(request):
 def bid(request):
     from models import bid_auction, get_auction_isbn
     from search.utils import get_book_info
+    from book.utils import get_book
     from utils import notify_old_bidder
     result = {}
     if request.method == "POST":
@@ -63,10 +64,11 @@ def bid(request):
         isbn = info["isbn"]
         
         result = get_book_info(isbn=isbn, thumb=False)[0]
+
         
         result["current_price"] = str(new_current_price)
         result["end_time"] = info["end_time"]
-        
+
         if old_buyer:
             notify_old_bidder(old_buyer, result)
         
