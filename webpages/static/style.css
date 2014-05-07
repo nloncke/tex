@@ -135,7 +135,9 @@
 }
 .modal-footer {
 	padding: 10px 10px 10px;
+	border-top: none;
 }
+
 .modal-header {
 	 border-bottom: none;
 	 height: 50px;
