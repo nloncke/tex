@@ -20,7 +20,10 @@
 		       </a>
 		       <h2>
 		       Author(s): {{book.author}} <br/>
-		       Published Date: {{book.pub_date}}
+		       Published Date: {{book.pub_date}} <br>
+		       {% if book.amazon_price %}
+		       <a href="http://www.amazon.com/gp/search/ref=sr_adv_b/?search-alias=stripbooks&field-isbn={{book.isbn}}" target="_blank">Amazon</a> List Price: ${{book.amazon_price}}
+		       {% endif %}
 		       </h2>
 	    	</td>
 	        <td>
