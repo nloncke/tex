@@ -212,7 +212,9 @@ th{
 	height: 130px;
 	text-align: center;
 }
+#above-footer{
 
+}
 
 /*fixed width for sell form fields */
 .sell-field {
@@ -350,6 +352,17 @@ a:hover {color: rgba(74, 160, 44,.6);}
 
 #submit {
 	display: inline !important;
+}
+
+/*account page table formatting*/
+.edit-cell{
+	width: 51px;
+}
+.remove-cell{
+	width: 75px;
+}
+#price_header{
+	width: 50px;
 }
 
 .debug {

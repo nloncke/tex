@@ -16,7 +16,9 @@
 						<p>Author(s): {{book.author}}</p>
 						<p>ISBN-13: {{book.isbn}}</p>
 						<p>Published Date: {{book.pub_date}}</p>
-<!-- 						<p>Amazon Price: ${{book.amazon_price}}</p> -->
+						{% if book.price %}
+						<p>Amazon Price: ${{book.price}}</p>
+						{% endif %}
 
 		         	{% block sellfollow %}
 		         	{% endblock sellfollow %}
