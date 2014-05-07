@@ -9,7 +9,7 @@
 $(function() {
 	$('#datetimepicker').datetimepicker({
 		minDate: moment().subtract('days', 1),
-		sideBySide: true,
+		// sideBySide: true,
 	});
 
 	$("#end_time").attr(
@@ -99,7 +99,16 @@ $(function() {
 			    </span>
 			</div>
 		</div>
-
+<!-- NL is attempting to debug resizing the sell form here. Don't delete yet! -->
+<!-- 		<div class="form-group collapse auction">
+			<label for="end_time" class="col-sm-2 control-label sell-label">Alternate End Date:</label>
+			<div class='col-sm-10 input-group date' id='datetimepicker2' data-date-format="MM/DD/YY HH:mm">
+				<input type='text' id="end_time2" name="end_time" class="form-control sell-field" title="Please select a date and time at which to end your auction." readonly/>
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar"></span>
+			    </span>
+			</div>
+		</div> -->
 		<div class="form-group collapse auction">
 			<label for="current_price" class="col-sm-2 control-label sell-label">Start Price ($):</label>
 			<div class="col-sm-10">
