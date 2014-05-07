@@ -29,22 +29,22 @@
 		    		<h1 class="media-heading"><strong>Other sites</strong></h1>
 	         		{% if book.amazon %}
 	         		<h2><a href={{book.amazon}} target="_blank"> <img src="/static/amazon.ico" alt="Amazon"></a>
-	         		<a href={{book.amazon}} target="_blank"> Amazon </a>
+	         		<a href={{book.amazon}} target="_blank" class="otherseller"> Amazon </a>
 	         	    </h2>
 	         	    {% endif %}
 	         		{% if book.campus %}
 	         		<h2><a href={{book.campus}} target="_blank"> <img src="/static/campus.ico" alt="Campus Books"></a>
-	         		<a href={{book.campus}} target="_blank"> Campus Books </a>
+	         		<a href={{book.campus}} target="_blank" class="otherseller"> Campus Books </a>
 	         	    </h2>
 	         		{% endif %}
 	         		{% if book.chegg %}
 	         		<h2><a href={{book.chegg}} target="_blank"> <img src="/static/chegg.ico" alt="Chegg"></a>
-	         		<a href={{book.chegg}} target="_blank"> Chegg </a>
+	         		<a href={{book.chegg}} target="_blank" class="otherseller"> Chegg </a>
 	         	    </h2>
 	         		{% endif %}
 		    		{% if book.labyrinth %}
 	         		<h2><a href={{book.labyrinth}} target="_blank"><img src="/static/labyrinth.ico" alt="Labyrinth"></a>
-	         		<a href={{book.labyrinth}} target="_blank"> Labyrinth </a>
+	         		<a href={{book.labyrinth}} target="_blank" class="otherseller"> Labyrinth </a>
 	         	    </h2>
 		    		{% endif %}
 		    	</td>
