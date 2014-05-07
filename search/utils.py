@@ -63,12 +63,12 @@ def fetch_isbn(isbn):
     try:
         info["author"] = "/".join(book["authors"])
     except: 
-        info["author"] = "This book as no registered authors :o"
+        info["author"] = "Unavailable"
     
     try:
         info["pub_date"] = book["publishedDate"]
     except:
-        info["pub_date"] = "No published date available"
+        info["pub_date"] = "No publication date available"
     try:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
         url_thm = book["imageLinks"]["smallThumbnail"].split("&edge")[0]
@@ -94,8 +94,7 @@ def fetch_isbn(isbn):
     return info
 
 def fetch_isbn_amazon(isbn):
-    # url = create_aws_request(isbn)
-    url = 'http://www.google.com'
+    url = create_aws_request(isbn)
     try:
         response = urllib2.urlopen(url)
         tree = ET.parse(response)
@@ -123,9 +122,21 @@ def fetch_isbn_amazon(isbn):
     # now we have the non kindle edition 
     info = {}
     info['isbn'] = isbn
-    info['title'] = attribute.find('Title').text
-    info['author'] = attribute.find('Author').text
-    info['pub_date'] = attribute.find('PublicationDate').text
+    try:
+        info['title'] = attribute.find('Title').text
+    except:
+        info['title'] = 'Untitled'
+
+    authors = attribute.iter('Author')
+    list = [author.text for author in authors ] 
+    info['author'] = '/'.join(list)
+    
+    if info['author'] == '':
+        info['author'] = 'Unavailable'
+    try:
+        info['pub_date'] = attribute.find('PublicationDate').text
+    except:
+        info['pub_date'] = 'No publication date available'
     try:
         imageItem = item.find('MediumImage')
         url_fnt = imageItem.find('URL').text

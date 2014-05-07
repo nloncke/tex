@@ -58,7 +58,9 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
     if (isbn != None):
         qset = qset.filter(isbn=isbn)
     if (title != None):
-        qset = qset.filter(title__icontains=title)
+        words = title.split()
+        for word in words:
+            qset = qset.filter(title__icontains=word)
     if (author != None):
         tokens = author.split()
         for token in tokens:
