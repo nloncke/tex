@@ -77,13 +77,13 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
                     if not os.path.isfile(thumbpath):
                         with open(thumbpath, 'wb') as f:
                             f.write(newob.thumbbytes)
-                    books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'thumbnail':newob.thumbnail})
+                    books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'thumbnail':newob.thumbnail, 'amazon_price':newob.amazon_price})
                 else:
                     coverpath = base + newob.frontcover
                     if not os.path.isfile(coverpath):
                         with open(coverpath, 'wb') as f:
                             f.write(newob.coverbytes)
-                    books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'frontcover':newob.frontcover})
+                    books.append({'isbn':newob.isbn, 'title':newob.title, 'author':newob.author, 'pub_date':newob.pub_date, 'frontcover':newob.frontcover, 'amazon_price':newob.amazon_price})
 
     elif (thumb == True):
         for object in qset:
@@ -91,14 +91,14 @@ def get_book_info(isbn = None, title = None, author = None, course = None, thumb
             if not os.path.isfile(thumbpath):
                 with open(thumbpath, 'wb') as f:
                     f.write(object.thumbbytes)
-        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumbnail,'pub_date':object.pub_date} for object in qset]
+        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'thumbnail':object.thumbnail,'pub_date':object.pub_date, 'amazon_price':object.amazon_price} for object in qset]
     else:
         for object in qset:
             coverpath = base + object.frontcover  
             if not os.path.isfile(coverpath):
                 with open(coverpath, 'wb') as f:
                     f.write(object.coverbytes)
-        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.frontcover, 'pub_date':object.pub_date} for object in qset]
+        books = [{'isbn':object.isbn, 'title':object.title, 'author':object.author, 'frontcover':object.frontcover, 'pub_date':object.pub_date, 'amazon_price':object.amazon_price} for object in qset]
 
     sorted_books = sorted(books, key=lambda k: k['title']) 
     return sorted_books
