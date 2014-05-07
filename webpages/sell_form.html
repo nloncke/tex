@@ -19,12 +19,12 @@ $(function() {
   $("#datetimepicker").on('dp.hide', function(){
     if(moment().isAfter(moment(
       $("#end_time").val(), "MM/DD/YY HH:mm"))){
-      $("#submit").prop( 'disabled', true);
+      $("#sell_submit").prop( 'disabled', true);
       alert("Please select a time in the future");
 
       }
     else {
-      $("#submit").prop( "disabled", false );
+      $("#sell_submit").prop( "disabled", false);
     }
   });
 });
@@ -91,6 +91,13 @@ $(function() {
 			</div>
 		</div>
 		<div class="form-group collapse auction">
+			<label class="col-sm-2 control-label sell-label"></label>
+			<div class='col-sm-10 info_text'>
+				<p>INFO: To make bidding a pleasant experience, you are not allowed to change the start price,
+					buy now price or the end date once the auction has started</p>
+			</div>
+		</div>
+		<div class="form-group collapse auction">
 			<label for="end_time" class="col-sm-2 control-label sell-label">End Date:</label>
 			<div class='col-sm-2 input-group date' id='datetimepicker' data-date-format="MM/DD/YY HH:mm">
 				<input type='text' id="end_time" name="end_time" class="form-control sell-field" title="Please select a date and time at which to end your auction." readonly/>
@@ -138,7 +145,7 @@ $(function() {
 			<label for="new" class="radio-inline"><input required style="margin-left:0px" id="new" name="picked_condition" type="radio" value="New"/>New</label>
 			<label for="like_new" class="radio-inline"><input required id="like_new" name="picked_condition" type="radio" value="Like New"/>Like New</label>
 			<label for="very_good" class="radio-inline"><input required id="very_good" name="picked_condition" type="radio" value="Very Good"/>Very Good</label>
-			<label for="good" class="radio-inline"><input required id="good" name="picked_condition" type="radio" value="Good"}/> Good</label>
+			<label for="good" class="radio-inline"><input required id="good" name="picked_condition" type="radio" value="Good"}/>Good</label>
 			<label for="acceptable" class="radio-inline"><input required id="acceptable" name="picked_condition" type="radio" value="Acceptable"/>Acceptable</label>
 		</div>
 		<div class="form-group">
@@ -148,8 +155,9 @@ $(function() {
 				name="description" rows="5" title="Enter a short description about your book."></textarea>
 			</div>
 		</div>
-    <button type="submit" id="submit" class="btn btn-default blue_button">
-    	<span><strong>SELL</strong></span>
+    <button type="submit" id="sell_submit" class="btn btn-default blue_button">
+		<span class ="auction"><strong>SELL</strong></span>
+    	<span class ="collapse auction"><strong>START AUCTION</strong></span>
 	</button>
     </h2>
 </form>
