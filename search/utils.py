@@ -4,6 +4,7 @@ import urllib2
 import json
 import re
 from TEX.settings import BASE_DIR
+import xml.etree.ElementTree as ET
 
 URL_STUB="https://www.googleapis.com/books/v1/volumes?q=isbn:"
 USER_AGENT=[("User-agent", "Mozilla/5.0")]
@@ -25,7 +26,9 @@ def search_by_course(query):
 def search_by_isbn(query, thumb=True):
     result = get_book_info(isbn = query, thumb=thumb)
     if result == []:
-        info = fetch_isbn(query)
+        info = fetch_isbn_amazon(query)
+        if not info:
+            info = fetch_isbn(query)
         if info:
             update_book_cache(**info)
             result = [info]
@@ -60,12 +63,12 @@ def fetch_isbn(isbn):
     try:
         info["author"] = "/".join(book["authors"])
     except: 
-        info["author"] = "This book as no registered authors :o"
+        info["author"] = "Unavailable"
     
     try:
         info["pub_date"] = book["publishedDate"]
     except:
-        info["pub_date"] = "No published date available"
+        info["pub_date"] = "No publication date available"
     try:
         url_fnt = book["imageLinks"]["thumbnail"].split("&edge")[0]
         url_thm = book["imageLinks"]["smallThumbnail"].split("&edge")[0]
@@ -88,6 +91,77 @@ def fetch_isbn(isbn):
     
     info["frontcover"] = frontcover
     info["thumbnail"] = thumbnail
+    return info
+
+def fetch_isbn_amazon(isbn):
+    url = create_aws_request(isbn)
+    try:
+        response = urllib2.urlopen(url)
+        tree = ET.parse(response)
+        root = tree.getroot()
+    except:
+        return []
+
+    # fix tags
+    for item in root.iter('*'):
+        l = item.tag.split('}')
+        item.tag = l[1]
+
+    # find item we want 
+    for item in root.iter('Item'):
+        for attribute in item.iter('ItemAttributes'):
+            for binding in attribute.iter('Binding'):
+                if 'Kindle' not in binding.text:
+                    break
+    
+    try:
+        attribute
+    except:
+        return []
+            
+    # now we have the non kindle edition 
+    info = {}
+    info['isbn'] = isbn
+    try:
+        info['title'] = attribute.find('Title').text
+    except:
+        info['title'] = 'Untitled'
+
+    authors = attribute.iter('Author')
+    list = [author.text for author in authors ] 
+    info['author'] = '/'.join(list)
+    
+    if info['author'] == '':
+        info['author'] = 'Unavailable'
+    try:
+        info['pub_date'] = attribute.find('PublicationDate').text
+    except:
+        info['pub_date'] = 'No publication date available'
+    try:
+        imageItem = item.find('MediumImage')
+        url_fnt = imageItem.find('URL').text
+        imageItem = item.find('SmallImage')
+        url_thm = imageItem.find('URL').text
+        opener = urllib2.build_opener()
+        opener.addheaders = USER_AGENT
+        img = opener.open(url_fnt)
+        frontcover = FNTCVR_STUB % isbn
+        with open(frontcover, "wb") as f:
+            f.write(img.read())
+        img = opener.open(url_thm)
+        thumbnail = THUMB_STUB % isbn
+        with open(thumbnail, "wb") as f:
+            f.write(img.read())
+        # Set to the right url
+        frontcover = FNTCVR_URL % isbn
+        thumbnail = THUMB_URL % isbn    
+    except:
+        frontcover = FNTCVR_URL % "default"
+        thumbnail = THUMB_URL % "default"
+
+    info['frontcover'] = frontcover
+    info['thumbnail'] = thumbnail
+
     return info
 
 def create_aws_request(isbn):
@@ -153,19 +227,6 @@ def validate_isbn(isbn):
         #print "Invalid ISBN"
         return False
 
-def validate_title(title):
-    regex = re.compile("^[\w\s]{1,200}$")
-    if re.search(regex, title):
-        return True
-    else:
-        return False
-        
-def validate_author(author):
-    regex = re.compile("^[a-zA-Z\s]{1,100}$")
-    if re.search(regex, author):
-        return True
-    else:
-        return False
 
 def validate_course(course):
     regex = re.compile("(\s)*[a-zA-Z]{3}( )*[0-9]{3}(\s)*$")
