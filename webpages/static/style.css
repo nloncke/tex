@@ -357,17 +357,6 @@ a:hover {color: rgba(74, 160, 44,.6);}
 	display: inline !important;
 }
 
-/*account page table formatting*/
-/*.edit-cell{
-	width: 50px;
-}
-.remove-cell{
-	width: 75px;
-}
-*//*.price_header{
-	width: 100px;
-}
-*/
 .debug {
 	border:solid red thick;
 }
