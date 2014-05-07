@@ -5,7 +5,7 @@
 
 <!-- DISPLAY THE BOOK AND OTHER SITES -->
 <div class="media">
-	<img class="media-object pull-left" src="{{ book.frontcover }}" alt="{{ book.title }}" height="211px" width="171px">
+	<img class="media-object pull-left frontcover" src="{{ book.frontcover }}" alt="{{ book.title }}">
 	<div class="media-body">
 		<table class="table">
 			<tr>
@@ -16,6 +16,7 @@
 						<p>Author(s): {{book.author}}</p>
 						<p>ISBN-13: {{book.isbn}}</p>
 						<p>Published Date: {{book.pub_date}}</p>
+<!-- 						<p>Amazon Price: ${{book.amazon_price}}</p> -->
 
 		         	{% block sellfollow %}
 		         	{% endblock sellfollow %}
