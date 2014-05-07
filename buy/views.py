@@ -43,7 +43,6 @@ def buy_confirmation(request):
 def bid(request):
     from models import bid_auction, get_auction_isbn
     from search.utils import get_book_info
-    from book.utils import get_book
     from utils import notify_old_bidder
     result = {}
     if request.method == "POST":

@@ -13,7 +13,7 @@ def remove_offer(offer_id, buyer_id=""):
         # To prevent cheating
         if object.seller_id == buyer_id:
             return None
-        d =  { 'isbn': object.isbn, 'seller_id':object.seller_id, 'price':object.price }
+        d =  { 'isbn': object.isbn, 'seller_id':object.seller_id, 'price':object.price, 'description':object.description}
         object.delete()
         return d
     except Offer.DoesNotExist:
