@@ -3,6 +3,7 @@ function set_to_title(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by title",
     	title:"Enter only letters, numbers and whitespace"});
+    $("#search_bar_text").removeAttr("pattern");
     $('#search_by').button("title");
     $("#search_form").attr({action:"/search/title/"});
     $("#search_bar_text").focus();
@@ -32,6 +33,7 @@ function set_to_author(){
 function set_to_course(){
     $("#search_bar_text").attr(
     	{placeholder:"Search by course (e.g. cos 333)",
+      pattern:"^(\\s)*[A-Za-z]{3}(\\s)*[0-9]{3}(\\s)*$",
     	title:'Enter a valid course name e.g COS 333'});
     $('#search_by').button("course");
     $("#search_form").attr({action:"/search/course/"});
