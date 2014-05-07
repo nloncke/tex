@@ -14,5 +14,4 @@ urlpatterns = patterns('',
     url(r'^buy/', include('buy.urls')),
     url(r'^account/', include('account.urls')),
     url(r'.*', "search.views.error_page"),
-    url(r'^static/(?P.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )
