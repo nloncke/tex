@@ -38,11 +38,11 @@
 	         	<tr>
 	         		<form id="edit_{{offer.offer_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
 	     				<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}"/>
-	         			<td><button type="submit" id="edit_{{offer.offer_id}}" form="edit_{{offer.offer_id}}" class="btn btn-default translucent_button">
+	     				<td><button type="submit" id="edit_{{offer.offer_id}}" form="edit_{{offer.offer_id}}" class="btn btn-default translucent_button edit-cell">
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>
 	    			</form>
-    				<td><button type="submit" id="remove_{{offer.offer_id}}" data-toggle="modal" data-target="#remove_modal_{{offer.offer_id}}" class="btn btn-default translucent_button">
+    				<td><button type="submit" id="remove_{{offer.offer_id}}" data-toggle="modal" data-target="#remove_modal_{{offer.offer_id}}" class="btn btn-default translucent_button remove-cell">
               			<span><strong>REMOVE</strong></span>
     				</button></td>
 	         		<td><a href="/book/?isbn={{offer.isbn}}">{{offer.title}}</a></td>
@@ -81,25 +81,25 @@
          <h1 class="media-heading"><strong>Auctioning</strong></h1>
          <h2>
          	{% if auctions %}
-	         <table class="table" width="80%">
+	         <table class="table debug" width="80%">
 	     		<th></th>
-	     		<th>Book</th>
-	     		<th>Current Price</th>
 	     		<th>Time Left</th>
+	     		<th>Book</th>
+	     		<th id="price_header"><span class="debug3">Current Price</span></th>
 	     		{% for auction in auctions %}
-	         	<tr class="countdown_{{auction.auction_id}}">
+	     		<tr class="countdown_{{auction.auction_id}}">
 	         		<form id="edit_{{auction.auction_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
 	     				<input type="hidden" id="offer_id" name="offer_id" value="{{auction.auction_id}}"/>
 	     				<input type="hidden" id="is_auction" name="is_auction" value="true"/>
-	         			<td><button type="submit" id="edit_{{auction.auction_id}}" form="edit_{{auction.auction_id}}" class="btn btn-default translucent_button">
+	         			<td><button type="submit" id="edit_{{auction.auction_id}}" form="edit_{{auction.auction_id}}" class="btn btn-default translucent_button edit-cell">
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>
 	    			</form>
-	         		<td><a href="/book/?isbn={{auction.isbn}}">{{auction.title}}</a></td>
-	         		<td>${{auction.current_price}}</td>
 	         		<td><div class="actualcountdown_{{auction.auction_id}}"></div></td>
+	         		<td><a href="/book/?isbn={{auction.isbn}}" class="title-cell">{{auction.title}}</a></td>
+	         		<td>${{auction.current_price}}</td>
 	         	</tr>
-			<script type="text/javascript">
+	         	<script type="text/javascript">
 				$(function() {
 				    $('.actualcountdown_{{auction.auction_id}}').countdown({
 				        date: "{{auction.end_time}}",
