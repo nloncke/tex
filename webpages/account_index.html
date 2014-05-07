@@ -33,20 +33,20 @@
 	     		<th></th>
 	     		<th></th>
 	     		<th>Book</th>
-	     		<th>Current Price</th>
+	     		<th class="col-md-2">Current Price</th>
 	     		{% for offer in offers %}
 	         	<tr>
 	         		<form id="edit_{{offer.offer_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
 	     				<input type="hidden" id="offer_id" name="offer_id" value="{{offer.offer_id}}"/>
-	     				<td><button type="submit" id="edit_{{offer.offer_id}}" form="edit_{{offer.offer_id}}" class="btn btn-default translucent_button edit-cell">
+	     				<td class="col-md-1"><button type="submit" id="edit_{{offer.offer_id}}" form="edit_{{offer.offer_id}}" class="btn btn-default translucent_button">
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>
 	    			</form>
-    				<td><button type="submit" id="remove_{{offer.offer_id}}" data-toggle="modal" data-target="#remove_modal_{{offer.offer_id}}" class="btn btn-default translucent_button remove-cell">
+    				<td class="col-md-1"><button type="submit" id="remove_{{offer.offer_id}}" data-toggle="modal" data-target="#remove_modal_{{offer.offer_id}}" class="btn btn-default translucent_button">
               			<span><strong>REMOVE</strong></span>
     				</button></td>
-	         		<td><a href="/book/?isbn={{offer.isbn}}">{{offer.title}}</a></td>
-	         		<td>${{offer.price}}</td>
+    				<td class="col-md-8"><a href="/book/?isbn={{offer.isbn}}">{{offer.title}}</a></td>
+	         		<td class="col-md-1">${{offer.price}}</td>
 	         	</tr>
 
 	         	<!-- remove modal -->
@@ -83,21 +83,21 @@
          	{% if auctions %}
 	         <table class="table" width="80%">
 	     		<th></th>
-	     		<th>Time Left</th>
 	     		<th>Book</th>
+	     		<th>Time Left</th>
 	     		<th>Current Price</th>
 	     		{% for auction in auctions %}
 	     		<tr class="countdown_{{auction.auction_id}}">
 	         		<form id="edit_{{auction.auction_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
 	     				<input type="hidden" id="offer_id" name="offer_id" value="{{auction.auction_id}}"/>
 	     				<input type="hidden" id="is_auction" name="is_auction" value="true"/>
-	         			<td><button type="submit" id="edit_{{auction.auction_id}}" form="edit_{{auction.auction_id}}" class="btn btn-default translucent_button edit-cell">
+	         			<td class="col-md-1"><button type="submit" id="edit_{{auction.auction_id}}" form="edit_{{auction.auction_id}}" class="btn btn-default translucent_button">
 	              			<span><strong>EDIT</strong></span>
 	    				</button> </td>
 	    			</form>
-	         		<td><div class="actualcountdown_{{auction.auction_id}}"></div></td>
-	         		<td><a href="/book/?isbn={{auction.isbn}}">{{auction.title}}</a></td>
-	         		<td>${{auction.current_price}}</td>
+	         		<td class="col-md-7"><a href="/book/?isbn={{auction.isbn}}">{{auction.title}}</a></td>
+	         		<td class="col-md-2"><div class="actualcountdown_{{auction.auction_id}}"></div></td>
+	         		<td class="col-md-2">${{auction.current_price}}</td>
 	         	</tr>
 	         	<script type="text/javascript">
 				$(function() {
@@ -108,14 +108,16 @@
 					    }
 				    });
 				});
-			</script>
+				</script>
 	         	{% endfor %}
 	         </table>
+
 	     {% else %}
 	     <h2>You currently have no auctions.</h2>
 	     {% endif %}
          </h2>
       </div>
+
        <div class="media-body">
          <h1 class="media-heading"><strong><br>Following</strong></h1>
          {% if follows %}
@@ -123,15 +125,15 @@
 	         <table class="table" width="80%">
 	     		<th></th>
 	     		<th>Book</th>
-	     		<th>Offer Price</th>
-	     		<th>Auction Price</th>
+	     		<th class="col-md-2">Offer Price</th>
+	     		<th class="col-md-2">Auction Price</th>
 	     		{% for follow in follows %}
 	         	<tr>
-	    			<td><button type="submit" id="unfollow_{{follow.book.isbn}}" data-toggle="modal" data-target="#unfollow_modal_{{follow.book.isbn}}"
+	    			<td class="col-md-1"><button type="submit" id="unfollow_{{follow.book.isbn}}" data-toggle="modal" data-target="#unfollow_modal_{{follow.book.isbn}}"
 	    				class="btn btn-default translucent_button"><span><strong>UNFOLLOW</strong></span></button></td>
-	         		<td><a href="/book/?isbn={{follow.book.isbn}}">{{follow.book.title}}</a></td>
-	         		<td>{% if follow.min_offer %}${{follow.min_offer.buy_price}}{% else %}No offers{% endif %}</td>
-	         		<td>{% if follow.min_auction %}${{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
+	         		<td class="col-md-7"><a href="/book/?isbn={{follow.book.isbn}}">{{follow.book.title}}</a></td>
+	         		<td class="col-md-2">{% if follow.min_offer %}${{follow.min_offer.buy_price}}{% else %}No offers{% endif %}</td>
+	         		<td class="col-md-2">{% if follow.min_auction %}${{follow.min_auction.current_price}}{% else %}No auctions{% endif %}</td>
 	         	</tr>
 
 	         	<!-- unfollow modal -->
