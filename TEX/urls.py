@@ -1,6 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from search import views
+from TEX import settings
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -13,4 +14,5 @@ urlpatterns = patterns('',
     url(r'^buy/', include('buy.urls')),
     url(r'^account/', include('account.urls')),
     url(r'.*', "search.views.error_page"),
+    url(r'^static/(?P.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT}),
 )

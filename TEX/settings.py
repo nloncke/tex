@@ -22,8 +22,7 @@ SECRET_KEY = 'xqz)1%#98!jgi*pimqwut^sl4tf(i@c*q32)z$djde=$@1&gfw'
 DEBUG = True 
 DEBUG = False
 
-TEMPLATE_DEBUG = True
-# TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (("Axal", "princeton.tex@gmail.com"),
           ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
