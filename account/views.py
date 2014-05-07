@@ -103,7 +103,7 @@ def login(request):
     
 def forbidden(request):
     '''Default 403 handler'''
-    return render(request, "error_page.html")
+    return render(request, "403.html")
 
 def not_found(request):
     ''' Default 404 handler '''
