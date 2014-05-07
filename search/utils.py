@@ -94,8 +94,7 @@ def fetch_isbn(isbn):
     return info
 
 def fetch_isbn_amazon(isbn):
-    # url = create_aws_request(isbn)
-    url = 'http://www.google.com'
+    url = create_aws_request(isbn)
     try:
         response = urllib2.urlopen(url)
         tree = ET.parse(response)
