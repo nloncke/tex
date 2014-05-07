@@ -145,7 +145,7 @@ def fetch_isbn_amazon(isbn):
     if price is not None:
         format = price.find('FormattedPrice')
         if format is not None:
-            info['amazon_price'] = format.text.split('$')[1]
+            info['amazon_price'] = format.text.replace('$', '')
     try:
         imageItem = item.find('MediumImage')
         url_fnt = imageItem.find('URL').text

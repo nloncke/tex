@@ -29,12 +29,12 @@
 }
 
 #sub_welcome {
-	color: rgba(0, 128, 128,.8);
-	font-size: 1.5em;
+	color: black;
+	font-size: 1.25em;
 	margin-bottom: 20px;
 }
 #info_banner{
-	font-size: 1.5em;
+	font-size: 1.25em;
 	margin-top: 20px;
 }
 
@@ -135,7 +135,9 @@
 }
 .modal-footer {
 	padding: 10px 10px 10px;
+	border-top: none;
 }
+
 .modal-header {
 	 border-bottom: none;
 	 height: 50px;
