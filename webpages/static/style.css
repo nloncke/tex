@@ -32,7 +32,10 @@
 	color: rgba(0, 128, 128,.8);
 	font-size: 1.5em;
 	margin-bottom: 20px;
-/*	margin-top: -20px;*/
+}
+#info_banner{
+	font-size: 1.5em;
+	margin-top: 20px;
 }
 
 /*positions the entire search bar on the homepage*/
