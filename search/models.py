@@ -42,6 +42,8 @@ class Book(models.Model):
     thumbbytes = models.BinaryField()
     pub_date = models.CharField(max_length=100) 
     course_list = models.CharField(max_length=300)
+    amazon_price = models.CharField(max_length=20)
+    price_stamp = models.IntegerField()
     def __unicode__(self):
         s = self.isbn + ' ' + self.title + ' ' + self.author + ' ' + self.frontcover + ' ' + self.thumbnail + ' ' + self.course_list
         return s

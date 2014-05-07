@@ -108,11 +108,15 @@ def fetch_isbn_amazon(isbn):
         item.tag = l[1]
 
     # find item we want 
+    done = False
     for item in root.iter('Item'):
         for attribute in item.iter('ItemAttributes'):
             for binding in attribute.iter('Binding'):
                 if 'Kindle' not in binding.text:
+                    done = True
                     break
+        if done == True:
+            break 
     
     try:
         attribute
@@ -137,6 +141,11 @@ def fetch_isbn_amazon(isbn):
         info['pub_date'] = attribute.find('PublicationDate').text
     except:
         info['pub_date'] = 'No publication date available'
+    price = attribute.find('ListPrice')
+    if price is not None:
+        format = price.find('FormattedPrice')
+        if format is not None:
+            info['amazon_price'] = format.text.split('$')[1]
     try:
         imageItem = item.find('MediumImage')
         url_fnt = imageItem.find('URL').text
