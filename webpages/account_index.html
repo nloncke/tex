@@ -85,7 +85,7 @@
 	     		<th></th>
 	     		<th>Time Left</th>
 	     		<th>Book</th>
-	     		<th id="price_header"><span>Current Price</span></th>
+	     		<th>Current Price</th>
 	     		{% for auction in auctions %}
 	     		<tr class="countdown_{{auction.auction_id}}">
 	         		<form id="edit_{{auction.auction_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
@@ -96,7 +96,7 @@
 	    				</button> </td>
 	    			</form>
 	         		<td><div class="actualcountdown_{{auction.auction_id}}"></div></td>
-	         		<td><a href="/book/?isbn={{auction.isbn}}" class="title-cell">{{auction.title}}</a></td>
+	         		<td><a href="/book/?isbn={{auction.isbn}}">{{auction.title}}</a></td>
 	         		<td>${{auction.current_price}}</td>
 	         	</tr>
 	         	<script type="text/javascript">
