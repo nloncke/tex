@@ -81,11 +81,11 @@
          <h1 class="media-heading"><strong>Auctioning</strong></h1>
          <h2>
          	{% if auctions %}
-	         <table class="table debug" width="80%">
+	         <table class="table" width="80%">
 	     		<th></th>
 	     		<th>Time Left</th>
 	     		<th>Book</th>
-	     		<th id="price_header"><span class="debug3">Current Price</span></th>
+	     		<th id="price_header"><span>Current Price</span></th>
 	     		{% for auction in auctions %}
 	     		<tr class="countdown_{{auction.auction_id}}">
 	         		<form id="edit_{{auction.auction_id}}" action="/sell/edit/" method="POST"> {% csrf_token %}
