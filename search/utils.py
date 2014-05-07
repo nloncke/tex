@@ -225,19 +225,6 @@ def validate_isbn(isbn):
         #print "Invalid ISBN"
         return False
 
-def validate_title(title):
-    regex = re.compile("^[\w\s]{1,200}$")
-    if re.search(regex, title):
-        return True
-    else:
-        return False
-        
-def validate_author(author):
-    regex = re.compile("^[a-zA-Z\s]{1,100}$")
-    if re.search(regex, author):
-        return True
-    else:
-        return False
 
 def validate_course(course):
     regex = re.compile("(\s)*[a-zA-Z]{3}( )*[0-9]{3}(\s)*$")
