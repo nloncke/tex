@@ -98,11 +98,13 @@ LOGIN_REDIRECT_URL="/"
 LOGOUT_URL = "/"
 
 
-STATIC_URL = '/static/'
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
 STATIC_ROOT = 'staticfiles'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
-    , os.path.join(BASE_DIR, 'media')
-    , os.path.join(BASE_DIR, 'media/static')
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join(PROJECT_PATH, 'webpages/static') 
+    , os.path.join(PROJECT_PATH, 'media')
+    , os.path.join(PROJECT_PATH, 'media/static')
     )
 
 
