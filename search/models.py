@@ -115,6 +115,7 @@ def update_book_cache(**book_info):
     with open(base + book_info['thumbnail'], 'r') as f:
         book_info['thumbbytes'] = f.read()
     book_info['course_list'] = ''
+    book_info['price_stamp'] = 0
     book = Book(**book_info)
     book.save()
 
