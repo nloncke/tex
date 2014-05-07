@@ -87,7 +87,10 @@
 #search_form{
 	font-family: 'Open Sans';
 }
-
+.image-med {
+	 height:211px;
+	 width:171px;
+}
 .outerframe {
    margin-bottom: 5%;
    margin-top: 5%;
