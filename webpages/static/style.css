@@ -198,12 +198,7 @@ th{
 	text-align: center;
 }
 
-/*padded for sell form*/
-/*.glyphicon-info-sign {
-  padding-left: 25%;
-  padding-top: 25%;
-}
-*/
+
 /*fixed width for sell form fields */
 .sell-field {
   width: 150px;
@@ -212,6 +207,11 @@ th{
 /* style all the input forms on the sell page */
 .sell-label {
   text-align: left;
+}
+
+.sell-info {
+	margin-top: 1%;
+	margin-left: 1%;
 }
 
 /*adjust the enddate input*/
@@ -303,6 +303,12 @@ label{
 	   padding: 2%;
 	   width: 80%;
 	   background-color: rgba(255,255,255,.25);
+	}
+
+	/*show only other seller icons*/
+
+	.otherseller {
+		display: none;
 	}
 }
 

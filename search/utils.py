@@ -26,7 +26,9 @@ def search_by_course(query):
 def search_by_isbn(query, thumb=True):
     result = get_book_info(isbn = query, thumb=thumb)
     if result == []:
-        info = fetch_isbn(query)
+        info = fetch_isbn_amazon(query)
+        if not info:
+            info = fetch_isbn(query)
         if info:
             update_book_cache(**info)
             result = [info]
@@ -92,11 +94,15 @@ def fetch_isbn(isbn):
     return info
 
 def fetch_isbn_amazon(isbn):
-    url = create_aws_request(isbn)
-    response = urllib2.urlopen(url)
-    tree = ET.parse(response)
-    root = tree.getroot()
-    
+    # url = create_aws_request(isbn)
+    url = 'http://www.google.com'
+    try:
+        response = urllib2.urlopen(url)
+        tree = ET.parse(response)
+        root = tree.getroot()
+    except:
+        return []
+
     # fix tags
     for item in root.iter('*'):
         l = item.tag.split('}')
@@ -106,9 +112,14 @@ def fetch_isbn_amazon(isbn):
     for item in root.iter('Item'):
         for attribute in item.iter('ItemAttributes'):
             for binding in attribute.iter('Binding'):
-                     if 'Kindle' not in binding.text:
-                         break
-        
+                if 'Kindle' not in binding.text:
+                    break
+    
+    try:
+        attribute
+    except:
+        return []
+            
     # now we have the non kindle edition 
     info = {}
     info['isbn'] = isbn
@@ -141,7 +152,6 @@ def fetch_isbn_amazon(isbn):
     info['thumbnail'] = thumbnail
 
     return info
-
 
 def create_aws_request(isbn):
     request = 'webservices.amazon.com/onca/xml?Service=AWSECommerceService&Operation=\
