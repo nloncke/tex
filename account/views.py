@@ -93,11 +93,11 @@ def login(request):
      
 # for Alpha testers    
     httpresp = login(request)
-#     if request.user.is_authenticated():
-#         if request.user.username not in alpha:
-#             httperror = render(request,'alpha_test.html')
-#             logout(request)
-#             return httperror
+    if request.user.is_authenticated():
+        if request.user.username not in alpha:
+            httperror = render(request,'alpha_test.html')
+            logout(request)
+            return httperror
     return httpresp
     
     
