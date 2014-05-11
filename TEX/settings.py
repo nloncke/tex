@@ -101,7 +101,7 @@ LOGOUT_URL = "/"
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
-    , os.path.join(BASE_DIR, 'media')
+#     , os.path.join(BASE_DIR, 'media')
     , os.path.join(BASE_DIR, 'media/static')
     )
 
