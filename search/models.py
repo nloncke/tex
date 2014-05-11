@@ -1,8 +1,9 @@
 from django.db import models
 import os.path
 import time
+from TEX.settings import STATIC_ROOT
 
-base = "media"
+base = STATIC_ROOT
 
 # Create your models here.
 class Offer(models.Model):
