@@ -34,7 +34,6 @@ def search_by_isbn(query, thumb=True):
             result = [info]
     
     return {"books":result}
-###############################################
 
 
 def fetch_isbn(isbn):
@@ -259,8 +258,7 @@ def convert_to_13(isbn):
         return ''.join(chars)
     else:
         return 0
-###############################################
 
-
+# For testing
 if __name__ == '__main__':
     print search_by_isbn (sys.argv[1])

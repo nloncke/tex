@@ -3,7 +3,7 @@ from django.http import HttpResponse, HttpResponseForbidden
 from django.template import RequestContext, loader
 import re
 
-alpha = ["jasala","lauraxu", "nloncke", "yoyeh", "kohemeng",
+testers = ["jasala","lauraxu", "nloncke", "yoyeh", "kohemeng",
     "hmccormi", "swatters", "salberti", "fpina", "yunzhil",
     "dkoltuny", "lslosar", "abuddhir", "afyabrou", "cgordon",
     "mmedward", "lberdick", "morgant", "echeruiy", "ethill",
@@ -17,9 +17,6 @@ def account_index(request):
     from sell.utils import get_book_info
     from book.utils import get_book
     from search.utils import validate_isbn
-    
-    from buy.utils import notify_users_closed_auctions
-    notify_users_closed_auctions()
     
     # only post if removing offer
     if request.method == "POST": 
@@ -79,23 +76,11 @@ def account_index(request):
 def login(request):
     from django_cas.views import login, logout
     
-##    For local dev  
-    from django.contrib import auth
-    from account.models import BookUser, not_registered
-    user = auth.authenticate(username="tex", password="axal@tex")
-    auth.login(request, user)
-    if not_registered(user):
-        bu = BookUser(user=user, watch_list='', default_search='title', class_year='')
-        bu.save()  
-        auth.login(request, user) 
-    return login(request)
-      
-     
-# for Alpha testers    
+    # for testers    
     httpresp = login(request)
     if request.user.is_authenticated():
-        if request.user.username not in alpha:
-            httperror = render(request,'alpha_test.html')
+        if request.user.username not in testers:
+            httperror = render(request,'testers.html')
             logout(request)
             return httperror
     return httpresp

@@ -27,6 +27,7 @@ class LoginRequiredMiddleware(object):
     def __init__(self):
         self.public_views = [self.get_view(v) for v in [
             "account.views.login",
+            "django_cas.views.logout",
             ]]
     
     def get_view(self, view_path):
@@ -42,6 +43,9 @@ class LoginRequiredMiddleware(object):
         return False
 
     def process_view(self, request, view_func, view_args, view_kwargs):
+        # Substitute for daemon
+        from buy.utils import notify_users_closed_auctions
+        notify_users_closed_auctions()
         if request.user.is_authenticated() or self.matches_public_view(view_func):
             return None
         else:
