@@ -7,7 +7,6 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
     url(r'^supersecretadminurl/', include(admin.site.urls)),
-    url(r'^helloDjango/', include('helloDjango.urls')),
     url(r'^search/', include('search.urls')),
     url(r'^book/', include('book.urls')),
     url(r'^sell/', include('sell.urls')),
