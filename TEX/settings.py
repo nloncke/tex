@@ -19,7 +19,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'xqz)1%#98!jgi*pimqwut^sl4tf(i@c*q32)z$djde=$@1&gfw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True 
+# DEBUG = True 
 DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
@@ -99,7 +99,7 @@ LOGOUT_URL = "/"
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = 'static'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
 #     , os.path.join(BASE_DIR, 'media')
     , os.path.join(BASE_DIR, 'media/static')

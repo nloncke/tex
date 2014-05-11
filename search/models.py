@@ -3,7 +3,7 @@ import os.path
 import time
 from TEX.settings import STATIC_ROOT
 
-base = STATIC_ROOT
+base = "."
 
 # Create your models here.
 class Offer(models.Model):
