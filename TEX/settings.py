@@ -100,8 +100,11 @@ LOGOUT_URL = "/"
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
-    , os.path.join(BASE_DIR, 'media/static')
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/fonts')
+    , os.path.join(BASE_DIR, 'webpages/less')
+    , os.path.join(BASE_DIR, 'webpages/css') 
+    , os.path.join(BASE_DIR, 'webpages/js') 
+    , os.path.join(BASE_DIR, 'media')
     )
 
 
