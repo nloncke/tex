@@ -50,19 +50,10 @@ def sell_submit(request):
             result["offer_id"] = put_offer(offer=offer)
             result["isbn"] = offer["isbn"]
     
-        return render(request, 'sell_submit.html', result)
-            
-        '''if validate_offer(offer) and validate_isbn(isbn):
-            put_offer(offer)
-            return render(request, 'sell_submit.html')
-        else:
-            # need an error html page
-            return render(request, 'search_empty_prompt.html', {"query": "temporary"})'''
-                
+        return render(request, 'sell_submit.html', result)                
     else:
         return render(request, "error_page.html")
 
-  
 def sell_edit(request):
     from sell.models import get_offer_info, get_auction_info
     from utils import get_book_info
