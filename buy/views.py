@@ -22,7 +22,7 @@ def buy_confirmation(request):
                 result["seller_id"] = seller_id
                 notify_users_bought(buyer=buyer_id, offer=sold_auction)      
             if sold_auction == None:
-                    return render(request, 'nocheating.html', {'buyer_id':buyer_id})         
+                return render(request, 'nocheating.html', {'buyer_id':buyer_id, 'error':"cheating"})         
         else:
             offer_id = request.POST.get("offer_id", "0")
             buyer_id = request.user.username

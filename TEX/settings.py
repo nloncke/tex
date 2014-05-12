@@ -19,9 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'xqz)1%#98!jgi*pimqwut^sl4tf(i@c*q32)z$djde=$@1&gfw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
+# DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (("Axal", "princeton.tex@gmail.com"),
           ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
@@ -98,10 +99,12 @@ LOGOUT_URL = "/"
 
 
 STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/static') 
+STATIC_ROOT = 'static'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'webpages/fonts')
+    , os.path.join(BASE_DIR, 'webpages/less')
+    , os.path.join(BASE_DIR, 'webpages/css') 
+    , os.path.join(BASE_DIR, 'webpages/js') 
     , os.path.join(BASE_DIR, 'media')
-    , os.path.join(BASE_DIR, 'media/static')
     )
 
 
@@ -138,7 +141,6 @@ DATABASES = {
         'PORT': '5432',
     }
 }
-
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

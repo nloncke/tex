@@ -3,13 +3,12 @@ import sys
 import urllib2
 import json
 import re
-from TEX.settings import BASE_DIR
 import xml.etree.ElementTree as ET
 
 URL_STUB="https://www.googleapis.com/books/v1/volumes?q=isbn:"
 USER_AGENT=[("User-agent", "Mozilla/5.0")]
-FNTCVR_STUB= 'media/static/frontcover_%s.jpg'
-THUMB_STUB= 'media/static/thumbnail_%s.jpg'
+FNTCVR_STUB= './static/frontcover_%s.jpg'
+THUMB_STUB= './static/thumbnail_%s.jpg'
 FNTCVR_URL="/static/frontcover_%s.jpg"
 THUMB_URL="/static/thumbnail_%s.jpg"
 
@@ -34,7 +33,6 @@ def search_by_isbn(query, thumb=True):
             result = [info]
     
     return {"books":result}
-###############################################
 
 
 def fetch_isbn(isbn):
@@ -259,8 +257,7 @@ def convert_to_13(isbn):
         return ''.join(chars)
     else:
         return 0
-###############################################
 
-
+# For testing
 if __name__ == '__main__':
     print search_by_isbn (sys.argv[1])
