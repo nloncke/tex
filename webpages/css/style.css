@@ -255,15 +255,6 @@ label{
   margin-top: 1.2%;
 }
 
-/*beware: specific to displaying the book! */
-/*img.center-all{
-  display: block;
-  margin-left: 20%;
-  margin-right: auto;
-}
-*/
-
-
 /* Three different shades of translucence for white*/
 .translucent_w1{
 	background-color: rgba(255,255,255,.75);
@@ -335,12 +326,7 @@ label{
 	.otherseller {
 		display: none;
 	}
-
-/*	#end_time2 {
-	}
-	#datetimepicker2{
-	}
-*/}
+}
 
 
 ul {list-style-type:none}
