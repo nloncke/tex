@@ -2,8 +2,6 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import re
 
-# render(request, html template, function that returns dictionary)
-# render(-, nicole, jeffrey)
 def index(request):
     return render(request,'index.html')
 

@@ -75,7 +75,7 @@
 }
 
 /*style the search results table headers*/
-.search-th{
+.search-th, .center-img{
   text-align: center;
   color: #008080; /*match the book links*/
 }
@@ -356,6 +356,17 @@ a:hover {color: rgba(74, 160, 44,.6);}
 #submit {
 	display: inline !important;
 }
+
+
+.big-shot {
+	width: 80%;
+	height:80%;
+}
+.md-shot{
+	width: 65%;
+	height:65%;
+}
+
 
 .debug {
 	border:solid red thick;

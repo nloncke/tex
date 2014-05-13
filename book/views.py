@@ -39,42 +39,7 @@ def book_index(request):
                     result["is_follow"] = "true" 
         return render(request, 'book_index.html', result)      
 
-    return render(request, 'error_page.html')
-
-  
-    
-'''def book_follow(request):   
-    from sell.utils import get_book_info    
-    from account.models import follow
-    result = {}
-    if request.method == "POST":
-        isbn = request.POST.get("target_isbn", "0")
-        username = request.user.username
-        user = request.user
-        if validate_isbn(isbn):
-            follow(user=user, isbn=isbn)
-            result = get_book_info(isbn=isbn)
-            return render(request, 'follow_unfollow_confirmation.html', result) # need to reload page or something else
-        else:
-            return render(request, 'error_page.html')
-    else:
-        return render(request, 'error_page.html')'''
-
-'''def book_unfollow(request):
-    from account.models import unfollow
-    from sell.utils import get_book_info
-    result = {}
-    if request.method == "POST":   
-        isbn = request.POST.get("target_isbn", "0")
-        user = request.user
-        if validate_isbn(isbn=isbn):
-            result = get_book_info(isbn=isbn)
-            unfollow(user=user, isbn=isbn)  
-            result["is_unfollow"] = "true"
-            return render(request, 'follow_unfollow_confirmation.html', result) 
-    else:
-        return render(request, 'error_page.html')'''
-    
+    return render(request, 'error_page.html')   
     
 def add(request):  
     from search.utils import search_by_isbn
