@@ -95,3 +95,6 @@ def not_found(request):
     ''' Default 404 handler '''
     return render(request, "error_page.html")
 
+def product_index(request):
+    '''Display the product page for submission'''
+    return render(request, "product_index.html")

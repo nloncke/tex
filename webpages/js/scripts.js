@@ -62,27 +62,6 @@ $(document).ready(function()
     cannot bid below this amount.",
   });
 
-  // SELL FORM TOOLTIPS
-  // $("#is_auction").tooltip({
-  //   trigger:"hover",
-  //   title:"Want people to bid on your book?",
-  // });
-
-  // $("#book_course").tooltip({
-  //   trigger:"hover",
-  //   title:"Enter a valid course name e.g. COS 333",
-  // });
-
-  // $("#end_time").tooltip({
-  //   trigger:"hover",
-  //   title:"Please select a date and time at which to end your auction.",
-  // });
-
-  // $("#current_price").tooltip({
-  //   trigger:"hover",
-  //   title:"Whole numbers only; dollar sign not required.",
-  // });
-
 
   $("#current_price").change( function()  {
     $("#price").attr({"min": $("#current_price").val()});
@@ -139,6 +118,10 @@ $("#buyback_submit").click(function () {
   	$(".nav-wrapper").height(72);
   	$("body").css("margin-top", 72);
   });
+  
+  // $('#buy-affix').affix({
+    // offset: 100,
+   // });
 
 });
 

@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^sell/', include('sell.urls')),
     url(r'^buy/', include('buy.urls')),
     url(r'^account/', include('account.urls')),
-    url(r'.*', "search.views.error_page"),
-)
+    url(r'^about/', "account.views.product_index"),
+    url(r'.*', "search.views.error_page")
+   )
