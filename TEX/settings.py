@@ -24,6 +24,8 @@ DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
+SECRET_AWS_KEY = b'Tx9XGGbYjlp0hDJLmDp9USt9OVm0mTPmy2lvqo4M'
+
 ADMINS = (("Axal", "princeton.tex@gmail.com"),
           ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
           ("Laura Xu", "lauraxu@princeton.edu"),
