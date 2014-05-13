@@ -80,14 +80,20 @@
   color: #008080; /*match the book links*/
 }
 
-/*large font sizes, bookpage*/
-/*.header {
-  font-size: 28px;
+.notify {
+	display: inline-block;
+	display: block;
+	height: auto;
+	width:600px;
+	padding: 4px;
+	font-family: sans-serif;
+	margin-bottom: 20px;
+	line-height: 1.428571429;
+	background-color: #ffffff;
+	border: 1px solid #dddddd;
+	border-radius: 4px;
 }
-.subheader {
-  font-size: 20px;
-}
-*/
+
 #search_form{
 	font-family: 'Open Sans';
 }
