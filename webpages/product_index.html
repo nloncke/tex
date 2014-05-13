@@ -11,6 +11,13 @@ h2 {font-size: 2.5em;}
 h3 {font-size: 2em;}
 
 </style>
+
+<script>
+$(function () {
+	$('#collapseOne').collapse("hide");
+});
+
+</script>
 {% endblock header %}
 {% block navbar %}
 {% endblock navbar %}
@@ -18,43 +25,58 @@ h3 {font-size: 2em;}
 {% block body %}
 <div class="container">
 	<div class="page-header">
-	<h1> What is tex? <br/>
-		<small> tex is a site for buying and selling books on campus.
-			Learn all about our <i>fantextic</i> features here! </small>
-  	</h1>
+		<h1> What is tex? <br/>
+			<small> tex is a site for buying and selling books on campus.
+				Learn all about our <i>fantextic</i> features here! </small>
+	  	</h1>
  	</div>
  	<div class="center-img">
- 	<img class="big-shot" src="/static/home.JPG" alt="tex homepage">
+ 		<img class="big-shot" src="/static/home.JPG" alt="tex homepage">
  	</div>
   	<br>
-  	<div id="buy-affix" class="page-header">
-	  	<h2><strong>Buying made easy!</strong></h2>
-  	</div>
-  	<ul class="media-list">
-  		<li class="media">
-  			<img class="pull-right md-shot" src="/static/search.png" alt="tex search bar">
-        	<div class="media-body md-vert-center">
-          		<h3>Search by title, course, author, or ISBN for fast and accurate results.</h3>
-        	</div>
-    	</li>
-    	<br>
-    	<li class="media">
-  			<img class="md-shot pull-left" src="/static/book page.JPG" alt="tex book page">
-        	<div class="media-body lg-vert-center">
-          		<h3>See the prices of all auctions and offers in the same place.</h3>
-        	</div>
-    	</li>
-       	<br>
-    	<li class="media">
-  			<img class="pull-right" src="/static/bidmodal.JPG" alt="tex book page">
-        	<div class="media-body lg-vert-center">
-          		<h3 class="pull-right">You choose your price! With our auction feature, you can now bid on books sold by
-          			fellow students. The time remaining in the auction is always displayed as a countdown so there are no surprises.
-          			If you are in a hurry to get the book, you can pay the Buy Now price and immediately win the auction!
-          		</h3>
-        	</div>
-    	</li>
-    </ul>
+	<div class="panel-group" id="accordion">
+	  <div class="panel panel-default">
+	    <div class="panel-heading">
+	      <h2 class="panel-title">
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+	          <strong>Buying made easy!</strong>
+	        </a>
+	      </h2>
+	    </div>
+	    <div id="collapseOne" class="panel-collapse collapse in">
+	   <div class="panel-body">
+	  	<ul class="media-list">
+	  		<li class="media">
+	  			<img class="pull-right md-shot" src="/static/search.png" alt="tex search bar">
+	        	<div class="media-body md-vert-center">
+	          		<h3>Search by title, course, author, or ISBN for fast and accurate results.</h3>
+	        	</div>
+	    	</li>
+	    	<br>
+	    	<li class="media">
+	  			<img class="md-shot pull-left" src="/static/book page.JPG" alt="tex book page">
+	        	<div class="media-body lg-vert-center">
+	          		<h3>See the prices of all auctions and offers in the same place.</h3>
+	        	</div>
+	    	</li>
+	       	<br>
+	    	<li class="media">
+	  			<img class="pull-right" src="/static/bidmodal.JPG" alt="tex book page">
+	        	<div class="media-body lg-vert-center">
+	          		<h3 class="pull-right">You choose your price! With our auction feature, you can now bid on books sold by
+	          			fellow students. The time remaining in the auction is always displayed as a countdown so there are no surprises.
+	          			If you are in a hurry to get the book, you can pay the Buy Now price and immediately win the auction!
+	          		</h3>
+	        	</div>
+	    	</li>
+	    </ul>
+	       </div>
+	    </div>
+	  </div>
+	</div>
+
+
+
 	<div class="page-header">
   	<br>
   	<div class="page-header">
@@ -87,7 +109,7 @@ h3 {font-size: 2em;}
         	</div>
     	</li>
     	<br>
-    </ul>      
+    </ul>
 </div>
 
 	<div>
@@ -108,7 +130,7 @@ h3 {font-size: 2em;}
       <li>Stay in the loop: receive real-time notifications </li>
       <li>Add a new book to the site simply by searching by ISBN! (ISBN 10 and 13 supported)</li>
     </ul>
-  </div>  
+  </div>
 {% endblock body %}
 {% block footer %}
 {% endblock footer %}
