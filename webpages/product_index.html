@@ -15,6 +15,8 @@ h3 {font-size: 2em;}
 <script>
 $(function () {
 	$('#collapseOne').collapse("hide");
+	$('#collapseTwo').collapse("hide");
+	$('#collapseThree').collapse("hide");
 });
 
 </script>
@@ -131,15 +133,32 @@ $(function () {
 	<div class="panel panel-default">
 	    <div class="panel-heading">
 	      <h2 class="panel-title">
-	        <a data-toggle="collapse" data-parent="#accordion" href="#collapse ###">
-	          <strong>Your title</strong>
+	        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+	          <strong>Account made easy!</strong>
 	        </a>
 	      </h2>
 	    </div>
-	    <div id="collapse###" class="panel-collapse collapse in">
+	    <div id="collapseThree" class="panel-collapse collapse in">
 	   <div class="panel-body">
 	  	<ul class="media-list">
-	  		....
+	  		<li class="media">
+			  	<img class="pull-right md-shot" src="/static/unfollow.JPG" alt="tex follow">
+			    	<div class="media-body md-vert-center">
+			          	<h3> Stay in the loop: follow a book that isn't currently offered or is too
+			          		expensive right now. You will be alerted when a new offer is made!  Once
+			          		you find a satisfactory offer, you can unfollow to quit receiving notifications.
+			          	</h3>
+			        </div>
+			</li>
+			<br />
+	  		<li class="media">
+			  	<img class="pull-left md-shot" src="/static/outbidemail.JPG" alt="tex book page">
+			    	<div class="media-body md-vert-center">
+			          	<h3> Activity Notifications: When events directly concerning you occur, you will receive
+			          		an email with the important details.
+			          	</h3>
+			        </div>
+			</li>
 	  	</ul>
 			</div>
 		</div>
@@ -151,12 +170,6 @@ $(function () {
 	<div>
     <ul>
       <li>Follow a book that isn't currently offered or is too expensive right now.</li>
-    </ul>
-  </div>
-  <div class="col-md-4">
-    <h2>Easy to sell</h2>
-    <ul>
-      <li>Add a new book to the site simply by searching by ISBN! (ISBN 10 and 13 supported)</li>
     </ul>
   </div>
   <div class="col-md-4">
