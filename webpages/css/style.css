@@ -358,7 +358,10 @@ a:hover {color: rgba(74, 160, 44,.6);}
 	width: 65%;
 	height:65%;
 }
-
+.sm-shot{
+	width: 40;
+	height:40%;
+}
 .lg-vert-center{
 	margin-top: 13%;
 }
