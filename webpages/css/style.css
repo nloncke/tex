@@ -373,6 +373,13 @@ a:hover {color: rgba(74, 160, 44,.6);}
 	height:65%;
 }
 
+.lg-vert-center{
+	margin-top: 13%;
+}
+.md-vert-center{
+	margin-top: 3%;
+}
+
 
 .debug {
 	border:solid red thick;
