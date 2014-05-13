@@ -24,17 +24,15 @@ DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
+SECRET_AWS_KEY = b'Tx9XGGbYjlp0hDJLmDp9USt9OVm0mTPmy2lvqo4M'
+
 ADMINS = (("Axal", "princeton.tex@gmail.com"),
           ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
           ("Laura Xu", "lauraxu@princeton.edu"),
           ("Jeffrey Asala", "jasala@princeton.edu"),
           ("Nicole Loncke", "nloncke@princeton.edu"))
 
-MANAGERS = (("Axal", "princeton.tex@gmail.com"),
-          ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
-          ("Laura Xu", "lauraxu@princeton.edu"),
-          ("Jeffrey Asala", "jasala@princeton.edu"),
-          ("Nicole Loncke", "nloncke@princeton.edu"))
+MANAGERS = ADMINS
 
 # Application definition
 
