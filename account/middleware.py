@@ -28,6 +28,7 @@ class LoginRequiredMiddleware(object):
         self.public_views = [self.get_view(v) for v in [
             "account.views.login",
             "django_cas.views.logout",
+            "account.views.product_index"
             ]]
     
     def get_view(self, view_path):
