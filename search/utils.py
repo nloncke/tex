@@ -4,6 +4,7 @@ import urllib2
 import json
 import re
 import xml.etree.ElementTree as ET
+from TEX.settings import SECRET_AWS_KEY
 
 URL_STUB="https://www.googleapis.com/books/v1/volumes?q=isbn:"
 USER_AGENT=[("User-agent", "Mozilla/5.0")]
@@ -196,7 +197,7 @@ ItemLookup&ResponseGroup=Large&SearchIndex=All\
     import hmac
     import hashlib
     import base64
-    dig = hmac.new(b'Tx9XGGbYjlp0hDJLmDp9USt9OVm0mTPmy2lvqo4M', msg=string, digestmod=hashlib.sha256).digest()
+    dig = hmac.new(SECRET_AWS_KEY, msg=string, digestmod=hashlib.sha256).digest()
     signature = base64.b64encode(dig).decode() 
     signature = urllib.quote_plus(signature)
     request = 'http://' + request + '&Signature=' + signature
