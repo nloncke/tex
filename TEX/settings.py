@@ -32,11 +32,7 @@ ADMINS = (("Axal", "princeton.tex@gmail.com"),
           ("Jeffrey Asala", "jasala@princeton.edu"),
           ("Nicole Loncke", "nloncke@princeton.edu"))
 
-MANAGERS = (("Axal", "princeton.tex@gmail.com"),
-          ("Ameera Abdelaziz", "aabdelaz@princeton.edu"),
-          ("Laura Xu", "lauraxu@princeton.edu"),
-          ("Jeffrey Asala", "jasala@princeton.edu"),
-          ("Nicole Loncke", "nloncke@princeton.edu"))
+MANAGERS = ADMINS
 
 # Application definition
 
