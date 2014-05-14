@@ -46,7 +46,10 @@ def add(request):
     result = {}
     if request.method == 'GET':
         isbn = request.GET.get("isbn","0")
+        isbn = isbn.lstrip()
+        isbn = isbn.rstrip()
         if validate_isbn(isbn=isbn):
+            isbn = re.sub("[^0-9Xx]", "", isbn)
             isbn = convert_to_13(isbn=isbn)
             results = search_by_isbn(isbn)["books"]
             if results:

@@ -257,7 +257,7 @@ def convert_to_13(isbn):
         chars.append(str(check))
         return ''.join(chars)
     else:
-        return 0
+        return "0"
 
 # For testing
 if __name__ == '__main__':
